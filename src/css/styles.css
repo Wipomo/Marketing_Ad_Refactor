@@ -1,0 +1,171 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.FirstPart {
+    background: #D8D8D8;
+    height: 50%;
+}
+
+.Header {
+    background: #FFFFFF;
+    padding: 2vw;
+}
+
+.LandingBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    background-image: url("/images/landing-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 75%;
+    height: 90vh;
+}
+
+.textPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    justify-content: center;
+    padding: 2vh;
+}
+
+.InputThing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    height: 50vh;
+    width: 75vw;
+    background: white;
+}
+
+.Slider {
+    display: flex;
+    height: 50vh;
+    width: 65vw;
+    padding: 2vh;
+    background: #D8D8D8;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.InputThing > input {
+    background: #D8D8D8;
+    padding: 2vh;
+    margin: 2vh;
+}
+
+button {
+    background: #1D4585;
+    width: 10vw;
+    height: 10vh;
+    color: white;
+    font-size: 15px;
+}
+
+.SecondPart {
+}
+
+.UpperPart {
+    background: #D8D8D8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 75vh;
+}
+
+.textHolder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vh;
+}
+
+.textHolder > h1 {
+    padding: 2vh;
+}
+
+.chartHolder {
+    display: flex;
+    width: 60vw;
+    height: 50vh;
+    background: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.UpperPart > div > h1 {
+    color: #0F448A;
+}
+
+.LowerPart {
+    background: #616B74;
+    height: 100%;
+    width: 100%;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("/images/savings-bg.png");
+    background-size: cover;
+    z-index: 1;
+}
+
+.detailsForm {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    color: black;
+    width: 60vw;
+    height: 50vh;
+}
+
+.nestName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.topForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottomPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #F2F2F2;
+    width: 50vw;
+}
+
+.carRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    border-left: 1px solid #F2F2F2;
+    width: 50vw;
+}
+
+.carMenus {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.hidden {
+    display: none;
+}
