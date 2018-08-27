@@ -1,171 +1,381 @@
 * {
-    margin: 0px;
     padding: 0px;
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.FirstPart {
+.light {
+    font-weight: 300;
+}
+
+.medium {
+    font-weight: 500;
+}
+
+.regular {
+    font-weight: 400;
+}
+
+.semiBold {
+    font-weight: 600;
+}
+
+body {
+
+}
+
+/*first box*/
+
+.App {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    height: 100vh;
+}
+
+.side {
+    background: grey;
+}
+
+/*second box*/
+
+/*parent*/
+
+.main {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 5% 70% 20% 5%;
     background: #D8D8D8;
-    height: 50%;
+
 }
 
-.Header {
-    background: #FFFFFF;
-    padding: 2vw;
-}
+/*children*/
 
-.LandingBody {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #FFFFFF;
+.imageTest {
     background-image: url("/images/landing-bg.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 75%;
-    height: 90vh;
-}
-
-.textPart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 50vh;
-    justify-content: center;
-    padding: 2vh;
-}
-
-.InputThing {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: black;
-    height: 50vh;
-    width: 75vw;
-    background: white;
-}
-
-.Slider {
-    display: flex;
-    height: 50vh;
-    width: 65vw;
-    padding: 2vh;
-    background: #D8D8D8;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.InputThing > input {
-    background: #D8D8D8;
-    padding: 2vh;
-    margin: 2vh;
-}
-
-button {
-    background: #1D4585;
-    width: 10vw;
-    height: 10vh;
-    color: white;
-    font-size: 15px;
-}
-
-.SecondPart {
-}
-
-.UpperPart {
-    background: #D8D8D8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 75vh;
-}
-
-.textHolder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3vh;
-}
-
-.textHolder > h1 {
-    padding: 2vh;
-}
-
-.chartHolder {
-    display: flex;
-    width: 60vw;
-    height: 50vh;
-    background: white;
-    justify-content: center;
-    align-items: center;
-}
-
-.UpperPart > div > h1 {
-    color: #0F448A;
-}
-
-.LowerPart {
-    background: #616B74;
-    height: 100%;
-    width: 100%;
-    color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url("/images/savings-bg.png");
-    background-size: cover;
+    background-size: 100%;
+    filter: brightness(60%);
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
     z-index: 1;
 }
 
-.detailsForm {
-    display: flex;
-    flex-direction: column;
+.mHeader {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
     background: white;
-    color: black;
-    width: 60vw;
-    height: 50vh;
 }
 
-.nestName {
+.mhText {
+    grid-column-start: 1;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-.topForm {
-    display: flex;
-    flex-direction: column;
-}
-
-.bottomPart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.carLeft {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    border-right: 1px solid #F2F2F2;
-    width: 50vw;
+    align-items: center;
 }
 
-.carRight {
+.mCenter {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+
+    /*--------*/
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 55% 45%;
+
+    z-index: 2;
+}
+
+.mFooter {
+    background: #D8D8D8;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
+}
+
+/*third box*/
+
+.mcText {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.mctUpper {
+    margin-top: 17.5%;
+    grid-row-start: 1;
+    font-size: 45px;
+}
+
+.mctLower {
+    grid-row-start: 2;
+    font-size: 24px;
+}
+
+.mcSlider {
+    background: white;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
+
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    grid-template-rows: 20% 45% 35%;
+}
+
+/*forth box*/
+
+.sliderText {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.slider {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background: #D8D8D8;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    color: blue;
+}
+
+.bottomInputs {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    align-self: center;
-    border-left: 1px solid #F2F2F2;
-    width: 50vw;
+    text-align: center;
 }
 
-.carMenus {
-    display: flex;
-    justify-content: space-between;
-    align-self: center;
+.submitButton {
+    color: white;
+    background: #1D4585;
+    height: 3vh;
+    width: 7vw;
+}
+
+.submitButtonBig {
+    color: white;
+    background: #1D4585;
+    height: 6vh;
+    width: 12vw;
+    font-size: 20px;
+}
+
+.userInput {
+    background: #F2F2F2;
+    height: 3vh;
+    width: 15vw;
 }
 
 .hidden {
     display: none;
+}
+
+/*page two*/
+
+.main2 {
+    display: grid;
+    grid-template-columns: 12.5% 75% 12.5%;
+    grid-template-rows: 60% 40%;
+    background: #D8D8D8;
+}
+
+.m2Upper {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 2.5% 35% 55% 7.5%;
+}
+
+.m2uText {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    font-size: 22px;
+}
+
+.bigBlue {
+    color: #1D4585;
+    font-size: 72px;
+}
+
+.m2uChart {
+    background: white;
+    grid-column-start: 1;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.m2Lower {
+    color: white;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 2.5% 27% 63% 7.5%;
+}
+
+.imageTest2 {
+    background-image: url("/images/savings-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    filter: brightness(60%);
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    z-index: 1;
+}
+
+.m2lTop {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.m2lBottom {
+    color: black;
+    background: white;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+/*page three*/
+
+.main3 {
+    display: grid;
+    grid-template-columns: 12.5% 75% 12.5%;
+    grid-template-rows: 20% 50% 40%;
+    background: white;
+    font-size: 20px;
+}
+
+.m3Upper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.m3Middle {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+}
+
+.m3mLeft {
+    border-right: 1px solid #D8D8D8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.m3mRight {
+    border-left: 1px solid #D8D8D8;
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-template-columns: 10% 80% 10%;
+    grid-text-emphasis: 20% 60% 20%;
+}
+
+.m3mrM {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.m3mrL {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.m3Lower {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
 }

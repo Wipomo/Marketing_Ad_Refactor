@@ -1,9 +1,7 @@
 import React from 'react';
-import Header from './Header';
-import LandingBody from './LandingBody';
-import UpperPart from './UpperPart';
-import LowerPart from './LowerPart';
-import BottomPart from "./BottomPart";
+import FirstPart from './FirstPart';
+import SecondPart from './SecondPart';
+import ThirdPart from './ThirdPart';
 
 class App extends React.Component {
 
@@ -21,10 +19,7 @@ class App extends React.Component {
             email: '',
             fullName: '',
             phone: '',
-            address: '',
-            city: '',
-            state: '',
-            zipcode: ''
+            address: ''
         }
     };
 
@@ -46,14 +41,11 @@ class App extends React.Component {
         this.setState({ clientProfile });
     };
 
-    restOfFormUpdater = (fullName, phone, address, city, state, zipcode) => {
+    restOfFormUpdater = (fullName, phone, address) => {
         let clientProfile = { ...this.state.clientProfile };
         clientProfile.fullName = fullName;
         clientProfile.phone = phone;
         clientProfile.address = address;
-        clientProfile.city = city;
-        clientProfile.state = state;
-        clientProfile.zipcode = zipcode;
         this.setState({ clientProfile });
     };
 
@@ -61,15 +53,13 @@ class App extends React.Component {
         return(
             <div>
                 <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
-                    <Header/>
-                    <LandingBody emailUpdater={this.emailUpdater} hideChanger={this.hideChanger}/>
+                    <FirstPart emailUpdater={this.emailUpdater} hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
-                    <UpperPart/>
-                    <LowerPart restOfFormUpdater={this.restOfFormUpdater} hideChanger={this.hideChanger}/>
+                    <SecondPart restOfFormUpdater={this.restOfFormUpdater} hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
-                    <BottomPart hideChanger={this.hideChanger}/>
+                    <ThirdPart hideChanger={this.hideChanger}/>
                 </div>
             </div>
         );
