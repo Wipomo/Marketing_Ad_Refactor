@@ -2,7 +2,8 @@ import React from 'react';
 import FirstPart from './FirstPart';
 import SecondPart from './SecondPart';
 import ThirdPart from './ThirdPart';
-import Radio from './Radio';
+// import Radio from './Radio';
+import MakelloSlider from './MakelloSlider';
 
 class App extends React.Component {
 
@@ -55,7 +56,7 @@ class App extends React.Component {
             <div>
                 <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
                     <FirstPart emailUpdater={this.emailUpdater} hideChanger={this.hideChanger}/>
-                    <Radio/>
+                    <MakelloSlider/>
                 </div>
                 <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
                     <SecondPart restOfFormUpdater={this.restOfFormUpdater} hideChanger={this.hideChanger}/>
