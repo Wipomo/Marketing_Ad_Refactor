@@ -12,9 +12,9 @@ class ThirdPart extends React.Component {
                     </div>
                     <div className='m3Middle'>
                         <div className='m3mLeft'>
-                            <p className='regular'>What is your weekly commute in miles?</p>
+                            <p className='regular'>What is daily average commute in miles?</p>
                             <input className='userInput' type='text' />
-                            <p className='regular'>What is your weekly commute in miles?</p>
+                            <p className='regular'>What is your miles per gallon average?</p>
                             <input className='userInput' type='text' />
                         </div>
                         <div className='m3mRight'>

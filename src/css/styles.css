@@ -379,3 +379,9 @@ body {
     grid-row-start: 3;
     grid-row-end: 4;
 }
+
+.styled-select select {
+    background: #F2F2F2;
+    height: 5vh;
+    width: 15vw;
+}

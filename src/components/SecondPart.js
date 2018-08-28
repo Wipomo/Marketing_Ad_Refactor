@@ -1,6 +1,21 @@
 import React from 'react';
+import AddressInput from './AddressInput'
+
+var initAuto = false;
 
 class SecondPart extends React.Component {
+
+    initAutoComplete = () => {
+        var input = document.getElementById('autocomplete');
+        if (initAuto === false) {
+            console.log("initializes autocomplete once only");
+            var autocomplete = new window.google.maps.places.Autocomplete(
+                input,
+                {types: ['address'], placeIdOnly: true}
+            );
+            initAuto = true;
+        }
+    }
 
     nameRef = React.createRef();
     phoneRef = React.createRef();
@@ -24,7 +39,7 @@ class SecondPart extends React.Component {
                         <div className='m2uText'>
                             <p className='regular'>You can save</p>
                             <p className='semiBold bigBlue'>$X,XXX</p>
-                            <p className='regular'>with 100% clean energy</p>
+                            <p className='regular'>with 100% Clean Energy annually</p>
                         </div>
                         <div className='m2uChart'>
                             <p>(Placeholder for chart)</p>
@@ -33,13 +48,13 @@ class SecondPart extends React.Component {
                     <div className='imageTest2' />
                     <div className='m2Lower'>
                         <div className='m2lTop'>
-                            <p  className=''>Are you ready to save money?</p>
+                            <p  className='regular'>Are you ready to save money?</p>
                         </div>
                         <div className='m2lBottom'>
                             <p className='light'>Get a custom energy savings report from Makello</p>
                             <input className='userInput light' type='text' placeholder='Full Name*' ref={this.nameRef}/>
                             <input className='userInput light' type='text' placeholder='Phone' ref={this.phoneRef}/>
-                            <input className='userInput light' type='text' placeholder='Address*' ref={this.addressRef}/>
+                            <input id='autocomplete' onFocus={this.initAutoComplete} className='userInput light' type='text' placeholder='Enter full address*' ref={this.addressRef}/>
                             <input className='submitButton light' type='submit' onClick={this.submitHandler}/>
                         </div>
                     </div>
