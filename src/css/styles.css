@@ -135,6 +135,10 @@ body {
     grid-template-rows: 20% 45% 35%;
 }
 
+.makelloSlider {
+    position: relative;
+}
+
 /*forth box*/
 
 .sliderText {
