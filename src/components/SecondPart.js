@@ -1,6 +1,5 @@
 import React from 'react';
 import AddressInput from './AddressInput';
-import Chart from './Chart';
 
 var initAuto = false;
 
@@ -43,7 +42,6 @@ class SecondPart extends React.Component {
                             <p className='regular'>with 100% Clean Energy annually</p>
                         </div>
                         <div className='m2uChart'>
-                        <Chart/>
                             {/* <p>(Placeholder for chart)</p> */}
                         </div>
                     </div>
