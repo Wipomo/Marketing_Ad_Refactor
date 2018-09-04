@@ -1,8 +1,11 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 
+const NUMBER_OF_DAYS_IN_YEAR = 365;
+
 class Chart extends React.Component {
     constructor(chartContainer, data, minimum_year, maximum_year) {
+        super();
         this.data = data;
         this.minimum_year = minimum_year;
         this.maximum_year = maximum_year;
@@ -28,11 +31,11 @@ class Chart extends React.Component {
             }
         }).filter(x => {
             if (x) {
-                return true
+                return true;
             }
         });
 
-        return indexOfCrossOver
+        return indexOfCrossOver;
     }
 
     dateOfBreakEven(data, minimum_year) {
@@ -48,7 +51,7 @@ class Chart extends React.Component {
 
         console.log("Date of Crossover is: ");
         console.log(dateOfCrossover);
-        return dateOfCrossover
+        return dateOfCrossover;
     }
 
     createChart(containerString, data) {
