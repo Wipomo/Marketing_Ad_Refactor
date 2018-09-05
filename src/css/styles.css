@@ -169,6 +169,10 @@ body {
     color: blue;
 }
 
+.rc-slider-tooltip { 
+    z-index: 2; 
+}
+
 .bottomInputs {
     grid-column-start: 2;
     grid-column-end: 3;
