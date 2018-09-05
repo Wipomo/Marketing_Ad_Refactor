@@ -51,29 +51,7 @@ const cars = {
 var test = '';
 
 class Radio extends React.Component {
-
-    handleChange = (e) => {
-        let value = e.target.value;
-        userCar.year = e.target.value;
-        console.log(userCar.year);
-        this.updateMakeMenu(userCar.year);
-    };
-
-    updateMakeMenu = (userCar) => {
-        switch (userCar) {
-            case '2017':
-                console.log(cars.year["2017"].make);
-                for (let i = 0; i < cars.year["2017"].make.length; i++) {
-                    <option value={cars.year["2017"].make[i]}>{cars.year["2017"].make[i]}</option>
-                }
-
-                break;
-            case '2018':
-                console.log(cars.year["2018"].make);
-                break;
-        }
-    };
-
+    
     render() {
 
 
