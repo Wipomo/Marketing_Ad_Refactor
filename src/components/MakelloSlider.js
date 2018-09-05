@@ -4,29 +4,13 @@ import 'rc-tooltip/assets/bootstrap.css';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 
-const Handle = Slider.Handle;
 
-const handle = (props) => {
-    const { value, dragging, index, ...restProps } = props;
-
-    return (
-        <Tooltip
-            id="sliderHandle"
-            prefixCls="rc-slider-tooltip"
-            overlay={"$"+value}
-            visible={true}
-            defaultVisible = {true}
-            placement="bottom"
-            key={index}
-        >
-            <Handle value={value} {...restProps} />
-        </Tooltip>
-    );
-};
 
 class MakelloSlider extends React.Component {
 
+    componentDidMount = () => {
 
+    }
 
     render() {
         let {min,max,step,onInput} = this.props;
@@ -55,9 +39,36 @@ class MakelloSlider extends React.Component {
         const sliderContainerStyle = {margin: 'auto', top: 0, left: 0, bottom: 0, right: 0, width: 500, height: 100 }
         const sliderStyle = { backgroundColor: 'white', height: 8};
 
+
+
+
+        const Handle = Slider.Handle;
+
+        const handle = (props) => {
+            const { value, dragging, index, ...restProps } = props;
+
+            return (
+                <Tooltip
+                    id="sliderHandle"
+                    prefixCls="rc-slider-tooltip"
+                    overlay={"$"+value}
+                    visible={true}
+                    defaultVisible = {true}
+                    placement="bottom"
+                    key={index}
+                >
+                    <Handle value={value} {...restProps} />
+                </Tooltip>
+            );
+        };
+
+
+
+
+
         return(
             <div style={sliderContainerStyle}>
-                <Slider marks={marks} trackStyle={sliderStyle} railStyle={sliderStyle} id="slider" min={min} max={max} defaultValue={this.props.monthlyBill} step={step} handle={handle} onChange={onInput} />
+                <Slider marks={marks} trackStyle={sliderStyle} railStyle={sliderStyle} id="slider" min={min} max={max} defaultValue={this.props.monthlyBill}  handle={handle}  />
             </div>
         )
     }
