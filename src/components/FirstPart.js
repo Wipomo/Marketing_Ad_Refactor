@@ -40,7 +40,7 @@ class FirstPart extends React.Component {
                             </div>
                             <div className='bottomInputs'>
                                 <input className='userInput light' type='email' ref={this.emailRef} placeholder='Email*'/>
-                                <input className='submitButton light' type='submit' onClick={this.submitHandler}/>
+                                <input className='submitButton light' type='submit' value="Submit" onClick={this.submitHandler}/>
                             </div>
                         </div>
                     </div>

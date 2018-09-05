@@ -4,28 +4,29 @@ import 'rc-tooltip/assets/bootstrap.css';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 
-        
 const Handle = Slider.Handle;
-const handle = (props) => {
-  const { value, dragging, index, ...restProps } = props;
 
-  return (
-    <Tooltip
-      id="sliderHandle"
-      prefixCls="rc-slider-tooltip"
-      overlay={"$"+value}
-      visible={true}
-      defaultVisible = {true}
-      placement="bottom"
-      key={index}
-    >
-      <Handle value={value} {...restProps} />
-    </Tooltip>
-  );
+const handle = (props) => {
+    const { value, dragging, index, ...restProps } = props;
+
+    return (
+        <Tooltip
+            id="sliderHandle"
+            prefixCls="rc-slider-tooltip"
+            overlay={"$"+value}
+            visible={true}
+            defaultVisible = {true}
+            placement="bottom"
+            key={index}
+        >
+            <Handle value={value} {...restProps} />
+        </Tooltip>
+    );
 };
 
-
 class MakelloSlider extends React.Component {
+
+
 
     render() {
         let {min,max,step,onInput} = this.props;

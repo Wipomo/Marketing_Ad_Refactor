@@ -55,7 +55,7 @@ class SecondPart extends React.Component {
                             <input className='userInput light' type='text' placeholder='Full Name*' ref={this.nameRef}/>
                             <input className='userInput light' type='text' placeholder='Phone' ref={this.phoneRef}/>
                             <input id='autocomplete' onFocus={this.initAutoComplete} className='userInput light' type='text' placeholder='Enter full address*' ref={this.addressRef}/>
-                            <input className='submitButton light' type='submit' onClick={this.submitHandler}/>
+                            <input className='submitButton light' value="Submit" type='submit' onClick={this.submitHandler}/>
                         </div>
                     </div>
                 </div>

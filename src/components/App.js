@@ -2,7 +2,8 @@ import React from 'react';
 import FirstPart from './FirstPart';
 import SecondPart from './SecondPart';
 import ThirdPart from './ThirdPart';
-import Radio from './Radio';
+import ForthPart from './ForthPart';
+import FifthPart from './FifthPart';
 
 class App extends React.Component {
 
@@ -16,11 +17,22 @@ class App extends React.Component {
         showThirdPart: {
             hidden: 'hidden'
         },
+        showForthPart: {
+            hidden: 'hidden'
+        },
+        showFifthPart: {
+            hidden: 'hidden'
+        },
         clientProfile: {
             email: '',
             fullName: '',
             phone: '',
-            address: ''
+            address: '',
+            dailyTrip: '',
+            mpg: '',
+            carYear: '',
+            carMake: '',
+            carModel: ''
         }
     };
 
@@ -29,6 +41,8 @@ class App extends React.Component {
             this.setState({showFirstPart: {hidden: 'hidden'}});
             this.setState({showSecondPart: {hidden: 'hidden'}});
             this.setState({showThirdPart: {hidden: 'hidden'}});
+            this.setState({showForthPart: {hidden: 'hidden'}});
+            this.setState({showFifthPart: {hidden: 'hidden'}});
             this.setState({[input]: {hidden: ''}});
         } else {
             this.setState({[input]: {hidden: 'hidden'}});
@@ -55,13 +69,18 @@ class App extends React.Component {
             <div>
                 <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
                     <FirstPart emailUpdater={this.emailUpdater} hideChanger={this.hideChanger}/>
-                    <Radio/>
                 </div>
                 <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
                     <SecondPart restOfFormUpdater={this.restOfFormUpdater} hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
                     <ThirdPart hideChanger={this.hideChanger}/>
+                </div>
+                <div className={`ThirdPart ${this.state.showForthPart.hidden}`}>
+                    <ForthPart hideChanger={this.hideChanger}/>
+                </div>
+                <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
+                    <FifthPart hideChanger={this.hideChanger}/>
                 </div>
             </div>
         );

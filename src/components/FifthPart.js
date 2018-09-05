@@ -1,16 +1,12 @@
 import React from 'react';
 
-class ThirdPart extends React.Component {
+class FifthPart extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.hideChanger('showForthPart');
+        window.location.href = "https://wipomo-zoho-database.herokuapp.com/"
     };
 
-    imgHandler = (event) => {
-        event.preventDefault();
-        window.location.href = "https://wipomo-zoho-database.herokuapp.com/";
-    };
 
     render() {
         return(
@@ -18,15 +14,15 @@ class ThirdPart extends React.Component {
                 <div className='side' />
                 <div className='main3'>
                     <div className='m3Upper'>
-                        <p className='medium'>Thank you! We will reach out to you shortly!</p>
+                        <p className='medium'>Thank you! We will add this information to your personalized projected savings report!</p>
                         <p>Insert text about us being real people</p>
 
                     </div>
                     <div className='m3Middle'>
-                            <img src="/images/Makello-Logo.png" onClick={this.imgHandler} />
+                        <img src="/images/Makello-Logo.svg" />
                     </div>
                     <div className='m3Lower'>
-                        <input className='submitButtonBig light' type='submit' value="Interested to see how much an electric car can increase savings?" onClick={this.submitHandler}/>
+                        <input className='submitButtonBig light' type='submit' value="Come visit our website!" onClick={this.submitHandler}/>
                     </div>
                 </div>
                 <div className='side' />
@@ -35,4 +31,5 @@ class ThirdPart extends React.Component {
     }
 }
 
-export default ThirdPart;
+
+export default FifthPart;
