@@ -1,5 +1,6 @@
 import React from 'react';
 import AddressInput from './AddressInput';
+import Chart from './chart/Chart';
 
 var initAuto = false;
 
@@ -41,9 +42,7 @@ class SecondPart extends React.Component {
                             <p className='semiBold bigBlue'>$X,XXX</p>
                             <p className='regular'>with 100% Clean Energy annually</p>
                         </div>
-                        <div className='m2uChart'>
-                            {/* <p>(Placeholder for chart)</p> */}
-                        </div>
+                            <Chart className='m2uChart' monthlyBillingAmount={2500}/>
                     </div>
                     <div className='imageTest2' />
                     <div className='m2Lower'>
