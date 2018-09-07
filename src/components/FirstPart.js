@@ -27,7 +27,7 @@ class FirstPart extends React.Component {
                     <div className='mCenter'>
                         <div className='mcText'>
                             <p className='mctUpper semiBold'>You don't need tons of solar panels to save money.</p>
-                            <p className='mctLower regular'>See how much you can save!</p>
+                            <p className='mctLower regular'>See how much you can save.</p>
                         </div>
                         <div className='mcSlider'>
                             <p className='regular sliderText'>What's your monthly electric bill?</p>

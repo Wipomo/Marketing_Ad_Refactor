@@ -142,6 +142,7 @@ body {
 
 .makelloSlider {
     position: relative;
+    margin: 2vw;
 }
 
 /*forth box*/
@@ -170,8 +171,46 @@ body {
     color: blue;
 }
 
+.rc-slider-handle {
+    background-color: #1D4585;
+    border-color: #1d4585;
+    height: 20px;
+    width: 20px;
+}
+
+.rc-slider-handle:hover {
+    border-color: #1d4585;
+}
+
+.rc-slider-handle:active {
+    border-color: #1d4585;
+}
+
 .rc-slider-tooltip { 
-    z-index: 2; 
+    z-index: 2;
+}
+
+.rc-slider-tooltip-inner {
+    height: 10%;
+    width: 8vw;
+    background-color: white;
+    color: black;
+    border-radius: 0;
+}
+
+.rc-slider-tooltip-arrow {
+    position: relative;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -0%)
+}
+
+.rc-slider-dot {
+    display: none;
 }
 
 .bottomInputs {
@@ -496,9 +535,8 @@ img {
 }
 
 #sliderHandle {
-    background-color: #ffffff;
-    color: #000000;
     z-index: 2;
     display: var(--main-display-setting);
+    font-size: 16px;
 
 }

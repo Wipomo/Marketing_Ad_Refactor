@@ -34,7 +34,7 @@ class MakelloSlider extends React.Component {
               }
           };
           
-        const sliderContainerStyle = {margin: 'auto', top: 0, left: 0, bottom: 0, right: 0, width: 500, height: 100 }
+        const sliderContainerStyle = {margin: 'auto', top: 0, left: 0, bottom: 0, right: 0, width: '90%', height: 'auto' }
         const sliderStyle = { backgroundColor: 'white', height: 8};
 
         const Handle = Slider.Handle;
@@ -59,7 +59,17 @@ class MakelloSlider extends React.Component {
 
         return(
             <div style={sliderContainerStyle}>
-                <Slider marks={marks} trackStyle={sliderStyle} railStyle={sliderStyle} id="slider" min={min} max={max} defaultValue={this.props.monthlyBill}  handle={handle}  />
+                <Slider 
+                    marks={marks} 
+                    trackStyle={sliderStyle} 
+                    railStyle={sliderStyle} 
+                    id="slider" 
+                    min={min} 
+                    max={max} 
+                    step={step} 
+                    defaultValue={2500}
+                    handle={handle}
+                />
             </div>
         )
     }
