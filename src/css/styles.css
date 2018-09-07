@@ -496,6 +496,9 @@ img {
 }
 
 #sliderHandle {
+    background-color: #ffffff;
+    color: #000000;
     z-index: 2;
     display: var(--main-display-setting);
+
 }

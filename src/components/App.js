@@ -11,6 +11,9 @@ class App extends React.Component {
         showFirstPart: {
             hidden: ''
         },
+        showTooltip: {
+            hidden: ''
+        },
         showSecondPart: {
             hidden: 'hidden'
         },
@@ -36,9 +39,11 @@ class App extends React.Component {
         }
     };
 
+
     hideChanger = (input) => {
         if (this.state[input].hidden === 'hidden') {
             this.setState({showFirstPart: {hidden: 'hidden'}});
+            this.setState({showTooltip: {hidden: ' hidden'}});
             this.setState({showSecondPart: {hidden: 'hidden'}});
             this.setState({showThirdPart: {hidden: 'hidden'}});
             this.setState({showForthPart: {hidden: 'hidden'}});
@@ -78,7 +83,7 @@ class App extends React.Component {
         return(
             <div>
                 <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
-                    <FirstPart emailUpdater={this.emailUpdater} hideChanger={this.hideChanger}/>
+                    <FirstPart emailUpdater={this.emailUpdater} hideChanger={this.hideChanger} showTooltip={this.state.showTooltip}/>
                 </div>
                 <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
                     <SecondPart clientInfoUpdater={this.clientInfoUpdater} hideChanger={this.hideChanger}/>

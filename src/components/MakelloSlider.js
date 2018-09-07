@@ -4,8 +4,6 @@ import 'rc-tooltip/assets/bootstrap.css';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 
-
-
 class MakelloSlider extends React.Component {
 
     componentDidMount = () => {
@@ -39,9 +37,6 @@ class MakelloSlider extends React.Component {
         const sliderContainerStyle = {margin: 'auto', top: 0, left: 0, bottom: 0, right: 0, width: 500, height: 100 }
         const sliderStyle = { backgroundColor: 'white', height: 8};
 
-
-
-
         const Handle = Slider.Handle;
 
         const handle = (props) => {
@@ -50,7 +45,7 @@ class MakelloSlider extends React.Component {
             return (
                 <Tooltip
                     id="sliderHandle"
-                    prefixCls="rc-slider-tooltip"
+                    prefixCls={"rc-slider-tooltip" + this.props.showTooltip.hidden}
                     overlay={"$"+value}
                     visible={true}
                     defaultVisible = {true}
@@ -61,10 +56,6 @@ class MakelloSlider extends React.Component {
                 </Tooltip>
             );
         };
-
-
-
-
 
         return(
             <div style={sliderContainerStyle}>
