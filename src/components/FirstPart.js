@@ -13,9 +13,10 @@ class FirstPart extends React.Component {
         event.preventDefault();
         this.props.hideChanger('showSecondPart');
         this.props.emailUpdater(this.emailRef.current.value);
+
     };
 
-    
+
 
     render() {
         const {handleSliderChange} = this.props;

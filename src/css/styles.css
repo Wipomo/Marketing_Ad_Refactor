@@ -490,6 +490,12 @@ img {
     width: 15vw;
 }
 
+
+:root {
+    --main-display-setting: block;
+}
+
 #sliderHandle {
     z-index: 2;
+    display: var(--main-display-setting);
 }
