@@ -1,11 +1,16 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 
+const customers = require("./routes/customers");
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(cors());
 
+app.use('/customers', customers);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
