@@ -56,13 +56,23 @@ class App extends React.Component {
         this.setState({ clientProfile });
     };
 
-    restOfFormUpdater = (fullName, phone, address) => {
+    clientInfoUpdater = (fullName, phone, address) => {
         let clientProfile = { ...this.state.clientProfile };
         clientProfile.fullName = fullName;
         clientProfile.phone = phone;
         clientProfile.address = address;
         this.setState({ clientProfile });
     };
+
+    carInfoUpdater = (trip, mpg, year, make, model) => {
+        let clientProfile = { ...this.state.clientProfile };
+        clientProfile.dailyTrip = trip;
+        clientProfile.mpg = mpg;
+        clientProfile.carYear = year;
+        clientProfile.carMake = make;
+        clientProfile.carModel = model;
+        this.setState({ clientProfile });
+    }
 
     render () {
         return(
@@ -71,13 +81,13 @@ class App extends React.Component {
                     <FirstPart emailUpdater={this.emailUpdater} hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
-                    <SecondPart restOfFormUpdater={this.restOfFormUpdater} hideChanger={this.hideChanger}/>
+                    <SecondPart clientInfoUpdater={this.clientInfoUpdater} hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
                     <ThirdPart hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`ThirdPart ${this.state.showForthPart.hidden}`}>
-                    <ForthPart hideChanger={this.hideChanger}/>
+                    <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
                     <FifthPart hideChanger={this.hideChanger}/>

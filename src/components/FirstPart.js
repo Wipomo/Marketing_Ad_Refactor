@@ -34,9 +34,6 @@ class FirstPart extends React.Component {
                             <p className='regular sliderText'>What's your monthly electric bill?</p>
                             <div className='slider'>
                             <MakelloSlider className="makelloSlider" min={min_slider_value} max={max_slider_value} step={slider_increment_step} onInput={handleSliderChange} monthlyBill={this.props.monthlyBill}/>
-                                {/* <p>$50</p>
-                                <input type='range' />
-                                <p>$5000</p> */}
                             </div>
                             <div className='bottomInputs'>
                                 <input className='userInput light' type='email' ref={this.emailRef} placeholder='Email*'/>

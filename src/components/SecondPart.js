@@ -27,7 +27,7 @@ class SecondPart extends React.Component {
         let fullName = this.nameRef.current.value;
         let phone = this.phoneRef.current.value;
         let address = this.addressRef.current.value;
-        this.props.restOfFormUpdater(fullName, phone, address);
+        this.props.clientInfoUpdater(fullName, phone, address);
         this.props.hideChanger('showThirdPart');
     }
 
