@@ -46,10 +46,12 @@ class SavingsChart extends React.Component{
                 <div>
 
                     {/* <MonthlyBill amount={monthlyBillingAmount}/> */}
-
-                    You can save <br/>
+                    <p>&nbsp;</p>
+                    You can save
+                    <p>&nbsp;</p>
                     <BucketSavings monthlyBill={monthlyBillingAmount}/>
-                    annual with 100% clean energy
+                    <p>&nbsp;</p>
+                    annual with 100% Clean Energy
 
                 </div>
                 <div id="chartContainer">

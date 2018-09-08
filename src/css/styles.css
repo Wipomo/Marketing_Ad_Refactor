@@ -262,6 +262,7 @@ body {
     grid-row-end: 2;
 
     display: grid;
+    text-align: center;
     grid-template-columns: 100%;
     grid-template-rows: 2.5% 35% 55% 7.5%;
 }
