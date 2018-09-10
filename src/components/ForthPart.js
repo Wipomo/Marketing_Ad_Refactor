@@ -1,4 +1,11 @@
 import React from 'react';
+import CarMenu from './carMenu/CarMenu';
+
+var car = {
+    year: "",
+    make: "",
+    model: ""
+}
 
 class ForthPart extends React.Component {
 
@@ -12,13 +19,19 @@ class ForthPart extends React.Component {
         event.preventDefault();
         let trip = this.tripRef.current.value;
         let mpg = this.mpgRef.current.value;
-        let year = this.yearRef.current.value;
-        let make = this.makeRef.current.value;
-        let model = this.modelRef.current.value;
-        this.props.carInfoUpdater(trip, mpg, year, make, model);
+        this.props.carInfoUpdater(trip, mpg, car.year, car.make, car.model);
         this.props.hideChanger('showFifthPart');
     };
 
+    updateCar = (value) => {
+        if (car.year == "") {
+            car.year = value;
+        } else if (car.make =="") {
+            car.make = value;
+        } else {
+            car.model = value;
+        }
+    };
 
     render() {
         return(
@@ -39,9 +52,7 @@ class ForthPart extends React.Component {
                         <div className='m4mRight'>
                             <div className='m4mrM'>
                                 <p className='regular'>Electric Vehicle Type</p>
-                                <input ref={this.yearRef} className='userInput' type='text' />
-                                <input ref={this.makeRef} className='userInput' type='text' />
-                                <input ref={this.modelRef} className='userInput' type='text' />
+                                <CarMenu updateCar={this.updateCar}/>
                             </div>
                             <div className='m4mrL'></div>
                         </div>

@@ -5,22 +5,22 @@ module.exports = {
         return database("customer").select();
     },
     read(id){
-        return database('customer').select().where("id", id).first();
+        return database("customer").select().where("id", id).first();
     },
     create(customer){
-        return database('customer')
+        return database("customer")
             .insert(customer)
-            .returning("*")
-            .then(record => record[0])
+            .returning('*')
+            .then(record => record[0]);
     },
     update(id, customer){
-        return database('customer')
+        return database("customer")
             .update(customer)
             .where("id", id)
             .returning('*')
-            .then(record => record[0])
+            .then(record => record[0]);
     },
     delete(id){
-        return database('customer').delete().where("id", id)
+        return database("customer").delete().where("id", id);
     }
 };
