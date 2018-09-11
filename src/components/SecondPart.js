@@ -42,7 +42,7 @@ class SecondPart extends React.Component {
                             <p className='semiBold bigBlue'>$X,XXX</p>
                             <p className='regular'>with 100% Clean Energy annually</p> */}
                         </div>
-                            <Chart className='m2uChart' monthlyBillingAmount={2500}/>
+                            <Chart className='m2uChart' monthlyBillingAmount={this.props.monthlyBill}/>
                     </div>
                     <div className='imageTest2' />
                     <div className='m2Lower'>

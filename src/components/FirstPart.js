@@ -12,9 +12,14 @@ class FirstPart extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
         this.props.hideChanger('showSecondPart');
-        this.props.emailUpdater(this.emailRef.current.value);
+        this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value);
     };
 
+    getSliderValue = () => {
+        var test = document.getElementById("sliderHandle").innerText;
+        var test2 = test.slice(1);
+        return test2;
+    };
 
     render() {
         const {handleSliderChange} = this.props;
@@ -32,7 +37,14 @@ class FirstPart extends React.Component {
                         <div className='mcSlider'>
                             <p className='regular sliderText'>What's your monthly electric bill?</p>
                             <div className='slider'>
-                            <MakelloSlider showTooltip={this.props.showTooltip} className="makelloSlider" min={min_slider_value} max={max_slider_value} step={slider_increment_step} onInput={handleSliderChange} monthlyBill={this.props.monthlyBill}/>
+                            <MakelloSlider
+                                showTooltip={this.props.showTooltip}
+                                className="makelloSlider"
+                                min={min_slider_value}
+                                max={max_slider_value}
+                                step={slider_increment_step}
+                                onInput={handleSliderChange}
+                                monthlyBill={this.props.monthlyBill}/>
                             </div>
                             <div className='bottomInputs'>
                                 <input className='userInput light' type='email' ref={this.emailRef} placeholder='Email*'/>

@@ -6,11 +6,8 @@ import Tooltip from 'rc-tooltip';
 
 class MakelloSlider extends React.Component {
 
-    componentDidMount = () => {
-
-    }
-
     render() {
+
         let {min,max,step,onInput} = this.props;
 
         min = parseInt(min, 10);
@@ -67,7 +64,7 @@ class MakelloSlider extends React.Component {
                     min={min} 
                     max={max} 
                     step={step} 
-                    defaultValue={2500}
+                    defaultValue={this.props.monthlyBill}
                     handle={handle}
                 />
             </div>

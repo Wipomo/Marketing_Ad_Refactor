@@ -27,6 +27,7 @@ class App extends React.Component {
             hidden: 'hidden'
         },
         clientProfile: {
+            monthlyBill: '2500',
             email: '',
             fullName: '',
             phone: '',
@@ -54,9 +55,11 @@ class App extends React.Component {
         }
     };
 
-    emailUpdater = (email) => {
+    billEmailUpdater = (bill, email) => {
         let clientProfile = { ...this.state.clientProfile};
         console.table(clientProfile);
+        console.log(bill);
+        clientProfile.monthlyBill = bill;
         clientProfile.email = email;
         this.setState({ clientProfile });
     };
@@ -83,10 +86,15 @@ class App extends React.Component {
         return(
             <div>
                 <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
-                    <FirstPart emailUpdater={this.emailUpdater} hideChanger={this.hideChanger} showTooltip={this.state.showTooltip}/>
+                    <FirstPart
+                        billEmailUpdater={this.billEmailUpdater}
+                        hideChanger={this.hideChanger}
+                        showTooltip={this.state.showTooltip}
+                        monthlyBill={this.state.clientProfile.monthlyBill}
+                    />
                 </div>
                 <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
-                    <SecondPart clientInfoUpdater={this.clientInfoUpdater} hideChanger={this.hideChanger}/>
+                    <SecondPart monthlyBill={this.state.clientProfile.monthlyBill} clientInfoUpdater={this.clientInfoUpdater} hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
                     <ThirdPart hideChanger={this.hideChanger}/>

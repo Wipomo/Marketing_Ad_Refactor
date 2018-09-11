@@ -5,11 +5,8 @@ import SavingsChart from './SavingsChart';
 
 class Chart extends React.Component {
     render() {
-
-        let amount = 2500;
-
         return(
-            <SavingsChart monthlyBillingAmount={amount} />
+            <SavingsChart monthlyBillingAmount={this.props.monthlyBillingAmount} />
         );
     }
 }
