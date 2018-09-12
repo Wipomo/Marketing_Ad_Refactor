@@ -97,7 +97,7 @@ class App extends React.Component {
     };
 
     postBillEmailData = (bill, email) => {
-        fetch("http://localhost:3000/customers/", {
+        fetch("https://makeitlow-makello-refactor.herokuapp.com/customers/", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -115,7 +115,7 @@ class App extends React.Component {
     };
 
     putClientInfo = (fullName, phone, address) => {
-        fetch(`http://localhost:3000/customers/${this.state.userId}`,{
+        fetch(`https://makeitlow-makello-refactor.herokuapp.com/customers/${this.state.userId}`,{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ class App extends React.Component {
     };
 
     putCarInfo = (dailyTrip, mpg, year, make, model) => {
-        fetch(`http://localhost:3000/customers/${this.state.userId}`,{
+        fetch(`https://makeitlow-makello-refactor.herokuapp.com/customers/${this.state.userId}`,{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -154,7 +154,7 @@ class App extends React.Component {
     };
 
     sendNewLeadEmail = () => {
-        fetch(`http://localhost:3000/generate-email`, {
+        fetch(`https://makeitlow-makello-refactor.herokuapp.com/generate-email`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
