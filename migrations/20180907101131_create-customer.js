@@ -2,13 +2,14 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('customer', (table) => {
       table.increments();
+      table.text('monthlyBill');
       table.text('email');
       table.text('fullName');
-      table.float('phone');
+      table.text('phone');
       table.text('address');
-      table.float('dailyTrip');
-      table.float('mpg');
-      table.float('year');
+      table.text('dailyTrip');
+      table.text('mpg');
+      table.text('year');
       table.text('make');
       table.text('model');
   })

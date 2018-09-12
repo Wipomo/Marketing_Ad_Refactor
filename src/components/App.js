@@ -37,7 +37,8 @@ class App extends React.Component {
             carYear: '',
             carMake: '',
             carModel: ''
-        }
+        },
+        userId: 0
     };
 
 
@@ -55,6 +56,16 @@ class App extends React.Component {
         }
     };
 
+    emailValidator = (email) => {
+        if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                console.log("Email valid");
+                return true;
+            } else {
+                console.log("Invalid Email");
+                return false;
+            }
+    };
+
     billEmailUpdater = (bill, email) => {
         let clientProfile = { ...this.state.clientProfile};
         console.table(clientProfile);
@@ -62,6 +73,7 @@ class App extends React.Component {
         clientProfile.monthlyBill = bill;
         clientProfile.email = email;
         this.setState({ clientProfile });
+        this.postBillEmailData(bill, email);
     };
 
     clientInfoUpdater = (fullName, phone, address) => {
@@ -70,17 +82,93 @@ class App extends React.Component {
         clientProfile.phone = phone;
         clientProfile.address = address;
         this.setState({ clientProfile });
+        this.putClientInfo(fullName, phone, address);
     };
 
-    carInfoUpdater = (trip, mpg, year, make, model) => {
+    carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
         let clientProfile = { ...this.state.clientProfile };
-        clientProfile.dailyTrip = trip;
+        clientProfile.dailyTrip = dailyTrip;
         clientProfile.mpg = mpg;
         clientProfile.carYear = year;
         clientProfile.carMake = make;
         clientProfile.carModel = model;
         this.setState({ clientProfile });
-    }
+        this.putCarInfo(dailyTrip, mpg, year, make, model)
+    };
+
+    postBillEmailData = (bill, email) => {
+        fetch("http://localhost:3000/customers/", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                monthlyBill: bill,
+                email: email
+            })
+        })
+            .then(response => response.json())
+            .then(resData => {
+                console.log(resData);
+                this.setUserId(resData.customer.id);
+            })
+    };
+
+    putClientInfo = (fullName, phone, address) => {
+        fetch(`http://localhost:3000/customers/${this.state.userId}`,{
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fullName: fullName,
+                phone: phone,
+                address: address
+            })
+        })
+            .then(response => response.json())
+            .then(resData => console.log(resData))
+    };
+
+    putCarInfo = (dailyTrip, mpg, year, make, model) => {
+        fetch(`http://localhost:3000/customers/${this.state.userId}`,{
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                dailyTrip: dailyTrip,
+                mpg: mpg,
+                year: year,
+                make: make,
+                model: model
+            })
+        })
+            .then(response => response.json())
+            .then(resData => console.log(resData))
+    };
+
+    setUserId = (data) => {
+        this.setState({userId: data});
+        this.sendNewLeadEmail();
+    };
+
+    sendNewLeadEmail = () => {
+        fetch(`http://localhost:3000/generate-email`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                to: "info@makello.com",
+                bcc: "ellie.lader@wipomo.com",
+                subject: `New Lead Generated - ${this.state.clientProfile.email}`,
+                body: `A new lead had been added to the database.
+                Database ID: ${this.state.userId}
+                Email: ${this.state.clientProfile.email}`
+            })
+        })
+    };
 
     render () {
         return(
@@ -91,10 +179,14 @@ class App extends React.Component {
                         hideChanger={this.hideChanger}
                         showTooltip={this.state.showTooltip}
                         monthlyBill={this.state.clientProfile.monthlyBill}
+                        emailValidator={this.emailValidator}
                     />
                 </div>
                 <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
-                    <SecondPart monthlyBill={this.state.clientProfile.monthlyBill} clientInfoUpdater={this.clientInfoUpdater} hideChanger={this.hideChanger}/>
+                    <SecondPart
+                        monthlyBill={this.state.clientProfile.monthlyBill}
+                        clientInfoUpdater={this.clientInfoUpdater}
+                        hideChanger={this.hideChanger}/>
                 </div>
                 <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
                     <ThirdPart hideChanger={this.hideChanger}/>

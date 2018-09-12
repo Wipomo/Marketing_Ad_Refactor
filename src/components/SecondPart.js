@@ -1,5 +1,4 @@
 import React from 'react';
-import AddressInput from './AddressInput';
 import Chart from './chart/Chart';
 
 var initAuto = false;
@@ -22,14 +21,15 @@ class SecondPart extends React.Component {
     phoneRef = React.createRef();
     addressRef = React.createRef();
 
-    submitHandler = (e) => {
-        e.preventDefault();
+    submitHandler = (event) => {
+
+        event.preventDefault();
         let fullName = this.nameRef.current.value;
         let phone = this.phoneRef.current.value;
         let address = this.addressRef.current.value;
         this.props.clientInfoUpdater(fullName, phone, address);
         this.props.hideChanger('showThirdPart');
-    }
+    };
 
     render() {
         return(
@@ -38,9 +38,6 @@ class SecondPart extends React.Component {
                 <div className='main2'>
                     <div className='m2Upper'>
                         <div className='m2uText'>
-                            {/* <p className='regular'>You can save</p>
-                            <p className='semiBold bigBlue'>$X,XXX</p>
-                            <p className='regular'>with 100% Clean Energy annually</p> */}
                         </div>
                             <Chart className='m2uChart' monthlyBillingAmount={this.props.monthlyBill}/>
                     </div>

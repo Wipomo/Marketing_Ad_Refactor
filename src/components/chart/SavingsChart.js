@@ -46,12 +46,12 @@ class SavingsChart extends React.Component{
                 <div>
 
                     {/* <MonthlyBill amount={monthlyBillingAmount}/> */}
-                    <p>&nbsp;</p>
-                    You can save
-                    <p>&nbsp;</p>
-                    <BucketSavings monthlyBill={monthlyBillingAmount}/>
-                    <p>&nbsp;</p>
-                    annual with 100% Clean Energy
+                    <br />
+                    <p className='regular'>You can save</p>
+                    <BucketSavings
+                        monthlyBill={monthlyBillingAmount}/>
+                    <p className='regular'>annually with 100% Clean Energy</p>
+
 
                 </div>
                 <div id="chartContainer">
@@ -139,7 +139,7 @@ class BucketSavings extends React.Component{
     }
     render=()=>{
         this.get_max_bucket_savings(this.props.monthlyBill);
-        return <div id="bucket_savings"> </div>
+        return <div className='semiBold bigBlue' id="bucket_savings"> </div>
     }
 };
 

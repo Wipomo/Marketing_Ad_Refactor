@@ -10,9 +10,15 @@ class FirstPart extends React.Component {
     emailRef = React.createRef();
 
     submitHandler = (event) => {
-        event.preventDefault();
-        this.props.hideChanger('showSecondPart');
-        this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value);
+
+        if (this.props.emailValidator(this.emailRef.current.value)) {
+            event.preventDefault();
+            this.props.hideChanger('showSecondPart');
+            this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value);
+        } else {
+            event.preventDefault();
+            window.alert("Please enter a valid email address.");
+        }
     };
 
     getSliderValue = () => {
