@@ -22,9 +22,9 @@ class FirstPart extends React.Component {
     };
 
     getSliderValue = () => {
-        var test = document.getElementById("sliderHandle").innerText;
-        var test2 = test.slice(1);
-        return test2;
+        var sliderHolder = document.getElementById("sliderHandle").innerText;
+        var sliderValue = sliderHolder.slice(1);
+        return sliderValue;
     };
 
     render() {

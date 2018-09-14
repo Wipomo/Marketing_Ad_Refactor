@@ -26,7 +26,7 @@
 }
 
 body {
-
+    background: grey;
 }
 
 /*first box*/
@@ -251,9 +251,11 @@ body {
 .main2 {
     display: grid;
     grid-template-columns: 12.5% 75% 12.5%;
-    grid-template-rows: 60% 40%;
+    grid-template-rows: 80% 40%;
     background: #D8D8D8;
 }
+
+
 
 .m2Upper {
     grid-column-start: 2;
@@ -351,7 +353,7 @@ body {
 .main3 {
     display: grid;
     grid-template-columns: 12.5% 75% 12.5%;
-    grid-template-rows: 20% 40% 40%;
+    grid-template-rows: 20% 60% 20%;
     background: white;
     font-size: 20px;
 }
@@ -372,16 +374,15 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-
 }
 
-img {
-    height: 100%;
-    width: 100%;
+.m3Middle > img {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .m3Lower {

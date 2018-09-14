@@ -19,7 +19,7 @@ class FifthPart extends React.Component {
 
                     </div>
                     <div className='m3Middle'>
-                        <img src="/images/Makello-Logo.svg" />
+                        <img src="/images/makelloLogoNG.png" />
                     </div>
                     <div className='m3Lower'>
                         <input className='submitButtonBig light' type='submit' value="Come visit our website!" onClick={this.submitHandler}/>

@@ -36,9 +36,6 @@ export default class MakelloHighChart {
     }
 
     dateOfBreakEven(data, minimum_year) {
-        console.log("Date of break even!");
-        console.log(data);
-        console.log(minimum_year);
 
         let yearOfCrossOver = minimum_year + this.indexOfArrayCrossoverToZero(data);
         let percentageThroughYear = yearOfCrossOver - Math.floor(yearOfCrossOver);
@@ -46,15 +43,11 @@ export default class MakelloHighChart {
         let dateOfCrossover = new Date(Math.floor(yearOfCrossOver), 0);
         dateOfCrossover.setDate(dayInYear);
 
-        console.log("Date of Crossover is: ");
-        console.log(dateOfCrossover);
         return dateOfCrossover
     }
 
     createChart(containerString, data) {
         // data will be an array of values, [12121, 121212, 13123123...]
-        console.log("Here is what the data coming into the chart looks like: ");
-        console.log(data);
 
         this.chart = Highcharts.chart(containerString, {
             title: {
@@ -108,7 +101,7 @@ export default class MakelloHighChart {
                         }
                     },
                     style: {
-                        fontSize: 14
+                        fontSize: 20
                     }
                 }
             },
@@ -127,7 +120,7 @@ export default class MakelloHighChart {
                 }
             },
             series: [{
-                name: 'Total Monthly Savings',
+                name: 'Total Annual Savings',
                 data: this.data
             }],
 

@@ -15,7 +15,7 @@ class SecondPart extends React.Component {
             );
             initAuto = true;
         }
-    }
+    };
 
     nameRef = React.createRef();
     phoneRef = React.createRef();
@@ -27,19 +27,28 @@ class SecondPart extends React.Component {
         let fullName = this.nameRef.current.value;
         let phone = this.phoneRef.current.value;
         let address = this.addressRef.current.value;
-        this.props.clientInfoUpdater(fullName, phone, address);
+        this.props.clientInfoUpdater(fullName, phone, address, this.getSaveValue());
+        this.props.createCustomerEmail();
         this.props.hideChanger('showThirdPart');
+    };
+
+    getSaveValue = () => {
+        var saveValue = document.getElementById("bucket_savings").innerText;
+        return saveValue;
     };
 
     render() {
         return(
             <div className='App'>
-                <div className='side'></div>
+                <div className='m2sideL'></div>
                 <div className='main2'>
                     <div className='m2Upper'>
                         <div className='m2uText'>
                         </div>
-                            <Chart className='m2uChart' monthlyBillingAmount={this.props.monthlyBill}/>
+                            <Chart
+                                className='m2uChart'
+                                monthlyBill={this.props.monthlyBill}
+                            />
                     </div>
                     <div className='imageTest2' />
                     <div className='m2Lower'>
@@ -55,7 +64,7 @@ class SecondPart extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className='side'></div>
+                <div className='m2sideR'></div>
             </div>
         );
     }

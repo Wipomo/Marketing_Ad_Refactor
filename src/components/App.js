@@ -36,9 +36,10 @@ class App extends React.Component {
             mpg: '',
             carYear: '',
             carMake: '',
-            carModel: ''
+            carModel: '',
+            saveAmount: ''
         },
-        userId: 0
+        userId: 0,
     };
 
 
@@ -68,19 +69,18 @@ class App extends React.Component {
 
     billEmailUpdater = (bill, email) => {
         let clientProfile = { ...this.state.clientProfile};
-        console.table(clientProfile);
-        console.log(bill);
         clientProfile.monthlyBill = bill;
         clientProfile.email = email;
         this.setState({ clientProfile });
         this.postBillEmailData(bill, email);
     };
 
-    clientInfoUpdater = (fullName, phone, address) => {
+    clientInfoUpdater = (fullName, phone, address, saveAmount) => {
         let clientProfile = { ...this.state.clientProfile };
         clientProfile.fullName = fullName;
         clientProfile.phone = phone;
         clientProfile.address = address;
+        clientProfile.saveAmount = saveAmount;
         this.setState({ clientProfile });
         this.putClientInfo(fullName, phone, address);
     };
@@ -170,6 +170,24 @@ class App extends React.Component {
         })
     };
 
+    createCustomerEmail = () => {
+        fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                to: `${this.state.clientProfile.email}`,
+                bcc: "no-reply@makello.com",
+                subject: `Hello from Makello!`,
+                body: `Thank you for considering saving The Makello Way!
+                A representative will be in touch with you soon to discussion how you can save money by using 100% Clean Energy annually.
+                In the meantime - feel free to visit us at our website www.makello.com`
+            })
+        })
+    };
+
+
     render () {
         return(
             <div>
@@ -186,7 +204,10 @@ class App extends React.Component {
                     <SecondPart
                         monthlyBill={this.state.clientProfile.monthlyBill}
                         clientInfoUpdater={this.clientInfoUpdater}
-                        hideChanger={this.hideChanger}/>
+                        hideChanger={this.hideChanger}
+                        createCustomerEmail={this.createCustomerEmail}
+                        getSaveAmount={this.getSaveAmount}
+                        />
                 </div>
                 <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
                     <ThirdPart hideChanger={this.hideChanger}/>
