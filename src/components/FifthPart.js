@@ -14,8 +14,8 @@ class FifthPart extends React.Component {
                 <div className='side' />
                 <div className='main3'>
                     <div className='m3Upper'>
-                        <p className='medium'>Thank you! We will add this information to your personalized projected savings report!</p>
-                        <p>Insert text about us being real people</p>
+                        <p className='medium'>Thank you for the additional information!</p>
+                        <p>Our Clean Eregy Specialists are adding this information to your personalized Makello savings report!</p>
 
                     </div>
                     <div className='m3Middle'>
