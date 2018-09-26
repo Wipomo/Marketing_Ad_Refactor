@@ -39,7 +39,7 @@ export default class MakelloHighChart {
 
         let yearOfCrossOver = minimum_year + this.indexOfArrayCrossoverToZero(data);
         let percentageThroughYear = yearOfCrossOver - Math.floor(yearOfCrossOver);
-        let dayInYear = Math.floor(NUMBER_OF_DAYS_IN_YEAR * percentageThroughYear)
+        let dayInYear = Math.floor(NUMBER_OF_DAYS_IN_YEAR * percentageThroughYear);
         let dateOfCrossover = new Date(Math.floor(yearOfCrossOver), 0);
         dateOfCrossover.setDate(dayInYear);
 
@@ -52,9 +52,6 @@ export default class MakelloHighChart {
         this.chart = Highcharts.chart(containerString, {
             title: {
                 text: 'Cumulative Cash Flow'
-            },
-            subtitle: {
-                text: 'Makello\'s Proprietary Cost Saving Advantage'
             },
             chart: {
                 type: 'column'
@@ -75,7 +72,7 @@ export default class MakelloHighChart {
                     value: this.dateOfBreakEven(this.data, this.minimum_year), // Value of where the line will appear
                     width: 2, // Width of the line
                     label: {
-                        text: '<-Break Even', // Content of the label.
+                        text: '<- Break Even', // Content of the label.
                         align: 'left', // Positioning of the label.
                         rotation: 0,
 
@@ -87,28 +84,23 @@ export default class MakelloHighChart {
             },
             yAxis: {
                 title: {
-                    text: 'Total Savings',
+                    text: '',
                     rotation: 0,
-                    margin: 45
+                    margin: 0
                 },
                 labels: {
                     formatter: function() {
                         if (this.value >= 0){
-                            return `$${this.value/1000}K`;
+                            return `$${this.value}`;
                         }
                         else{
-                            return `-$${(this.value/1000)*(-1)}K`
+                            return `-$${(this.value)*(-1)}`
                         }
                     },
                     style: {
                         fontSize: 20
                     }
                 }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
             },
             plotOptions: {
                 series: {
@@ -120,7 +112,7 @@ export default class MakelloHighChart {
                 }
             },
             series: [{
-                name: 'Total Annual Savings',
+                name: 'Cumulative Savings',
                 data: this.data
             }],
 

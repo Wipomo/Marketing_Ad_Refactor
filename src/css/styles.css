@@ -1,3 +1,7 @@
+:root {
+    --page-layout: 20% 60% 20%;
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -26,14 +30,14 @@
 }
 
 body {
-    background: grey;
+    background: white;
 }
 
 /*first box*/
 
 .App {
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: var(--page-layout);
     height: 100vh;
 }
 
@@ -120,12 +124,14 @@ body {
 .mctUpper {
     margin-top: 17.5%;
     grid-row-start: 1;
-    font-size: 45px;
+    grid-row-end: 2;
+    font-size: 7vh;
 }
 
 .mctLower {
     grid-row-start: 2;
-    font-size: 24px;
+    grid-row-end: 3;
+    font-size: 4vh;
 }
 
 .mcSlider {
@@ -266,13 +272,25 @@ body {
     display: grid;
     text-align: center;
     grid-template-columns: 100%;
-    grid-template-rows: 2.5% 35% 55% 7.5%;
+    grid-template-rows: 2.5% 20% 50% 20% 7.5%;
 }
 
-.m2uText {
+.m2uTextu {
     grid-column-start: 1;
     grid-row-start: 2;
     grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    font-size: 22px;
+}
+
+.m2uTextl {
+    grid-column-start: 1;
+    grid-row-start: 4;
+    grid-row-end: 5;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -287,7 +305,7 @@ body {
 }
 
 .m2uChart {
-    background: white;
+    background: #d8d8d8;
     grid-column-start: 1;
     grid-row-start: 3;
     grid-row-end: 4;
@@ -307,7 +325,7 @@ body {
     z-index: 2;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 2.5% 27% 63% 7.5%;
+    grid-template-rows: 20% 30% 60% 10%;
 }
 
 .imageTest2 {

@@ -2,7 +2,7 @@ import React from "react";
 import MakelloHighChart from './MakelloHighChart';
 
 const MIN_YEAR = 2018;
-const MAX_YEAR = 2026;
+const MAX_YEAR = 2028;
 var chart;
 
 var systemSizeToSystemDescriptionMap = new Map([
@@ -64,7 +64,7 @@ class SliderText extends React.Component{
     render(){
         var text = systemSizeToSystemDescriptionMap.get(this.props.system_size);
         if(!text){
-            text = "Choose a System Size";
+            text = "Economy";
         }
 
         return <p id="sliderText"> {text} </p>

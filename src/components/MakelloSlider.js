@@ -66,6 +66,7 @@ class MakelloSlider extends React.Component {
                     step={step} 
                     defaultValue={this.props.monthlyBill}
                     handle={handle}
+                    onChange={this.props.onChange}
                 />
             </div>
         )

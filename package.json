@@ -18,6 +18,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "highcharts": "^6.1.2",
+    "highcharts-react-official": "^1.4.0",
     "knex": "^0.15.2",
     "nodemailer": "^4.6.8",
     "nodemon": "^1.18.3",

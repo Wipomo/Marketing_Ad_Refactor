@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from './chart/Chart';
+import Chart from './Chart';
 
 var initAuto = false;
 
@@ -37,37 +37,65 @@ class SecondPart extends React.Component {
         return saveValue;
     };
 
+    formatNumber = (number) => {
+        console.log(number.length);
+        let numStr = number.toString();
+    };
+
     render() {
-        return(
-            <div className='App'>
-                <div className='m2sideL'></div>
-                <div className='main2'>
-                    <div className='m2Upper'>
-                        <div className='m2uText'>
+            return(
+                <div className='App'>
+                    <div className='m2sideL'></div>
+                    <div className='main2'>
+                        <div className='m2Upper'>
+                            <div className='m2uTextu'>
+                                <p className="light">You can save</p>
+                                <h1 className="bigBlue">${this.props.chartData.savingsAmount}</h1>
+                                <p className="light">annually with 100% Clean Energy</p>
+                                <br/>
+                            </div>
+                            <div className='m2uChart'>
+                                <Chart
+                                    monthlyBill={this.props.monthlyBill}
+                                    chartData={this.props.chartData}
+                                />
+                            </div>
+                            <div className='m2uTextl'>
+                                <br/>
+                                <p className="light">with as low as a</p>
+                                <h1 className="bigBlue">${this.props.chartData.installFee}</h1>
+                                <p className="light">installation fee - before discounts!</p>
+                                <br/>
+                            </div>
                         </div>
-                            <Chart
-                                className='m2uChart'
-                                monthlyBill={this.props.monthlyBill}
-                            />
+                        <div className='imageTest2' />
+                        <div className='m2Lower'>
+                            <div className='m2lTop'>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p  className='light'>Are you ready to save money?</p>
+                                <br/>
+                            </div>
+                            <div className='m2lBottom'>
+                                <br/>
+                                <p className='light'>Get a custom energy savings report from Makello</p>
+                                <br/>
+                                <input className='userInput light' type='text' placeholder='Full Name*' ref={this.nameRef}/>
+                                <br/>
+                                <input className='userInput light' type='text' placeholder='Phone' ref={this.phoneRef}/>
+                                <br/>
+                                <input id='autocomplete' onFocus={this.initAutoComplete} className='userInput light' type='text' placeholder='Enter full address*' ref={this.addressRef}/>
+                                <br/>
+                                <input className='submitButton light' value="Submit" type='submit' onClick={this.submitHandler}/>
+                                <br/>
+                            </div>
+                        </div>
                     </div>
-                    <div className='imageTest2' />
-                    <div className='m2Lower'>
-                        <div className='m2lTop'>
-                            <p  className='regular'>Are you ready to save money?</p>
-                        </div>
-                        <div className='m2lBottom'>
-                            <p className='light'>Get a custom energy savings report from Makello</p>
-                            <input className='userInput light' type='text' placeholder='Full Name*' ref={this.nameRef}/>
-                            <input className='userInput light' type='text' placeholder='Phone' ref={this.phoneRef}/>
-                            <input id='autocomplete' onFocus={this.initAutoComplete} className='userInput light' type='text' placeholder='Enter full address*' ref={this.addressRef}/>
-                            <input className='submitButton light' value="Submit" type='submit' onClick={this.submitHandler}/>
-                        </div>
-                    </div>
+                    <div className='m2sideR'></div>
                 </div>
-                <div className='m2sideR'></div>
-            </div>
-        );
-    }
+            );
+        }
 }
 
 export default SecondPart;
