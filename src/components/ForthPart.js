@@ -34,35 +34,7 @@ class ForthPart extends React.Component {
     };
 
     render() {
-        if (this.props.resolution <= 500) {
-            return(
-                <div className='App'>
-                    <div className='main4'>
-                        <div className='m4Upper'>
-                        </div>
-                        <div className='m4Middle'>
-                            <div className='m4mLeft'>
-                                <p className='regular'>What is daily average commute in miles?</p>
-                                <input ref={this.tripRef} className='userInput' type='text' />
-                                <p className='regular'>What is your miles per gallon average?</p>
-                                <input ref={this.mpgRef} className='userInput' type='text' />
-                            </div>
-                            <div className='m4mRight'>
-                                <div className='m4mrM'>
-                                    <p className='regular'>Electric Vehicle Type</p>
-                                    <CarMenu updateCar={this.updateCar}/>
-                                </div>
-                                <div className='m4mrL'></div>
-                            </div>
-                        </div>
-                        <div className='m4Lower'>
-                            <input className='submitButton light' type='submit' value="Submit" onClick={this.submitHandler}/>
-                        </div>
-                    </div>
-                </div>
-            );
-        } else {
-            return(
+         return(
                 <div className='App'>
                     <div className='side' />
                     <div className='main4'>
@@ -91,10 +63,6 @@ class ForthPart extends React.Component {
                 </div>
             );
         }
-
-
-
-    }
 }
 
 export default ForthPart;

@@ -110,12 +110,12 @@ class App extends React.Component {
         this.postBillEmailData(bill, email);
     };
 
-    clientInfoUpdater = (fullName, phone, address, saveAmount) => {
+    clientInfoUpdater = (fullName, phone, address) => {
         let clientProfile = { ...this.state.clientProfile };
         clientProfile.fullName = fullName;
         clientProfile.phone = phone;
         clientProfile.address = address;
-        clientProfile.saveAmount = saveAmount;
+        clientProfile.saveAmount = this.state.chartData.savingsAmount;
         this.setState({ clientProfile });
         this.putClientInfo(fullName, phone, address);
     };
@@ -243,25 +243,12 @@ class App extends React.Component {
 
     doTheThing = (num1, num2) => {
 
-        let tempStr1 = num1.toString().slice(0, 2);
         let tempStr2 = num2.toString().slice(0, 2);
 
         if (num1 < 150) {
-            console.log("Actually 50");
             tempStr2 = "13";
         } else if (num1 >= 650) {
             tempStr2 = "74";
-        }
-
-        console.log(parseInt(tempStr1));
-        console.log(parseInt(tempStr2));
-
-        if (tempStr2 > 50) {
-            console.log("Above 50");
-        } else if (tempStr2 < 50) {
-            console.log("Below 50");
-        } else {
-            console.log("Neither");
         }
 
         let chartData = {};

@@ -22,19 +22,13 @@ class SecondPart extends React.Component {
     addressRef = React.createRef();
 
     submitHandler = (event) => {
-
         event.preventDefault();
         let fullName = this.nameRef.current.value;
         let phone = this.phoneRef.current.value;
         let address = this.addressRef.current.value;
-        this.props.clientInfoUpdater(fullName, phone, address, this.getSaveValue());
+        this.props.clientInfoUpdater(fullName, phone, address);
         this.props.createCustomerEmail();
         this.props.hideChanger('showThirdPart');
-    };
-
-    getSaveValue = () => {
-        var saveValue = document.getElementById("bucket_savings").innerText;
-        return saveValue;
     };
 
     formatNumber = (number) => {
