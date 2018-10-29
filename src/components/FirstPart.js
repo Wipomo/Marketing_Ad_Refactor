@@ -32,7 +32,7 @@ class FirstPart extends React.Component {
       <div className="App">
         <div className='side'></div>
         <div className='main'>
-          <div className="container responsive-container">
+          <div className="wrapper">
             <header className="header responsive-header">
               <div className="container">
                 <div className="outer">
@@ -44,9 +44,9 @@ class FirstPart extends React.Component {
               </div>
             </header>
 
-            <section className="chart-section">
+            <section className="slider-section">
               <div className="row">
-                <div className='col-md-10 offset-md-1 mcSlider'>
+                <div className='col-md-8 offset-md-2 col-sm-10 offset-sm-1 mcSlider'>
                   <p className='text-center regular sliderText'>What's your monthly electric bill?</p>
                   <div className='slider'>
                     <MakelloSlider
@@ -61,33 +61,9 @@ class FirstPart extends React.Component {
                 </div>
               </div>
             </section>
-
-            {/* <div className='mCenter'>
-              <div className='mcSlider'>
-                <p className='regular sliderText'>What's your monthly electric bill?</p>
-                <div className='slider'>
-                  <MakelloSlider
-                    showTooltip={this.props.showTooltip}
-                    className="makelloSlider"
-                    min={min_slider_value}
-                    max={max_slider_value}
-                    step={slider_increment_step}
-                    onChange={this.props.handleSlideChange}
-                    monthlyBill={this.props.monthlyBill} />
-                </div>
-                <div className='bottomInputs'>
-                  <input className='userInput light' type='email' ref={this.emailRef} placeholder='Email*' />
-                  <input className='submitButton light' type='submit' value="Submit" onClick={this.submitHandler} />
-                </div>
-              </div>
-            </div> */}
-            {/* <div className='mHeader'>
-              <p className='mhText semiBold'>Makello</p>
-            </div> */}
             <div className='mFooter'></div>
           </div>
         </div>
-        <div className='side'></div>
       </div>
     );
   }

@@ -26,7 +26,7 @@ class Chart extends React.Component {
             "font-size": '18',
             "color": "black"
           },
-          text: 'Years Since System Installation'
+          text: 'Years'
         }
       },
       title: {

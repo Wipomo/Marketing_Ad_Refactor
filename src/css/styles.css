@@ -21,6 +21,10 @@
   font-weight: 400;
 }
 
+.regular-fontSize {
+  font-size: 25px;
+}
+
 .semiBold {
   font-weight: 600;
 }
@@ -86,7 +90,7 @@ body {
 
 .sliderText {
   padding-top: 10px;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .slider {
@@ -144,10 +148,97 @@ body {
   display: none;
 }
 
+/*page two*/
+
+.main2 {
+  background: #D8D8D8;
+}
+
+.main2-container {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.m2Upper {
+  text-align: center;
+}
+
+.m2uTextu {
+  font-size: 22px;
+  padding-top: 20px;
+}
+
+.m2uTextl {
+  font-size: 22px;
+}
+
+.bigBlue {
+  color: #1D4585;
+  font-size: 72px;
+}
+
+.m2uChart {
+  width: 100%;
+}
+
+.highcharts-root {
+  width: 100% !important;
+}
+
+/* .m2Lower {
+  color: white;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 30% 60% 10%;
+} */
+
+/* .imageTest2 {
+  background-image: url("/images/savings-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  filter: brightness(60%);
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  z-index: 1;
+} */
+
+/* .m2lTop {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+} */
+
+/* .m2lBottom {
+  color: black;
+  background: white;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+} */
+
 /* responsive part */
 @media only screen and (max-width: 1024px) {
   .responsive-header {
-    height: 35vh;
+    height: 40vh;
   }
 
   .responsive-container {
