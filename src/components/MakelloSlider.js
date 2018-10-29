@@ -17,7 +17,8 @@ class MakelloSlider extends React.Component {
         const marksStyle = {
             fontFamily: 'Montserrat',
             color: '#1b30a5',
-            fontSize: 16
+            fontSize: 25,
+            fontWeight: 800,
           }; 
 
         const marks = {
