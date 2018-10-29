@@ -57,11 +57,23 @@ class SecondPart extends React.Component {
                 <div className='m2uTextl'>
                   <br />
                   <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
-                  <h1 className="bigBlue">${this.props.chartData.installFee}</h1>
-                  <p className="regular regular-fontSize">installation fee - before discounts!</p>
-                  <br />
+                  <h1 className="bigBlue">${this.props.chartData.installFee}&nbsp;or&nbsp;$191/mo.*</h1>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="m2uTextl-small text-center deactive-color">
+              <h6>
+                (include highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
+              </h6>
+              <h6>
+                *After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan@5.49% APR. Actual APR based on credit
+              </h6>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-8 offset-md-2 main2-container">
               {/* <div className='imageTest2' />
               <div className='m2Lower'>
                 <div className='m2lTop'>

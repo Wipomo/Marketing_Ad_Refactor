@@ -33,6 +33,10 @@
   display: none;
 }
 
+.deactive-color {
+  color: #757575;
+}
+
 body {
   background: white;
 }
@@ -170,6 +174,10 @@ body {
 
 .m2uTextl {
   font-size: 22px;
+}
+
+.m2uTextl-small {
+  width: 100%;
 }
 
 .bigBlue {
