@@ -2,7 +2,7 @@ import React from 'react';
 import MakelloSlider from './MakelloSlider';
 
 const min_slider_value = 50;
-const max_slider_value = 1000;
+const max_slider_value = 2000;
 const slider_increment_step = 25;
 
 class FirstPart extends React.Component {
