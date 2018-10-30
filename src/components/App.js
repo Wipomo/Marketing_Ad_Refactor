@@ -545,7 +545,7 @@ class App extends React.Component {
             chartData={this.state.chartData}
           />
         </div>
-        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
+        <div className={`ThirdPart`}>
           <ThirdPart hideChanger={this.hideChanger} />
         </div>
         <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
