@@ -524,7 +524,7 @@ class App extends React.Component {
     }
 
     return (
-      <div className="container responsive-container">
+      <div className="container responsive-container container-wrapper remove-pd15">
         <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
           <FirstPart
             billEmailUpdater={this.billEmailUpdater}
@@ -548,7 +548,7 @@ class App extends React.Component {
         <div className={`ThirdPart`}>
           <ThirdPart hideChanger={this.hideChanger} />
         </div>
-        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
+        <div className={`ThirdPart`}>
           <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} />
         </div>
         <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>

@@ -91,9 +91,9 @@ class SecondPart extends React.Component {
                       <div className="form-group">
                         <input type="text" className="form-control userInput light full-width" placeholder='Phone' ref={this.phoneRef} />
                       </div>
-                      <div className="form-group">
+                      {/* <div className="form-group">
                         <input id='autocomplete' onFocus={this.initAutoComplete} type="text" className="form-control userInput light full-width" placeholder='Enter full address*' ref={this.addressRef} />
-                      </div>
+                      </div> */}
                       <div className="form-group">
                         <input type="text" className="form-control userInput light full-width" placeholder='Address*' />
                       </div>

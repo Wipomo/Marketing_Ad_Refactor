@@ -101,19 +101,19 @@ class CarMenu extends React.Component {
 
         return(
             <div className='styled-select'>
-                <div>
+                <div className="carMenu">
                     <YearMenu year={this.state.year} setYear={this.setYear} />
                 </div>
-                <div className={`${this.state.showFakeMake.hidden}`}>
+                <div className={`${this.state.showFakeMake.hidden} carMenu`}>
                     <FakeMakeMenu />
                 </div>
-                <div className={`${this.state.showMake.hidden}`}>
+                <div className={`${this.state.showMake.hidden} carMenu`}>
                     <MakeMenu make={this.state.make} setMake={this.setMake} makeMenu={this.state.makeMenu}/>
                 </div>
-                <div className={`${this.state.showFakeModel.hidden}`}>
+                <div className={`${this.state.showFakeModel.hidden} carMenu`}>
                     <FakeModelMenu className={this.state.showFakeModel}/>
                 </div>
-                <div className={`${this.state.showModel.hidden}`}>
+                <div className={`${this.state.showModel.hidden} carMenu`}>
                     <ModelMenu model={this.state.model} setModel={this.setModel} modelMenu={this.state.modelMenu}/>
                 </div>
             </div>
