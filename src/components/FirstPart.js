@@ -33,8 +33,8 @@ class FirstPart extends React.Component {
         <div className='main'>
           <div className="wrapper">
             <div className="row mHeader">
-              <div class="col-md-2 text-center">
-                <p class="mhText semiBold">Makello</p>
+              <div className="col-md-2 text-center">
+                <p className="mhText semiBold">Makello</p>
               </div>
             </div>
             <header className="header responsive-header">
@@ -61,6 +61,15 @@ class FirstPart extends React.Component {
                       step={slider_increment_step}
                       onChange={this.props.handleSlideChange}
                       monthlyBill={this.props.monthlyBill} />
+                  </div>
+
+                  <div className="row bottomInputs">
+                    <div className="col-md-6 offset-md-3 form-group">
+                        <input type="email" className="form-control light" id="email" aria-describedby="emailHelp" placeholder="Enter email*" />
+                    </div>
+                    <div className="col-md-4 offset-md-4">
+                      <input className="btn btn-primary submitButton light" type="submit" value="Submit" />
+                    </div>
                   </div>
                 </div>
               </div>

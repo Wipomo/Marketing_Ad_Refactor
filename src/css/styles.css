@@ -204,6 +204,13 @@ body {
   width: 100% !important;
 }
 
+.submitButton {
+  width: 100%;
+  color: #fff;
+  background: #1D4585;
+  margin-bottom: 20px;
+}
+
 /* .m2Lower {
   color: white;
   grid-column-start: 2;
