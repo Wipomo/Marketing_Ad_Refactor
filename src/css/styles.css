@@ -38,7 +38,7 @@
 }
 
 body {
-  background: white;
+  background: grey;
 }
 
 /*first box*/
@@ -56,6 +56,17 @@ body {
 }
 
 /* header */
+
+.mHeader {
+  background-color: #fff;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.mhText {
+  padding-top: 1rem;
+}
+
 .header {
   height: 50vh;
   background-image: url("/images/Image 1_1.png");

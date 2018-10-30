@@ -30,9 +30,13 @@ class FirstPart extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className='side'></div>
         <div className='main'>
           <div className="wrapper">
+            <div className="row mHeader">
+              <div class="col-md-2 text-center">
+                <p class="mhText semiBold">Makello</p>
+              </div>
+            </div>
             <header className="header responsive-header">
               <div className="container">
                 <div className="outer">
