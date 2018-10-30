@@ -72,38 +72,56 @@ class SecondPart extends React.Component {
               </h6>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-8 offset-md-2 main2-container">
-              {/* <div className='imageTest2' />
-              <div className='m2Lower'>
-                <div className='m2lTop'>
-                  <br />
-                  <br />
-                  <br />
-                  <p className='light'>Are you ready to save money?</p>
-                  <br />
+          <div className="row remove-mg15">
+            <div className="imageTest2-container img-container">
+              <img className="imageTest2" src="/images/savings-bg.png" />
+              <div className="m2Lower-overlay col-md-8 offset-md-2">
+                <div className="m2Lower text-center">
+                  <div className='m2lTop'>
+                    <p className='regular regular-fontSize'>Are you ready to save money?</p>
+                  </div>
+                  <div className='row m2lBottom'>
+                    <div className="text-center full-width pd20-top">
+                      <p className='light deactive-color'>Get a custom energy savings report from Makello</p>
+                    </div>
+                    <div className="col-md-6 offset-md-3">
+                      <div className="form-group">
+                        <input type="email" className="form-control userInput light full-width" placeholder='Full Name*' ref={this.nameRef} />
+                      </div>
+                      <div className="form-group">
+                        <input type="text" className="form-control userInput light full-width" placeholder='Phone' ref={this.phoneRef} />
+                      </div>
+                      <div className="form-group">
+                        <input id='autocomplete' onFocus={this.initAutoComplete} type="text" className="form-control userInput light full-width" placeholder='Enter full address*' ref={this.addressRef} />
+                      </div>
+                      <div className="form-group">
+                        <input type="text" className="form-control userInput light full-width" placeholder='Address*' />
+                      </div>
+                      <div className="form-group">
+                        <input type="text" className="form-control userInput light full-width" placeholder='City*' />
+                      </div>
+                      <div className="form-group row">
+                        <div className="col-md-6">
+                          <input type="text" className="form-control userInput light full-width" placeholder='State*' />
+                        </div>
+                        <div className="col-md-6">
+                          <input type="number" className="form-control userInput light full-width" placeholder='Zipcode*' />
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <input className='btn btn-primary submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className='m2lBottom'>
-                  <br />
-                  <p className='light'>Get a custom energy savings report from Makello</p>
-                  <br />
-                  <input className='userInput light' type='text' placeholder='Full Name*' ref={this.nameRef} />
-                  <br />
-                  <input className='userInput light' type='text' placeholder='Phone' ref={this.phoneRef} />
-                  <br />
-                  <input id='autocomplete' onFocus={this.initAutoComplete} className='userInput light' type='text' placeholder='Enter full address*' ref={this.addressRef} />
-                  <br />
-                  <input className='submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
-                  <br />
-                </div>
-              </div> */}
+              </div>
             </div>
           </div>
+          <div className='m2sideR'></div>
         </div>
-        <div className='m2sideR'></div>
       </div>
     );
   }
 }
-
+    
 export default SecondPart;

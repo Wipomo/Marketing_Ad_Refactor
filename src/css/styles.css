@@ -33,8 +33,26 @@
   display: none;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .deactive-color {
   color: #757575;
+}
+
+.remove-mg15 {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.remove-pd15 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.pd20-top {
+  padding-top: 20px;
 }
 
 body {
@@ -211,29 +229,55 @@ body {
   margin-bottom: 20px;
 }
 
-/* .m2Lower {
-  color: white;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 20% 30% 60% 10%;
-} */
-
-/* .imageTest2 {
+.imageTest2 {
   background-image: url("/images/savings-bg.png");
   background-repeat: no-repeat;
   background-size: 100%;
   filter: brightness(60%);
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 4;
-  z-index: 1;
-} */
+}
+
+.m2Lower {
+  color: white;
+}
+
+.m2lTop {
+  padding-bottom: 5vh;
+}
+
+.img-container{
+  position:relative;
+  display:inline-block;
+}
+.img-container .m2Lower-overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  /* background:rgb(0,170,170); */
+  opacity:0;
+  transition:opacity 500ms ease-in-out;
+}
+.img-container .m2Lower-overlay{
+  opacity:1;
+}
+.m2Lower-overlay .m2Lower{
+  position:absolute;
+  width: 100%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+}
+
+.imageTest2 {
+  height: 80vh;
+  width: 100%;
+}
+
+.m2lBottom {
+  background-color: #fff;
+}
 
 /* .m2lTop {
   grid-column-start: 1;
