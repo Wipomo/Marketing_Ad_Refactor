@@ -38,7 +38,8 @@ class FirstPart extends React.Component {
               </div>
             </div>
             <header className="header responsive-header">
-              <div className="container">
+              <div className="head-overlay"></div>
+              <div className="container header-container">
                 <div className="outer">
                   <div className="inner text-center mcText">
                     <h1 className="mctUpper semiBold responsive-mctUpper">You don't need tons of solar panels to save money.</h1>

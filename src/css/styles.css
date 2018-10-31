@@ -107,8 +107,20 @@ body {
   background-image: url("/images/Image 1_1.png");
   background-size: cover;
   background-repeat: no-repeat;
-  /* filter: brightness(80%); */
   z-index: 1;
+}
+
+.head-overlay {
+  width: 100%;
+  height: 50vh;
+  background-color: black;
+  opacity: 0.4;
+  position: relative;
+}
+
+.header-container {
+  position: absolute;
+  top: 7vh;
 }
 
 /*children*/
