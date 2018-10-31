@@ -13,7 +13,7 @@ class FifthPart extends React.Component {
 
           </div>
           <div className='m3Middle'>
-            <img src="/images/makelloLogoNG.png" />
+            <img src="/images/makelloLogoNG.png" alt="makelogoNG" />
           </div>
           <div className='m3Lower'>
             <p className="regular">Come visit our website</p>

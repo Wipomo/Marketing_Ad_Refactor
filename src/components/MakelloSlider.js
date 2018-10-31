@@ -8,7 +8,7 @@ class MakelloSlider extends React.Component {
 
     render() {
 
-        let {min,max,step,onInput} = this.props;
+        let {min,max,step} = this.props;
 
         min = parseInt(min, 10);
         max = parseInt(max, 10);

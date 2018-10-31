@@ -24,9 +24,9 @@ class ForthPart extends React.Component {
   };
 
   updateCar = (value) => {
-    if (car.year == "") {
+    if (car.year === "") {
       car.year = value;
-    } else if (car.make == "") {
+    } else if (car.make === "") {
       car.make = value;
     } else {
       car.model = value;

@@ -23,7 +23,7 @@ class ThirdPart extends React.Component {
               <p>Our Clean Energy Specialists are looking over your information to start you on the path to saving The Makello Way!</p>
             </div>
             <div className='m3Middle'>
-              <img src="/images/makelloLogoNG.png" onClick={this.imgHandler} />
+              <img src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
             </div>
             <div className='m3Lower'>
               <a href="http://www.makello.com"><u><b>www.makello.com</b></u></a>
@@ -43,7 +43,7 @@ class ThirdPart extends React.Component {
             </div>
             <div className='m3Middle row'>
               <div className="col-md-4 offset-md-4">
-                <img className="full-width" src="/images/makelloLogoNG.png" onClick={this.imgHandler} />
+                <img className="full-width" src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
               </div>
             </div>
             <div className='m3Lower text-center'>

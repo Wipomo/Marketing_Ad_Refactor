@@ -4,7 +4,6 @@ import MakeMenu from './MakeMenu';
 import ModelMenu from './ModelMenu';
 import FakeMakeMenu from './FakeMakeMenu';
 import FakeModelMenu from './FakeModelMenu';
-import style from '../../css/styles.css';
 
 class CarMenu extends React.Component {
 
