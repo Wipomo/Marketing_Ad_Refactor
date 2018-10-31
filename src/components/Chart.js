@@ -17,10 +17,11 @@ class Chart extends React.Component {
             "font-size": '18',
             "color": "black"
           },
-          text: 'Cumulative Annual Savings'
+          text: ''
         }
       },
       xAxis: {
+        // categories: ['0', '2', '4', '6', '8', '10', '12', '14', '16', '18', '20'],
         title: {
           style: {
             "font-size": '18',
@@ -30,22 +31,22 @@ class Chart extends React.Component {
         }
       },
       title: {
-        text: 'Cumulative Savings'
+        text: 'Cumulative Cash Flow'
       },
       series: [{
-        name: "Premium Package",
+        name: "Premium",
         color: "blue",
         data: prem.data
       }, {
-        name: "Intermediate Package",
+        name: "Intermediate",
         color: "green",
         data: inter.data
       }, {
-        name: "Economy Package",
+        name: "Economy",
         color: "orchid",
         data: eco.data
       }, {
-        name: "Your Current Bill",
+        name: "Baseline",
         color: "grey",
         data: [
           -annual,
@@ -67,7 +68,7 @@ class Chart extends React.Component {
       }],
       plotOptions: {
         line: {
-          enableMouseTracking: false
+          enableMouseTracking: true
         },
       },
       legend: {
