@@ -12,6 +12,12 @@ class Chart extends React.Component {
         type: 'line'
       },
       yAxis: {
+        min: 50,
+        max: 150000,
+        tickInterval: 25000,
+        labels: {
+          format: '$ {value}'
+        },
         title: {
           style: {
             "font-size": '18',
@@ -21,7 +27,8 @@ class Chart extends React.Component {
         }
       },
       xAxis: {
-        // categories: ['0', '2', '4', '6', '8', '10', '12', '14', '16', '18', '20'],
+        max: 14,
+        tickInterval: 1,
         title: {
           style: {
             "font-size": '18',
