@@ -86,9 +86,6 @@ class Chart extends React.Component {
       }
     };
 
-
-
-
     return (
       <HighchartsReact
         highcharts={Highcharts}
