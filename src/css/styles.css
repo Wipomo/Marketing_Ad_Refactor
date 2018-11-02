@@ -389,6 +389,12 @@ body {
   padding-bottom: 60px;
 }
 
+/* fifth page */
+
+.fifth-part {
+  height: 100vh;
+}
+
 /* responsive part */
 @media only screen and (max-width: 1024px) {
   .responsive-header {

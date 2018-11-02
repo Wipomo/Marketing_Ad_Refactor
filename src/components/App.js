@@ -525,7 +525,7 @@ class App extends React.Component {
 
     return (
       <div className="container responsive-container container-wrapper remove-pd15">
-        {/* <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
+        <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
           <FirstPart
             billEmailUpdater={this.billEmailUpdater}
             hideChanger={this.hideChanger}
@@ -534,7 +534,7 @@ class App extends React.Component {
             emailValidator={this.emailValidator}
             handleSlideChange={this.handleSlideChange}
           />
-        </div> */}
+        </div>
         <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
           <SecondPart
             monthlyBill={this.state.clientProfile.monthlyBill}
@@ -545,12 +545,10 @@ class App extends React.Component {
             chartData={this.state.chartData}
           />
         </div>
-        {/* <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}> */}
-        <div className={`ThirdPart`}>
+        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
           <ThirdPart hideChanger={this.hideChanger} />
         </div>
-        {/* <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}> */}
-        <div className={`ThirdPart`}>
+        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
           <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} />
         </div>
         <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
