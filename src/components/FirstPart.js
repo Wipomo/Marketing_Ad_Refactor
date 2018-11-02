@@ -66,7 +66,7 @@ class FirstPart extends React.Component {
 
                   <div className="row bottomInputs">
                     <div className="col-md-6 offset-md-3 form-group">
-                        <input type="email" className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email*" />
+                        <input type="email" className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="email*" />
                     </div>
                     <div className="col-md-4 offset-md-4">
                       <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={this.submitHandler} />
