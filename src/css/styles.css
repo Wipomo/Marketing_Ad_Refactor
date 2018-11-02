@@ -395,6 +395,18 @@ body {
   height: 100vh;
 }
 
+.vertical-outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.vertical-middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 /* responsive part */
 @media only screen and (max-width: 1024px) {
   .responsive-header {

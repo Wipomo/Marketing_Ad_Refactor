@@ -60,8 +60,8 @@ class ForthPart extends React.Component {
             </div>
             <div className='m4mRight col-md-6'>
               <div className="row">
-                <div className="col-md-8 offset-md-1">
-                  <div className='m4mrM row'>
+                <div className="col-md-8 offset-md-1 vertical-outer">
+                  <div className='m4mrM row vertical-middle'>
                     <p className='regular text-center full-width'>Electric Vehicle Type</p>
                     <div className="col-md-6 offset-md-3">
                       <CarMenu updateCar={this.updateCar} />
