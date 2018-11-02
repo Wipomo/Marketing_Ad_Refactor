@@ -45,7 +45,7 @@ class SecondPart extends React.Component {
               <div className='m2Upper'>
                 <div className='m2uTextu'>
                   <p className="regular regular-fontSize">You can save</p>
-                  <h1 className="bigBlue">${this.props.chartData.savingsAmount}</h1>
+                  <h1 className="bigBlue superBold">${this.props.chartData.savingsAmount}</h1>
                   <p className="regular regular-fontSize">annually with 100% Clean Energy</p>
                 </div>
                 <div className='m2uChart'>
@@ -54,13 +54,13 @@ class SecondPart extends React.Component {
                     chartData={this.props.chartData}
                   />
                 </div>
-                <div className='m2uTextl'>
-                  <br />
-                  <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
-                  <h1 className="bigBlue">${this.props.chartData.installFee}&nbsp;or&nbsp;$191/mo.*</h1>
-                </div>
               </div>
             </div>
+          </div>
+          <div className='m2uTextl row text-center'>
+            <br />
+            <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
+            <h1 className="bigBlue superBold">${this.props.chartData.installFee}&nbsp;or&nbsp;$191/mo.*</h1>
           </div>
           <div className="row">
             <div className="m2uTextl-small text-center deactive-color">

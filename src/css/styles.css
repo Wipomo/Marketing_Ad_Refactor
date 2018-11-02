@@ -29,6 +29,10 @@
   font-weight: 600;
 }
 
+.superBold {
+  font-weight: 800;
+}
+
 .italic-font {
   font-style: italic;
 }
@@ -69,6 +73,11 @@
 
 .mg20-bottom {
   margin-bottom: 20px;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
 
 body {
@@ -248,6 +257,7 @@ body {
 
 .m2uTextl {
   font-size: 22px;
+  display: block;
 }
 
 .m2uTextl-small {
@@ -257,7 +267,7 @@ body {
 
 .bigBlue {
   color: #1D4585;
-  font-size: 72px;
+  font-size: 10vh;
 }
 
 .m2uChart {
@@ -273,6 +283,8 @@ body {
   color: #fff;
   background: #1D4585;
   margin-bottom: 20px;
+  width: 8vw;
+  font-size: 20px;
 }
 
 .imageTest2 {
