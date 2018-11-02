@@ -37,7 +37,7 @@ class FirstPart extends React.Component {
                 <p className="mhText semiBold">Makello</p>
               </div>
             </div>
-            <header className="header responsive-header">
+            <header className="header responsive-header flex-center">
               <div className="head-overlay"></div>
               <div className="container header-container">
                 <div className="outer">
@@ -66,7 +66,7 @@ class FirstPart extends React.Component {
 
                   <div className="row bottomInputs">
                     <div className="col-md-6 offset-md-3 form-group">
-                        <input type="email" className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="email*" />
+                        <input type="email" className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Email*" />
                     </div>
                     <div className="col-md-12 flex-center">
                       <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={this.submitHandler} />
