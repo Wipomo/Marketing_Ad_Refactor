@@ -60,12 +60,12 @@ class SecondPart extends React.Component {
           <div className='m2uTextl row text-center'>
             <br />
             <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
-            <h1 className="bigBlue superBold">${this.props.chartData.installFee}&nbsp;<h1>or</h1>&nbsp;$191/mo.*</h1>
+            <h1 className="bigBlue superBold">${this.props.chartData.installFee}&nbsp;<small>or</small>&nbsp;$191/mo.*</h1>
           </div>
           <div className="row">
             <div className="m2uTextl-small text-center deactive-color">
               <h6>
-                (include highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
+                (includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
               </h6>
               <h6>
                 *After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan@5.49% APR. Actual APR based on credit

@@ -33,10 +33,11 @@ class Chart extends React.Component {
         tickInterval: 1,
         title: {
           style: {
-            "font-size": '18',
-            "color": "black"
+            "font-size": '30',
+            "color": "black",
           },
-          text: 'Years'
+          text: 'Years',
+          y: 15,
         }
       },
       title: {
