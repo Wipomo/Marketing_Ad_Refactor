@@ -32,7 +32,7 @@ class MakelloSlider extends React.Component {
               }
           };
           
-        const sliderContainerStyle = {margin: 'auto', top: 0, left: 0, bottom: 0, right: 0, width: '90%', height: 'auto' }
+        const sliderContainerStyle = {margin: 'auto', top: 0, left: 0, bottom: 0, right: 0, width: '70%', height: 'auto' }
         const sliderStyle = { backgroundColor: 'white', height: 8};
 
         const Handle = Slider.Handle;

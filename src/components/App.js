@@ -535,7 +535,7 @@ class App extends React.Component {
             handleSlideChange={this.handleSlideChange}
           />
         </div>
-        <div className={`SecondPart`}>
+        <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
           <SecondPart
             monthlyBill={this.state.clientProfile.monthlyBill}
             clientInfoUpdater={this.clientInfoUpdater}
@@ -545,10 +545,10 @@ class App extends React.Component {
             chartData={this.state.chartData}
           />
         </div>
-        <div className={`ThirdPart`}>
+        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
           <ThirdPart hideChanger={this.hideChanger} />
         </div>
-        <div className={`ThirdPart`}>
+        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
           <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} />
         </div>
         <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
