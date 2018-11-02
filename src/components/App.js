@@ -76,6 +76,7 @@ class App extends React.Component {
     let annual = event * 12;
     this.setState({ clientProfile: clientData });
     this.doTheThing(event, annual);
+    this.getChartData(event);
   };
 
   hideChanger = (input) => {
@@ -240,7 +241,46 @@ class App extends React.Component {
   };
 
   // chart functionality with state
+  getChartData = (monthlyBill) =>{
+    console.log("Comes in getChartData function in refactored app");
+    var bill_input = monthlyBill;
+    var annual_bill = bill_input * 12;
+    if (annual_bill < 1000)
+        var bucket = 500;
+    else
+        var bucket = Math.floor(annual_bill / 1000) * 1000;
 
+
+    // get all data for 3 system types
+
+    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/Baseline";
+
+    fetch(url)
+        .then((response) => {
+            console.log(response.text);
+            return response.text()
+        })
+        .then((response_in_text) => {
+            console.log(JSON.parse(response_in_text));
+            return JSON.parse(response_in_text)
+        })
+        .then((data) => {
+            console.log("parsed the JSON by here")
+            console.log(data);
+            console.log("printing data.json")
+            console.log(data.json);
+
+            // get chart data, then set chartData state to automatically update
+            // we do this by picking out certain columns to fill our chartData object,
+            //this.setState=>({chartData: data.json()})  
+        })
+        .catch(function (e) {
+            console.warn("SHOULLD NEVER COME IN HERE!!!");
+            console.log(e);
+        })
+    
+
+  };
   doTheThing = (num1, num2) => {
 
     let tempStr2 = num2.toString().slice(0, 2);
