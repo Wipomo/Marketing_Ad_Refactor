@@ -19,7 +19,7 @@ class ThirdPart extends React.Component {
         <div className='App'>
           <div className='main3'>
             <div className='m3Upper'>
-              <p className='medium'>Thank you, we will get back to you soon!</p>
+              <p className='medium'>Thank you! We will get back with you soon!</p>
               <p>Our Clean Energy Specialists are looking over your information to start you on the path to saving The Makello Way!</p>
             </div>
             <div className='m3Middle'>
@@ -27,7 +27,7 @@ class ThirdPart extends React.Component {
             </div>
             <div className='m3Lower'>
               <a href="http://www.makello.com"><u><b>www.makello.com</b></u></a>
-              <p className="semiBold">"Make it low with Makello!"</p>
+              <p className="semiBold">"Make it low, with Makello!"</p>
               <p className="regular">Interested to see how much an electric car can increase savings?</p>
               <input className='hidden' type='submit' value="" onClick={this.submitHandler} />
             </div>
@@ -48,11 +48,11 @@ class ThirdPart extends React.Component {
             </div>
             <div className='m3Lower text-center'>
               <a href="http://www.makello.com"><u><b>www.makello.com</b></u></a>
-              <p className="semiBold italic-font">"Make it low with Makello!"</p>
+              <p className="semiBold">"Make it low, with Makello!"</p>
               <p>
                 <small className="italic-font deactive-color">Makello is an authorized distributor for Green Energy EPC (CSLB License #978836) having 5-Star Average Reviews on Yelp! (93 total)</small>
               </p>
-              <p className="regular regular-fontSize pd20-top">Interested to see how much an electric car can increase savings?</p>
+              <p className="regular regular-fontSize pd20-top pd20-bottom">Interested to see how much an <br />electric car can increase savings?</p>
               <input className='hidden' type='submit' value="" onClick={this.submitHandler} />
             </div>
           </div>

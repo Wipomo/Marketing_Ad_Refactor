@@ -73,7 +73,7 @@ class ForthPart extends React.Component {
             </div>
           </div>
           <div className='m4Lower row'>
-            <div className="col-md-2 offset-md-5 mg20-top m4Lower-content">
+            <div className="col-md-2 offset-md-5 mg20-top m4Lower-content flex-center">
               <input className='btn btn-primary submitButton light' type='submit' value="Submit" onClick={this.submitHandler} />
             </div>
           </div>

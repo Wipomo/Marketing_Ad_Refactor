@@ -94,20 +94,6 @@ class SecondPart extends React.Component {
                       <div className="form-group">
                         <input id='autocomplete' onFocus={this.initAutoComplete} type="text" className="form-control userInput light full-width" placeholder='Enter full address*' ref={this.addressRef} />
                       </div>
-                      {/* <div className="form-group">
-                        <input type="text" className="form-control userInput light full-width" placeholder='Address*' />
-                      </div>
-                      <div className="form-group">
-                        <input type="text" className="form-control userInput light full-width" placeholder='City*' />
-                      </div>
-                      <div className="form-group row">
-                        <div className="col-md-6">
-                          <input type="text" className="form-control userInput light full-width" placeholder='State*' />
-                        </div>
-                        <div className="col-md-6">
-                          <input type="number" className="form-control userInput light full-width" placeholder='Zipcode*' />
-                        </div>
-                      </div> */}
                       <div className="form-group">
                         <input className='btn btn-primary submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
                       </div>
