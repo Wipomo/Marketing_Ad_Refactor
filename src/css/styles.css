@@ -285,6 +285,13 @@ body {
   margin-bottom: 20px;
   width: 8vw;
   font-size: 20px;
+  height: 38px;
+  line-height: 28px;
+}
+
+.userInput {
+  background: #F2F2F2;
+  font-size: 15px;
 }
 
 .imageTest2 {
@@ -300,6 +307,10 @@ body {
 
 .m2lTop {
   padding-bottom: 6vh;
+}
+
+.m2lTop-title {
+  font-size: 35px;
 }
 
 .img-container{
@@ -335,6 +346,10 @@ body {
 
 .m2lBottom {
   background-color: #fff;
+}
+
+.m2lBottom-title {
+  font-size: 20px;
 }
 
 /*page three*/

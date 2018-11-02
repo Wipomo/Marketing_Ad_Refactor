@@ -78,11 +78,11 @@ class SecondPart extends React.Component {
               <div className="m2Lower-overlay col-md-8 offset-md-2">
                 <div className="m2Lower text-center">
                   <div className='m2lTop'>
-                    <p className='regular regular-fontSize'>Are you ready to save money?</p>
+                    <p className='regular m2lTop-title'>Are you ready to save money?</p>
                   </div>
                   <div className='row m2lBottom'>
                     <div className="text-center full-width pd20-top">
-                      <p className='light deactive-color'>Get a custom energy savings report from Makello</p>
+                      <p className='light deactive-color m2lBottom-title'>Get a custom energy savings report from Makello</p>
                     </div>
                     <div className="col-md-6 offset-md-3">
                       <div className="form-group">
@@ -91,10 +91,10 @@ class SecondPart extends React.Component {
                       <div className="form-group">
                         <input type="text" className="form-control userInput light full-width" placeholder='Phone' ref={this.phoneRef} />
                       </div>
-                      {/* <div className="form-group">
-                        <input id='autocomplete' onFocus={this.initAutoComplete} type="text" className="form-control userInput light full-width" placeholder='Enter full address*' ref={this.addressRef} />
-                      </div> */}
                       <div className="form-group">
+                        <input id='autocomplete' onFocus={this.initAutoComplete} type="text" className="form-control userInput light full-width" placeholder='Enter full address*' ref={this.addressRef} />
+                      </div>
+                      {/* <div className="form-group">
                         <input type="text" className="form-control userInput light full-width" placeholder='Address*' />
                       </div>
                       <div className="form-group">
@@ -107,7 +107,7 @@ class SecondPart extends React.Component {
                         <div className="col-md-6">
                           <input type="number" className="form-control userInput light full-width" placeholder='Zipcode*' />
                         </div>
-                      </div>
+                      </div> */}
                       <div className="form-group">
                         <input className='btn btn-primary submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
                       </div>
