@@ -12,10 +12,16 @@ class Chart extends React.Component {
         type: 'line'
       },
       yAxis: {
-        max: 150000,
-        tickInterval: 25000,
+        min: 50,
+        max: 15000,
+        tickPositions: [5000, 20000, 45000, 70000, 95000, 120000, 145000],
         labels: {
-          format: '$ {value}',
+          formatter: function () {
+            if (this.value < 1000) {
+              return this.value
+            }
+            return '$' + this.value / 1000 + 'k'
+          },
           style: {
             "fontSize": "20px",
           }
@@ -31,6 +37,11 @@ class Chart extends React.Component {
       xAxis: {
         max: 14,
         tickInterval: 1,
+        labels: {
+          style: {
+            fontSize: '20px',
+          }
+        },
         title: {
           style: {
             "font-size": '30',
@@ -45,7 +56,8 @@ class Chart extends React.Component {
         style: {
           "fontSize": "30px",
           "paddingTop": "5px !important",
-        }
+        },
+        y: 30
       },
       series: [{
         name: "Premium",
@@ -90,7 +102,7 @@ class Chart extends React.Component {
         align: 'right',
         verticalAlign: 'middle',
         itemMarginBottom: 20,
-        itemStyle:{
+        itemStyle: {
           fontSize: '20px',
         }
       }
