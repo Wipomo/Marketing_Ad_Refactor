@@ -44,14 +44,14 @@ class ForthPart extends React.Component {
               <div className="row">
                 <div className="m4mLeft-content col-md-8 offset-md-3">
                   <div className="form-group row">
-                    <p className='regular full-width text-center'>What is daily average commute in miles?</p>
-                    <div className="col-md-8 offset-md-2">
+                    <p className='regular full-width text-center'>What is daily average <br />commute in miles?</p>
+                    <div className="col-md-6 offset-md-3">
                       <input type="email" className="form-control userInput light" ref={this.tripRef} />
                     </div>
                   </div>
                   <div className="form-group row">
-                    <p className='regular text-center'>What is your miles per gallon average?</p>
-                    <div className="col-md-8 offset-md-2">
+                    <p className='regular text-center full-width'>What is your miles per gallon <br />average?</p>
+                    <div className="col-md-6 offset-md-3">
                       <input type="text" className="form-control userInput light" ref={this.mpgRef} />
                     </div>
                   </div>
@@ -63,7 +63,7 @@ class ForthPart extends React.Component {
                 <div className="col-md-8 offset-md-1">
                   <div className='m4mrM row'>
                     <p className='regular text-center full-width'>Electric Vehicle Type</p>
-                    <div className="col-md-8 offset-md-2">
+                    <div className="col-md-6 offset-md-3">
                       <CarMenu updateCar={this.updateCar} />
                     </div>
                   </div>
