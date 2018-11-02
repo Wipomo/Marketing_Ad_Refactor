@@ -60,7 +60,7 @@ class SecondPart extends React.Component {
           <div className='m2uTextl row text-center'>
             <br />
             <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
-            <h1 className="bigBlue superBold">${this.props.chartData.installFee}&nbsp;or&nbsp;$191/mo.*</h1>
+            <h1 className="bigBlue superBold">${this.props.chartData.installFee}&nbsp;<h1>or</h1>&nbsp;$191/mo.*</h1>
           </div>
           <div className="row">
             <div className="m2uTextl-small text-center deactive-color">

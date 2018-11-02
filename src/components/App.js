@@ -535,7 +535,8 @@ class App extends React.Component {
             handleSlideChange={this.handleSlideChange}
           />
         </div>
-        <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
+        {/* <div className={`SecondPart ${this.state.showSecondPart.hidden}`}> */}
+        <div className={`SecondPart`}>
           <SecondPart
             monthlyBill={this.state.clientProfile.monthlyBill}
             clientInfoUpdater={this.clientInfoUpdater}

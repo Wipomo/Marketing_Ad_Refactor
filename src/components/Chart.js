@@ -12,11 +12,13 @@ class Chart extends React.Component {
         type: 'line'
       },
       yAxis: {
-        min: 50,
         max: 150000,
         tickInterval: 25000,
         labels: {
-          format: '$ {value}'
+          format: '$ {value}',
+          style: {
+            "fontSize": "20px",
+          }
         },
         title: {
           style: {
@@ -38,7 +40,11 @@ class Chart extends React.Component {
         }
       },
       title: {
-        text: 'Cumulative Cash Flow'
+        text: 'Cumulative Cash Flow',
+        style: {
+          "fontSize": "30px",
+          "paddingTop": "5px !important",
+        }
       },
       series: [{
         name: "Premium",
@@ -82,7 +88,10 @@ class Chart extends React.Component {
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'middle',
-        itemMarginBottom: 20
+        itemMarginBottom: 20,
+        itemStyle:{
+          fontSize: '20px',
+        }
       }
     };
 
