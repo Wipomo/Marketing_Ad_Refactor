@@ -18,17 +18,17 @@ class MakelloSlider extends React.Component {
             fontFamily: 'Montserrat',
             color: '#1b30a5',
             fontSize: 25,
-            fontWeight: 800,
+            fontWeight: 400,
           }; 
 
         const marks = {
             [min]: {
               style: marksStyle,
-              label: <div>${min}</div>,
+              label: <div>${min.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</div>,
             },
             [max]: {
                 style: marksStyle,
-                label: <div>${max}</div>,
+                label: <div>${max.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</div>,
               }
           };
           
@@ -44,7 +44,7 @@ class MakelloSlider extends React.Component {
                 <Tooltip
                     id="sliderHandle"
                     prefixCls={"rc-slider-tooltip" + this.props.showTooltip.hidden}
-                    overlay={"$"+value}
+                    overlay={"$"+value.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
                     visible={true}
                     defaultVisible = {true}
                     placement="bottom"
