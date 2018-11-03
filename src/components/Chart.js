@@ -4,8 +4,8 @@ import HighchartsReact from 'highcharts-react-official';
 
 class Chart extends React.Component {
   render() {
-
-    const { annual, eco, inter, prem } = this.props.chartData;
+    console.log(this.props.chartData);
+    const { baseline, eco, inter, prem } = this.props.chartData;
 
     const options = {
       chart: {
@@ -74,23 +74,7 @@ class Chart extends React.Component {
       }, {
         name: "Baseline",
         color: "grey",
-        data: [
-          -annual,
-          -annual * 2,
-          -annual * 3,
-          -annual * 4,
-          -annual * 5,
-          -annual * 6,
-          -annual * 7,
-          -annual * 8,
-          -annual * 9,
-          -annual * 10,
-          -annual * 11,
-          -annual * 12,
-          -annual * 13,
-          -annual * 14,
-          -annual * 15,
-        ]
+        data: baseline.data
       }],
       plotOptions: {
         line: {
