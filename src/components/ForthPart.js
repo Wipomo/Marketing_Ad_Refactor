@@ -44,7 +44,7 @@ class ForthPart extends React.Component {
               <div className="row">
                 <div className="m4mLeft-content col-md-8 offset-md-3">
                   <div className="form-group row">
-                    <p className='regular full-width text-center'>What is daily average <br />commute in miles?</p>
+                    <p className='regular full-width text-center'>What is your daily average<br />commute in miles?</p>
                     <div className="col-md-6 offset-md-3">
                       <input type="email" className="form-control userInput light" ref={this.tripRef} />
                     </div>
