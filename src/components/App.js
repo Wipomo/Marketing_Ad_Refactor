@@ -72,9 +72,7 @@ class App extends React.Component {
 
   handleSlideChange = (event) => {
     let clientData = { ...this.state.clientProfile };
-    let annual = event * 12;
     this.setState({ clientProfile: clientData });
-    //this.doTheThing(event, annual);
     this.getChartData(event);
   };
 
