@@ -49,9 +49,7 @@ class SecondPart extends React.Component {
                   <p className="regular regular-fontSize">annually with 100% Clean Energy</p>
                 </div>
                 <div className='m2uChart'>
-                  <Chart
-                    monthlyBill={this.props.monthlyBill}
-                    chartData={this.props.chartData}
+                  <Chart chartData={this.props.chartData}
                   />
                 </div>
               </div>
@@ -60,7 +58,7 @@ class SecondPart extends React.Component {
           <div className='m2uTextl row text-center'>
             <br />
             <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
-            <h1 className="bigBlue superBold">${this.props.chartData.installFee}&nbsp;<small>or</small>&nbsp;$191/mo.*</h1>
+            <h1 className="bigBlue superBold">${this.props.chartData.installFee}&nbsp;<small>or</small>&nbsp;${this.props.chartData.monthly_loan_pmt}/mo.*</h1>
           </div>
           <div className="row">
             <div className="m2uTextl-small text-center deactive-color">

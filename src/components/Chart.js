@@ -5,6 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 class Chart extends React.Component {
   render() {
     console.log(this.props.chartData);
+    
     const { baseline, eco, inter, prem } = this.props.chartData;
 
     const options = {
