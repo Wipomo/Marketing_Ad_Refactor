@@ -265,9 +265,13 @@ body {
   padding: 30px;
 }
 
+.m2uTextl-small h6 {
+  font-size: 12px;
+}
+
 .bigBlue {
   color: #1D4585;
-  font-size: 10vh;
+  font-size: 12vh;
 }
 
 .m2uChart {
@@ -279,11 +283,9 @@ body {
 }
 
 .submitButton {
-  width: 100%;
   color: #fff;
   background: #1D4585;
   margin-bottom: 20px;
-  width: 8vw;
   font-size: 20px;
   height: 38px;
   line-height: 28px;
@@ -349,7 +351,7 @@ body {
 }
 
 .m2lBottom-title {
-  font-size: 20px;
+  font-size: 17px;
 }
 
 /*page three*/
@@ -410,7 +412,7 @@ body {
 /* responsive part */
 @media only screen and (max-width: 1024px) {
   .responsive-header {
-    height: 40vh;
+    height: 60vh;
   }
 
   .responsive-container {

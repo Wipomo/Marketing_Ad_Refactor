@@ -63,7 +63,7 @@ class SecondPart extends React.Component {
           <div className="row">
             <div className="m2uTextl-small text-center deactive-color">
               <h6>
-                (includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
+                (Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
               </h6>
               <h6>
                 *After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan@5.49% APR. Actual APR based on credit
@@ -76,7 +76,7 @@ class SecondPart extends React.Component {
               <div className="m2Lower-overlay col-md-8 offset-md-2">
                 <div className="m2Lower text-center">
                   <div className='m2lTop'>
-                    <p className='regular m2lTop-title'>Are you ready to save money?</p>
+                    <p className='regular regular-fontSize'>Are you ready to save money?</p>
                   </div>
                   <div className='row m2lBottom'>
                     <div className="text-center full-width pd20-top">

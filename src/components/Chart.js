@@ -40,12 +40,12 @@ class Chart extends React.Component {
         tickInterval: 1,
         labels: {
           style: {
-            fontSize: '20px',
+            fontSize: '30px',
           }
         },
         title: {
           style: {
-            "font-size": '30',
+            "font-size": '40',
             "color": "black",
           },
           text: 'Years',
