@@ -13,9 +13,9 @@ class FirstPart extends React.Component {
 
     if (this.props.emailValidator(this.emailRef.current.value)) {
       event.preventDefault();
-      this.props.getChartData(this.props.monthlyBill);
       this.props.hideChanger('showSecondPart');
       this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value);
+      this.props.getChartData(this.getSliderValue());
 
     } else {
       event.preventDefault();
