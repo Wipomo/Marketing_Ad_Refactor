@@ -475,6 +475,7 @@ class App extends React.Component {
             monthlyBill={this.state.clientProfile.monthlyBill}
             emailValidator={this.emailValidator}
             handleSlideChange={this.handleSlideChange}
+            getChartData={this.getChartData}
           />
         </div>
         <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
