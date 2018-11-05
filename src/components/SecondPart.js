@@ -31,11 +31,6 @@ class SecondPart extends React.Component {
     this.props.hideChanger('showThirdPart');
   };
 
-  formatNumber = (number) => {
-    console.log(number.length);
-    let numStr = number.toString();
-  };
-
   render() {
     return (
       <div className='App'>
@@ -72,7 +67,7 @@ class SecondPart extends React.Component {
           </div>
           <div className="row remove-mg15">
             <div className="imageTest2-container img-container">
-              <img className="imageTest2" src="/images/savings-bg.png" />
+              <img className="imageTest2" src="/images/savings-bg.png" alt=''/>
               <div className="m2Lower-overlay col-md-8 offset-md-2">
                 <div className="m2Lower text-center">
                   <div className='m2lTop'>

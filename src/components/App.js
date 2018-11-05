@@ -310,11 +310,9 @@ class App extends React.Component {
             chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
             console.log(this.state.chartData.baseline);
 
-            savingsAmt = data['bucket_rows'][0]['you_save_100re'];
 
             var chartDataTmp = {...this.state.chartData}
             chartDataTmp.baseline.data = chartData.baseline.data.map( element => Number(element))
-            chartDataTmp.savingsAmount = savingsAmt;
             this.setState({chartData: chartDataTmp})
 
           })
@@ -434,14 +432,15 @@ class App extends React.Component {
             chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
             chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
             chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
-            chartData.installFee = Number(data['bucket_rows'][0]['avg_system_cost_yr0']) + Number(data['bucket_rows'][0]['avg_incentive_yr1']);
+            chartData.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
             chartData.monthly_loan_pmt = data['bucket_rows'][0]['monthly_loan_payment'];
-
-            console.log(this.state.chartData.baseline);
+            chartData.savingsAmount = data['bucket_rows'][0]['you_save_100re'];
             var chartDataTmp = {...this.state.chartData}
             chartDataTmp.prem.data = chartData.prem.data.map( element => Number(element))
             chartDataTmp.installFee = chartData.installFee;
             chartDataTmp.monthly_loan_pmt = chartData.monthly_loan_pmt;
+            chartDataTmp.savingsAmount = chartData.savingsAmount;
+
             
             //chartDataTmp.prem.data = chartData.prem.data
             this.setState({chartData: chartDataTmp})
