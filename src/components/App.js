@@ -493,7 +493,8 @@ class App extends React.Component {
             getChartData={this.getChartData}
           />
         </div>
-        <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
+        {/* <div className={`SecondPart ${this.state.showSecondPart.hidden}`}> */}
+        <div className={`SecondPart`}>
           <SecondPart
             monthlyBill={this.state.clientProfile.monthlyBill}
             clientInfoUpdater={this.clientInfoUpdater}

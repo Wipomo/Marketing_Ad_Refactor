@@ -445,6 +445,11 @@ body {
     padding-top: 7vh;
   }
 
+  .slider-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .mcSlider {
     margin-top: -10vh;
   }
