@@ -14,7 +14,7 @@ class ThirdPart extends React.Component {
 
   imgHandler = (event) => {
     event.preventDefault();
-    window.location.href = "https://www.makello.com/";
+    window.location.href = "http://www.makello.com";
   };
 
   render() {
