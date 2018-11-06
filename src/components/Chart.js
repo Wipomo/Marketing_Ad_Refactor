@@ -45,7 +45,7 @@ class Chart extends React.Component {
             "font-size": '40',
             "color": "black",
           },
-          text: 'Years test',
+          text: 'Years',
           y: 15,
         }
       },
