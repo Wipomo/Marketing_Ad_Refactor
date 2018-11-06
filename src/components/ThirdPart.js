@@ -14,7 +14,7 @@ class ThirdPart extends React.Component {
 
   imgHandler = (event) => {
     event.preventDefault();
-    window.location.href = "https://wipomo-zoho-database.herokuapp.com/";
+    window.location.href = "https://www.makello.com/";
   };
 
   render() {
