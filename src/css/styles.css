@@ -411,13 +411,20 @@ body {
 
 /* responsive part */
 @media only screen and (max-width: 1200px) {
+  /* first page */
   .responsive-mctLower {
     font-size: 4vh;
     padding-top: 5vh;
   }
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 10vh;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
+  /* first page */
   .responsive-header {
     height: auto;
   }
@@ -456,6 +463,7 @@ body {
 }
 
 @media only screen and (max-width: 900px) {
+  /* first page */
   .responsive-mctLower {
     font-size: 3vh;
     padding-top: 5vh;
@@ -480,9 +488,15 @@ body {
   .submitButton {
     font-size: 18px;
   }
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 8vh;
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  /* first page */
   .responsive-header {
     height: auto;
   }
@@ -522,9 +536,21 @@ body {
     text-align: center;
     color: blue;
   }
+
+  /* second page */
+  .m2Upper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .m2Lower {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
+  /* first page */
   .responsive-header {
     height: auto;
   }
@@ -553,9 +579,15 @@ body {
   .responsive-sliderText {
     font-size: 20px;
   }
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 6vh;
+  }
 }
 
 @media only screen and (max-width: 540px) {
+  /* first page */
   .responsive-header {
     height: auto;
   }
@@ -582,4 +614,11 @@ body {
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 4vh;
+  }
 }
+
