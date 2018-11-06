@@ -44,16 +44,20 @@ class App extends React.Component {
       installFee: 0,
       monthly_loan_pmt:0,
       baseline: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0
       },
       eco: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0
       },
       inter: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0
       },
       prem: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0
       }
     },
     userId: 0,
@@ -256,16 +260,20 @@ class App extends React.Component {
       installFee: 0,
       monthly_loan_pmt:0,
       baseline: {
-        data: baselineData
+        data: baselineData,
+        payback: 0
       },
       eco: {
-        data: economyData
+        data: economyData,
+        payback: 0
       },
       inter: {
-        data: intermediateData
+        data: intermediateData,
+        payback: 0
       },
       prem: {
-        data: premiumData
+        data: premiumData,
+        payback: 0
       }
     };
 
@@ -308,11 +316,13 @@ class App extends React.Component {
             chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
             chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
             chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
+            chartData.baseline.payback= 0;
             console.log(this.state.chartData.baseline);
 
 
             var chartDataTmp = {...this.state.chartData}
             chartDataTmp.baseline.data = chartData.baseline.data.map( element => Number(element))
+            chartDataTmp.baseline.payback = chartData.baseline.payback;
             this.setState({chartData: chartDataTmp})
 
           })
@@ -349,10 +359,12 @@ class App extends React.Component {
             chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
             chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
             chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
+            chartData.eco.payback= data['bucket_rows'][0]['avg_payback'];
             console.log(this.state.chartData.baseline);
             //console.log(chartData.eco.data);
             var chartDataTmp = {...this.state.chartData}
             chartDataTmp.eco.data = chartData.eco.data.map( element => Number(element))
+            chartDataTmp.eco.payback = chartData.eco.payback;
             this.setState({chartData: chartDataTmp})            
 
           })
@@ -389,11 +401,12 @@ class App extends React.Component {
             chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
             chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
             chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
+            chartData.inter.payback= data['bucket_rows'][0]['avg_payback'];
 
             //chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
             var chartDataTmp = {...this.state.chartData}
             chartDataTmp.inter.data = chartData.inter.data.map( element => Number(element))
-            //chartDataTmp.inter.data = chartData.inter.data
+            chartDataTmp.inter.payback = chartData.inter.payback;
             this.setState({chartData: chartDataTmp})
 
             console.log(this.state.chartData.baseline);
@@ -435,14 +448,17 @@ class App extends React.Component {
             chartData.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
             chartData.monthly_loan_pmt = data['bucket_rows'][0]['monthly_loan_payment'];
             chartData.savingsAmount = data['bucket_rows'][0]['you_save_100re'];
+            chartData.prem.payback= data['bucket_rows'][0]['avg_payback'];
+
+
+
             var chartDataTmp = {...this.state.chartData}
             chartDataTmp.prem.data = chartData.prem.data.map( element => Number(element))
             chartDataTmp.installFee = chartData.installFee;
+            chartDataTmp.installFee = chartData.installFee;
             chartDataTmp.monthly_loan_pmt = chartData.monthly_loan_pmt;
             chartDataTmp.savingsAmount = chartData.savingsAmount;
-
-            
-            //chartDataTmp.prem.data = chartData.prem.data
+            chartDataTmp.prem.payback = chartData.prem.payback;
             this.setState({chartData: chartDataTmp})
           })
         .catch(function (e) {

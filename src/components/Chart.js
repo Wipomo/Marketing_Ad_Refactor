@@ -13,13 +13,10 @@ class Chart extends React.Component {
         type: 'line'
       },
       yAxis: {
-        min: 50,
-        max: 15000,
-        tickPositions: [5000, 20000, 45000, 70000, 95000, 120000, 145000],
         labels: {
           formatter: function () {
-            if (this.value < 1000) {
-              return this.value
+            if (this.value < 1000 && this.value > -1000) {
+              return '$' +this.value
             }
             return '$' + this.value / 1000 + 'k'
           },
@@ -58,22 +55,23 @@ class Chart extends React.Component {
           "fontSize": "30px",
           "paddingTop": "5px !important",
         },
-        y: 30
+        y: 20,
+        floating: false
       },
       series: [{
-        name: "Premium",
+        name: "Premium "+ prem.payback+" Years Payback",
         color: "blue",
         data: prem.data
       }, {
-        name: "Intermediate",
+        name: "Intermediate "+ inter.payback+" Years Payback",
         color: "green",
         data: inter.data
       }, {
-        name: "Economy",
+        name: "Economy "+ eco.payback+" Years Payback",
         color: "orchid",
         data: eco.data
       }, {
-        name: "Baseline",
+        name: "Baseline Energy Cost",
         color: "grey",
         data: baseline.data
       }],
@@ -84,12 +82,14 @@ class Chart extends React.Component {
       },
       legend: {
         layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        itemMarginBottom: 20,
+        align: 'center',
+        floating: true,
+        verticalAlign: 'top',
+        itemMarginBottom: 2,
         itemStyle: {
-          fontSize: '20px',
-        }
+          fontSize: '18px',
+        },
+        y:20
       }
     };
 
