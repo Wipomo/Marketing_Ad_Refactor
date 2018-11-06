@@ -53,8 +53,8 @@ class FirstPart extends React.Component {
 
             <section className="slider-section">
               <div className="row">
-                <div className='col-md-8 offset-md-2 col-sm-10 offset-sm-1 mcSlider'>
-                  <p className='text-center regular sliderText'>What's your monthly electric bill?</p>
+                <div className='col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-10 offset-xs-1 mcSlider'>
+                  <p className='text-center regular sliderText responsive-sliderText'>What's your monthly electric bill?</p>
                   <div className='slider'>
                     <MakelloSlider
                       showTooltip={this.props.showTooltip}

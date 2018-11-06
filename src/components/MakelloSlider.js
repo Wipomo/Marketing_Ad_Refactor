@@ -56,7 +56,7 @@ class MakelloSlider extends React.Component {
         };
 
         return(
-            <div style={sliderContainerStyle}>
+            <div className="sliderLineContainer" style={sliderContainerStyle}>
                 <Slider 
                     marks={marks} 
                     trackStyle={sliderStyle} 
