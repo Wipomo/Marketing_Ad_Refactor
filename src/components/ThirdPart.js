@@ -10,6 +10,7 @@ class ThirdPart extends React.Component {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.hideChanger('showForthPart');
+    
   };
 
   imgHandler = (event) => {

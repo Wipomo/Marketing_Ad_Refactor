@@ -75,13 +75,13 @@ class Chart extends React.Component {
         color: "grey",
         data: baseline.data
       }],
-    //   tooltip: {
-    //     pointFormat:'{point.x} Years </n> '
-    //     formatter: function () {
-    //         return '' + this.x +<n/>
-    //             '</b> is <b>' + this.y + '</b>';
-    //     }
-    // },
+      tooltip: {
+        //pointFormat:' {series.name} </n> '
+        formatter: function () {
+            return '<b>' + this.x + ' Years</b><br/>' + this.series.name + ': <b>$' +
+             (this.y).toLocaleString(navigator.language, { minimumFractionDigits: 0 }) + '</b>';
+        }
+    },
       plotOptions: {
         line: {
           enableMouseTracking: true

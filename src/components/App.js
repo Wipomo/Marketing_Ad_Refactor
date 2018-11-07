@@ -234,9 +234,13 @@ class App extends React.Component {
         to: `${this.state.clientProfile.email}`,
         bcc: "no-reply@makello.com",
         subject: `Hello from Makello!`,
-        body: `Thank you for considering saving The Makello Way!
-                A representative will be in touch with you soon to discussion how you can save up to ${"$" + this.state.chartData.savingsAmount} annually by using 100% Clean Energy!.
-                In the meantime - feel free to visit us at our website www.makello.com`
+        body:`Thank you for contacting Makello!
+
+        A representative will be in touch with you soon to discuss how you can save up to ${"$" + (this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy,
+        with a Premium energy upgrade, for as low as ${"$" + (this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  or ${"$" + (this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} /mo.*
+        
+        In the meantime - feel free to visit us at our website: http://makello.com
+        `
       })
     })
   };
@@ -496,6 +500,8 @@ class App extends React.Component {
         <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
           <SecondPart
             monthlyBill={this.state.clientProfile.monthlyBill}
+            fullName={this.state.clientProfile.fullName}
+            address={this.state.clientProfile.address}
             clientInfoUpdater={this.clientInfoUpdater}
             hideChanger={this.hideChanger}
             createCustomerEmail={this.createCustomerEmail}
