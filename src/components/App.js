@@ -189,6 +189,22 @@ class App extends React.Component {
     this.setState({ userId: data });
     this.sendNewLeadEmail();
   };
+    // sendSecondCustomerEmail = () => {
+  //   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+  //     method: "POST",
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       to: `${this.state.clientProfile.email}`,
+  //       bcc: "webdev@wipomo.com",
+  //       subject: `Hello from Makello!`,
+  //       body: `Thank you for considering saving The Makello Way!
+  //               A representative will be in touch with you soon to discussion how you can save up to ${"$" + this.state.chartData.savingsAmount} annually by using 100% Clean Energy!.
+  //               In the meantime - feel free to visit us at our website www.makello.com`
+  //     })
+  //   })
+  // };
 
   sendNewLeadEmail = () => {
     fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
@@ -207,23 +223,6 @@ class App extends React.Component {
     })
   };
 
-  // sendSecondCustomerEmail = () => {
-  //   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       to: `${this.state.clientProfile.email}`,
-  //       bcc: "webdev@wipomo.com",
-  //       subject: `Hello from Makello!`,
-  //       body: `Thank you for considering saving The Makello Way!
-  //               A representative will be in touch with you soon to discussion how you can save up to ${"$" + this.state.chartData.savingsAmount} annually by using 100% Clean Energy!.
-  //               In the meantime - feel free to visit us at our website www.makello.com`
-  //     })
-  //   })
-  // };
-
   createCustomerEmail = () => {
     fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
       method: "POST",
@@ -232,7 +231,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         to: `${this.state.clientProfile.email}`,
-        bcc: "webdev@wipomo.com",
+        bcc: "no-reply@makello.com",
         subject: `Hello from Makello!`,
         body:`Thank you for contacting Makello!
 
