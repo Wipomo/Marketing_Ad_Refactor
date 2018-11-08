@@ -4,9 +4,9 @@ import HighchartsReact from 'highcharts-react-official';
 
 class Chart extends React.Component {
   render() {
-    console.log(this.props.chartData);
+   // console.log(this.props.chartData);
     
-    const { baseline, eco, inter, prem } = this.props.chartData;
+    const { Baseline, Economy, Intermediate, Premium } = this.props.chartData;
 
     const options = {
       chart: {
@@ -59,21 +59,21 @@ class Chart extends React.Component {
         floating: false
       },
       series: [{
-        name: "Premium "+ prem.payback+" Years Payback",
+        name: "Premium "+ Premium.payback+" Years Payback",
         color: "blue",
-        data: prem.data
+        data: Premium.data
       }, {
-        name: "Intermediate "+ inter.payback+" Years Payback",
+        name: "Intermediate "+ Intermediate.payback+" Years Payback",
         color: "green",
-        data: inter.data
+        data: Intermediate.data
       }, {
-        name: "Economy "+ eco.payback+" Years Payback",
+        name: "Economy "+ Economy.payback+" Years Payback",
         color: "orchid",
-        data: eco.data
+        data: Economy.data
       }, {
         name: "Baseline Energy Cost",
         color: "grey",
-        data: baseline.data
+        data: Baseline.data
       }],
       tooltip: {
         //pointFormat:' {series.name} </n> '

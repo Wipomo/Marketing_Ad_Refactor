@@ -43,19 +43,19 @@ class App extends React.Component {
       savingsAmount: 0,
       installFee: 0,
       monthly_loan_pmt:0,
-      baseline: {
+      Baseline: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0
       },
-      eco: {
+      Economy: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0
       },
-      inter: {
+      Intermediate: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0
       },
-      prem: {
+      Premium: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0
       }
@@ -198,7 +198,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         to: "info@makello.com",
-        bcc: "ellie.lader@wipomo.com",
+        bcc: "no-reply@makello.com",
         subject: `New Lead Generated - ${this.state.clientProfile.email}`,
         body: `A new lead had been added to the database.
                 Database ID: ${this.state.userId}
@@ -207,22 +207,22 @@ class App extends React.Component {
     })
   };
 
-  sendSecondCustomerEmail = () => {
-    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        to: `${this.state.clientProfile.email}`,
-        bcc: "no-reply@makello.com",
-        subject: `Hello from Makello!`,
-        body: `Thank you for considering saving The Makello Way!
-                A representative will be in touch with you soon to discussion how you can save up to ${"$" + this.state.chartData.savingsAmount} annually by using 100% Clean Energy!.
-                In the meantime - feel free to visit us at our website www.makello.com`
-      })
-    })
-  };
+  // sendSecondCustomerEmail = () => {
+  //   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+  //     method: "POST",
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       to: `${this.state.clientProfile.email}`,
+  //       bcc: "webdev@wipomo.com",
+  //       subject: `Hello from Makello!`,
+  //       body: `Thank you for considering saving The Makello Way!
+  //               A representative will be in touch with you soon to discussion how you can save up to ${"$" + this.state.chartData.savingsAmount} annually by using 100% Clean Energy!.
+  //               In the meantime - feel free to visit us at our website www.makello.com`
+  //     })
+  //   })
+  // };
 
   createCustomerEmail = () => {
     fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
@@ -232,7 +232,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         to: `${this.state.clientProfile.email}`,
-        bcc: "no-reply@makello.com",
+        bcc: "webdev@wipomo.com",
         subject: `Hello from Makello!`,
         body:`Thank you for contacting Makello!
 
@@ -251,177 +251,34 @@ class App extends React.Component {
     var bill_input = monthlyBill;
     var annual_bill = bill_input * 12;
     var bucket;
-    var savingsAmt = 0;
-    var baselineData = [];
-    var economyData = [];
-    var intermediateData = [];
-    var premiumData = [];
-
-    let chartData = {};
-
-    chartData = {
-      savingsAmount: savingsAmt,
-      installFee: 0,
-      monthly_loan_pmt:0,
-      baseline: {
-        data: baselineData,
-        payback: 0
-      },
-      eco: {
-        data: economyData,
-        payback: 0
-      },
-      inter: {
-        data: intermediateData,
-        payback: 0
-      },
-      prem: {
-        data: premiumData,
-        payback: 0
-      }
-    };
 
     if (annual_bill < 1000)
         bucket = 500;
     else
         bucket = Math.floor(annual_bill / 1000) * 1000;
 
-
-    console.log("Bucket is: "+bucket);
     // get all data for 3 system types
     // get chart data, then set chartData state to automatically update
     // we do this by picking out certain columns to fill our chartData object,
 
-    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/Baseline";
-    fetch(url)
-        .then((response) => {
-            return response.text()
-        })
-        .then((response_in_text) => {
-            return JSON.parse(response_in_text)
-        })
-        .then((data) => {
-            //console.log("parsed JSON data");
-            console.log(data);
-            console.log("printing specified data values in baseline");
-            console.log(data['bucket_rows'][0]);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr1']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr2']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr3']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr4']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr5']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr6']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr7']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr8']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr9']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr10']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr11']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
-            chartData.baseline.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
-            chartData.baseline.payback= 0;
-            console.log(this.state.chartData.baseline);
+    this.setChartSeriesData(bucket, "Baseline");
+    this.setChartSeriesData(bucket, "Economy");
+    this.setChartSeriesData(bucket, "Intermediate");
+    this.setChartSeriesData(bucket, "Premium");
+  };
 
+  setChartSeriesData(bucket, system_type){
 
-            var chartDataTmp = {...this.state.chartData}
-            chartDataTmp.baseline.data = chartData.baseline.data.map( element => Number(element))
-            chartDataTmp.baseline.payback = chartData.baseline.payback;
-            this.setState({chartData: chartDataTmp})
+    var series= {
+      data: [],
+      payback: 0,
+      savingsAmount:0,
+      installFee: 0,
+      monthly_loan_pmt:0,
+    };
 
-          })
-        .catch(function (e) {
-            console.warn("SHOULLD NEVER COME IN HERE!!!");
-            console.log(e);
-        })
+    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
-        url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/Economy";
-    fetch(url)
-        .then((response) => {
-            return response.text()
-        })
-        .then((response_in_text) => {
-            return JSON.parse(response_in_text)
-        })
-        .then((data) => {
-            //console.log("parsed JSON data");
-            console.log(data);
-            console.log("printing specified data values in economy");
-            console.log(data['bucket_rows'][0]);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr1']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr2']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr3']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr4']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr5']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr6']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr7']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr8']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr9']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr10']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr11']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
-            chartData.eco.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
-            chartData.eco.payback= data['bucket_rows'][0]['avg_payback'];
-            console.log(this.state.chartData.baseline);
-            //console.log(chartData.eco.data);
-            var chartDataTmp = {...this.state.chartData}
-            chartDataTmp.eco.data = chartData.eco.data.map( element => Number(element))
-            chartDataTmp.eco.payback = chartData.eco.payback;
-            this.setState({chartData: chartDataTmp})            
-
-          })
-        .catch(function (e) {
-            console.warn("SHOULLD NEVER COME IN HERE!!!");
-            console.log(e);
-        })
-
-        url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/Intermediate";
-    fetch(url)
-        .then((response) => {
-            return response.text()
-        })
-        .then((response_in_text) => {
-            return JSON.parse(response_in_text)
-        })
-        .then((data) => {
-            //console.log("parsed JSON data");
-            console.log(data);
-            console.log("printing specified data values in intermediate");
-            console.log(data['bucket_rows'][0]);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr1']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr2']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr3']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr4']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr5']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr6']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr7']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr8']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr9']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr10']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr11']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
-            chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
-            chartData.inter.payback= data['bucket_rows'][0]['avg_payback'];
-
-            //chartData.inter.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
-            var chartDataTmp = {...this.state.chartData}
-            chartDataTmp.inter.data = chartData.inter.data.map( element => Number(element))
-            chartDataTmp.inter.payback = chartData.inter.payback;
-            this.setState({chartData: chartDataTmp})
-
-            console.log(this.state.chartData.baseline);
-            //console.log(chartData.inter.data);
-          })
-        .catch(function (e) {
-            console.warn("SHOULLD NEVER COME IN HERE!!!");
-            console.log(e);
-        })
-
-        url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/Premium";
     fetch(url)
         .then((response) => {
             return response.text()
@@ -431,46 +288,62 @@ class App extends React.Component {
         })
         .then((data) => {
             //console.log("parsed JSON data:");
-            console.log(data);
-            console.log("printing specified data values in premium");
-            console.log(data['bucket_rows'][0]);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr1']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr2']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr3']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr4']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr5']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr6']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr7']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr8']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr9']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr10']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr11']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
-            chartData.prem.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
-            chartData.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
-            chartData.monthly_loan_pmt = data['bucket_rows'][0]['monthly_loan_payment'];
-            chartData.savingsAmount = data['bucket_rows'][0]['you_save_100re'];
-            chartData.prem.payback= data['bucket_rows'][0]['avg_payback'];
-
-
+            // console.log(data);
+            // console.log("printing specified data values in premium");
+            // console.log(data['bucket_rows'][0]);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr1']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr2']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr3']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr4']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr5']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr6']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr7']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr8']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr9']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr10']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr11']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
+            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
+            series.payback= data['bucket_rows'][0]['avg_payback'];
 
             var chartDataTmp = {...this.state.chartData}
-            chartDataTmp.prem.data = chartData.prem.data.map( element => Number(element))
-            chartDataTmp.installFee = chartData.installFee;
-            chartDataTmp.installFee = chartData.installFee;
-            chartDataTmp.monthly_loan_pmt = chartData.monthly_loan_pmt;
-            chartDataTmp.savingsAmount = chartData.savingsAmount;
-            chartDataTmp.prem.payback = chartData.prem.payback;
-            this.setState({chartData: chartDataTmp})
+
+            switch(system_type){
+              case "Baseline":
+                chartDataTmp.Baseline.data = series.data.map( element => Number(element))
+                chartDataTmp.Baseline.payback = series.payback;
+                break;
+              case "Economy":
+                chartDataTmp.Economy.data = series.data.map( element => Number(element))
+                chartDataTmp.Economy.payback = series.payback;
+                break;
+              case "Intermediate":
+                chartDataTmp.Intermediate.data = series.data.map( element => Number(element))
+                chartDataTmp.Intermediate.payback = series.payback;
+                break;
+              case "Premium":
+                series.savingsAmount = data['bucket_rows'][0]['you_save_100re'];
+                series.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
+                series.monthly_loan_pmt = data['bucket_rows'][0]['monthly_loan_payment'];
+
+                chartDataTmp.Premium.data = series.data.map( element => Number(element))
+                chartDataTmp.Premium.payback = series.payback;
+
+                chartDataTmp.savingsAmount = series.savingsAmount;
+                chartDataTmp.installFee = series.installFee;
+                chartDataTmp.monthly_loan_pmt = series.monthly_loan_pmt;
+                break;
+              default:
+                break;
+            }
+            this.setChartData(chartDataTmp);
           })
         .catch(function (e) {
-            console.warn("SHOULLD NEVER COME IN HERE!!!");
-            console.log(e);
+          console.warn("Error: Caught a network/db connection error!");
+          console.log(e);
         })
-
-
   };
 
   setChartData = (data) => {
