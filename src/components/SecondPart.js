@@ -53,7 +53,7 @@ class SecondPart extends React.Component {
           <div className='m2uTextl row text-center'>
             <br />
             <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
-            <h1 className="bigBlue superBold">${this.props.chartData.installFee.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} &nbsp;
+            <h1 className="bigBlue superBold">${Number(this.props.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} &nbsp;
             <small>or</small>&nbsp;${this.props.chartData.monthly_loan_pmt}/mo.*</h1>
           </div>
           <div className="row">

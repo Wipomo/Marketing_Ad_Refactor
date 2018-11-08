@@ -236,8 +236,8 @@ class App extends React.Component {
         subject: `Hello from Makello!`,
         body:`Thank you for contacting Makello!
 
-        A representative will be in touch with you soon to discuss how you can save up to ${"$" + (this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy,
-        with a Premium energy upgrade, for as low as ${"$" + (this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  or ${"$" + (this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} /mo.*
+        A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy,
+        with a Premium energy upgrade, for as low as ${"$" + Number(this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  or ${"$" + Number(this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} /mo.*
         
         In the meantime - feel free to visit us at our website: http://makello.com
         `

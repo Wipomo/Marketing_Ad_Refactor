@@ -8,7 +8,7 @@ class FifthPart extends React.Component {
         <div className='main3 fifth-part'>
           <div className='row m3Upper text-center pd20-top'>
             <p className='regular regular-fontSize full-width pd20-top'>Thank you for the additional information!</p>
-            <p className='regular regular-fontSize full-width pd20-top'>Makello’s Ethical Energy Efficiency Experts are adding this information to your personalized Energy Analysis!</p>
+            <p className='regular regular-fontSize full-width pd20-top'>Our Ethical Energy Efficiency Experts are creating your personalized Energy Analysis!</p>
           </div>
           <div className='m3Middle row'>
             <div className="col-md-4 offset-md-4">
@@ -16,7 +16,7 @@ class FifthPart extends React.Component {
             </div>
           </div>
           <div className='m3Lower text-center'>
-            <p className="regular">Come visit our website</p>
+            {/* <p className="regular">Come visit our website</p> */}
             <a href="http://www.makello.com"><u><b>www.makello.com</b></u></a>
           </div>
         </div>

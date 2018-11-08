@@ -54,7 +54,7 @@ class ThirdPart extends React.Component {
             </div>
             <div className='m3Lower text-center'>
               <a href="http://www.makello.com italic-font"><u><b>www.makello.com</b></u></a>
-              <p className="semiBold">"Make it low, with Makello!"</p>
+              <p className="semiBold italic-font">"Make it low, with Makello!"</p>
               <p>
                 <small className="italic-font deactive-color">Makello is an authorized distributor for Green Energy EPC (CSLB License #978836) having 5-Star Average Reviews on Yelp! (93 total)</small>
               </p>
