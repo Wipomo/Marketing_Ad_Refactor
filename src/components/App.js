@@ -214,6 +214,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         to: "info@makello.com",
+        cc: ["olasubomi.awokoya@hotmail.com", "charlieqjohnson@gmail.com"],
         bcc: "no-reply@makello.com",
         subject: `New Lead Generated - ${this.state.clientProfile.email}`,
         body: `A new lead had been added to the database.
@@ -231,6 +232,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         to: `${this.state.clientProfile.email}`,
+        cc: ["olasubomi.awokoya@hotmail.com", "charlieqjohnson@gmail.com"],
         bcc: "no-reply@makello.com",
         subject: `Hello from Makello!`,
         body:`Thank you for contacting Makello!
