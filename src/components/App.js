@@ -213,7 +213,7 @@ class App extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        to: "info@makello.com",
+        to: "sales@makello.com",
         cc: ["olasubomi.awokoya@hotmail.com", "charlieqjohnson@gmail.com"],
         bcc: "no-reply@makello.com",
         subject: `New Lead Generated - ${this.state.clientProfile.email}`,
@@ -225,6 +225,7 @@ class App extends React.Component {
   };
 
   createCustomerEmail = () => {
+    console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
@@ -234,7 +235,7 @@ class App extends React.Component {
         to: `${this.state.clientProfile.email}`,
         cc: ["olasubomi.awokoya@hotmail.com", "charlieqjohnson@gmail.com"],
         bcc: "no-reply@makello.com",
-        subject: `Hello from Makello!`,
+        subject: `Hello from Makello`,
         body:`Thank you for contacting Makello!
 
         A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy,
