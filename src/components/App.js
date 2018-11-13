@@ -235,14 +235,14 @@ class App extends React.Component {
         bcc: "sales@makello.com",
         subject: `Hello from Makello`,
         body:`Thank you for contacting Makello!
-
-        A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium energy upgrade, for as low as ${"$" + Number(this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  or ${"$" + Number(this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month*
         
-        For more information, visit http://makello.com
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+        
+For more information, visit http://makello.com
 
 
-        *(Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
-        *After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
+*Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
+**After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
         `
       })
     })
