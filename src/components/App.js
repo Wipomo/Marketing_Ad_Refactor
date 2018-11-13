@@ -214,7 +214,6 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         to: "sales@makello.com",
-        cc: ["olasubomi.awokoya@hotmail.com", "charlieqjohnson@gmail.com"],
         bcc: "no-reply@makello.com",
         subject: `New Lead Generated - ${this.state.clientProfile.email}`,
         body: `A new lead had been added to the database.
@@ -225,7 +224,7 @@ class App extends React.Component {
   };
 
   createCustomerEmail = () => {
-    console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
+    //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
@@ -233,15 +232,17 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         to: `${this.state.clientProfile.email}`,
-        cc: ["olasubomi.awokoya@hotmail.com", "charlieqjohnson@gmail.com"],
-        bcc: "no-reply@makello.com",
+        bcc: "sales@makello.com",
         subject: `Hello from Makello`,
         body:`Thank you for contacting Makello!
 
-        A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy,
-        with a Premium energy upgrade, for as low as ${"$" + Number(this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  or ${"$" + Number(this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} /mo.*
+        A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium energy upgrade, for as low as ${"$" + Number(this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  or ${"$" + Number(this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month*
         
-        In the meantime - feel free to visit us at our website: http://makello.com
+        For more information, visit http://makello.com
+
+
+        *(Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
+        *After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
         `
       })
     })

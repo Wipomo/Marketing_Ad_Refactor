@@ -12,12 +12,14 @@ class FifthPart extends React.Component {
           </div>
           <div className='m3Middle row'>
             <div className="col-md-4 offset-md-4">
-              <img className="full-width" src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
+            
+              <img className="full-width" border="1px" src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
             </div>
           </div>
+          <br></br>
           <div className='m3Lower text-center'>
             {/* <p className="regular">Come visit our website</p> */}
-            <a href="http://www.makello.com"><u><b>www.makello.com</b></u></a>
+            <u><a href="http://www.makello.com">www.makello.com</a></u>
           </div>
         </div>
       </div>
