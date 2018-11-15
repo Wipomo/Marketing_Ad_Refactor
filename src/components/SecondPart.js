@@ -32,6 +32,15 @@ class SecondPart extends React.Component {
     this.props.hideChanger('showThirdPart');
   };
 
+  DescribeSystemType = (system_type)=>{
+    if(system_type === "Economy" || system_type === "Intermediate"){
+      return <p className="regular regular-fontSize">with an {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p> ;
+    }
+    else{
+      return <p className="regular regular-fontSize">with a {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p>
+    }
+  }
+
   render() {
     return (
       <div className='App'>
@@ -53,17 +62,18 @@ class SecondPart extends React.Component {
           </div>
           <div className='m2uTextl row text-center'>
             <br />
-            <p className="regular regular-fontSize">with a/an {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p>
+            {/* {this.DescribeSystemType(this.props.chartData.Optimal.system_type)} */}
+            <p className="regular regular-fontSize">We selected the optimal {(this.props.chartData.Optimal.system_type)} upgrade package for you!</p>
             <h1 className="bigBlue superBold">${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
             <small> or</small>&nbsp;${this.props.chartData.Optimal.monthly_loan_pmt}/mo.*</h1>
           </div>
           <div className="row">
             <div className="m2uTextl-small text-center deactive-color">
               <h6>
-                (Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.)
+                Includes highest quality LG 335w - 400w solar panels; SolarEdge, SMA or Enphase inverter(s); balance of system & installation.
               </h6>
               <h6>
-                *After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan@5.49% APR. Actual APR based on credit
+              *After 30% Federal ITC, and if loan, applied as down payment on 12 Yr Loan @ 5.49% APR (based on credit).
               </h6>
             </div>
           </div>

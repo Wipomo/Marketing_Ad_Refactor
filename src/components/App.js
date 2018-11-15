@@ -230,7 +230,7 @@ class App extends React.Component {
         subject: `Hello from Makello`,
         body:`Thank you for contacting Makello!
         
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
         
 For more information, visit http://makello.com
 
@@ -308,12 +308,12 @@ For more information, visit http://makello.com
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
           
             // get data for display on Second Part
-            series.system_cost = data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0'];
+            series.system_cost = Number(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
             series.payback= Number(data['bucket_rows'][0]['avg_payback']);
 
-            series.savingsAmount = data['bucket_rows'][0]['you_save_100re'];
+            series.savingsAmount = Number(data['bucket_rows'][0]['you_save_100re']);
             series.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
-            series.monthly_loan_pmt = data['bucket_rows'][0]['monthly_loan_payment'];
+            series.monthly_loan_pmt = Number(data['bucket_rows'][0]['monthly_loan_payment']);
 
             var chartDataTmp = {...this.state.chartData};
 

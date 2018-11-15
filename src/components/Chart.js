@@ -42,7 +42,7 @@ class Chart extends React.Component {
         },
         title: {
           style: {
-            "font-size": '40',
+            "font-size": '30',
             "color": "black",
           },
           text: 'Years',
@@ -50,7 +50,7 @@ class Chart extends React.Component {
         }
       },
       title: {
-        text: 'Cumulative Cash Flow',
+        text: 'Savings Over Time',
         style: {
           "fontSize": "30px",
           "paddingTop": "5px !important",
@@ -59,15 +59,15 @@ class Chart extends React.Component {
         floating: false
       },
       series: [{
-        name: "Premium "+ Premium.payback+" Years Payback",
+        name: "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
         color: "blue",
         data: Premium.data
       }, {
-        name: "Intermediate "+ Intermediate.payback+" Years Payback",
+        name: "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
         color: "green",
         data: Intermediate.data
       }, {
-        name: "Economy "+ Economy.payback+" Years Payback",
+        name: "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
         color: "orchid",
         data: Economy.data
       }, {
