@@ -40,24 +40,31 @@ class App extends React.Component {
       saveAmount: ''
     },
     chartData: {
-      savingsAmount: 0,
-      installFee: 0,
-      monthly_loan_pmt:0,
+      Optimal:{
+        system_type: 'Default',
+        system_cost:999999,
+        payback:999,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
+      },
       Baseline: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        payback: 0
       },
       Economy: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        payback: 0
+        payback: 0,
+        system_cost:0
       },
       Intermediate: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        payback: 0
+        payback: 0,
+        system_cost:0
       },
       Premium: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        payback: 0
+        payback: 0,
+        system_cost:0
       }
     },
     userId: 0,
@@ -69,15 +76,18 @@ class App extends React.Component {
   }
 
   // handlers start
-
   handleWindowSizeChange = () => {
     this.setState({ resolution: window.innerWidth });
   };
 
   handleSlideChange = (event) => {
+    //console.log("Event is:\n"+ event);
     let clientData = { ...this.state.clientProfile };
+    clientData.monthlyBill = event;
+    //console.log("Client monthlyBill is:\n"+ typeof(clientData.monthlyBill)+" " +clientData.monthlyBill);
+
     this.setState({ clientProfile: clientData });
-    this.getChartData(event);
+    //this.getChartData(event);
   };
 
   hideChanger = (input) => {
@@ -106,7 +116,7 @@ class App extends React.Component {
 
   billEmailUpdater = (bill, email) => {
     let clientProfile = { ...this.state.clientProfile };
-    clientProfile.monthlyBill = Number(bill);
+    clientProfile.monthlyBill = bill;
     clientProfile.email = email;
     this.setState({ clientProfile });
     this.postBillEmailData(bill, email);
@@ -189,22 +199,6 @@ class App extends React.Component {
     this.setState({ userId: data });
     this.sendNewLeadEmail();
   };
-    // sendSecondCustomerEmail = () => {
-  //   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       to: `${this.state.clientProfile.email}`,
-  //       bcc: "webdev@wipomo.com",
-  //       subject: `Hello from Makello!`,
-  //       body: `Thank you for considering saving The Makello Way!
-  //               A representative will be in touch with you soon to discussion how you can save up to ${"$" + this.state.chartData.savingsAmount} annually by using 100% Clean Energy!.
-  //               In the meantime - feel free to visit us at our website www.makello.com`
-  //     })
-  //   })
-  // };
 
   sendNewLeadEmail = () => {
     fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
@@ -250,10 +244,12 @@ For more information, visit http://makello.com
 
   // chart functionality with state
   getChartData = (monthlyBill) =>{
-    //console.log("Comes in getChartData function in refactored app");
-    var bill_input = monthlyBill;
+    //console.log("Comes in gehandleSlideChangetChartData function in refactored app");
+    var bill_input = Number(monthlyBill);
+    console.log("Monthly Bill type is : "+typeof(monthlyBill) +" Bill is: "+ typeof(bill_input));
     var annual_bill = bill_input * 12;
-    var bucket;
+    var bucket = 500;
+    console.log("Monthly bill is: "+monthlyBill+" and Bucket is defaultly: "+bucket);
 
     if (annual_bill < 1000)
         bucket = 500;
@@ -263,6 +259,7 @@ For more information, visit http://makello.com
     // get all data for 3 system types
     // get chart data, then set chartData state to automatically update
     // we do this by picking out certain columns to fill our chartData object,
+    console.log("Monthly bill is: "+monthlyBill+" and Bucket is: "+bucket);
 
     this.setChartSeriesData(bucket, "Baseline");
     this.setChartSeriesData(bucket, "Economy");
@@ -270,16 +267,18 @@ For more information, visit http://makello.com
     this.setChartSeriesData(bucket, "Premium");
   };
 
+
   setChartSeriesData(bucket, system_type){
 
     var series= {
+      system_type: system_type,
       data: [],
       payback: 0,
       savingsAmount:0,
       installFee: 0,
       monthly_loan_pmt:0,
+      system_cost: 0
     };
-
     var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
     fetch(url)
@@ -290,10 +289,8 @@ For more information, visit http://makello.com
             return JSON.parse(response_in_text)
         })
         .then((data) => {
-            //console.log("parsed JSON data:");
-            // console.log(data);
-            // console.log("printing specified data values in premium");
-            // console.log(data['bucket_rows'][0]);
+
+            // get chart Data
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr1']);
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr2']);
@@ -309,9 +306,16 @@ For more information, visit http://makello.com
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
-            series.payback= data['bucket_rows'][0]['avg_payback'];
+          
+            // get data for display on Second Part
+            series.system_cost = data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0'];
+            series.payback= Number(data['bucket_rows'][0]['avg_payback']);
 
-            var chartDataTmp = {...this.state.chartData}
+            series.savingsAmount = data['bucket_rows'][0]['you_save_100re'];
+            series.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
+            series.monthly_loan_pmt = data['bucket_rows'][0]['monthly_loan_payment'];
+
+            var chartDataTmp = {...this.state.chartData};
 
             switch(system_type){
               case "Baseline":
@@ -321,32 +325,64 @@ For more information, visit http://makello.com
               case "Economy":
                 chartDataTmp.Economy.data = series.data.map( element => Number(element))
                 chartDataTmp.Economy.payback = series.payback;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Intermediate":
                 chartDataTmp.Intermediate.data = series.data.map( element => Number(element))
                 chartDataTmp.Intermediate.payback = series.payback;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Premium":
-                series.savingsAmount = data['bucket_rows'][0]['you_save_100re'];
-                series.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
-                series.monthly_loan_pmt = data['bucket_rows'][0]['monthly_loan_payment'];
-
                 chartDataTmp.Premium.data = series.data.map( element => Number(element))
                 chartDataTmp.Premium.payback = series.payback;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
 
-                chartDataTmp.savingsAmount = series.savingsAmount;
-                chartDataTmp.installFee = series.installFee;
-                chartDataTmp.monthly_loan_pmt = series.monthly_loan_pmt;
                 break;
               default:
                 break;
             }
+            // set optimum data to be displayed
             this.setChartData(chartDataTmp);
           })
         .catch(function (e) {
           console.warn("Error: Caught a network/db connection error!");
           console.log(e);
         })
+  };
+
+  checkOptimalDisplayValues(series, chartDataTmp){
+    console.log("checking if "+ series.system_type+ " payback of "+ series.payback+
+    " is less than "+ this.state.chartData.Optimal.system_type +" of "+ this.state.chartData.Optimal.payback);
+    if(series.payback < this.state.chartData.Optimal.payback ||
+      (series.payback === this.state.chartData.Optimal.payback &&
+        series.system_cost < this.state.chartData.Optimal.system_cost)){
+          this.setOptimalDisplayValues(series, chartDataTmp);
+          console.log("Answer is true, replacing..")
+        }
+    else{
+      console.log("Answer is false, not replacing..")
+
+    }
+    
+  };
+
+  setOptimalDisplayValues(series, chartDataTmp){
+    // console.log("In setting optimal func");
+    // console.log("system savings amount: "+ series.savingsAmount);
+    // console.log("system type: "+ series.system_type);
+    // console.log(" monthly_loan_pmt: "+ series.monthly_loan_pmt);
+
+    chartDataTmp.Optimal.system_type = series.system_type;
+    chartDataTmp.Optimal.system_cost = series.system_cost;
+    chartDataTmp.Optimal.payback = series.payback;
+    chartDataTmp.Optimal.savingsAmount= series.savingsAmount;
+    chartDataTmp.Optimal.installFee = series.installFee;
+    chartDataTmp.Optimal.monthly_loan_pmt= series.monthly_loan_pmt;
+    this.setChartData(chartDataTmp);
+    // console.log("Checking chart data");
+    // console.log("system savings amount: "+ this.state.chartData.Optimal.savingsAmount);
+    // console.log("system type: "+ this.state.chartData.Optimal.system_type);
+    // console.log(" monthly_loan_pmt: "+ this.state.chartData.Optimal.monthly_loan_pmt);
   };
 
   setChartData = (data) => {
@@ -381,7 +417,6 @@ For more information, visit http://makello.com
             clientInfoUpdater={this.clientInfoUpdater}
             hideChanger={this.hideChanger}
             createCustomerEmail={this.createCustomerEmail}
-            getSaveAmount={this.getSaveAmount}
             chartData={this.state.chartData}
           />
         </div>

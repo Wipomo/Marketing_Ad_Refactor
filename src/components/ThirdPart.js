@@ -25,12 +25,13 @@ class ThirdPart extends React.Component {
         <div className='App'>
           <div className='main3'>
             <div className='m3Upper'>
-              <p className='medium'>Thank you! We will get back with you soon.</p>
+              <p className='medium'>Thank you! Check for a confirmation email in your Inbox or SPAM folder; add us to your Contacts to receive a personalized <a href="https://www.makello.com/energy-analysis.html">Energy Analysis</a> from Makello</p>
               <p>Our Clean Energy Specialists are looking over your information to start you on the path to saving The Makello Way!</p>
             </div>
             <div className='m3Middle'>
               <img src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
             </div>
+            <br></br>
             <div className='m3Lower'>
               <a href="http://www.makello.com"><u><b>www.makello.com</b></u></a>
               <p className="semiBold italic-font">"Make it low, with Makello!"</p>
@@ -45,13 +46,14 @@ class ThirdPart extends React.Component {
         <div className='App'>
           <div className='main3'>
             <div className='row m3Upper text-center pd20-top'>
-              <p className='regular regular-fontSize full-width pd20-top'>Thank you, we will get back to you soon!</p>
+              <p className='regular regular-fontSize full-width pd20-top'>Thank you! Check for a confirmation email in your Inbox or SPAM folder; add us to your Contacts to receive a personalized <a href="https://www.makello.com/energy-analysis.html">Energy Analysis</a> from <a href="https://www.makello.com/">Makello</a>!</p>
             </div>
             <div className='m3Middle row'>
               <div className="col-md-4 offset-md-4">
                 <img className="full-width" src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
               </div>
             </div>
+            <br></br>
             <div className='m3Lower text-center'>
               <a href="http://www.makello.com italic-font"><u><b>www.makello.com</b></u></a>
               <p className="semiBold italic-font">"Make it low, with Makello!"</p>

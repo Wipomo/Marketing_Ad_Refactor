@@ -9,7 +9,8 @@ class SecondPart extends React.Component {
     var input = document.getElementById('autocomplete');
     if (initAuto === false) {
       console.log("initializes autocomplete once only");
-      var autocomplete = new window.google.maps.places.Autocomplete(
+      //var autocomplete = 
+      new window.google.maps.places.Autocomplete(
         input,
         { types: ['address'], placeIdOnly: true }
       );
@@ -39,9 +40,9 @@ class SecondPart extends React.Component {
             <div className="col-md-8 offset-md-2 main2-container">
               <div className='m2Upper'>
                 <div className='m2uTextu'>
-                  <p className="regular regular-fontSize">You can save</p>
-                  <h1 className="bigBlue superBold">${Number(this.props.chartData.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>
-                  <p className="regular regular-fontSize">annually with 100% Clean Energy</p>
+                  <p className="regular regular-fontSize">You Can Save</p>
+                  <h1 className="bigBlue superBold">${Number(this.props.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>
+                  <p className="regular regular-fontSize">Annually with 100% Clean Energy</p>
                 </div>
                 <div className='m2uChart'>
                   <Chart chartData={this.props.chartData}
@@ -52,9 +53,9 @@ class SecondPart extends React.Component {
           </div>
           <div className='m2uTextl row text-center'>
             <br />
-            <p className="regular regular-fontSize">with a Premium energy upgrade, for as low as</p>
-            <h1 className="bigBlue superBold">${Number(this.props.chartData.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} &nbsp;
-            <small>or</small>&nbsp;${this.props.chartData.monthly_loan_pmt}/mo.*</h1>
+            <p className="regular regular-fontSize">with a/an {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p>
+            <h1 className="bigBlue superBold">${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+            <small> or</small>&nbsp;${this.props.chartData.Optimal.monthly_loan_pmt}/mo.*</h1>
           </div>
           <div className="row">
             <div className="m2uTextl-small text-center deactive-color">

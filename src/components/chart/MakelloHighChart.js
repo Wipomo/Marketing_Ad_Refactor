@@ -51,7 +51,7 @@ export default class MakelloHighChart {
 
         this.chart = Highcharts.chart(containerString, {
             title: {
-                text: 'Cumulative Cash Flow'
+                text: 'Savings Over Time'
             },
             chart: {
                 type: 'column'

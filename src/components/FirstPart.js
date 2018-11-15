@@ -13,9 +13,9 @@ class FirstPart extends React.Component {
 
     if (this.props.emailValidator(this.emailRef.current.value)) {
       event.preventDefault();
-      this.props.hideChanger('showSecondPart');
       this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value);
       this.props.getChartData(this.getSliderValue());
+      this.props.hideChanger('showSecondPart');
 
     } else {
       event.preventDefault();
@@ -25,8 +25,12 @@ class FirstPart extends React.Component {
 
   getSliderValue = () => {
     var sliderHolder = document.getElementById("sliderHandle").innerText;
-    var sliderValue = sliderHolder.slice(1);
+    console.log("slider holder is: "+sliderHolder);
+    var sliderValue = Number(sliderHolder.replace(/[^\d]/g, ""));
+    console.log("slider value is: "+sliderValue);
+
     return sliderValue;
+    //return this.props.monthlyBill;
   };
 
   render() {
