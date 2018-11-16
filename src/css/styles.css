@@ -301,6 +301,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
   filter: brightness(60%);
+  width: 100%;
 }
 
 .m2Lower {
@@ -338,11 +339,6 @@ body {
   left:50%;
   transform:translate(-50%,-50%);
   color:#fff;
-}
-
-.imageTest2 {
-  height: 80vh;
-  width: 100%;
 }
 
 .m2lBottom {
