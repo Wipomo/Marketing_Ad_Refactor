@@ -20,6 +20,7 @@ class ForthPart extends React.Component {
     let trip = this.tripRef.current.value;
     let mpg = this.mpgRef.current.value;
     this.props.carInfoUpdater(trip, mpg, car.year, car.make, car.model);
+    this.props.createCustomerEmail();
     this.props.hideChanger('showFifthPart');
   };
 

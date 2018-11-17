@@ -28,7 +28,6 @@ class SecondPart extends React.Component {
     let phone = this.phoneRef.current.value;
     let address = this.addressRef.current.value;
     this.props.clientInfoUpdater(fullName, phone, address);
-    this.props.createCustomerEmail();
     this.props.hideChanger('showThirdPart');
   };
 

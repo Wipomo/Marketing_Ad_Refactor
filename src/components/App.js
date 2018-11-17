@@ -123,24 +123,38 @@ class App extends React.Component {
   };
 
   clientInfoUpdater = (fullName, phone, address) => {
-    let clientProfile = { ...this.state.clientProfile };
-    clientProfile.fullName = fullName;
-    clientProfile.phone = phone;
-    clientProfile.address = address;
-    clientProfile.saveAmount = this.state.chartData.savingsAmount;
-    this.setState({ clientProfile });
+    let updatedClientProfile = { ...this.state.clientProfile };
+    updatedClientProfile.fullName = fullName;
+    updatedClientProfile.phone = phone;
+    updatedClientProfile.address = address;
+    updatedClientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
+    this.setState({ clientProfile: updatedClientProfile });
     this.putClientInfo(fullName, phone, address);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
-    let clientProfile = { ...this.state.clientProfile };
-    clientProfile.dailyTrip = dailyTrip;
-    clientProfile.mpg = mpg;
-    clientProfile.carYear = year;
-    clientProfile.carMake = make;
-    clientProfile.carModel = model;
-    this.setState({ clientProfile });
-    this.putCarInfo(dailyTrip, mpg, year, make, model)
+    let updateClientCarProfile = { ...this.state.clientProfile };
+    updateClientCarProfile.dailyTrip = dailyTrip;
+    updateClientCarProfile.mpg = mpg;
+    updateClientCarProfile.carYear = year;
+    updateClientCarProfile.carMake = make;
+    updateClientCarProfile.carModel = model;
+    console.log("Printing car states");
+    console.log("dailyTrip is: "+typeof(updateClientCarProfile.dailyTrip) + " " + updateClientCarProfile.dailyTrip);
+    console.log("mpg is: "+updateClientCarProfile.mpg);
+    console.log("carYear is: "+updateClientCarProfile.carYear);
+    console.log("carMake is: "+updateClientCarProfile.carMake);
+    console.log("carModel is: "+updateClientCarProfile.carModel);
+
+    this.setState({ clientProfile: updateClientCarProfile });
+
+    console.log("checking states");
+    console.log("dailyTrip is: "+this.state.clientProfile.dailyTrip);
+    console.log("mpg is: "+this.state.clientProfile.mpg);
+    console.log("carYear is: "+this.state.clientProfile.carYear);
+    console.log("carMake is: "+this.state.clientProfile.carMake);
+    console.log("carModel is: "+this.state.clientProfile.carModel);
+    this.putCarInfo(dailyTrip, mpg, year, make, model);
   };
 
   postBillEmailData = (bill, email) => {
@@ -237,6 +251,16 @@ For more information, visit http://makello.com
 
 *Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
 **After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
+- - - - - - - - - - - - - - - 
+[https://makeitlow-makello-refactor.herokuapp.com/]
+Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
+Full Name: ${this.state.clientProfile.fullName}
+Phone: ${this.state.clientProfile.phone}
+Address: ${this.state.clientProfile.address} 
+Daily Average Commute (miles): ${this.state.clientProfile.dailyTrip}
+MPG Average: ${this.state.clientProfile.mpg}
+Plug-In Vehicle Type: ${this.state.clientProfile.carYear} ${this.state.clientProfile.carMake}, ${this.state.clientProfile.carModel}
         `
       })
     })
@@ -416,7 +440,6 @@ For more information, visit http://makello.com
             address={this.state.clientProfile.address}
             clientInfoUpdater={this.clientInfoUpdater}
             hideChanger={this.hideChanger}
-            createCustomerEmail={this.createCustomerEmail}
             chartData={this.state.chartData}
           />
         </div>
@@ -424,7 +447,8 @@ For more information, visit http://makello.com
           <ThirdPart hideChanger={this.hideChanger} />
         </div>
         <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
-          <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} />
+          <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} 
+          createCustomerEmail={this.createCustomerEmail}/>
         </div>
         <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
           <FifthPart hideChanger={this.hideChanger} />
