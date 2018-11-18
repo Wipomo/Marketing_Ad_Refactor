@@ -1,4 +1,4 @@
-{"ninteen": {
+{"2019": {
       "BMW": {
         "i8 Coupe":  "",
         "i8 Roadster": ""
@@ -22,7 +22,7 @@
         "S60 T8 Twin Engine": ""
       }
     },
-  "eighteen": {
+  "2018": {
       "Audi": {
         "A3 Sportback e-tron": ""
       },
@@ -115,7 +115,7 @@
         "XC90 T8 Twin Engine": ""
       }
   },
-  "seventeen": {
+  "2017": {
       "Audi": {
         "A3 Sportback e-tron": ""
       },
@@ -201,7 +201,7 @@
         "XC90 T8 PHEV": ""
       }
     },
-  "sixteen": {
+  "2016": {
       "Audi": {
         "A3 Sportback e-tron": ""
       },
@@ -268,7 +268,7 @@
         "XC90": ""
       }
     },
-  "fifteen": {
+  "2015": {
       "Audi": {
         "A3 Sportback e-tron": ""
       },
@@ -333,7 +333,7 @@
         "XC90": ""
       }
     },
-  "fourteen": {
+  "2014": {
       "BMW": {
         "i3": "",
         "i8": ""
@@ -387,7 +387,7 @@
         "e-Golf": ""
       }
     },
-  "thirteen": {
+  "2013": {
       "Cadillac": {
         "ELR": ""
       },
@@ -427,7 +427,7 @@
         "RAV4 EV": ""
       }
     },
-  "twelve": {
+  "2012": {
       "Chevrolet": {
         "Volt": ""
       },

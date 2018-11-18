@@ -123,37 +123,24 @@ class App extends React.Component {
   };
 
   clientInfoUpdater = (fullName, phone, address) => {
-    let updatedClientProfile = { ...this.state.clientProfile };
-    updatedClientProfile.fullName = fullName;
-    updatedClientProfile.phone = phone;
-    updatedClientProfile.address = address;
-    updatedClientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
-    this.setState({ clientProfile: updatedClientProfile });
+    let clientProfile = { ...this.state.clientProfile };
+    clientProfile.fullName = fullName;
+    clientProfile.phone = phone;
+    clientProfile.address = address;
+    clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
+    this.setState({ clientProfile });
     this.putClientInfo(fullName, phone, address);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
-    let updateClientCarProfile = { ...this.state.clientProfile };
-    updateClientCarProfile.dailyTrip = dailyTrip;
-    updateClientCarProfile.mpg = mpg;
-    updateClientCarProfile.carYear = year;
-    updateClientCarProfile.carMake = make;
-    updateClientCarProfile.carModel = model;
-    console.log("Printing car states");
-    console.log("dailyTrip is: "+typeof(updateClientCarProfile.dailyTrip) + " " + updateClientCarProfile.dailyTrip);
-    console.log("mpg is: "+updateClientCarProfile.mpg);
-    console.log("carYear is: "+updateClientCarProfile.carYear);
-    console.log("carMake is: "+updateClientCarProfile.carMake);
-    console.log("carModel is: "+updateClientCarProfile.carModel);
+    let clientProfile = { ...this.state.clientProfile };
+    clientProfile.dailyTrip = dailyTrip;
+    clientProfile.mpg = mpg;
+    clientProfile.carYear = year;
+    clientProfile.carMake = make;
+    clientProfile.carModel = model;
 
-    this.setState({ clientProfile: updateClientCarProfile });
-
-    console.log("checking states");
-    console.log("dailyTrip is: "+this.state.clientProfile.dailyTrip);
-    console.log("mpg is: "+this.state.clientProfile.mpg);
-    console.log("carYear is: "+this.state.clientProfile.carYear);
-    console.log("carMake is: "+this.state.clientProfile.carMake);
-    console.log("carModel is: "+this.state.clientProfile.carModel);
+    this.setState({ clientProfile });
     this.putCarInfo(dailyTrip, mpg, year, make, model);
   };
 
@@ -170,7 +157,7 @@ class App extends React.Component {
     })
       .then(response => response.json())
       .then(resData => {
-        console.log(resData);
+        //console.log(resData);
         this.setUserId(resData.customer.id);
       })
   };
@@ -188,7 +175,7 @@ class App extends React.Component {
       })
     })
       .then(response => response.json())
-      .then(resData => console.log(resData))
+      //.then(resData => console.log(resData))
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
@@ -206,7 +193,7 @@ class App extends React.Component {
       })
     })
       .then(response => response.json())
-      .then(resData => console.log(resData))
+      //.then(resData => console.log(resData))
   };
 
   setUserId = (data) => {
@@ -231,7 +218,7 @@ class App extends React.Component {
     })
   };
 
-  createCustomerEmail = () => {
+  createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
       method: "POST",
@@ -258,9 +245,9 @@ Email: ${this.state.clientProfile.email}
 Full Name: ${this.state.clientProfile.fullName}
 Phone: ${this.state.clientProfile.phone}
 Address: ${this.state.clientProfile.address} 
-Daily Average Commute (miles): ${this.state.clientProfile.dailyTrip}
-MPG Average: ${this.state.clientProfile.mpg}
-Plug-In Vehicle Type: ${this.state.clientProfile.carYear} ${this.state.clientProfile.carMake}, ${this.state.clientProfile.carModel}
+Daily Average Commute (miles): ${dailyTrip}
+MPG Average: ${mpg}
+Plug-In Vehicle Type: ${year} ${make}, ${model}
         `
       })
     })
@@ -391,11 +378,6 @@ Plug-In Vehicle Type: ${this.state.clientProfile.carYear} ${this.state.clientPro
   };
 
   setOptimalDisplayValues(series, chartDataTmp){
-    // console.log("In setting optimal func");
-    // console.log("system savings amount: "+ series.savingsAmount);
-    // console.log("system type: "+ series.system_type);
-    // console.log(" monthly_loan_pmt: "+ series.monthly_loan_pmt);
-
     chartDataTmp.Optimal.system_type = series.system_type;
     chartDataTmp.Optimal.system_cost = series.system_cost;
     chartDataTmp.Optimal.payback = series.payback;
@@ -403,10 +385,6 @@ Plug-In Vehicle Type: ${this.state.clientProfile.carYear} ${this.state.clientPro
     chartDataTmp.Optimal.installFee = series.installFee;
     chartDataTmp.Optimal.monthly_loan_pmt= series.monthly_loan_pmt;
     this.setChartData(chartDataTmp);
-    // console.log("Checking chart data");
-    // console.log("system savings amount: "+ this.state.chartData.Optimal.savingsAmount);
-    // console.log("system type: "+ this.state.chartData.Optimal.system_type);
-    // console.log(" monthly_loan_pmt: "+ this.state.chartData.Optimal.monthly_loan_pmt);
   };
 
   setChartData = (data) => {
@@ -435,13 +413,9 @@ Plug-In Vehicle Type: ${this.state.clientProfile.carYear} ${this.state.clientPro
         </div>
         <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
           <SecondPart
-            monthlyBill={this.state.clientProfile.monthlyBill}
-            fullName={this.state.clientProfile.fullName}
-            address={this.state.clientProfile.address}
             clientInfoUpdater={this.clientInfoUpdater}
             hideChanger={this.hideChanger}
-            chartData={this.state.chartData}
-          />
+            chartData={this.state.chartData}/>
         </div>
         <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
           <ThirdPart hideChanger={this.hideChanger} />
