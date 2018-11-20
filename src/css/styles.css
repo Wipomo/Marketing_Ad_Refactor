@@ -595,12 +595,13 @@ body {
   }
 
   .responsive-mctUpper {
-    font-size: 5vh;
+    font-size: 5vw;
+    padding-top:1.5vw;
   }
 
   .responsive-mctLower {
-    font-size: 3vh;
-    padding-top: 7vh;
+    font-size: 3vw;
+    padding-top: 4vw;
   }
 
   .slider-section {
@@ -609,19 +610,20 @@ body {
   }
 
   .mcSlider {
-    margin-top: -10vh;
+    margin-top: 0vh;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   /* first page */
   .responsive-mctLower {
-    font-size: 4vh;
-    padding-top: 5vh;
+    font-size: 3vw;
+    padding-top: 4vw;
   }
   /* second page */
   .bigBlue {
     color: #1D4585;
     font-size: 10vh;
   }
+  
 }
