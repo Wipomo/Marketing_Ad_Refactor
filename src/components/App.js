@@ -157,7 +157,7 @@ class App extends React.Component {
     })
       .then(response => response.json())
       .then(resData => {
-        //console.log(resData);
+        console.log(resData);
         this.setUserId(resData.customer.id);
       })
   };
@@ -175,7 +175,7 @@ class App extends React.Component {
       })
     })
       .then(response => response.json())
-      //.then(resData => console.log(resData))
+      .then(resData => console.log(resData))
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
@@ -193,7 +193,7 @@ class App extends React.Component {
       })
     })
       .then(response => response.json())
-      //.then(resData => console.log(resData))
+      .then(resData => console.log(resData))
   };
 
   setUserId = (data) => {

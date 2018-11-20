@@ -565,16 +565,17 @@ body {
   }
 
   .responsive-mctUpper {
-    font-size: 4vh;
+    font-size: 5vw;
+    padding-top:1.5vw;
   }
 
   .responsive-mctLower {
-    font-size: 3vh;
-    padding-top: 5vh;
+    font-size: 3vw;
+    padding-top: 4vw;
   }
 
   .mcSlider {
-    margin-top: 10vh;
+    margin-top: 0vh;
   }
 
   .responsive-sliderText {
