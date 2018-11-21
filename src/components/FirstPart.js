@@ -76,6 +76,9 @@ class FirstPart extends React.Component {
                     <div className="col-md-12 flex-center">
                       <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={this.submitHandler} />
                     </div>
+                    <div className="col-md-12 flex-center">
+                    <p text-align="center">Now serving San Diego</p>
+                    </div>
                   </div>
                 </div>
               </div>
