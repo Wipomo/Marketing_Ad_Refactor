@@ -123,6 +123,13 @@ class App extends React.Component {
   };
 
   clientInfoUpdater = (fullName, phone, address) => {
+    let updatedInput = this.checkStringLengths([fullName, phone, address]);
+    console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
+    console.log(updatedInput);
+    fullName=updatedInput[0];
+    phone=updatedInput[1];
+    address=updatedInput[2];
+
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.fullName = fullName;
     clientProfile.phone = phone;
@@ -130,9 +137,14 @@ class App extends React.Component {
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     this.setState({ clientProfile });
     this.putClientInfo(fullName, phone, address);
+    this.createFirstCustomerEmail(fullName, phone, address);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
+    let updatedInput = this.checkStringLengths([dailyTrip,mpg]);
+    dailyTrip=updatedInput[0];
+    mpg=updatedInput[1];
+    
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.dailyTrip = dailyTrip;
     clientProfile.mpg = mpg;
@@ -142,7 +154,30 @@ class App extends React.Component {
 
     this.setState({ clientProfile });
     this.putCarInfo(dailyTrip, mpg, year, make, model);
+    this.createCustomerEmail(dailyTrip, mpg, year,make,model);
   };
+
+  checkStringLengths = (list)=>{
+    let input;
+    var newList =[]
+    for (input in list){
+      var newInput = list[input];
+      if(typeof(newInput)=== "string" && newInput.length > 200){
+        var changedString = newInput.slice(0,200);
+        newList.push(changedString);
+        // console.log("input is a "+typeof(newInput));
+        // console.log("newInput is changed to "+ newInput);
+      }
+      else{
+        // console.log(newInput.length);
+        // console.log("type of newvar input is "+typeof(newInput));
+        newList.push(newInput);
+        //console.log("newInput is"+ newInput);
+
+      }
+    }
+    return newList;
+  }
 
   postBillEmailData = (bill, email) => {
     fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
@@ -218,7 +253,7 @@ class App extends React.Component {
     })
   };
 
-  createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
+  createFirstCustomerEmail = (fullName, phone, address) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
       method: "POST",
@@ -242,16 +277,51 @@ For more information, visit http://makello.com
 [https://makeitlow-makello-refactor.herokuapp.com/]
 Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
+Full Name: ${fullName}
+Phone: ${phone}
+Address: ${address} 
+Daily Average Commute (miles): N/A
+MPG Average: N/A
+Plug-In Vehicle Type: N/A
+        `
+      })
+    })
+  };
+
+createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
+  //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
+  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      to: `${this.state.clientProfile.email}`,
+      bcc: "sales@makello.com",
+      subject: `Hello from Makello`,
+      body:`Thank you for contacting Makello!
+      
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+      
+For more information, visit http://makello.com
+
+
+*Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
+**After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
+- - - - - - - - - - - - - - - 
+[https://makeitlow-makello-refactor.herokuapp.com/]
+Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
 Full Name: ${this.state.clientProfile.fullName}
 Phone: ${this.state.clientProfile.phone}
 Address: ${this.state.clientProfile.address} 
 Daily Average Commute (miles): ${dailyTrip}
 MPG Average: ${mpg}
 Plug-In Vehicle Type: ${year} ${make}, ${model}
-        `
-      })
+      `
     })
-  };
+  })
+};
 
   // chart functionality with state
   getChartData = (monthlyBill) =>{

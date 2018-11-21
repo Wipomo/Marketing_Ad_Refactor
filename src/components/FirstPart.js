@@ -10,7 +10,6 @@ class FirstPart extends React.Component {
   emailRef = React.createRef();
 
   submitHandler = (event) => {
-
     if (this.props.emailValidator(this.emailRef.current.value)) {
       event.preventDefault();
       this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value);

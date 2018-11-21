@@ -48,7 +48,7 @@ class ForthPart extends React.Component {
     this.props.carInfoUpdater(trip, mpg, year, make, model);
 
     this.props.hideChanger('showFifthPart');
-    this.props.createCustomerEmail(trip, mpg, make, model, year);
+    //this.props.createCustomerEmail(trip, mpg, make, model, year);
   };
 
   setYear = (e) => {
