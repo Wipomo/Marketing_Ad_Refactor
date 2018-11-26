@@ -309,7 +309,7 @@ For more information, visit http://makello.com
 *Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
 **After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
 - - - - - - - - - - - - - - - 
-[https://makeitlow-makello-refactor.herokuapp.com/]
+[https://makeitlow-makello.herokuapp.com/]
 Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
 Full Name: ${this.state.clientProfile.fullName}
