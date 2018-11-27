@@ -469,33 +469,35 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     }
 
     return (
-      <div className="container responsive-container container-wrapper remove-pd15">
-        <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
-          <FirstPart
-            billEmailUpdater={this.billEmailUpdater}
-            hideChanger={this.hideChanger}
-            showTooltip={this.state.showTooltip}
-            monthlyBill={this.state.clientProfile.monthlyBill}
-            emailValidator={this.emailValidator}
-            handleSlideChange={this.handleSlideChange}
-            getChartData={this.getChartData}
-          />
-        </div>
-        <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
-          <SecondPart
-            clientInfoUpdater={this.clientInfoUpdater}
-            hideChanger={this.hideChanger}
-            chartData={this.state.chartData}/>
-        </div>
-        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
-          <ThirdPart hideChanger={this.hideChanger} />
-        </div>
-        <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
-          <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} 
-          createCustomerEmail={this.createCustomerEmail}/>
-        </div>
-        <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
-          <FifthPart hideChanger={this.hideChanger} />
+      <div className="container">
+        <div className="bg-white">
+          <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
+            <FirstPart
+              billEmailUpdater={this.billEmailUpdater}
+              hideChanger={this.hideChanger}
+              showTooltip={this.state.showTooltip}
+              monthlyBill={this.state.clientProfile.monthlyBill}
+              emailValidator={this.emailValidator}
+              handleSlideChange={this.handleSlideChange}
+              getChartData={this.getChartData}
+            />
+          </div>
+          <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
+            <SecondPart
+              clientInfoUpdater={this.clientInfoUpdater}
+              hideChanger={this.hideChanger}
+              chartData={this.state.chartData}/>
+          </div>
+          <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
+            <ThirdPart hideChanger={this.hideChanger} />
+          </div>
+          <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
+            <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} 
+            createCustomerEmail={this.createCustomerEmail}/>
+          </div>
+          <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
+            <FifthPart hideChanger={this.hideChanger} />
+          </div>
         </div>
       </div>
     );

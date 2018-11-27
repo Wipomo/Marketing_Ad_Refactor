@@ -4,7 +4,7 @@ class FakeModelMenu extends React.Component {
     render() {
         return(
             <div>
-                <select disabled>
+                <select className="form-control" disabled>
                     <option>Model...</option>
                 </select>
             </div>

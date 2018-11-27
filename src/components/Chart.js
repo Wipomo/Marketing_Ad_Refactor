@@ -12,6 +12,14 @@ class Chart extends React.Component {
       chart: {
         type: 'line'
       },
+      title: {
+        text: 'Savings Over Time',
+        style: {
+          fontSize: '24px', 
+          fontWeight:'bold',
+        },
+      },
+
       yAxis: {
         labels: {
           formatter: function () {
@@ -21,13 +29,13 @@ class Chart extends React.Component {
             return '$' + this.value / 1000 + 'k'
           },
           style: {
-            "fontSize": "20px",
+            fontSize: '14px',
+            fontWeight:'bold',
           }
         },
         title: {
           style: {
-            "font-size": '18',
-            "color": "black"
+            
           },
           text: ''
         }
@@ -37,42 +45,35 @@ class Chart extends React.Component {
         tickInterval: 1,
         labels: {
           style: {
-            fontSize: '30px',
+           fontSize: '14px',
+           fontWeight:'bold',
           }
         },
         title: {
           style: {
-            "font-size": '30',
-            "color": "black",
+           fontSize: '16px', 
+           fontWeight:'bold',
           },
           text: 'Years',
-          y: 15,
         }
       },
-      title: {
-        text: 'Savings Over Time',
-        style: {
-          "fontSize": "30px",
-          "paddingTop": "5px !important",
-        },
-        y: 20,
-        floating: false
-      },
+      
+      //colors: ['#6CF', '#39F', '#06C', '#036'],
+      //colors: ['#379AE8', '#48C06D', '#F0D149', '#F04E53'],
+      colors: ['#76DDF4', '#F3BE24', '#E4005D', '#2A004F'],
+      //colors: ['#F0C528', '#9ECD38', '#4679AF', '#F50061'],
+
       series: [{
         name: "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
-        color: "blue",
         data: Premium.data
       }, {
         name: "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
-        color: "green",
         data: Intermediate.data
       }, {
         name: "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
-        color: "orchid",
         data: Economy.data
       }, {
         name: "Baseline Energy Cost",
-        color: "grey",
         data: Baseline.data
       }],
       tooltip: {
@@ -89,15 +90,28 @@ class Chart extends React.Component {
       },
       legend: {
         layout: 'vertical',
-        align: 'center',
-        floating: true,
-        verticalAlign: 'top',
-        itemMarginBottom: 2,
+        align: 'right',
+        verticalAlign: 'middle',
         itemStyle: {
-          fontSize: '18px',
-        },
-        y:20
-      }
+          fontSize: '16px',
+        }
+      },
+
+      responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
     };
 
     return (

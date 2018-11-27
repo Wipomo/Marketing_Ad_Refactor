@@ -4,7 +4,7 @@ class FakeMakeMenu extends React.Component {
     render(){
         return(
             <div>
-                <select disabled>
+                <select className="form-control" disabled>
                     <option value='make'>Make...</option>
                 </select>
             </div>

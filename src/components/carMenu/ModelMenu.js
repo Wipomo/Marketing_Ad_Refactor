@@ -5,7 +5,7 @@ class ModelMenu extends React.Component {
     render(){
         return(
             <div>
-                <select onChange={this.props.setModel}>
+                <select className="form-control" onChange={this.props.setModel}>
                     <option value='model'>Model...</option>
                     {Object.keys(this.props.modelMenu).map(key => <ModelOption
                         key={key}

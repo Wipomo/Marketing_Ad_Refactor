@@ -5,7 +5,7 @@ class MakeMenu extends React.Component {
     render(){
         return(
             <div>
-                <select onChange={this.props.setMake} >
+                <select className="form-control" onChange={this.props.setMake} >
                     <option value='make'>Make...</option>
                     {Object.keys(this.props.makeMenu).map(key => <MakeOption
                         key={key}
