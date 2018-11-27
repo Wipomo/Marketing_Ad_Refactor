@@ -89,9 +89,9 @@ class Chart extends React.Component {
         },
       },
       legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
+        layout: 'horizontal',
+        align: 'left',
+        verticalAlign: 'bottom',
         itemStyle: {
           fontSize: '16px',
         }
