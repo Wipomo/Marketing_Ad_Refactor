@@ -90,11 +90,12 @@ class Chart extends React.Component {
       },
       legend: {
         layout: 'horizontal',
-        align: 'left',
+        align: 'center',
         verticalAlign: 'bottom',
         itemStyle: {
           fontSize: '16px',
-        }
+        },
+        itemDistance: 100
       },
 
       responsive: {
