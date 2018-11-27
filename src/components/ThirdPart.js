@@ -39,7 +39,7 @@ class ThirdPart extends React.Component {
               <p><a href="http://www.makello.com">www.makello.com</a></p>
               <h4 className="font-italic">"Make it low, with Makello!"</h4>
               <p>
-                <small className="font-italic text-muted">Makello is an authorized distributor for Green Energy EPC (CSLB License #978836) having 5-Star Average Reviews on Yelp! (93 total)</small>
+                <small className="text-muted">Makello is an authorized distributor for Green Energy EPC (CSLB License #978836) having 5-Star Average Reviews on Yelp! (93 total)</small>
               </p>
             </div>
 

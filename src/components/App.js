@@ -27,6 +27,7 @@ class App extends React.Component {
       hidden: 'hidden'
     },
     clientProfile: {
+      test: false,
       monthlyBill: 525,
       email: '',
       fullName: '',
@@ -85,9 +86,7 @@ class App extends React.Component {
     let clientData = { ...this.state.clientProfile };
     clientData.monthlyBill = event;
     //console.log("Client monthlyBill is:\n"+ typeof(clientData.monthlyBill)+" " +clientData.monthlyBill);
-
     this.setState({ clientProfile: clientData });
-    //this.getChartData(event);
   };
 
   hideChanger = (input) => {
@@ -107,6 +106,7 @@ class App extends React.Component {
   emailValidator = (email) => {
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       console.log("Email valid");
+      
       return true;
     } else {
       console.log("Invalid Email");
@@ -114,10 +114,12 @@ class App extends React.Component {
     }
   };
 
-  billEmailUpdater = (bill, email) => {
+  billEmailUpdater = (bill, email, test) => {
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.monthlyBill = bill;
     clientProfile.email = email;
+    console.log("Test user is :"+test);
+    clientProfile.test = test;
     this.setState({ clientProfile });
     this.postBillEmailData(bill, email);
   };
@@ -237,6 +239,15 @@ class App extends React.Component {
   };
 
   sendNewLeadEmail = () => {
+    var emailSubject = ``;
+    //console.log("Approved of work email is: "+ this.state.clientProfile.test);
+    if(this.state.clientProfile.test){
+      emailSubject = `Test of Lead Email Generated - ${this.state.clientProfile.email}`;
+     }
+     else{
+      emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
+     }
+     //console.log("Email subject is: "+ emailSubject);
     fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
@@ -245,7 +256,7 @@ class App extends React.Component {
       body: JSON.stringify({
         to: "sales@makello.com",
         bcc: "no-reply@makello.com",
-        subject: `New Lead Generated - ${this.state.clientProfile.email}`,
+        subject: emailSubject,
         body: `A new lead had been added to the database.
                 Database ID: ${this.state.userId}
                 Email: ${this.state.clientProfile.email}`
@@ -255,6 +266,14 @@ class App extends React.Component {
 
   createFirstCustomerEmail = (fullName, phone, address) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
+    var emailSubject = ``;
+    if(this.state.clientProfile.test){
+      emailSubject = `Test of First Customer Email- Hello from Makello`;
+    }
+    else{
+      emailSubject = `Hello from Makello`;
+    }
+
     fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
@@ -263,7 +282,7 @@ class App extends React.Component {
       body: JSON.stringify({
         to: `${this.state.clientProfile.email}`,
         bcc: "sales@makello.com",
-        subject: `Hello from Makello`,
+        subject: emailSubject,
         body:`Thank you for contacting Makello!
         
 A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
@@ -290,6 +309,13 @@ Plug-In Vehicle Type: N/A
 
 createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
   //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
+  var emailSubject = ``;
+    if((this.state.clientProfile.test)){
+      emailSubject = `Test of Final Customer Email- Hello from Makello`;
+    }
+    else{
+      emailSubject = `Hello from Makello`;
+    }
   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
@@ -298,7 +324,7 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
     body: JSON.stringify({
       to: `${this.state.clientProfile.email}`,
       bcc: "sales@makello.com",
-      subject: `Hello from Makello`,
+      subject: emailSubject,
       body:`Thank you for contacting Makello!
       
 A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
@@ -327,10 +353,10 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
   getChartData = (monthlyBill) =>{
     //console.log("Comes in gehandleSlideChangetChartData function in refactored app");
     var bill_input = Number(monthlyBill);
-    console.log("Monthly Bill type is : "+typeof(monthlyBill) +" Bill is: "+ typeof(bill_input));
+    //console.log("Monthly Bill type is : "+typeof(monthlyBill) +" Bill is: "+ typeof(bill_input));
     var annual_bill = bill_input * 12;
     var bucket = 500;
-    console.log("Monthly bill is: "+monthlyBill+" and Bucket is defaultly: "+bucket);
+    //console.log("Monthly bill is: "+monthlyBill+" and Bucket is defaultly: "+bucket);
 
     if (annual_bill < 1000)
         bucket = 500;
@@ -438,7 +464,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
       (series.payback === this.state.chartData.Optimal.payback &&
         series.system_cost < this.state.chartData.Optimal.system_cost)){
           this.setOptimalDisplayValues(series, chartDataTmp);
-          console.log("Answer is true, replacing..")
+          //console.log("Answer is true, replacing..")
         }
     else{
       console.log("Answer is false, not replacing..")
@@ -467,6 +493,10 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
       var root = document.querySelector(':root');
       root.style.setProperty('--page-layout', '0% 100% 0%');
     }
+
+    // console.log("State of test client is:"+this.state.clientProfile.test);
+    // console.log("State of email is:"+this.state.clientProfile.email);
+
 
     return (
       <div className="container">

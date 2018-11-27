@@ -10,9 +10,16 @@ class FirstPart extends React.Component {
   emailRef = React.createRef();
 
   submitHandler = (event) => {
+    var testingUser = false;
     if (this.props.emailValidator(this.emailRef.current.value)) {
       event.preventDefault();
-      this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value);
+      // check for testing input
+      // also check if work email for testing purposes
+      if(/^\w+([.-]?\w+)*@wipomo.com$/.test(this.emailRef.current.value)) {
+        console.log("TEST: Sets client test state")
+        testingUser = true;
+      }
+      this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value, testingUser);
       this.props.getChartData(this.getSliderValue());
       this.props.hideChanger('showSecondPart');
 
