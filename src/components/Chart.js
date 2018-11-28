@@ -60,27 +60,64 @@ class Chart extends React.Component {
       
       //colors: ['#6CF', '#39F', '#06C', '#036'],
       //colors: ['#379AE8', '#48C06D', '#F0D149', '#F04E53'],
-      colors: ['#76DDF4', '#F3BE24', '#E4005D', '#2A004F', '#379AE8', '#48C06D'],
-      //colors: ['#F0C528', '#9ECD38', '#4679AF', '#F50061'],
+      //colors: ['#000000', '#F3BE24', '#E4005D', '#76DDF4', '#379AE8', '#48C06D'],
+      colors: ['#ff0000','#8B008B','#000000','#ffff00','#379AE8', '#00b050'],
 
       series: [{
-        name: "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
-        data: Premium.data
-      }, {
-        name: "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
-        data: Intermediate.data
-      }, {
-        name: "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
-        data: Economy.data
-      }, {
         name: "Baseline Energy Cost",
-        data: Baseline.data
+        data: Baseline.data,
+        dashStyle: 'longdash',
+        marker: {
+          //lineWidth: 2,
+          symbol: "triangle-down",
+          radius: 6
+        },
+      },{
+        name: "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
+        data: Economy.data,
+        dashStyle: 'shortdot',
+        marker: {
+          //lineWidth: 2,
+          symbol: "square",
+          radius: 4
+        },
       }, {
         name: "Compact (Payback "+ Economy.payback.toPrecision(2) +" Years)",
-        data: Compact.data
+        data: Compact.data,
+        dashStyle: 'shortdash',
+        marker: {
+          //lineWidth: 2,
+          symbol: "diamond",
+          radius: 6
+        }
+
+      }, {
+        name: "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
+        data: Intermediate.data,
+        dashStyle: 'solid',
+        marker: {
+          fillColor: '#0000ff',
+          //lineWidth: 2,
+          symbol: "square",
+          radius: 6
+        },
       }, {
         name: "Standard (Payback "+ Economy.payback.toPrecision(2) +" Years)",
-        data: Standard.data
+        data: Standard.data,
+        dashStyle: 'longdash',
+        marker: {
+          //lineWidth: 2,
+          symbol: "circle",
+          radius: 6
+        }
+      },{
+        name: "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
+        data: Premium.data,
+        dashStyle: 'shortdot',
+        marker: {
+          symbol: "triangle",
+          radius: 6
+        },
       }],
       tooltip: {
         //pointFormat:' {series.name} </n> '
