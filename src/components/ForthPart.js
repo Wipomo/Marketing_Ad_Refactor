@@ -159,7 +159,7 @@ showModel = (bool) => {
                       showMake={this.state.showMake} showModel={this.state.showModel}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="form-group text-center mt-4">
                     <input className='btn btn-primary submitButton light' type='submit' value="Submit" onClick={this.submitHandler} />
                   </div>
 
