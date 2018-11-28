@@ -1,10 +1,11 @@
 import React from 'react';
-import {  animateScroll as scroll } from 'react-scroll';
+//import {  animateScroll as scroll } from 'react-scroll';
 
 class ThirdPart extends React.Component {
 
   componentDidUpdate() {
-    scroll.scrollToTop();
+    //scroll.scrollToTop();
+    window.scrollTo(0,0);
   }
 
   submitHandler = (event) => {
