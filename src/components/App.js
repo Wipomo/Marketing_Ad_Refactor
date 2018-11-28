@@ -66,6 +66,16 @@ class App extends React.Component {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
         system_cost:0
+      },
+      Compact: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        system_cost:0
+      },
+      Standard: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        system_cost:0
       }
     },
     userId: 0,
@@ -372,6 +382,8 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     this.setChartSeriesData(bucket, "Economy");
     this.setChartSeriesData(bucket, "Intermediate");
     this.setChartSeriesData(bucket, "Premium");
+    this.setChartSeriesData(bucket, "Compact");
+    this.setChartSeriesData(bucket, "Standard");
   };
 
 
@@ -443,7 +455,16 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
                 chartDataTmp.Premium.data = series.data.map( element => Number(element))
                 chartDataTmp.Premium.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
-
+                break;
+              case "Compact":
+                chartDataTmp.Compact.data = series.data.map( element => Number(element))
+                chartDataTmp.Compact.payback = series.payback;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
+                break;
+              case "Standard":
+                chartDataTmp.Standard.data = series.data.map( element => Number(element))
+                chartDataTmp.Standard.payback = series.payback;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               default:
                 break;

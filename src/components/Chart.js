@@ -6,7 +6,7 @@ class Chart extends React.Component {
   render() {
    // console.log(this.props.chartData);
     
-    const { Baseline, Economy, Intermediate, Premium } = this.props.chartData;
+    const { Baseline, Economy, Intermediate, Premium, Compact, Standard } = this.props.chartData;
 
     const options = {
       chart: {
@@ -60,7 +60,7 @@ class Chart extends React.Component {
       
       //colors: ['#6CF', '#39F', '#06C', '#036'],
       //colors: ['#379AE8', '#48C06D', '#F0D149', '#F04E53'],
-      colors: ['#76DDF4', '#F3BE24', '#E4005D', '#2A004F'],
+      colors: ['#76DDF4', '#F3BE24', '#E4005D', '#2A004F', '#379AE8', '#48C06D'],
       //colors: ['#F0C528', '#9ECD38', '#4679AF', '#F50061'],
 
       series: [{
@@ -75,6 +75,12 @@ class Chart extends React.Component {
       }, {
         name: "Baseline Energy Cost",
         data: Baseline.data
+      }, {
+        name: "Compact (Payback "+ Economy.payback.toPrecision(2) +" Years)",
+        data: Compact.data
+      }, {
+        name: "Standard (Payback "+ Economy.payback.toPrecision(2) +" Years)",
+        data: Standard.data
       }],
       tooltip: {
         //pointFormat:' {series.name} </n> '
