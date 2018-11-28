@@ -1,5 +1,5 @@
 import React from 'react';
-import {  animateScroll as scroll } from 'react-scroll';
+//import {  animateScroll as scroll } from 'react-scroll';
 
 class ThirdPart extends React.Component {
 
