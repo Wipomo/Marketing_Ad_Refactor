@@ -51,31 +51,43 @@ class App extends React.Component {
       },
       Baseline: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        visible: true
       },
       Economy: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        system_cost:0
-      },
-      Intermediate: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        payback: 0,
-        system_cost:0
-      },
-      Premium: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        payback: 0,
-        system_cost:0
+        system_cost:0,
+        visible: false
       },
       Compact: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        system_cost:0
+        system_cost:0,
+        visible: false
+      },
+      Intermediate: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        system_cost:0,
+        visible: false
       },
       Standard: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        system_cost:0
+        system_cost:0,
+        visible: false
+      },
+      Premium: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        system_cost:0,
+        visible: false
       }
     },
     userId: 0,
@@ -384,6 +396,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     this.setChartSeriesData(bucket, "Premium");
     this.setChartSeriesData(bucket, "Compact");
     this.setChartSeriesData(bucket, "Standard");
+
   };
 
 
@@ -392,6 +405,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     var series= {
       system_type: system_type,
       data: [],
+      loanData: [],
       payback: 0,
       savingsAmount:0,
       installFee: 0,
@@ -425,6 +439,23 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
+
+            // // get chart loan data
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr0']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr1']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr2']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr3']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr4']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr5']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr6']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr7']);
+            // series.loanData.push(data['bucket_rows'][0]['accfloanyr8']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr9']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr10']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr11']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr12']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr13']);
+            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr14']);
           
             // get data for display on Second Part
             series.system_cost = Number(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
@@ -438,32 +469,38 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
             switch(system_type){
               case "Baseline":
-                chartDataTmp.Baseline.data = series.data.map( element => Number(element))
+                chartDataTmp.Baseline.data = series.data.map( element => Number(element));
+                //chartDataTmp.Baseline.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Baseline.payback = series.payback;
                 break;
               case "Economy":
-                chartDataTmp.Economy.data = series.data.map( element => Number(element))
+                chartDataTmp.Economy.data = series.data.map( element => Number(element));
+                //chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Economy.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
-              case "Intermediate":
-                chartDataTmp.Intermediate.data = series.data.map( element => Number(element))
-                chartDataTmp.Intermediate.payback = series.payback;
-                this.checkOptimalDisplayValues(series, chartDataTmp);
-                break;
-              case "Premium":
-                chartDataTmp.Premium.data = series.data.map( element => Number(element))
-                chartDataTmp.Premium.payback = series.payback;
-                this.checkOptimalDisplayValues(series, chartDataTmp);
-                break;
               case "Compact":
-                chartDataTmp.Compact.data = series.data.map( element => Number(element))
+                chartDataTmp.Compact.data = series.data.map( element => Number(element));
+                //chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Compact.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
+              case "Intermediate":
+                chartDataTmp.Intermediate.data = series.data.map( element => Number(element));
+                //chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Intermediate.payback = series.payback;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
+                break;
               case "Standard":
-                chartDataTmp.Standard.data = series.data.map( element => Number(element))
+                chartDataTmp.Standard.data = series.data.map( element => Number(element));
+                //chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Standard.payback = series.payback;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
+                break;
+              case "Premium":
+                chartDataTmp.Premium.data = series.data.map( element => Number(element));
+                //chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Premium.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               default:
@@ -476,6 +513,8 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
           console.warn("Error: Caught a network/db connection error!");
           console.log(e);
         })
+        return series.payback;
+
   };
 
   checkOptimalDisplayValues(series, chartDataTmp){

@@ -6,7 +6,31 @@ class Chart extends React.Component {
   render() {
    // console.log(this.props.chartData);
     
-    const { Baseline, Economy, Intermediate, Premium, Compact, Standard } = this.props.chartData;
+    const { Baseline, Economy, Compact, Intermediate, Standard, Premium } = this.props.chartData;
+    var system_type_payback = [];
+    var loanDataNeeded = false;
+    system_type_payback.push(Baseline.payback);
+    system_type_payback.push(Economy.payback);
+    system_type_payback.push(Compact.payback);
+    system_type_payback.push(Intermediate.payback);
+    system_type_payback.push(Standard.payback);
+    system_type_payback.push(Premium.payback);
+    system_type_payback.sort();
+    system_type_payback = system_type_payback.slice(0,4);
+
+    if(system_type_payback.every(isBelowThreshold)){
+      //update data to loan data
+      console.log("updating chart to loan data");
+      console.log();
+      console.log();
+      loanDataNeeded = true;
+    }
+
+    function isBelowThreshold(currentValue) {
+      return currentValue >= 4;
+    }
+
+
 
     const options = {
       chart: {
@@ -19,7 +43,6 @@ class Chart extends React.Component {
           fontWeight:'bold',
         },
       },
-
       yAxis: {
         labels: {
           formatter: function () {
@@ -65,17 +88,19 @@ class Chart extends React.Component {
 
       series: [{
         name: "Baseline Energy Cost",
-        data: Baseline.data,
+        data: loanDataNeeded ? Baseline.loanData : Baseline.data,
         dashStyle: 'longdash',
+        visible: system_type_payback.includes(Baseline.payback),
         marker: {
           //lineWidth: 2,
           symbol: "triangle-down",
-          radius: 6
+          radius: 5
         },
       },{
         name: "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
-        data: Economy.data,
+        data: loanDataNeeded ? Economy.loanData : Economy.data,
         dashStyle: 'shortdot',
+        visible: system_type_payback.includes(Economy.payback),
         marker: {
           //lineWidth: 2,
           symbol: "square",
@@ -83,40 +108,44 @@ class Chart extends React.Component {
         },
       }, {
         name: "Compact (Payback "+ Economy.payback.toPrecision(2) +" Years)",
-        data: Compact.data,
+        data: loanDataNeeded ? Compact.loanData : Compact.data,
         dashStyle: 'shortdash',
+        visible: system_type_payback.includes(Compact.payback),
         marker: {
           //lineWidth: 2,
           symbol: "diamond",
-          radius: 6
+          radius: 5
         }
 
       }, {
         name: "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
-        data: Intermediate.data,
+        data: loanDataNeeded ? Intermediate.loanData : Intermediate.data,
         dashStyle: 'solid',
+        visible: system_type_payback.includes(Intermediate.payback),
         marker: {
           fillColor: '#0000ff',
           //lineWidth: 2,
           symbol: "square",
-          radius: 6
+          radius: 5
         },
       }, {
         name: "Standard (Payback "+ Economy.payback.toPrecision(2) +" Years)",
-        data: Standard.data,
+        data: loanDataNeeded ? Standard.loanData : Standard.data,
         dashStyle: 'longdash',
+        visible: system_type_payback.includes(Standard.payback),
         marker: {
           //lineWidth: 2,
           symbol: "circle",
-          radius: 6
+          radius: 5
         }
       },{
         name: "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
-        data: Premium.data,
+        data: loanDataNeeded ? Premium.loanData : Premium.data,
         dashStyle: 'shortdot',
+        visible: system_type_payback.includes(Premium.payback),
         marker: {
           symbol: "triangle",
-          radius: 6
+          radius: 5
         },
       }],
       tooltip: {
