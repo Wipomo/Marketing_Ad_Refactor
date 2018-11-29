@@ -16,13 +16,16 @@ class Chart extends React.Component {
     system_type_payback.push(Standard.payback);
     system_type_payback.push(Premium.payback);
     system_type_payback.sort();
+    console.log(system_type_payback);
     system_type_payback = system_type_payback.slice(0,4);
+    console.log("Determining best paybacks");
+    console.log(system_type_payback);
+
 
     if(system_type_payback.every(isBelowThreshold)){
       //update data to loan data
       console.log("updating chart to loan data");
-      console.log();
-      console.log();
+      console.log(system_type_payback);
       loanDataNeeded = true;
     }
 
@@ -107,7 +110,7 @@ class Chart extends React.Component {
           radius: 4
         },
       }, {
-        name: "Compact (Payback "+ Economy.payback.toPrecision(2) +" Years)",
+        name: "Compact (Payback "+ Compact.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Compact.loanData : Compact.data,
         dashStyle: 'shortdash',
         visible: system_type_payback.includes(Compact.payback),
@@ -129,7 +132,7 @@ class Chart extends React.Component {
           radius: 5
         },
       }, {
-        name: "Standard (Payback "+ Economy.payback.toPrecision(2) +" Years)",
+        name: "Standard (Payback "+ Standard.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Standard.loanData : Standard.data,
         dashStyle: 'longdash',
         visible: system_type_payback.includes(Standard.payback),
