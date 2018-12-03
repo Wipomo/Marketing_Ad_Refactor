@@ -590,7 +590,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
           <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
             <FifthPart hideChanger={this.hideChanger} />
           </div>
-          {/* <p className="mcTextCopyright">&copy; Copyright 2018 Makello.</p> */}
+          <p className="mcTextCopyright">&copy; Copyright 2018 Makello.</p>
         </div>
       </div>
     );

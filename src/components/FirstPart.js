@@ -101,7 +101,6 @@ class FirstPart extends React.Component {
                           <p text-align="center">Now serving San Diego</p>
                         </div>
                       </div>
-                      <p className="mcTextCopyright">&copy; Copyright 2018 Makello.</p>
                     </div>  
 
                   </div>
