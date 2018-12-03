@@ -279,9 +279,11 @@ class App extends React.Component {
         to: "sales@makello.com",
         bcc: "no-reply@makello.com",
         subject: emailSubject,
-        body: `A new lead had been added to the database.
-                Database ID: ${this.state.userId}
-                Email: ${this.state.clientProfile.email}`
+        body: 
+        `A new lead had been added to the database.
+        Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        Email: ${this.state.clientProfile.email}
+        Database ID: ${this.state.userId}`
       })
     })
   };
