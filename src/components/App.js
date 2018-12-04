@@ -279,9 +279,11 @@ class App extends React.Component {
         to: "sales@makello.com",
         bcc: "no-reply@makello.com",
         subject: emailSubject,
-        body: `A new lead had been added to the database.
-                Database ID: ${this.state.userId}
-                Email: ${this.state.clientProfile.email}`
+        body: 
+        `A new lead had been added to the database.
+        Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        Email: ${this.state.clientProfile.email}
+        Database ID: ${this.state.userId}`
       })
     })
   };
@@ -588,7 +590,8 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
           <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
             <FifthPart hideChanger={this.hideChanger} />
           </div>
-          {/* <p className="mcTextCopyright">&copy; Copyright 2018 Makello.</p> */}
+          <p className="mcTextCopyright">&copy; Copyright 2018 Makello.<br></br>
+          <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a></p>
         </div>
       </div>
     );
