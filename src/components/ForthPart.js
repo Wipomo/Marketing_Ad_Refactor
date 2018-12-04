@@ -161,9 +161,8 @@ showModel = (bool) => {
                   </div>
                   <div className="form-group text-center mt-4">
                     <input className='btn btn-primary submitButton light' type='submit' value="Submit" onClick={this.submitHandler} />
-                    <p className="mcTextCopyright"><a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a></p>
+                    <p text-align="center">Now serving San Diego</p>
                   </div>
-
                 </div>
               </div>
 

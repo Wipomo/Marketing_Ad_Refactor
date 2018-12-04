@@ -107,7 +107,7 @@ class SecondPart extends React.Component {
                         </div>
                         <div className="form-group">
                           <input className='btn btn-primary submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
-                          <p className="mcTextCopyright"><a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a></p>
+                          <p text-align="center">Now serving San Diego</p>
                         </div>
                       </div>
                     </div>
