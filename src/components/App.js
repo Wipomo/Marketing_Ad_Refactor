@@ -161,7 +161,7 @@ class App extends React.Component {
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     this.setState({ clientProfile });
     this.putClientInfo(fullName, phone, address);
-    this.createFirstCustomerEmail(fullName, phone, address);
+    this.createFirstCustomerEmail(fullName, phone, address, this.state.chartData.Optimal.system_type);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
@@ -289,12 +289,12 @@ Your monthly electric bill, matched with 100’s of our customer case studies, a
  year payback and $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annual savings with 100% Clean Energy.
 We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
 
-$${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}  or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} /month*`
+$${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*`
       })
     })
   };
 
-  createFirstCustomerEmail = (fullName, phone, address) => {
+  createFirstCustomerEmail = (fullName, phone, address, system_type) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
     if(this.state.clientProfile.test){
@@ -315,8 +315,9 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
         subject: emailSubject,
         body:`Thank you for contacting Makello!
         
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
-        
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+We selected an an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
 For more information, visit https://makello.com
 
 
@@ -357,8 +358,9 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
       subject: emailSubject,
       body:`Thank you for contacting Makello!
       
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
-      
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
 For more information, visit https://makello.com
 
 
