@@ -279,11 +279,17 @@ class App extends React.Component {
         to: "sales@makello.com",
         bcc: "no-reply@makello.com",
         subject: emailSubject,
-        body: 
-        `A new lead had been added to the database.
-        Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-        Email: ${this.state.clientProfile.email}
-        Database ID: ${this.state.userId}`
+        body: `A new lead had been added to the database.
+Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
+Database ID: ${this.state.userId}
+
+Thank you for contacting Makello!
+Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} 
+ year payback and $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annual savings with 100% Clean Energy.
+We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
+
+$${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}  or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} /month*`
       })
     })
   };
