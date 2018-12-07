@@ -163,13 +163,6 @@ body {
   padding-top: 9vh;
 }
 
-.mcTextCopyright {
-  text-align: center;
-  color: lightgrey;
-  z-index: 10;
-  font-size: 6px;
-}
-
 /*forth box*/
 
 .mcSlider {
@@ -303,6 +296,14 @@ body {
   width: 100% !important;
 }
 
+.footerText {
+  text-align: center;
+  color: lightgrey;
+  z-index: 10;
+  font-size: 12px;
+  /* height: 38px;
+  line-height: 28px; */
+}
 .submitButton {
   color: #fff;
   background: #1D4585;
@@ -555,6 +556,13 @@ body {
     font-size: 20px;
   }
 
+  .footerText {
+    text-align: center;
+    color: lightgrey;
+    z-index: 10;
+    font-size: 12px;
+  }
+
   .submitButton {
     font-size: 18px;
   }
@@ -613,6 +621,6 @@ body {
   font-weight: 700;
 }
 .bottomInputs {
-  padding:0 15px;
+  padding:0px 15px;
   text-align: center;
 }
