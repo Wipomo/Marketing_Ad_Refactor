@@ -107,6 +107,7 @@ class SecondPart extends React.Component {
                         </div>
                         <div className="form-group">
                           <input className='btn btn-primary submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
+                          <p text-align="center">Now serving San Diego</p>
                         </div>
                       </div>
                     </div>

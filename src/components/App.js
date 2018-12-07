@@ -161,7 +161,7 @@ class App extends React.Component {
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     this.setState({ clientProfile });
     this.putClientInfo(fullName, phone, address);
-    this.createFirstCustomerEmail(fullName, phone, address);
+    this.createFirstCustomerEmail(fullName, phone, address, this.state.chartData.Optimal.system_type);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
@@ -280,13 +280,21 @@ class App extends React.Component {
         bcc: "no-reply@makello.com",
         subject: emailSubject,
         body: `A new lead had been added to the database.
-                Database ID: ${this.state.userId}
-                Email: ${this.state.clientProfile.email}`
+Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
+Database ID: ${this.state.userId}
+
+Thank you for contacting Makello!
+Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} 
+ year payback and $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annual savings with 100% Clean Energy.
+We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
+
+$${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*`
       })
     })
   };
 
-  createFirstCustomerEmail = (fullName, phone, address) => {
+  createFirstCustomerEmail = (fullName, phone, address, system_type) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
     if(this.state.clientProfile.test){
@@ -307,15 +315,16 @@ class App extends React.Component {
         subject: emailSubject,
         body:`Thank you for contacting Makello!
         
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
-        
-For more information, visit http://makello.com
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+We selected an an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
+For more information, visit https://makello.com
 
 
 *Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
 **After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
 - - - - - - - - - - - - - - - 
-[https://makeitlow-makello-refactor.herokuapp.com/]
+[https://makeitlow-makello.herokuapp.com/]
 Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
 Full Name: ${fullName}
@@ -349,9 +358,10 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
       subject: emailSubject,
       body:`Thank you for contacting Makello!
       
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a Premium* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
-      
-For more information, visit http://makello.com
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
+For more information, visit https://makello.com
 
 
 *Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
@@ -588,6 +598,8 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
           <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
             <FifthPart hideChanger={this.hideChanger} />
           </div>
+          <p className="mcTextCopyright">&copy; Copyright 2018 Makello.<br></br>
+          <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a></p>
         </div>
       </div>
     );

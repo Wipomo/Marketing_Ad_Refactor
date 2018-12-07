@@ -161,8 +161,8 @@ showModel = (bool) => {
                   </div>
                   <div className="form-group text-center mt-4">
                     <input className='btn btn-primary submitButton light' type='submit' value="Submit" onClick={this.submitHandler} />
+                    <p text-align="center">Now serving San Diego</p>
                   </div>
-
                 </div>
               </div>
 
