@@ -283,30 +283,13 @@ class App extends React.Component {
 Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
 Database ID: ${this.state.userId}
-        
+
 Thank you for contacting Makello!
-Your monthly electric bill, matched with 100’s of our customer case studies, shows payback in ${this.state.chartData.Optimal.payback} years and average savings of ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy, with a ---------* energy upgrade, for as low as $${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} 
+ year payback and $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annual savings with 100% Clean Energy.
+We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
 
-
-Please reply to confirm your information and interest:
-Monthly Electric Bill:
-Email:
-Full Name: (Please provide)
-Phone: (Please provide)
-Address: (Please provide)
-
-Makello makes solar affordable for everyone:
-
-
-“Make it low, with Makello!”
-You don't need tons of solar panels to save money.
-See how much you can save
-
-Optimal Cost Savings broadens your options
-Makello uses expected energy use, site characteristics and customer goals to determine the optimal system upgrade package and utility rate plan for fastest payback, lowest cost and greatest flexibility. 
-Go beyond "Apples to Apples" comparisons to see what else is possible.  Go solar with Makello and start saving money today!  
-Cheers,
-Charlie`
+$${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}  or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} /month*`
       })
     })
   };
