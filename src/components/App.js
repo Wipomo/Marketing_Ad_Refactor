@@ -204,7 +204,7 @@ class App extends React.Component {
   }
 
   postBillEmailData = (bill, email) => {
-    fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
+    fetch("https://makeitlow-makello-server-staging.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -222,7 +222,7 @@ class App extends React.Component {
   };
 
   putClientInfo = (fullName, phone, address) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -238,7 +238,7 @@ class App extends React.Component {
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -270,7 +270,7 @@ class App extends React.Component {
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -304,7 +304,7 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
       emailSubject = `Hello from Makello`;
     }
 
-    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+    fetch('https://makeitlow-makello-server-staging.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -347,7 +347,7 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
     else{
       emailSubject = `Hello from Makello`;
     }
-  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+  fetch('https://makeitlow-makello-server-staging.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -422,7 +422,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
       monthly_loan_pmt:0,
       system_cost: 0
     };
-    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
+    var url = "https://makeitlow-makello-server-staging.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
     fetch(url)
         .then((response) => {
@@ -451,21 +451,21 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
 
             // // get chart loan data
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr0']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr1']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr2']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr3']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr4']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr5']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr6']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr7']);
-            // series.loanData.push(data['bucket_rows'][0]['accfloanyr8']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr9']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr10']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr11']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr12']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr13']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr14']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr0']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr1']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr2']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr3']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr4']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr5']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr6']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr7']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr8']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr9']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr10']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr11']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr12']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr13']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr14']);
           
             // get data for display on Second Part
             series.system_cost = Number(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
@@ -480,36 +480,36 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             switch(system_type){
               case "Baseline":
                 chartDataTmp.Baseline.data = series.data.map( element => Number(element));
-                //chartDataTmp.Baseline.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Baseline.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Baseline.payback = series.payback;
                 break;
               case "Economy":
                 chartDataTmp.Economy.data = series.data.map( element => Number(element));
-                //chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Economy.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Compact":
                 chartDataTmp.Compact.data = series.data.map( element => Number(element));
-                //chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Compact.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Intermediate":
                 chartDataTmp.Intermediate.data = series.data.map( element => Number(element));
-                //chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Intermediate.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
-                //chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Standard.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Premium":
                 chartDataTmp.Premium.data = series.data.map( element => Number(element));
-                //chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Premium.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;

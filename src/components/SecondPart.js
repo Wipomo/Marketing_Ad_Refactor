@@ -31,14 +31,14 @@ class SecondPart extends React.Component {
     this.props.hideChanger('showThirdPart');
   };
 
-  DescribeSystemType = (system_type)=>{
-    if(system_type === "Economy" || system_type === "Intermediate"){
-      return <p className="regular regular-fontSize">with an {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p> ;
-    }
-    else{
-      return <p className="regular regular-fontSize">with a {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p>
-    }
-  }
+  // DescribeSystemType = (system_type)=>{
+  //   if(system_type === "Economy" || system_type === "Intermediate"){
+  //     return <p className="regular regular-fontSize">with an {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p> ;
+  //   }
+  //   else{
+  //     return <p className="regular regular-fontSize">with a {(this.props.chartData.Optimal.system_type)} energy upgrade, for as low as</p>
+  //   }
+  // }
 
   render() {
     return (

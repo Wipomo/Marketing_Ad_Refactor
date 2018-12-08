@@ -21,7 +21,7 @@ class Chart extends React.Component {
     console.log("Determining best paybacks");
     console.log(system_type_payback);
 
-
+    
     if(system_type_payback.every(isBelowThreshold)){
       //update data to loan data
       console.log("updating chart to loan data");
@@ -84,9 +84,6 @@ class Chart extends React.Component {
         }
       },
       
-      //colors: ['#6CF', '#39F', '#06C', '#036'],
-      //colors: ['#379AE8', '#48C06D', '#F0D149', '#F04E53'],
-      //colors: ['#000000', '#F3BE24', '#E4005D', '#76DDF4', '#379AE8', '#48C06D'],
       colors: ['#ff0000','#8B008B','#000000','#ffff00','#379AE8', '#00b050'],
 
       series: [{
