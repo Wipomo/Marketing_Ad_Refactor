@@ -144,13 +144,6 @@ body {
   z-index: 10;
 }
 
-.mcTextCopyright {
-  text-align: center;
-  color: lightgrey;
-  z-index: 10;
-  font-size: 6px;
-}
-
 .mctUpper {
   font-size: 6vh;
   text-shadow: #1d1818 3px 4px 2px;
@@ -167,7 +160,9 @@ body {
   text-align: center;
   color: lightgrey;
   z-index: 10;
-  font-size: 6px;
+  font-size: 12px;
+  margin-bottom: 0;
+  padding: 1em 0;
 }
 
 /*forth box*/
