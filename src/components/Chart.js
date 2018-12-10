@@ -178,7 +178,13 @@ class Chart extends React.Component {
         itemStyle: {
           fontSize: '16px',
         },
-        itemDistance: 100
+        itemDistance: 100,
+        title: {
+            text: 'Available Packages<br/><span style="font-size: 9px; color: #666; font-weight: normal">(Click to hide)</span>',
+            style: {
+                fontStyle: 'italic'
+            }
+        },
       },
 
       responsive: {

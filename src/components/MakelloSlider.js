@@ -47,7 +47,7 @@ class MakelloSlider extends React.Component {
                     overlay={"$"+value.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
                     visible={true}
                     defaultVisible = {true}
-                    placement="bottom"
+                    placement="top"
                     key={index}
                 >
                     <Handle value={value} {...restProps} />

@@ -146,7 +146,7 @@ showModel = (bool) => {
                     <input type="text" className="form-control" id="inputDailyTrip" onChange={this.setdailyTrip} />
                   </div>
                   <div className="form-group">
-                    <label>What is your miles per gallon average?</label>
+                    <label>What is your average miles per gallon?</label>
                     <input type="text" className="form-control" id="inputMPG" onChange={this.setMpg}/>
                   </div>
                   <div className="form-group">
