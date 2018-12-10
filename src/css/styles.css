@@ -616,3 +616,16 @@ body {
   padding:0 15px;
   text-align: center;
 }
+
+
+.rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {
+  position: absolute;
+  top:unset;
+  margin-left: 0;
+  border-top-color:#fff;
+}
+.rc-slider-tooltip-inner {
+  border-radius: 4px;
+  padding: 5px;
+  letter-spacing: -1px;
+}
