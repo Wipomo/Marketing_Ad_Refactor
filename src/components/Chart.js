@@ -10,19 +10,30 @@ class Chart extends React.Component {
     var system_type_payback = [];
     var loanDataNeeded = false;
     system_type_payback.push(Baseline.payback);
+    //console.log(typeof(Baseline.payback));
     system_type_payback.push(Economy.payback);
+    //console.log(typeof(Economy.payback));
     system_type_payback.push(Compact.payback);
+    //console.log(typeof(Compact.payback));
     system_type_payback.push(Intermediate.payback);
+    //console.log(typeof(Intermediate.payback));
     system_type_payback.push(Standard.payback);
+    //console.log(typeof(Standard.payback));
     system_type_payback.push(Premium.payback);
-    system_type_payback.sort();
+    //console.log(typeof(Premium.payback));
+
     console.log(system_type_payback);
+    // sort numbers in order rather than lexographically
+    system_type_payback.sort(function(a, b){return a-b});
+    console.log(system_type_payback);
+
+
     system_type_payback = system_type_payback.slice(0,4);
     console.log("Determining best paybacks");
     console.log(system_type_payback);
 
-    
-    if(system_type_payback.every(isBelowThreshold)){
+    var system_type_payback_without_baseline = system_type_payback.slice(1);
+    if(system_type_payback_without_baseline.every(isBelowThreshold)){
       //update data to loan data
       console.log("updating chart to loan data");
       console.log(system_type_payback);
@@ -40,7 +51,7 @@ class Chart extends React.Component {
         type: 'line'
       },
       title: {
-        text: 'Savings Over Time',
+        text: loanDataNeeded ? 'Loan Savings Over Time' : 'Savings Over Time',
         style: {
           fontSize: '24px', 
           fontWeight:'bold',
@@ -97,7 +108,7 @@ class Chart extends React.Component {
           radius: 5
         },
       },{
-        name: "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Economy (Loan Payback "+ Economy.loan_payback.toPrecision(2) +" Years)" : "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Economy.loanData : Economy.data,
         dashStyle: 'shortdot',
         visible: system_type_payback.includes(Economy.payback),
@@ -107,7 +118,7 @@ class Chart extends React.Component {
           radius: 4
         },
       }, {
-        name: "Compact (Payback "+ Compact.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Compact (Loan Payback "+ Compact.loan_payback.toPrecision(2) +" Years)" : "Compact (Payback "+ Compact.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Compact.loanData : Compact.data,
         dashStyle: 'shortdash',
         visible: system_type_payback.includes(Compact.payback),
@@ -118,7 +129,7 @@ class Chart extends React.Component {
         }
 
       }, {
-        name: "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Intermediate (Loan Payback "+ Intermediate.loan_payback.toPrecision(2) +" Years)" : "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Intermediate.loanData : Intermediate.data,
         dashStyle: 'solid',
         visible: system_type_payback.includes(Intermediate.payback),
@@ -129,7 +140,7 @@ class Chart extends React.Component {
           radius: 5
         },
       }, {
-        name: "Standard (Payback "+ Standard.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Standard (Loan Payback "+ Standard.loan_payback.toPrecision(2) +" Years)" : "Standard (Payback "+ Standard.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Standard.loanData : Standard.data,
         dashStyle: 'longdash',
         visible: system_type_payback.includes(Standard.payback),
@@ -139,7 +150,7 @@ class Chart extends React.Component {
           radius: 5
         }
       },{
-        name: "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Premium (Loan Payback "+ Premium.loan_payback.toPrecision(2) +" Years)" : "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Premium.loanData : Premium.data,
         dashStyle: 'shortdot',
         visible: system_type_payback.includes(Premium.payback),

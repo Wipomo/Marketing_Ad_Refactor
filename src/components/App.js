@@ -56,36 +56,41 @@ class App extends React.Component {
       },
       Economy: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
         visible: false
       },
       Compact: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
         visible: false
       },
       Intermediate: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
         visible: false
       },
       Standard: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
         visible: false
       },
       Premium: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
         visible: false
       }
@@ -204,7 +209,7 @@ class App extends React.Component {
   }
 
   postBillEmailData = (bill, email) => {
-    fetch("https://makeitlow-makello-server-staging.herokuapp.com/customers/", {
+    fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -222,7 +227,7 @@ class App extends React.Component {
   };
 
   putClientInfo = (fullName, phone, address) => {
-    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -238,7 +243,7 @@ class App extends React.Component {
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
-    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -270,7 +275,7 @@ class App extends React.Component {
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -304,7 +309,7 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
       emailSubject = `Hello from Makello`;
     }
 
-    fetch('https://makeitlow-makello-server-staging.herokuapp.com/generate-client-email', {
+    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -347,7 +352,7 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
     else{
       emailSubject = `Hello from Makello`;
     }
-  fetch('https://makeitlow-makello-server-staging.herokuapp.com/generate-client-email', {
+  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -417,12 +422,13 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
       data: [],
       loanData: [],
       payback: 0,
+      loan_payback:0,
       savingsAmount:0,
       installFee: 0,
       monthly_loan_pmt:0,
       system_cost: 0
     };
-    var url = "https://makeitlow-makello-server-staging.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
     fetch(url)
         .then((response) => {
@@ -466,6 +472,47 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             series.loanData.push(data['bucket_rows'][0]['ccfloanyr12']);
             series.loanData.push(data['bucket_rows'][0]['ccfloanyr13']);
             series.loanData.push(data['bucket_rows'][0]['ccfloanyr14']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr15']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr16']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr17']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr18']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr19']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr20']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr21']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr22']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr23']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr24']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr25']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr26']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr27']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr28']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr29']);
+
+            // get loanpayback for current system type
+            var loanYear;
+            for( loanYear in series.loanData){
+
+              console.log(series.loanData[loanYear]+" and "+ loanYear);
+              if(series.loanData[loanYear] > 0 && loanYear > 0){
+                console.log("Sets loan year to: "+loanYear);
+                console.log(typeof(loanYear));
+                var prevYearLoanValue = series.loanData[loanYear-1];
+                var breakEvenYearLoanValue = series.loanData[loanYear];
+                var decimal = (prevYearLoanValue/(prevYearLoanValue+breakEvenYearLoanValue));
+                console.log("Decimal is: "+ decimal);
+                console.log(typeof(decimal));
+
+                console.log("Payback is "+ loanYear+" + " + decimal+ " = " + loanYear+decimal);
+                series.loan_payback = Number(loanYear) + (prevYearLoanValue/(prevYearLoanValue+breakEvenYearLoanValue));
+                break;
+              }
+              else{
+                console.log(data['bucket_rows'][0]['system_type']);
+              }
+            }
+
+            series.loanData = series.loanData.slice(0,15);
+          
           
             // get data for display on Second Part
             series.system_cost = Number(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
@@ -486,30 +533,36 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
               case "Economy":
                 chartDataTmp.Economy.data = series.data.map( element => Number(element));
                 chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Economy.loan_payback = series.loan_payback;
+                console.log("Economy Loan payback is :"+series.loan_payback);
                 chartDataTmp.Economy.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Compact":
                 chartDataTmp.Compact.data = series.data.map( element => Number(element));
                 chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Compact.loan_payback = series.loan_payback;
                 chartDataTmp.Compact.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Intermediate":
                 chartDataTmp.Intermediate.data = series.data.map( element => Number(element));
                 chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Intermediate.loan_payback = series.loan_payback;
                 chartDataTmp.Intermediate.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
                 chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Standard.loan_payback = series.loan_payback;
                 chartDataTmp.Standard.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Premium":
                 chartDataTmp.Premium.data = series.data.map( element => Number(element));
                 chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Premium.loan_payback = series.loan_payback;
                 chartDataTmp.Premium.payback = series.payback;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
