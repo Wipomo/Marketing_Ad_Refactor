@@ -180,7 +180,7 @@ class Chart extends React.Component {
         },
         itemDistance: 100,
         title: {
-            text: 'Available Packages<br/><span style="font-size: 9px; color: #666; font-weight: normal">(Click to hide)</span>',
+            text: 'Available Packages<br/><span style="font-size: 9px; color: #666; font-weight: normal">(Click to show/hide)</span>',
             style: {
                 fontStyle: 'italic'
             }
