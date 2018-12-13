@@ -3,12 +3,22 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 class Chart extends React.Component {
+
+  state = {
+    loanDataNeeded: false
+  }
+  switchPaymentSeriesType = (event)=>{
+    console.log("Switching type :): "+this.state.loanDataNeeded);
+    this.setState({loanDataNeeded: !this.state.loanDataNeeded});
+    //this.loanDataNeeded = !this.loanDataNeeded;
+    //event.preventDefault();
+  }
   render() {
    // console.log(this.props.chartData);
     
     const { Baseline, Economy, Compact, Intermediate, Standard, Premium } = this.props.chartData;
     var system_type_payback = [];
-    var loanDataNeeded = false;
+    let loanDataNeeded = this.state.loanDataNeeded;
     system_type_payback.push(Baseline.payback);
     //console.log(typeof(Baseline.payback));
     system_type_payback.push(Economy.payback);
@@ -38,6 +48,8 @@ class Chart extends React.Component {
       console.log("updating chart to loan data");
       console.log(system_type_payback);
       loanDataNeeded = true;
+      this.setState({loanDataNeeded: true});
+
     }
 
     function isBelowThreshold(currentValue) {
@@ -205,10 +217,13 @@ class Chart extends React.Component {
     };
 
     return (
+      <div>
       <HighchartsReact
         highcharts={Highcharts}
         options={options}
       />
+      <button id="button" onClick={this.switchPaymentSeriesType}>Switch payment types</button>
+      </div>
     );
   }
 }

@@ -60,7 +60,10 @@ class App extends React.Component {
         loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       },
       Compact: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -68,7 +71,10 @@ class App extends React.Component {
         loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       },
       Intermediate: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -76,7 +82,10 @@ class App extends React.Component {
         loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       },
       Standard: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -84,7 +93,10 @@ class App extends React.Component {
         loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       },
       Premium: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -92,7 +104,10 @@ class App extends React.Component {
         loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       }
     },
     userId: 0,
@@ -153,8 +168,8 @@ class App extends React.Component {
 
   clientInfoUpdater = (fullName, phone, address) => {
     let updatedInput = this.checkStringLengths([fullName, phone, address]);
-    console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
-    console.log(updatedInput);
+    //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
+    //console.log(updatedInput);
     fullName=updatedInput[0];
     phone=updatedInput[1];
     address=updatedInput[2];
@@ -405,7 +420,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     // we do this by picking out certain columns to fill our chartData object,
     console.log("Monthly bill is: "+monthlyBill+" and Bucket is: "+bucket);
 
-    this.setChartSeriesData(bucket, "Baseline");
+    //this.setChartSeriesData(bucket, "Baseline");
     this.setChartSeriesData(bucket, "Economy");
     this.setChartSeriesData(bucket, "Intermediate");
     this.setChartSeriesData(bucket, "Premium");
@@ -492,18 +507,17 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             var loanYear;
             for( loanYear in series.loanData){
 
-              console.log(series.loanData[loanYear]+" and "+ loanYear);
+              //console.log(series.loanData[loanYear]+" and "+ loanYear);
               if(series.loanData[loanYear] > 0 && loanYear > 0){
                 console.log("Sets loan year to: "+loanYear);
                 console.log(typeof(loanYear));
                 var prevYearLoanValue = series.loanData[loanYear-1];
                 var breakEvenYearLoanValue = series.loanData[loanYear];
                 var decimal = (prevYearLoanValue/(prevYearLoanValue+breakEvenYearLoanValue));
-                console.log("Decimal is: "+ decimal);
-                console.log(typeof(decimal));
-
-                console.log("Payback is "+ loanYear+" + " + decimal+ " = " + loanYear+decimal);
-                series.loan_payback = Number(loanYear) + (prevYearLoanValue/(prevYearLoanValue+breakEvenYearLoanValue));
+                //console.log("Decimal is: "+ decimal);
+                //console.log(typeof(decimal));
+                //console.log("Payback is "+ loanYear+" + " + decimal+ " = " + loanYear+decimal);
+                series.loan_payback = Number(loanYear) + decimal;
                 break;
               }
               else{
@@ -512,7 +526,6 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             }
 
             series.loanData = series.loanData.slice(0,15);
-          
           
             // get data for display on Second Part
             series.system_cost = Number(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
@@ -534,8 +547,12 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
                 chartDataTmp.Economy.data = series.data.map( element => Number(element));
                 chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Economy.loan_payback = series.loan_payback;
-                console.log("Economy Loan payback is :"+series.loan_payback);
+                //console.log("Economy Loan payback is :"+series.loan_payback);
                 chartDataTmp.Economy.payback = series.payback;
+                chartDataTmp.Economy.savingsAmount = series.savingsAmount;
+                chartDataTmp.Economy.installFee = series.installFee;
+                chartDataTmp.Economy.monthly_loan_pmt = series.monthly_loan_pmt;
+
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Compact":
@@ -543,6 +560,9 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
                 chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Compact.loan_payback = series.loan_payback;
                 chartDataTmp.Compact.payback = series.payback;
+                chartDataTmp.Compact.savingsAmount = series.savingsAmount;
+                chartDataTmp.Compact.installFee = series.installFee;
+                chartDataTmp.Compact.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Intermediate":
@@ -550,6 +570,9 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
                 chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Intermediate.loan_payback = series.loan_payback;
                 chartDataTmp.Intermediate.payback = series.payback;
+                chartDataTmp.Intermediate.savingsAmount = series.savingsAmount;
+                chartDataTmp.Intermediate.installFee = series.installFee;
+                chartDataTmp.Intermediate.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Standard":
@@ -557,6 +580,9 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
                 chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Standard.loan_payback = series.loan_payback;
                 chartDataTmp.Standard.payback = series.payback;
+                chartDataTmp.Standard.savingsAmount = series.savingsAmount;
+                chartDataTmp.Standard.installFee = series.installFee;
+                chartDataTmp.Standard.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Premium":
@@ -564,6 +590,9 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
                 chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Premium.loan_payback = series.loan_payback;
                 chartDataTmp.Premium.payback = series.payback;
+                chartDataTmp.Premium.savingsAmount = series.savingsAmount;
+                chartDataTmp.Premium.installFee = series.installFee;
+                chartDataTmp.Premium.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               default:
@@ -600,6 +629,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     chartDataTmp.Optimal.system_type = series.system_type;
     chartDataTmp.Optimal.system_cost = series.system_cost;
     chartDataTmp.Optimal.payback = series.payback;
+
     chartDataTmp.Optimal.savingsAmount= series.savingsAmount;
     chartDataTmp.Optimal.installFee = series.installFee;
     chartDataTmp.Optimal.monthly_loan_pmt= series.monthly_loan_pmt;
@@ -639,7 +669,8 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             <SecondPart
               clientInfoUpdater={this.clientInfoUpdater}
               hideChanger={this.hideChanger}
-              chartData={this.state.chartData}/>
+              chartData={this.state.chartData}
+            />
           </div>
           <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
             <ThirdPart hideChanger={this.hideChanger} />
