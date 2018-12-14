@@ -50,14 +50,14 @@ class App extends React.Component {
         monthly_loan_pmt:0
       },
       Baseline: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         visible: true
       },
       Economy: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
         visible: false,
@@ -420,7 +420,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     // we do this by picking out certain columns to fill our chartData object,
     console.log("Monthly bill is: "+monthlyBill+" and Bucket is: "+bucket);
 
-    //this.setChartSeriesData(bucket, "Baseline");
+    this.setChartSeriesData(bucket, "Baseline");
     this.setChartSeriesData(bucket, "Economy");
     this.setChartSeriesData(bucket, "Intermediate");
     this.setChartSeriesData(bucket, "Premium");

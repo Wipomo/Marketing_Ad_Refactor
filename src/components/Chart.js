@@ -8,29 +8,20 @@ class Chart extends React.Component {
     loanDataNeeded: false
   }
   switchPaymentSeriesType = (event)=>{
-    console.log("Switching type :): "+this.state.loanDataNeeded);
     this.setState({loanDataNeeded: !this.state.loanDataNeeded});
-    //this.loanDataNeeded = !this.loanDataNeeded;
-    //event.preventDefault();
   }
+
   render() {
-   // console.log(this.props.chartData);
     
     const { Baseline, Economy, Compact, Intermediate, Standard, Premium } = this.props.chartData;
     var system_type_payback = [];
     let loanDataNeeded = this.state.loanDataNeeded;
     system_type_payback.push(Baseline.payback);
-    //console.log(typeof(Baseline.payback));
     system_type_payback.push(Economy.payback);
-    //console.log(typeof(Economy.payback));
     system_type_payback.push(Compact.payback);
-    //console.log(typeof(Compact.payback));
     system_type_payback.push(Intermediate.payback);
-    //console.log(typeof(Intermediate.payback));
     system_type_payback.push(Standard.payback);
-    //console.log(typeof(Standard.payback));
     system_type_payback.push(Premium.payback);
-    //console.log(typeof(Premium.payback));
 
     console.log(system_type_payback);
     // sort numbers in order rather than lexographically
@@ -39,14 +30,14 @@ class Chart extends React.Component {
 
 
     system_type_payback = system_type_payback.slice(0,4);
-    console.log("Determining best paybacks");
-    console.log(system_type_payback);
+    // console.log("Determining best paybacks");
+    // console.log(system_type_payback);
 
     var system_type_payback_without_baseline = system_type_payback.slice(1);
     if(system_type_payback_without_baseline.every(isBelowThreshold)){
       //update data to loan data
-      console.log("updating chart to loan data");
-      console.log(system_type_payback);
+      // console.log("updating chart to loan data");
+      // console.log(system_type_payback);
       loanDataNeeded = true;
       this.setState({loanDataNeeded: true});
 
