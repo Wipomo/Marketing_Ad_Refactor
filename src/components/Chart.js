@@ -207,12 +207,23 @@ class Chart extends React.Component {
 
     };
 
+    const ToggleButton =()=> <label className="switch">
+    <input type="checkbox" id="togBtn">
+    {/* <div className="slider round">
+      <span className="on">ON</span>
+      <span className="off">OFF</span>
+    </div> */}
+    </input>
+  </label>
+
     return (
       <div>
       <HighchartsReact
         highcharts={Highcharts}
         options={options}
       />
+
+      {/* <ToggleButton /> */}
       <button id="button" onClick={this.switchPaymentSeriesType}>Switch payment types</button>
       </div>
     );
