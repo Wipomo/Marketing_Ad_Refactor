@@ -224,7 +224,7 @@ class App extends React.Component {
   }
 
   postBillEmailData = (bill, email) => {
-    fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
+    fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -242,7 +242,7 @@ class App extends React.Component {
   };
 
   putClientInfo = (fullName, phone, address) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -258,7 +258,7 @@ class App extends React.Component {
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -290,7 +290,7 @@ class App extends React.Component {
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -324,7 +324,7 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
       emailSubject = `Hello from Makello`;
     }
 
-    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -367,7 +367,7 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
     else{
       emailSubject = `Hello from Makello`;
     }
-  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -443,7 +443,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
       monthly_loan_pmt:0,
       system_cost: 0
     };
-    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
     fetch(url)
         .then((response) => {
