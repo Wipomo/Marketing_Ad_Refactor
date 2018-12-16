@@ -101,16 +101,52 @@ class FirstPart extends React.Component {
                           </div>
                         </div>
                       </div>
-                    </div>  
-
+                    </div>
                   </div>
-
+                  
                 </div>
               </div>
             </section>
+            <hr></hr>
+            <div className='container'>
+              {/* <table className='table '>  */}
 
-            <div className='mFooter'></div>
+                  <div className='item1'>
+                    <h4
+                      >High Energy Bill?
+                      <br></br>
+                      No Problem!
+                    </h4>
 
+                    <br></br>
+                    <h5>
+                    If you:
+                    <br></br><br></br>
+                    <ul>
+                      <li>Own or lease the property.</li>
+                      <li>Are the electric utility account owner</li>
+                      <li>Have a Standard Domestic Utility Rate.</li>
+                    </ul>
+                    Then, get Simple Payback in 1 - 3 years**
+                    </h5>
+                    
+                  </div>
+
+                  <div align="right">
+                    <div className='item2'>
+                        <img src="/images/website-pic-2.jpeg" />
+                    </div>
+                      <h6 font-style="italic"  className='item3'>
+                        **Simple Payback in 1-3 years is possible for SDGE
+                        annual electric utility bills on the Standard Domestic Rate, and ineligible
+                        for Medical & Low Income discounts.
+                        Actual time to Simple Payback depends on Time-Of-Use interval data for electric
+                        consumption, and solar PV production variables.
+                      </h6>
+                  </div>
+                    
+              {/* </table>   */}
+            </div>
           </div>
         </div>
       </div>

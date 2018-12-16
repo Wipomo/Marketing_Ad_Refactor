@@ -624,3 +624,49 @@ body {
   padding: 5px;
   letter-spacing: -1px;
 }
+
+/* first page brand recognition section */
+.rightAlignWithImage {
+  background-image: url("/images/website-pic-2.jpeg");
+
+  /* max-height: 10vh;
+  max-width: 20vw; */
+  align-content: flex-end;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: cover; */
+  /* position: relative; */
+  /*z-index: 1; */
+}
+
+.leftAlignWithPadding {
+  /* padding: 5%; */
+  /* min-width: 50px; */
+  /* text-align:left;
+  padding-left: 50%; */
+}
+
+.container {
+  display: flex;
+  padding: 5%;
+  /* min-width: 50px; */
+  /* text-align:left;
+  padding-left: 50%; */
+}
+
+item1{
+  order:1;
+}
+item2{
+  order:2;
+}
+item3{
+  order:3;
+}
+/* table{
+  table-layout: fixed;
+}
+
+td{
+  word-wrap:break-word
+} */
