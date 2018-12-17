@@ -111,25 +111,27 @@ class FirstPart extends React.Component {
             <div className='container'>
               {/* <table className='table '>  */}
 
-                  <div className='item1'>
-                    <h4
-                      >High Energy Bill?
-                      <br></br>
-                      No Problem!
-                    </h4>
+                  <div align="left">
+                    <div className='item1'>
+                      <h4
+                        >High Energy Bill?
+                        <br></br>
+                        No Problem!
+                      </h4>
 
-                    <br></br>
-                    <h5>
-                    If you:
-                    <br></br><br></br>
-                    <ul>
-                      <li>Own or lease the property.</li>
-                      <li>Are the electric utility account owner</li>
-                      <li>Have a Standard Domestic Utility Rate.</li>
-                    </ul>
-                    Then, get Simple Payback in 1 - 3 years**
-                    </h5>
-                    
+                      <br></br>
+                      <h5>
+                      If you:
+                      <br></br><br></br>
+                      <ul>
+                        <li>Own or lease the property.</li>
+                        <li>Are the electric utility account owner</li>
+                        <li>Have a Standard Domestic Utility Rate.</li>
+                      </ul>
+                      Then, get Simple Payback in 1 - 3 years**
+                      </h5>
+                      
+                    </div>
                   </div>
 
                   <div align="right">
@@ -144,7 +146,7 @@ class FirstPart extends React.Component {
                         consumption, and solar PV production variables.
                       </h6>
                   </div>
-                  
+
                     
               {/* </table>   */}
             </div>

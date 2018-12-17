@@ -5,13 +5,26 @@ import HighchartsReact from 'highcharts-react-official';
 class Chart extends React.Component {
 
   state = {
-    loanDataNeeded: false
+    loanDataNeeded: false,
+    cashPaymentClicked: false,
+    loanPaymentClicked: false
   }
   switchPaymentSeriesType = (event)=>{
-    if(event.target.value === "cash")
+    if(event.target.value === "cash"){
       this.setState({loanDataNeeded: false});
-    else if(event.target.value === "loan")
+      this.setState({cashPaymentClicked: true});
+      this.setState({loanPaymentClicked: false});
+
+    }
+    else if(event.target.value === "loan"){
       this.setState({loanDataNeeded: true});
+      this.setState({cashPaymentClicked: false});
+      this.setState({loanPaymentClicked: true});
+
+    }
+  }
+
+  componentDidMount(){
   }
 
   render() {
@@ -36,14 +49,14 @@ class Chart extends React.Component {
     // console.log(system_type_payback);
 
     var system_type_payback_without_baseline = system_type_payback.slice(1);
-    if(system_type_payback_without_baseline.every(isBelowThreshold)){
+    if(system_type_payback_without_baseline.every(isBelowThreshold) && this.state.cashPaymentClicked === false){
       //update data to loan data
       // console.log("updating chart to loan data");
       // console.log(system_type_payback);
       loanDataNeeded = true;
-      this.setState({loanDataNeeded: true});
 
     }
+
 
     function isBelowThreshold(currentValue) {
       return currentValue >= 4;
@@ -215,7 +228,9 @@ class Chart extends React.Component {
         highcharts={Highcharts}
         options={options}
       />
+      
       <form>
+      Choose Payment Type: &nbsp;&nbsp;
       Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
       Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
       </form>
