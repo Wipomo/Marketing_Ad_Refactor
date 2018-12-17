@@ -134,9 +134,9 @@ class FirstPart extends React.Component {
 
                   <div align="right">
                     <div className='item2'>
-                        <img src="/images/website-pic-2.jpeg" />
+                        <img src="/images/website-pic-2.jpeg" alt="solar"/>
                     </div>
-                      <h6 font-style="italic"  className='item3'>
+                      <h6 fontStyle="italic"  className='item3'>
                         **Simple Payback in 1-3 years is possible for SDGE
                         annual electric utility bills on the Standard Domestic Rate, and ineligible
                         for Medical & Low Income discounts.
@@ -144,6 +144,7 @@ class FirstPart extends React.Component {
                         consumption, and solar PV production variables.
                       </h6>
                   </div>
+                  
                     
               {/* </table>   */}
             </div>

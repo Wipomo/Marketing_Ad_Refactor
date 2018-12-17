@@ -8,7 +8,10 @@ class Chart extends React.Component {
     loanDataNeeded: false
   }
   switchPaymentSeriesType = (event)=>{
-    this.setState({loanDataNeeded: !this.state.loanDataNeeded});
+    if(event.target.value === "cash")
+      this.setState({loanDataNeeded: false});
+    else if(event.target.value === "loan")
+      this.setState({loanDataNeeded: true});
   }
 
   render() {
@@ -23,7 +26,6 @@ class Chart extends React.Component {
     system_type_payback.push(Standard.payback);
     system_type_payback.push(Premium.payback);
 
-    console.log(system_type_payback);
     // sort numbers in order rather than lexographically
     system_type_payback.sort(function(a, b){return a-b});
     console.log(system_type_payback);
@@ -213,7 +215,12 @@ class Chart extends React.Component {
         highcharts={Highcharts}
         options={options}
       />
-      <button id="button" onClick={this.switchPaymentSeriesType}>Switch payment types</button>
+      <form>
+      Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
+      Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
+      </form>
+      
+      {/* <input type="radio" onClick={this.switchPaymentSeriesType}>Switch payment types </input> */}
       </div>
     );
   }
