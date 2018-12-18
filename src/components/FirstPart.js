@@ -107,49 +107,40 @@ class FirstPart extends React.Component {
                 </div>
               </div>
             </section>
-            <hr></hr>
-            <div className='container'>
-              {/* <table className='table '>  */}
+            
+            <section className="payback">
 
-                  <div align="left">
-                    <div className='item1'>
-                      <h4
-                        >High Energy Bill?
-                        <br></br>
-                        No Problem!
-                      </h4>
+              <div class="row">
+                <div class="col-md-7">
+                  <h2 class="payback-heading">High Energy Bill? <span class="text-muted">No Problem!</span></h2>
+                  <p class="lead mt-3">
+                    If you:
+                    <ul>
+                      <li>Own or lease the property,</li>
+                      <li>Are the electric utility account owner, or</li>
+                      <li>Have a Standard Domestic Utility Rate</li>
+                    </ul>
+                    Then, get Simple Payback in 1 - 3 years**
+                  </p>
 
-                      <br></br>
-                      <h5>
-                      If you:
-                      <br></br><br></br>
-                      <ul>
-                        <li>Own or lease the property.</li>
-                        <li>Are the electric utility account owner</li>
-                        <li>Have a Standard Domestic Utility Rate.</li>
-                      </ul>
-                      Then, get Simple Payback in 1 - 3 years**
-                      </h5>
-                      
-                    </div>
-                  </div>
+                  <p class="mt-4">
+                    <a class="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $7,999</strong>
+                  </p>
+                </div>
+                <div class="col-md-5">
+                  <p><img class="payback-image img-fluid mx-auto" src="/images/website-pic-2.jpeg" alt="solar"/></p>
+                  <p class="payback-disclaimer">
+                    **Simple Payback in 1-3 years is possible for SDGE
+                    annual electric utility bills on the Standard Domestic Rate, and ineligible
+                    for Medical & Low Income discounts.
+                    Actual time to Simple Payback depends on Time-Of-Use interval data for electric
+                    consumption, and solar PV production variables.
+                  </p>
+                </div>
+              </div>
 
-                  <div align="right">
-                    <div className='item2'>
-                        <img src="/images/website-pic-2.jpeg" alt="solar"/>
-                    </div>
-                      <h6 fontStyle="italic"  className='item3'>
-                        **Simple Payback in 1-3 years is possible for SDGE
-                        annual electric utility bills on the Standard Domestic Rate, and ineligible
-                        for Medical & Low Income discounts.
-                        Actual time to Simple Payback depends on Time-Of-Use interval data for electric
-                        consumption, and solar PV production variables.
-                      </h6>
-                  </div>
-
-                    
-              {/* </table>   */}
-            </div>
+            </section>
+            
           </div>
         </div>
       </div>
