@@ -13,9 +13,8 @@ class SecondPart extends React.Component {
       this.toggle = this.toggle.bind(this);
       this.state = {
         dropdownOpen: false,
-        value:"View all energy upgrade plans!",
+        value:"View energy upgrade plans!",
         system_to_display: "Optimal",
-
       };
 
       //this.changeSystemTypeDisplayValues = this.changeSystemTypeDisplayValues.bind(this);
@@ -43,7 +42,7 @@ class SecondPart extends React.Component {
     let fullName = this.nameRef.current.value;
     let phone = this.phoneRef.current.value;
     let address = this.addressRef.current.value;
-    this.props.clientInfoUpdater(fullName, phone, address);
+    this.props.clientInfoUpdater(fullName, phone, address, this.state.system_to_display);
     this.props.hideChanger('showThirdPart');
   };
 
@@ -97,23 +96,41 @@ class SecondPart extends React.Component {
 
     switch(system_type){
       case "Optimal":
-        return <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-          <small> or</small>&nbsp;${Number(this.props.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>;
+        return <div>
+          <p className="regular regular-fontSize" >We selected the optimal {(this.props.chartData.Optimal.system_type)} upgrade package for you!</p>
+          <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+          <small> or</small>&nbsp;${Number(this.props.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+          </div>;
       case "Economy":
-      return <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Economy.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-      <small> or</small>&nbsp;${Number(this.props.chartData.Economy.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>;
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Economy upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Economy.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.Economy.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+        </div>;
       case "Compact":
-      return <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Compact.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-      <small> or</small>&nbsp;${Number(this.props.chartData.Compact.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>;
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Compact upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Compact.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.Compact.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+    </div>;
       case "Intermediate":
-      return <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Intermediate.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-      <small> or</small>&nbsp;${Number(this.props.chartData.Intermediate.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>;
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Intermediate upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Intermediate.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.Intermediate.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+        </div>;
       case "Standard":
-      return <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Standard.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-      <small> or</small>&nbsp;${Number(this.props.chartData.Standard.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>;
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Standard upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Standard.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.Standard.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+        </div>;
       case "Premium":
-      return <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Premium.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-      <small> or</small>&nbsp;${Number(this.props.chartData.Premium.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>;
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Premium upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Premium.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.Premium.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+        </div>;
       default:
         break;
     }
@@ -149,7 +166,7 @@ class SecondPart extends React.Component {
 
           <div className='m2uTextl text-center'>
             <br />
-            <p className="regular regular-fontSize" >We selected the optimal {(this.props.chartData.Optimal.system_type)} upgrade package for you!</p>
+      
             {this.DescribeInstallAndMonthlyFee()}
             {/* <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
             <small> or</small> 
@@ -161,6 +178,7 @@ class SecondPart extends React.Component {
                 {this.state.value}
               </DropdownToggle>
               <DropdownMenu>
+              <DropdownItem onClick={this.select}>Optimal</DropdownItem>
                 <DropdownItem onClick={this.select}>Economy</DropdownItem>
                 <DropdownItem onClick={this.select}>Compact</DropdownItem>
                 <DropdownItem onClick={this.select}>Intermediate</DropdownItem>

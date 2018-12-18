@@ -38,7 +38,13 @@ class App extends React.Component {
       carYear: '',
       carMake: '',
       carModel: '',
-      saveAmount: ''
+      saveAmount: '',
+      selectedSystem: {
+        system_type:'',
+        savingsAmount:'',
+        installFee:'',
+        monthly_loan_payment: ''
+      }
     },
     chartData: {
       Optimal:{
@@ -166,7 +172,7 @@ class App extends React.Component {
     this.postBillEmailData(bill, email);
   };
 
-  clientInfoUpdater = (fullName, phone, address) => {
+  clientInfoUpdater = (fullName, phone, address, system_selected ) => {
     let updatedInput = this.checkStringLengths([fullName, phone, address]);
     //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
     //console.log(updatedInput);
@@ -174,14 +180,51 @@ class App extends React.Component {
     phone=updatedInput[1];
     address=updatedInput[2];
 
+   
+    
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.fullName = fullName;
     clientProfile.phone = phone;
     clientProfile.address = address;
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
+    clientProfile.selectedSystem.system_type = system_selected;
+    switch(system_selected){
+      case("Optimal"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Optimal.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Optimal.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Optimal.monthly_loan_pmt;
+        break;
+      case("Economy"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Economy.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Economy.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Economy.monthly_loan_pmt;
+        break;
+      case("Compact"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Compact.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Compact.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Compact.monthly_loan_pmt;
+        break;
+      case("Intermediate"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Intermediate.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Intermediate.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Intermediate.monthly_loan_pmt;
+          break;
+      case("Standard"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Standard.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Standard.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Standard.monthly_loan_pmt;
+        break;
+      case("Premium"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Premium.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Premium.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Premium.monthly_loan_pmt;
+        break;
+      default:
+        break;
+    }
     this.setState({ clientProfile });
     this.putClientInfo(fullName, phone, address);
-    this.createFirstCustomerEmail(fullName, phone, address, this.state.chartData.Optimal.system_type);
+    this.createFirstCustomerEmail(fullName, phone, address);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
@@ -314,7 +357,7 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
     })
   };
 
-  createFirstCustomerEmail = (fullName, phone, address, system_type) => {
+  createFirstCustomerEmail = (fullName, phone, address) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
     if(this.state.clientProfile.test){
@@ -335,8 +378,8 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
         subject: emailSubject,
         body:`Thank you for contacting Makello!
         
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
-We selected an an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+You selected the ${this.state.clientProfile.selectedSystem.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
 
 For more information, visit https://makello.com
 
@@ -353,6 +396,11 @@ Address: ${address}
 Daily Average Commute (miles): N/A
 MPG Average: N/A
 Plug-In Vehicle Type: N/A
+
+-----------------------------
+You can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
         `
       })
     })
@@ -378,8 +426,8 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
       subject: emailSubject,
       body:`Thank you for contacting Makello!
       
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
-We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+You selected the ${this.state.clientProfile.selectedSystem.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
 
 For more information, visit https://makello.com
 
@@ -396,6 +444,10 @@ Address: ${this.state.clientProfile.address}
 Daily Average Commute (miles): ${dailyTrip}
 MPG Average: ${mpg}
 Plug-In Vehicle Type: ${year} ${make}, ${model}
+------------------------------
+You can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
       `
     })
   })

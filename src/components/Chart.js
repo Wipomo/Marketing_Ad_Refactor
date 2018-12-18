@@ -230,8 +230,9 @@ class Chart extends React.Component {
       />
       
       <form>
-      Choose Payment Type: &nbsp;&nbsp;
+      Choose Payment Type:&nbsp;
       Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
+      &nbsp;&nbsp;&nbsp;&nbsp;
       Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
       </form>
       
