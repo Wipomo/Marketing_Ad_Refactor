@@ -133,26 +133,26 @@ class FirstPart extends React.Component {
             
             <section className="payback">
 
-              <div class="row">
-                <div class="col-md-7">
-                  <h2 class="payback-heading">High Energy Bill? <span class="text-muted">No Problem!</span></h2>
-                  <p class="lead mt-3">
+              <div className="row">
+                <div className="col-md-7">
+                  <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
+                  <div className="lead mt-3">
                     If you:
                     <ul>
                       <li>Own or lease the property,</li>
                       <li>Are the electric utility account owner, or</li>
                       <li>Have a Standard Domestic Utility Rate</li>
                     </ul>
-                    Then, get Simple Payback in 1 - 3 years<span class="readme" id="Popover1" onClick={this.toggle1}>**</span>
-                  </p>
+                    Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onClick={this.toggle1}>**</span>
+                  </div>
 
-                  <p class="mt-4">
-                    <a class="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $7,999<span class="readme" id="Popover2" onClick={this.toggle2}>*</span></strong>
-                  </p>
+                  <div className="mt-4">
+                    <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $7,999<span className="readme" id="Popover2" onClick={this.toggle2}>*</span></strong>
+                  </div>
                 </div>
-                <div class="col-md-5">
-                  <p><img class="payback-image img-fluid mx-auto" src="/images/website-pic-2.jpeg" alt="solar"/></p>
-                  <p class="payback-disclaimer">
+                <div className="col-md-5">
+                  <p><img className="payback-image img-fluid mx-auto" src="/images/website-pic-2.jpeg" alt="solar"/></p>
+                  <p className="payback-disclaimer">
                     **Simple Payback in 1-3 years is possible for SDGE
                     annual electric utility bills on the Standard Domestic Rate, and ineligible
                     for Medical & Low Income discounts.
@@ -163,7 +163,7 @@ class FirstPart extends React.Component {
               </div>
 
               <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
-                <PopoverBody><div class="payback-disclaimer">
+                <PopoverBody><div className="payback-disclaimer">
                     **Simple Payback in 1-3 years is possible for SDGE
                     annual electric utility bills on the Standard Domestic Rate, and ineligible
                     for Medical & Low Income discounts.
@@ -173,7 +173,7 @@ class FirstPart extends React.Component {
               </Popover>
 
               <Popover placement="auto" isOpen={this.state.popoverOpen2} target="Popover2" toggle={this.toggle2}>
-                <PopoverBody><div class="payback-disclaimer">
+                <PopoverBody><div className="payback-disclaimer">
                     *Donec ullamcorper nulla non metus auctor fringilla. 
                     Vestibulum id ligula porta felis euismod semper. 
                     Praesent commodo cursus magna, vel scelerisque nisl consectetur. 
