@@ -1,4 +1,5 @@
 import React from 'react';
+import { Popover, PopoverBody } from 'reactstrap';
 import MakelloSlider from './MakelloSlider';
 
 const min_slider_value = 50;
@@ -6,6 +7,28 @@ const max_slider_value = 2000;
 const slider_increment_step = 25;
 
 class FirstPart extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.toggle1 = this.toggle1.bind(this);
+    this.toggle2 = this.toggle2.bind(this);
+    this.state = {
+      popoverOpen1: false,
+      popoverOpen2: false
+    };
+  }
+
+  toggle1() {
+    this.setState({
+      popoverOpen1: !this.state.popoverOpen1
+    });
+  }
+  toggle2() {
+    this.setState({
+      popoverOpen2: !this.state.popoverOpen2
+    });
+  }
 
   emailRef = React.createRef();
 
@@ -120,11 +143,11 @@ class FirstPart extends React.Component {
                       <li>Are the electric utility account owner, or</li>
                       <li>Have a Standard Domestic Utility Rate</li>
                     </ul>
-                    Then, get Simple Payback in 1 - 3 years**
+                    Then, get Simple Payback in 1 - 3 years<span class="readme" id="Popover1" onClick={this.toggle1}>**</span>
                   </p>
 
                   <p class="mt-4">
-                    <a class="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $7,999</strong>
+                    <a class="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $7,999<span class="readme" id="Popover2" onClick={this.toggle2}>*</span></strong>
                   </p>
                 </div>
                 <div class="col-md-5">
@@ -138,6 +161,25 @@ class FirstPart extends React.Component {
                   </p>
                 </div>
               </div>
+
+              <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
+                <PopoverBody><div class="payback-disclaimer">
+                    **Simple Payback in 1-3 years is possible for SDGE
+                    annual electric utility bills on the Standard Domestic Rate, and ineligible
+                    for Medical & Low Income discounts.
+                    Actual time to Simple Payback depends on Time-Of-Use interval data for electric
+                    consumption, and solar PV production variables.
+                  </div></PopoverBody>
+              </Popover>
+
+              <Popover placement="auto" isOpen={this.state.popoverOpen2} target="Popover2" toggle={this.toggle2}>
+                <PopoverBody><div class="payback-disclaimer">
+                    *Donec ullamcorper nulla non metus auctor fringilla. 
+                    Vestibulum id ligula porta felis euismod semper. 
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur. 
+                    Fusce dapibus, tellus ac cursus commodo.
+                  </div></PopoverBody>
+              </Popover>
 
             </section>
             

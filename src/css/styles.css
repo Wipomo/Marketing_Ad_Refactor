@@ -652,12 +652,17 @@ body {
 }
 .payback-disclaimer {
   font-size: 11px;
-  color:#ccc; 
+  color:#aaa; 
 }
 @media (min-width: 40em) {
   .payback-heading {
     font-size: 50px;
   }
 }
+
+.readme {
+  cursor: pointer;
+}
+
 
 
