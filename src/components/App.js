@@ -189,6 +189,7 @@ class App extends React.Component {
     clientProfile.address = address;
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     clientProfile.selectedSystem.system_type = system_selected;
+    clientProfile.selectedSystem.cashorloan = paymentType;
 
     switch(system_selected){
       case("Optimal"):
@@ -400,7 +401,9 @@ Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleSt
 Email: ${this.state.clientProfile.email}
 Full Name: ${fullName}
 Phone: ${phone}
-Address: ${address} 
+Address: ${address}
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
 Daily Average Commute (miles): N/A
 MPG Average: N/A
 Plug-In Vehicle Type: N/A
@@ -449,6 +452,8 @@ Email: ${this.state.clientProfile.email}
 Full Name: ${this.state.clientProfile.fullName}
 Phone: ${this.state.clientProfile.phone}
 Address: ${this.state.clientProfile.address} 
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
 Daily Average Commute (miles): ${dailyTrip}
 MPG Average: ${mpg}
 Plug-In Vehicle Type: ${year} ${make}, ${model}

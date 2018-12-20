@@ -130,7 +130,7 @@ showModel = (bool) => {
 
           <div className='p-2'>
 
-            <h3 className="text-center">Interested to see how much an electric car can increase savings?</h3>
+            <h3 className="text-center">Interested to see how much a Plug-In Vehicle can increase savings?</h3>
             <input className='hidden' type='submit' value="" onClick={this.submitHandler} />
 
           </div>
