@@ -353,9 +353,9 @@ Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navi
 Email: ${this.state.clientProfile.email}
 Database ID: ${this.state.userId}
 
-Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple paybcak for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan 
+Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple payback for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan. 
 
-You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annually with 100% Clean Energy.
+You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
  
 We selected the optimal ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan} energy upgrade package for you!
 
@@ -434,6 +434,7 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
       body:`Thank you for contacting Makello!
       
 A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+
 You selected the ${this.state.clientProfile.selectedSystem.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
 
 For more information, visit https://makello.com

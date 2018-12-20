@@ -13,7 +13,7 @@ class SecondPart extends React.Component {
       this.toggle = this.toggle.bind(this);
       this.state = {
         dropdownOpen: false,
-        value:"View energy upgrade plans!",
+        value:"View upgrade packages!",
         system_to_display: "Optimal",
         paymentType: "cash"
       };

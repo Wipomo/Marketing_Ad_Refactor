@@ -150,7 +150,7 @@ showModel = (bool) => {
                     <input type="text" className="form-control" id="inputMPG" onChange={this.setMpg}/>
                   </div>
                   <div className="form-group">
-                    <label>Electric Vehicle Type</label>
+                    <label>Plug-In Vehicle Type</label>
                     <CarMenu 
                       setYear={this.setYear} setMake={this.setMake} setModel={this.setModel}
                       year={this.state.year} make={this.state.make} model={this.state.model}

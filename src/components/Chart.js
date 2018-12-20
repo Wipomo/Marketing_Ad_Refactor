@@ -28,6 +28,30 @@ class Chart extends React.Component {
   componentDidMount(){
     console.log("Component Did Mount");
   }
+  
+  defaultCheckedRadioButtons=()=>{
+    console.log("Detemining radio check button");
+    console.log(this.props.chartData.Optimal.cashorloan);
+    if(this.props.chartData.Optimal.cashorloan === "(loan)"){
+      return <form>
+      Choose Payment Type:&nbsp;
+      Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
+      </form>;
+    }
+    else if(this.props.chartData.Optimal.cashorloan === "(cash)"){
+      return <form>
+    Choose Payment Type:&nbsp;
+    Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
+    </form>;
+    }
+    else{
+      return <p> Nothing to display</p>
+    }
+  };
 
   render() {
     
@@ -198,7 +222,7 @@ class Chart extends React.Component {
         },
         itemDistance: 100,
         title: {
-            text: 'Available Packages<br/><span style="font-size: 9px; color: #666; font-weight: normal">(Click to show/hide)</span>',
+            text: 'Click any package below to show or hide',
             style: {
                 fontStyle: 'italic'
             }
@@ -229,12 +253,7 @@ class Chart extends React.Component {
         options={options}
       />
       
-      <form>
-      Choose Payment Type:&nbsp;
-      Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
-      </form>
+      {this.defaultCheckedRadioButtons()}
       
       {/* <input type="radio" onClick={this.switchPaymentSeriesType}>Switch payment types </input> */}
       </div>
