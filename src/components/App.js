@@ -43,7 +43,8 @@ class App extends React.Component {
         system_type:'',
         savingsAmount:'',
         installFee:'',
-        monthly_loan_payment: ''
+        monthly_loan_payment: '',
+        cashorloan: ''
       }
     },
     chartData: {
@@ -51,9 +52,11 @@ class App extends React.Component {
         system_type: 'Default',
         system_cost:999999,
         payback:999,
+        loan_payback: 99,
         savingsAmount: 0,
         installFee: 0,
-        monthly_loan_pmt:0
+        monthly_loan_pmt:0,
+        cashorloan: ''
       },
       Baseline: {
         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -172,15 +175,13 @@ class App extends React.Component {
     this.postBillEmailData(bill, email);
   };
 
-  clientInfoUpdater = (fullName, phone, address, system_selected ) => {
+  clientInfoUpdater = (fullName, phone, address, system_selected, paymentType ) => {
     let updatedInput = this.checkStringLengths([fullName, phone, address]);
     //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
     //console.log(updatedInput);
     fullName=updatedInput[0];
     phone=updatedInput[1];
     address=updatedInput[2];
-
-   
     
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.fullName = fullName;
@@ -188,6 +189,7 @@ class App extends React.Component {
     clientProfile.address = address;
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     clientProfile.selectedSystem.system_type = system_selected;
+
     switch(system_selected){
       case("Optimal"):
         clientProfile.selectedSystem.savingsAmount = this.state.chartData.Optimal.savingsAmount;
@@ -223,7 +225,7 @@ class App extends React.Component {
         break;
     }
     this.setState({ clientProfile });
-    this.putClientInfo(fullName, phone, address);
+    this.putClientInfo(fullName, phone, address, system_selected, paymentType, Date(Date.now()).toString());
     this.createFirstCustomerEmail(fullName, phone, address);
   };
 
@@ -267,6 +269,7 @@ class App extends React.Component {
   }
 
   postBillEmailData = (bill, email) => {
+    //console.log();
     fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
       headers: {
@@ -284,7 +287,7 @@ class App extends React.Component {
       })
   };
 
-  putClientInfo = (fullName, phone, address) => {
+  putClientInfo = (fullName, phone, address, selectedSystem, paymentType, time) => {
     fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
@@ -293,7 +296,10 @@ class App extends React.Component {
       body: JSON.stringify({
         fullName: fullName,
         phone: phone,
-        address: address
+        address: address,
+        selectedSystem: selectedSystem,
+        paymentType: paymentType,
+        time: time
       })
     })
       .then(response => response.json())
@@ -342,15 +348,16 @@ class App extends React.Component {
         to: "sales@makello.com",
         bcc: "no-reply@makello.com",
         subject: emailSubject,
-        body: `A new lead had been added to the database.
+        body: `A new lead has been added to the database.
 Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
 Database ID: ${this.state.userId}
 
-Thank you for contacting Makello!
-Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} 
- year payback and $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annual savings with 100% Clean Energy.
-We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
+Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple paybcak for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan 
+
+You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annually with 100% Clean Energy.
+ 
+We selected the optimal ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*`
       })
@@ -379,6 +386,7 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
         body:`Thank you for contacting Makello!
         
 A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+
 You selected the ${this.state.clientProfile.selectedSystem.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
 
 For more information, visit https://makello.com
@@ -398,8 +406,7 @@ MPG Average: N/A
 Plug-In Vehicle Type: N/A
 
 -----------------------------
-You can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
-We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 
         `
       })
@@ -445,8 +452,7 @@ Daily Average Commute (miles): ${dailyTrip}
 MPG Average: ${mpg}
 Plug-In Vehicle Type: ${year} ${make}, ${model}
 ------------------------------
-You can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
-We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 
       `
     })
@@ -474,10 +480,10 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
 
     this.setChartSeriesData(bucket, "Baseline");
     this.setChartSeriesData(bucket, "Economy");
-    this.setChartSeriesData(bucket, "Intermediate");
-    this.setChartSeriesData(bucket, "Premium");
     this.setChartSeriesData(bucket, "Compact");
+    this.setChartSeriesData(bucket, "Intermediate");
     this.setChartSeriesData(bucket, "Standard");
+    this.setChartSeriesData(bucket, "Premium");
 
   };
 
@@ -495,6 +501,7 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
       monthly_loan_pmt:0,
       system_cost: 0
     };
+
     var url = "https://makeitlow-makello-server-stage.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
     fetch(url)
@@ -558,7 +565,6 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
             // get loanpayback for current system type
             var loanYear;
             for( loanYear in series.loanData){
-
               //console.log(series.loanData[loanYear]+" and "+ loanYear);
               if(series.loanData[loanYear] > 0 && loanYear > 0){
                 console.log("Sets loan year to: "+loanYear);
@@ -657,8 +663,9 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
           console.warn("Error: Caught a network/db connection error!");
           console.log(e);
         })
-        return series.payback;
 
+    console.log(series.payback);
+    return series.payback;
   };
 
   checkOptimalDisplayValues(series, chartDataTmp){
@@ -681,6 +688,15 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
     chartDataTmp.Optimal.system_type = series.system_type;
     chartDataTmp.Optimal.system_cost = series.system_cost;
     chartDataTmp.Optimal.payback = series.payback;
+    chartDataTmp.Optimal.loan_payback = series.loan_payback;
+    if(series.payback >=4){
+      console.log("Sets optimal system type to loan" + series.payback + " : " + series.loan_payback);
+      chartDataTmp.Optimal.cashorloan = "(loan)";
+    }
+    else{
+      chartDataTmp.Optimal.cashorloan = "(cash)";
+      console.log("Sets optimal system type to cash" + series.payback + " : " + series.loan_payback);
+    }
 
     chartDataTmp.Optimal.savingsAmount= series.savingsAmount;
     chartDataTmp.Optimal.installFee = series.installFee;
@@ -688,9 +704,17 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
     this.setChartData(chartDataTmp);
   };
 
+  setOptimalPaymentType = (cashorloan) =>{
+    var chartDataTmp = {...this.state.chartData};
+    chartDataTmp.Optimal.cashorloan = cashorloan;
+    this.setChartData(chartDataTmp);
+  }
+
   setChartData = (data) => {
     this.setState({ chartData: data });
   };
+
+  
 
   render() {
 
@@ -715,6 +739,7 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
               emailValidator={this.emailValidator}
               handleSlideChange={this.handleSlideChange}
               getChartData={this.getChartData}
+              sendNewLeadEmail={this.sendNewLeadEmail}
             />
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
@@ -722,6 +747,7 @@ We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgra
               clientInfoUpdater={this.clientInfoUpdater}
               hideChanger={this.hideChanger}
               chartData={this.state.chartData}
+              setOptimalPaymentType ={this.setOptimalPaymentType}
             />
           </div>
           <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>

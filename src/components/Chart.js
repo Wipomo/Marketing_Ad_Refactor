@@ -7,31 +7,34 @@ class Chart extends React.Component {
   state = {
     loanDataNeeded: false,
     cashPaymentClicked: false,
-    loanPaymentClicked: false
+    loanPaymentClicked: false,
   }
+
   switchPaymentSeriesType = (event)=>{
     if(event.target.value === "cash"){
+      this.props.updatePaymentType("cash");
       this.setState({loanDataNeeded: false});
       this.setState({cashPaymentClicked: true});
       this.setState({loanPaymentClicked: false});
-
     }
     else if(event.target.value === "loan"){
+      this.props.updatePaymentType("loan");
       this.setState({loanDataNeeded: true});
       this.setState({cashPaymentClicked: false});
       this.setState({loanPaymentClicked: true});
-
     }
   }
 
   componentDidMount(){
+    console.log("Component Did Mount");
   }
 
   render() {
     
-    const { Baseline, Economy, Compact, Intermediate, Standard, Premium } = this.props.chartData;
+    const { Baseline, Economy, Compact, Intermediate, Standard, Premium} = this.props.chartData;
     var system_type_payback = [];
     let loanDataNeeded = this.state.loanDataNeeded;
+    // let loanDataNeeded = this.props.Optimal.cashorloan;
     system_type_payback.push(Baseline.payback);
     system_type_payback.push(Economy.payback);
     system_type_payback.push(Compact.payback);
@@ -41,22 +44,20 @@ class Chart extends React.Component {
 
     // sort numbers in order rather than lexographically
     system_type_payback.sort(function(a, b){return a-b});
-    console.log(system_type_payback);
+    //console.log(system_type_payback);
 
-
+    // pick lowest 4 systems to be defaultly visible on chart
     system_type_payback = system_type_payback.slice(0,4);
-    // console.log("Determining best paybacks");
-    // console.log(system_type_payback);
 
+    // determine to display cash or loan data
     var system_type_payback_without_baseline = system_type_payback.slice(1);
     if(system_type_payback_without_baseline.every(isBelowThreshold) && this.state.cashPaymentClicked === false){
       //update data to loan data
       // console.log("updating chart to loan data");
       // console.log(system_type_payback);
       loanDataNeeded = true;
-
+      //this.props.setOptimalPaymentType("loan");
     }
-
 
     function isBelowThreshold(currentValue) {
       return currentValue >= 4;

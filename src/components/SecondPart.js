@@ -15,10 +15,13 @@ class SecondPart extends React.Component {
         dropdownOpen: false,
         value:"View energy upgrade plans!",
         system_to_display: "Optimal",
+        paymentType: "cash"
       };
 
       //this.changeSystemTypeDisplayValues = this.changeSystemTypeDisplayValues.bind(this);
-      this.select = this.select.bind(this);
+      this.selectSystem = this.selectSystem.bind(this);
+      this.selectPaymentType = this.selectPaymentType.bind(this);
+
     }
 
   initAutoComplete = () => {
@@ -42,7 +45,7 @@ class SecondPart extends React.Component {
     let fullName = this.nameRef.current.value;
     let phone = this.phoneRef.current.value;
     let address = this.addressRef.current.value;
-    this.props.clientInfoUpdater(fullName, phone, address, this.state.system_to_display);
+    this.props.clientInfoUpdater(fullName, phone, address, this.state.system_to_display, this.state.paymentType);
     this.props.hideChanger('showThirdPart');
   };
 
@@ -52,7 +55,16 @@ class SecondPart extends React.Component {
     });
   }
 
-  select(event) {
+  selectPaymentType(event) {
+    console.log(event);
+    this.setState({
+      paymentType: event,
+    });
+    //console.log("Updating system type to display to:"+ event.target.innerText);
+    //this.changeSystemTypeDisplayValues(event.target.innerText);
+  }
+
+  selectSystem(event) {
 
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
@@ -159,7 +171,7 @@ class SecondPart extends React.Component {
           <div className="row">
             <div className="col-md-10 offset-md-1">
               <div className='m2uChart'>
-                <Chart chartData={this.props.chartData} />
+                <Chart chartData={this.props.chartData} updatePaymentType={this.selectPaymentType} setOptimalPaymentType={this.props.setOptimalPaymentType}/>
               </div>
             </div>
           </div>
@@ -178,12 +190,12 @@ class SecondPart extends React.Component {
                 {this.state.value}
               </DropdownToggle>
               <DropdownMenu>
-              <DropdownItem onClick={this.select}>Optimal</DropdownItem>
-                <DropdownItem onClick={this.select}>Economy</DropdownItem>
-                <DropdownItem onClick={this.select}>Compact</DropdownItem>
-                <DropdownItem onClick={this.select}>Intermediate</DropdownItem>
-                <DropdownItem onClick={this.select}>Standard</DropdownItem>
-                <DropdownItem onClick={this.select}>Premium</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Optimal</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Economy</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Compact</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Intermediate</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Standard</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Premium</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
           </div>
