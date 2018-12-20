@@ -144,22 +144,22 @@ class FirstPart extends React.Component {
                       <li>Are the electric utility account owner, or</li>
                       <li>Have a Standard Domestic Utility Rate</li>
                     </ul>
-                    Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onClick={this.toggle1}>**</span>
+                    Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span>
                   </div>
 
                   <div className="mt-4">
-                    <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $7,999<span className="readme" id="Popover2" onClick={this.toggle2}>*</span></strong>
+                    <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2} onMouseOut={this.toggle2}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></strong>
                   </div>
                 </div>
                 <div className="col-md-5">
                   <p><img className="payback-image img-fluid mx-auto" src="/images/website-pic-2.jpeg" alt="solar"/></p>
-                  <p className="payback-disclaimer">
+                  {/* <p className="payback-disclaimer">
                     **Simple Payback in 1-3 years is possible for SDGE
                     annual electric utility bills on the Standard Domestic Rate, and ineligible
                     for Medical & Low Income discounts.
                     Actual time to Simple Payback depends on Time-Of-Use interval data for electric
                     consumption, and solar PV production variables.
-                  </p>
+                  </p> */}
                 </div>
               </div>
 
@@ -175,10 +175,7 @@ class FirstPart extends React.Component {
 
               <Popover placement="auto" isOpen={this.state.popoverOpen2} target="Popover2" toggle={this.toggle2}>
                 <PopoverBody><div className="payback-disclaimer">
-                    *Donec ullamcorper nulla non metus auctor fringilla. 
-                    Vestibulum id ligula porta felis euismod semper. 
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur. 
-                    Fusce dapibus, tellus ac cursus commodo.
+                *Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
                   </div></PopoverBody>
               </Popover>
 
