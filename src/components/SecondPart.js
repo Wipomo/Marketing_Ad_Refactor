@@ -171,7 +171,7 @@ class SecondPart extends React.Component {
           <div className="row">
             <div className="col-md-10 offset-md-1">
               <div className='m2uChart'>
-                <Chart chartData={this.props.chartData} updatePaymentType={this.selectPaymentType} setOptimalPaymentType={this.props.setOptimalPaymentType}/>
+                <Chart chartData={this.props.chartData} updatePaymentType={this.selectPaymentType}/>
               </div>
             </div>
           </div>

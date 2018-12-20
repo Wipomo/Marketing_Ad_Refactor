@@ -172,7 +172,7 @@ class App extends React.Component {
     console.log("Test user is :"+test);
     clientProfile.test = test;
     this.setState({ clientProfile });
-    this.postBillEmailData(bill, email);
+    this.postBillEmailData(bill, email , Date(Date.now()).toString());
   };
 
   clientInfoUpdater = (fullName, phone, address, system_selected, paymentType ) => {
@@ -225,7 +225,7 @@ class App extends React.Component {
         break;
     }
     this.setState({ clientProfile });
-    this.putClientInfo(fullName, phone, address, system_selected, paymentType, Date(Date.now()).toString());
+    this.putClientInfo(fullName, phone, address, system_selected, paymentType);
     this.createFirstCustomerEmail(fullName, phone, address);
   };
 
@@ -268,7 +268,7 @@ class App extends React.Component {
     return newList;
   }
 
-  postBillEmailData = (bill, email) => {
+  postBillEmailData = (bill, email, time) => {
     //console.log();
     fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
@@ -277,7 +277,8 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         monthlyBill: bill,
-        email: email
+        email: email,
+        time: time
       })
     })
       .then(response => response.json())
@@ -287,7 +288,7 @@ class App extends React.Component {
       })
   };
 
-  putClientInfo = (fullName, phone, address, selectedSystem, paymentType, time) => {
+  putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
     fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
@@ -299,7 +300,6 @@ class App extends React.Component {
         address: address,
         selectedSystem: selectedSystem,
         paymentType: paymentType,
-        time: time
       })
     })
       .then(response => response.json())
@@ -739,7 +739,6 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
               emailValidator={this.emailValidator}
               handleSlideChange={this.handleSlideChange}
               getChartData={this.getChartData}
-              sendNewLeadEmail={this.sendNewLeadEmail}
             />
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>

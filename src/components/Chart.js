@@ -7,7 +7,7 @@ class Chart extends React.Component {
   state = {
     loanDataNeeded: false,
     cashPaymentClicked: false,
-    loanPaymentClicked: false,
+    loanPaymentClicked: false
   }
 
   switchPaymentSeriesType = (event)=>{
@@ -56,7 +56,6 @@ class Chart extends React.Component {
       // console.log("updating chart to loan data");
       // console.log(system_type_payback);
       loanDataNeeded = true;
-      //this.props.setOptimalPaymentType("loan");
     }
 
     function isBelowThreshold(currentValue) {
