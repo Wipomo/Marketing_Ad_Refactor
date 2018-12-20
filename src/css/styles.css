@@ -411,10 +411,7 @@ body {
   padding-bottom: 60px;
 }
 
-/* fifth page */
-
 .fifth-part {
-  height: 100vh;
 }
 
 .vertical-outer {
@@ -628,9 +625,24 @@ body {
 
 .payback {
   margin-top: 15px;
-  padding:30px;
-  background-color: #fff;
+  padding:0px;
   border-bottom:15px solid #D3D3D3;
+  background-color: #fff;
+  background-image: url("/images/website-pic-2.jpeg");
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+@media (min-width: 768px) {
+  .paybackWrapper {
+    padding:15px 15px 30px 30px;
+  }
+}
+@media (max-width: 767px) { 
+  .paybackWrapper {
+    background-color: rgba(255,255,255,0.8);
+    padding:15px 15px 25px 15px;
+  }
 }
 .payback-heading {
   font-weight: 300;
@@ -664,5 +676,5 @@ body {
   cursor: pointer;
 }
 
-
+/*background: rgb(23,3,84,0.5);*/
 
