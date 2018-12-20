@@ -136,30 +136,24 @@ class FirstPart extends React.Component {
 
               <div className="row">
                 <div className="col-md-7">
-                  <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
-                  <div className="lead mt-3">
-                    If you:
-                    <ul>
-                      <li>Own or lease the property,</li>
-                      <li>Are the electric utility account owner, or</li>
-                      <li>Have a Standard Domestic Utility Rate</li>
-                    </ul>
-                    Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span>
+
+                  <div className="paybackWrapper">
+                    <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
+                    <div className="mt-3">
+                      If you:
+                      <ul>
+                        <li>Own or lease the property,</li>
+                        <li>Are the electric utility account owner, or</li>
+                        <li>Have a Standard Domestic Utility Rate</li>
+                      </ul>
+                      Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span>
+                    </div>
+
+                    <div className="mt-4">
+                      <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2} onMouseOut={this.toggle2}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></strong>
+                    </div>
                   </div>
 
-                  <div className="mt-4">
-                    <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2} onMouseOut={this.toggle2}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></strong>
-                  </div>
-                </div>
-                <div className="col-md-5">
-                  <p><img className="payback-image img-fluid mx-auto" src="/images/website-pic-2.jpeg" alt="solar"/></p>
-                  {/* <p className="payback-disclaimer">
-                    **Simple Payback in 1-3 years is possible for SDGE
-                    annual electric utility bills on the Standard Domestic Rate, and ineligible
-                    for Medical & Low Income discounts.
-                    Actual time to Simple Payback depends on Time-Of-Use interval data for electric
-                    consumption, and solar PV production variables.
-                  </p> */}
                 </div>
               </div>
 

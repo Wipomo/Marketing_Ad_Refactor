@@ -138,7 +138,7 @@ showModel = (bool) => {
           <div className="row">
             <div className="col-md-6 offset-md-3">
 
-              <div className='card bg-light mb-5 mt-2 rounded-0'>
+              <div className='card bg-light mt-2 rounded-0'>
                 <div className="card-body p-5">
 
                   <div className="form-group">
