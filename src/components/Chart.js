@@ -30,8 +30,6 @@ class Chart extends React.Component {
   }
   
   defaultCheckedRadioButtons=()=>{
-    console.log("Detemining radio check button");
-    console.log(this.props.chartData.Optimal.cashorloan);
     if(this.props.chartData.Optimal.cashorloan === "(loan)"){
       return <form>
       Choose Payment Type:&nbsp;
@@ -49,7 +47,7 @@ class Chart extends React.Component {
     </form>;
     }
     else{
-      return <p> Nothing to display</p>
+      return <p> Your Personalized Chart Loading...</p>
     }
   };
 
