@@ -26,13 +26,12 @@ class Chart extends React.Component {
   }
 
   componentDidMount(){
-    console.log("Component Did Mount");
   }
   
   defaultCheckedRadioButtons=()=>{
     if(this.props.chartData.Optimal.cashorloan === "(loan)"){
       return <form>
-      Choose Payment Type:&nbsp;
+      Selected Payment Type:&nbsp;
       Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
       &nbsp;&nbsp;&nbsp;&nbsp;
       Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
@@ -40,7 +39,7 @@ class Chart extends React.Component {
     }
     else if(this.props.chartData.Optimal.cashorloan === "(cash)"){
       return <form>
-    Choose Payment Type:&nbsp;
+    Selected Payment Type:&nbsp;
     Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
     &nbsp;&nbsp;&nbsp;&nbsp;
     Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 

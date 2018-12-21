@@ -40,6 +40,7 @@ class App extends React.Component {
       carModel: '',
       saveAmount: '',
       selectedSystem: {
+        selectsSystem: false,
         system_type:'',
         savingsAmount:'',
         installFee:'',
@@ -190,12 +191,15 @@ class App extends React.Component {
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     clientProfile.selectedSystem.system_type = system_selected;
     clientProfile.selectedSystem.cashorloan = paymentType;
+    var customer_selects_preffered_system = true;
+
 
     switch(system_selected){
       case("Optimal"):
         clientProfile.selectedSystem.savingsAmount = this.state.chartData.Optimal.savingsAmount;
         clientProfile.selectedSystem.installFee = this.state.chartData.Optimal.installFee;
         clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Optimal.monthly_loan_pmt;
+        customer_selects_preffered_system = false;
         break;
       case("Economy"):
         clientProfile.selectedSystem.savingsAmount = this.state.chartData.Economy.savingsAmount;
@@ -225,9 +229,11 @@ class App extends React.Component {
       default:
         break;
     }
+    // set boolean of wether customer selects system to send custom email
+    clientProfile.selectedSystem.selectsSystem = customer_selects_preffered_system;
     this.setState({ clientProfile });
     this.putClientInfo(fullName, phone, address, system_selected, paymentType);
-    this.createFirstCustomerEmail(fullName, phone, address);
+    this.createFirstCustomerEmail(fullName, phone, address, customer_selects_preffered_system);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
@@ -244,7 +250,7 @@ class App extends React.Component {
 
     this.setState({ clientProfile });
     this.putCarInfo(dailyTrip, mpg, year, make, model);
-    this.createCustomerEmail(dailyTrip, mpg, year,make,model);
+    this.createCustomerEmail(dailyTrip, mpg, year,make,model, this.state.clientProfile.selectedSystem.selectedSystem);
   };
 
   checkStringLengths = (list)=>{
@@ -365,7 +371,7 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
     })
   };
 
-  createFirstCustomerEmail = (fullName, phone, address) => {
+  createFirstCustomerEmail = (fullName, phone, address, customerSelectsSystem) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
     if(this.state.clientProfile.test){
@@ -375,17 +381,10 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
       emailSubject = `Hello from Makello`;
     }
 
-    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        to: `${this.state.clientProfile.email}`,
-        bcc: "sales@makello.com",
-        subject: emailSubject,
-        body:`Thank you for contacting Makello!
-        
+    var emailBody = '';
+    if(customerSelectsSystem){
+      emailBody = `Thank you for contacting Makello!
+      
 A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
 
 You selected the ${this.state.clientProfile.selectedSystem.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
@@ -411,12 +410,55 @@ Plug-In Vehicle Type: N/A
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 
-        `
+`
+    }
+    else{
+      emailBody= `Thank you for contacting Makello!
+
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+
+We selected the optimal ${this.state.chartData.Optimal.system_type}* energy upgrade for you, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
+For more information, visit https://makello.com
+
+
+*Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
+**After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
+- - - - - - - - - - - - - - - 
+[https://makeitlow-makello.herokuapp.com/]
+Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
+Full Name: ${fullName}
+Phone: ${phone}
+Address: ${address}
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
+Daily Average Commute (miles): N/A
+MPG Average: N/A
+Plug-In Vehicle Type: N/A
+
+-----------------------------
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
+
+  `
+
+    }
+
+    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        to: `${this.state.clientProfile.email}`,
+        bcc: "sales@makello.com",
+        subject: emailSubject,
+        body: emailBody
       })
     })
   };
 
-createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
+createCustomerEmail = (dailyTrip,mpg, make, model, year, customerSelectsSystem ) => {
   //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
   var emailSubject = ``;
     if((this.state.clientProfile.test)){
@@ -425,16 +467,10 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
     else{
       emailSubject = `Hello from Makello`;
     }
-  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      to: `${this.state.clientProfile.email}`,
-      bcc: "sales@makello.com",
-      subject: emailSubject,
-      body:`Thank you for contacting Makello!
+
+    var emailBody = '';
+    if(customerSelectsSystem){
+      emailBody = `Thank you for contacting Makello!
       
 A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
 
@@ -451,16 +487,59 @@ Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleSt
 Email: ${this.state.clientProfile.email}
 Full Name: ${this.state.clientProfile.fullName}
 Phone: ${this.state.clientProfile.phone}
-Address: ${this.state.clientProfile.address} 
+Address: ${this.state.clientProfile.address}
 Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
 Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
 Daily Average Commute (miles): ${dailyTrip}
 MPG Average: ${mpg}
 Plug-In Vehicle Type: ${year} ${make}, ${model}
-------------------------------
+
+-----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 
-      `
+  `
+    }
+    else{
+      emailBody= `Thank you for contacting Makello!
+        
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+  
+We selected the optimal ${this.state.chartData.Optimal.system_type}* energy upgrade for you, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+  
+For more information, visit https://makello.com
+  
+  
+*Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
+**After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
+- - - - - - - - - - - - - - - 
+[https://makeitlow-makello.herokuapp.com/]
+Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
+Full Name: ${this.state.clientProfile.fullName}
+Phone: ${this.state.clientProfile.phone}
+Address: ${this.state.clientProfile.address}
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
+Daily Average Commute (miles): ${dailyTrip}
+MPG Average: ${mpg}
+Plug-In Vehicle Type: ${year} ${make}, ${model}
+
+-----------------------------
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
+
+  `
+
+    }
+  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      to: `${this.state.clientProfile.email}`,
+      bcc: "sales@makello.com",
+      subject: emailSubject,
+      body:emailBody
     })
   })
 };
@@ -670,7 +749,6 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
           console.log(e);
         })
 
-    console.log(series.payback);
     return series.payback;
   };
 
