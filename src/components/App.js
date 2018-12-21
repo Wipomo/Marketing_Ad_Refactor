@@ -38,56 +38,86 @@ class App extends React.Component {
       carYear: '',
       carMake: '',
       carModel: '',
-      saveAmount: ''
+      saveAmount: '',
+      selectedSystem: {
+        selectsSystem: false,
+        system_type:'',
+        savingsAmount:'',
+        installFee:'',
+        monthly_loan_payment: '',
+        cashorloan: ''
+      }
     },
     chartData: {
       Optimal:{
         system_type: 'Default',
         system_cost:999999,
         payback:999,
+        loan_payback: 99,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0,
+        cashorloan: ''
+      },
+      Baseline: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        visible: true
+      },
+      Economy: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
+        system_cost:0,
+        visible: false,
         savingsAmount: 0,
         installFee: 0,
         monthly_loan_pmt:0
       },
-      Baseline: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        visible: true
-      },
-      Economy: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        payback: 0,
-        system_cost:0,
-        visible: false
-      },
       Compact: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       },
       Intermediate: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       },
       Standard: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       },
       Premium: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
         system_cost:0,
-        visible: false
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       }
     },
     userId: 0,
@@ -143,25 +173,67 @@ class App extends React.Component {
     console.log("Test user is :"+test);
     clientProfile.test = test;
     this.setState({ clientProfile });
-    this.postBillEmailData(bill, email);
+    this.postBillEmailData(bill, email , Date(Date.now()).toString());
   };
 
-  clientInfoUpdater = (fullName, phone, address) => {
+  clientInfoUpdater = (fullName, phone, address, system_selected, paymentType ) => {
     let updatedInput = this.checkStringLengths([fullName, phone, address]);
-    console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
-    console.log(updatedInput);
+    //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
+    //console.log(updatedInput);
     fullName=updatedInput[0];
     phone=updatedInput[1];
     address=updatedInput[2];
-
+    
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.fullName = fullName;
     clientProfile.phone = phone;
     clientProfile.address = address;
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
+    clientProfile.selectedSystem.system_type = system_selected;
+    clientProfile.selectedSystem.cashorloan = paymentType;
+    var customer_selects_preffered_system = true;
+
+
+    switch(system_selected){
+      case("Optimal"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Optimal.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Optimal.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Optimal.monthly_loan_pmt;
+        customer_selects_preffered_system = false;
+        break;
+      case("Economy"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Economy.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Economy.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Economy.monthly_loan_pmt;
+        break;
+      case("Compact"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Compact.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Compact.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Compact.monthly_loan_pmt;
+        break;
+      case("Intermediate"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Intermediate.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Intermediate.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Intermediate.monthly_loan_pmt;
+          break;
+      case("Standard"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Standard.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Standard.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Standard.monthly_loan_pmt;
+        break;
+      case("Premium"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Premium.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Premium.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Premium.monthly_loan_pmt;
+        break;
+      default:
+        break;
+    }
+    // set boolean of wether customer selects system to send custom email
+    clientProfile.selectedSystem.selectsSystem = customer_selects_preffered_system;
     this.setState({ clientProfile });
-    this.putClientInfo(fullName, phone, address);
-    this.createFirstCustomerEmail(fullName, phone, address, this.state.chartData.Optimal.system_type);
+    this.putClientInfo(fullName, phone, address, system_selected, paymentType);
+    this.createFirstCustomerEmail(fullName, phone, address, customer_selects_preffered_system);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
@@ -178,7 +250,7 @@ class App extends React.Component {
 
     this.setState({ clientProfile });
     this.putCarInfo(dailyTrip, mpg, year, make, model);
-    this.createCustomerEmail(dailyTrip, mpg, year,make,model);
+    this.createCustomerEmail(dailyTrip, mpg, year,make,model, this.state.clientProfile.selectedSystem.selectedSystem);
   };
 
   checkStringLengths = (list)=>{
@@ -203,15 +275,17 @@ class App extends React.Component {
     return newList;
   }
 
-  postBillEmailData = (bill, email) => {
-    fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
+  postBillEmailData = (bill, email, time) => {
+    //console.log();
+    fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         monthlyBill: bill,
-        email: email
+        email: email,
+        time: time
       })
     })
       .then(response => response.json())
@@ -221,8 +295,8 @@ class App extends React.Component {
       })
   };
 
-  putClientInfo = (fullName, phone, address) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+  putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -230,7 +304,9 @@ class App extends React.Component {
       body: JSON.stringify({
         fullName: fullName,
         phone: phone,
-        address: address
+        address: address,
+        selectedSystem: selectedSystem,
+        paymentType: paymentType,
       })
     })
       .then(response => response.json())
@@ -238,7 +314,7 @@ class App extends React.Component {
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -270,7 +346,7 @@ class App extends React.Component {
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -279,22 +355,23 @@ class App extends React.Component {
         to: "sales@makello.com",
         bcc: "no-reply@makello.com",
         subject: emailSubject,
-        body: `A new lead had been added to the database.
+        body: `A new lead has been added to the database.
 Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
 Database ID: ${this.state.userId}
 
-Thank you for contacting Makello!
-Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} 
- year payback and $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}  annual savings with 100% Clean Energy.
-We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
+Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple payback for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan. 
+
+You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+ 
+We selected the optimal ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*`
       })
     })
   };
 
-  createFirstCustomerEmail = (fullName, phone, address, system_type) => {
+  createFirstCustomerEmail = (fullName, phone, address, customerSelectsSystem) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
     if(this.state.clientProfile.test){
@@ -304,19 +381,13 @@ $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.lang
       emailSubject = `Hello from Makello`;
     }
 
-    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        to: `${this.state.clientProfile.email}`,
-        bcc: "sales@makello.com",
-        subject: emailSubject,
-        body:`Thank you for contacting Makello!
-        
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
-We selected an an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+    var emailBody = '';
+    if(customerSelectsSystem){
+      emailBody = `Thank you for contacting Makello!
+      
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+
+You selected the ${this.state.clientProfile.selectedSystem.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
 
 For more information, visit https://makello.com
 
@@ -329,16 +400,65 @@ Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleSt
 Email: ${this.state.clientProfile.email}
 Full Name: ${fullName}
 Phone: ${phone}
-Address: ${address} 
+Address: ${address}
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
 Daily Average Commute (miles): N/A
 MPG Average: N/A
 Plug-In Vehicle Type: N/A
-        `
+
+-----------------------------
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
+
+`
+    }
+    else{
+      emailBody= `Thank you for contacting Makello!
+
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+
+We selected the optimal ${this.state.chartData.Optimal.system_type}* energy upgrade for you, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+
+For more information, visit https://makello.com
+
+
+*Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
+**After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
+- - - - - - - - - - - - - - - 
+[https://makeitlow-makello.herokuapp.com/]
+Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
+Full Name: ${fullName}
+Phone: ${phone}
+Address: ${address}
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
+Daily Average Commute (miles): N/A
+MPG Average: N/A
+Plug-In Vehicle Type: N/A
+
+-----------------------------
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
+
+  `
+
+    }
+
+    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        to: `${this.state.clientProfile.email}`,
+        bcc: "sales@makello.com",
+        subject: emailSubject,
+        body: emailBody
       })
     })
   };
 
-createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
+createCustomerEmail = (dailyTrip,mpg, make, model, year, customerSelectsSystem ) => {
   //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
   var emailSubject = ``;
     if((this.state.clientProfile.test)){
@@ -347,19 +467,14 @@ createCustomerEmail = (dailyTrip,mpg, make, model, year) => {
     else{
       emailSubject = `Hello from Makello`;
     }
-  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      to: `${this.state.clientProfile.email}`,
-      bcc: "sales@makello.com",
-      subject: emailSubject,
-      body:`Thank you for contacting Makello!
+
+    var emailBody = '';
+    if(customerSelectsSystem){
+      emailBody = `Thank you for contacting Makello!
       
-A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
-We selected an optimal ${this.state.chartData.Optimal.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+
+You selected the ${this.state.clientProfile.selectedSystem.system_type}* energy upgrade, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
 
 For more information, visit https://makello.com
 
@@ -372,11 +487,59 @@ Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleSt
 Email: ${this.state.clientProfile.email}
 Full Name: ${this.state.clientProfile.fullName}
 Phone: ${this.state.clientProfile.phone}
-Address: ${this.state.clientProfile.address} 
+Address: ${this.state.clientProfile.address}
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
 Daily Average Commute (miles): ${dailyTrip}
 MPG Average: ${mpg}
 Plug-In Vehicle Type: ${year} ${make}, ${model}
-      `
+
+-----------------------------
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
+
+  `
+    }
+    else{
+      emailBody= `Thank you for contacting Makello!
+        
+A representative will be in touch with you soon to discuss how you can save up to ${"$" + Number(this.state.clientProfile.selectedSystem.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+  
+We selected the optimal ${this.state.chartData.Optimal.system_type}* energy upgrade for you, for as low as ${"$" + Number(this.state.clientProfile.selectedSystem.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} or ${"$" + Number(this.state.clientProfile.selectedSystem.monthly_loan_payment).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/month**.
+  
+For more information, visit https://makello.com
+  
+  
+*Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation.
+**After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit
+- - - - - - - - - - - - - - - 
+[https://makeitlow-makello.herokuapp.com/]
+Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+Email: ${this.state.clientProfile.email}
+Full Name: ${this.state.clientProfile.fullName}
+Phone: ${this.state.clientProfile.phone}
+Address: ${this.state.clientProfile.address}
+Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
+Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
+Daily Average Commute (miles): ${dailyTrip}
+MPG Average: ${mpg}
+Plug-In Vehicle Type: ${year} ${make}, ${model}
+
+-----------------------------
+Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
+
+  `
+
+    }
+  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      to: `${this.state.clientProfile.email}`,
+      bcc: "sales@makello.com",
+      subject: emailSubject,
+      body:emailBody
     })
   })
 };
@@ -402,10 +565,10 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
     this.setChartSeriesData(bucket, "Baseline");
     this.setChartSeriesData(bucket, "Economy");
-    this.setChartSeriesData(bucket, "Intermediate");
-    this.setChartSeriesData(bucket, "Premium");
     this.setChartSeriesData(bucket, "Compact");
+    this.setChartSeriesData(bucket, "Intermediate");
     this.setChartSeriesData(bucket, "Standard");
+    this.setChartSeriesData(bucket, "Premium");
 
   };
 
@@ -417,12 +580,14 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
       data: [],
       loanData: [],
       payback: 0,
+      loan_payback:0,
       savingsAmount:0,
       installFee: 0,
       monthly_loan_pmt:0,
       system_cost: 0
     };
-    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
+
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
     fetch(url)
         .then((response) => {
@@ -451,21 +616,59 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
 
             // // get chart loan data
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr0']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr1']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr2']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr3']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr4']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr5']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr6']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr7']);
-            // series.loanData.push(data['bucket_rows'][0]['accfloanyr8']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr9']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr10']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr11']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr12']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr13']);
-            // series.loanData.push(data['bucket_rows'][0]['ccfloanyr14']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr0']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr1']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr2']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr3']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr4']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr5']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr6']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr7']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr8']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr9']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr10']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr11']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr12']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr13']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr14']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr15']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr16']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr17']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr18']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr19']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr20']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr21']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr22']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr23']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr24']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr25']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr26']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr27']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr28']);
+            series.loanData.push(data['bucket_rows'][0]['ccfloanyr29']);
+
+            // get loanpayback for current system type
+            var loanYear;
+            for( loanYear in series.loanData){
+              //console.log(series.loanData[loanYear]+" and "+ loanYear);
+              if(series.loanData[loanYear] > 0 && loanYear > 0){
+                console.log("Sets loan year to: "+loanYear);
+                console.log(typeof(loanYear));
+                var prevYearLoanValue = series.loanData[loanYear-1];
+                var breakEvenYearLoanValue = series.loanData[loanYear];
+                var decimal = (prevYearLoanValue/(prevYearLoanValue+breakEvenYearLoanValue));
+                //console.log("Decimal is: "+ decimal);
+                //console.log(typeof(decimal));
+                //console.log("Payback is "+ loanYear+" + " + decimal+ " = " + loanYear+decimal);
+                series.loan_payback = Number(loanYear) + decimal;
+                break;
+              }
+              else{
+                console.log(data['bucket_rows'][0]['system_type']);
+              }
+            }
+
+            series.loanData = series.loanData.slice(0,15);
           
             // get data for display on Second Part
             series.system_cost = Number(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
@@ -480,37 +683,59 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             switch(system_type){
               case "Baseline":
                 chartDataTmp.Baseline.data = series.data.map( element => Number(element));
-                //chartDataTmp.Baseline.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Baseline.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Baseline.payback = series.payback;
                 break;
               case "Economy":
                 chartDataTmp.Economy.data = series.data.map( element => Number(element));
-                //chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Economy.loan_payback = series.loan_payback;
+                //console.log("Economy Loan payback is :"+series.loan_payback);
                 chartDataTmp.Economy.payback = series.payback;
+                chartDataTmp.Economy.savingsAmount = series.savingsAmount;
+                chartDataTmp.Economy.installFee = series.installFee;
+                chartDataTmp.Economy.monthly_loan_pmt = series.monthly_loan_pmt;
+
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Compact":
                 chartDataTmp.Compact.data = series.data.map( element => Number(element));
-                //chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Compact.loan_payback = series.loan_payback;
                 chartDataTmp.Compact.payback = series.payback;
+                chartDataTmp.Compact.savingsAmount = series.savingsAmount;
+                chartDataTmp.Compact.installFee = series.installFee;
+                chartDataTmp.Compact.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Intermediate":
                 chartDataTmp.Intermediate.data = series.data.map( element => Number(element));
-                //chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Intermediate.loan_payback = series.loan_payback;
                 chartDataTmp.Intermediate.payback = series.payback;
+                chartDataTmp.Intermediate.savingsAmount = series.savingsAmount;
+                chartDataTmp.Intermediate.installFee = series.installFee;
+                chartDataTmp.Intermediate.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
-                //chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Standard.loan_payback = series.loan_payback;
                 chartDataTmp.Standard.payback = series.payback;
+                chartDataTmp.Standard.savingsAmount = series.savingsAmount;
+                chartDataTmp.Standard.installFee = series.installFee;
+                chartDataTmp.Standard.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Premium":
                 chartDataTmp.Premium.data = series.data.map( element => Number(element));
-                //chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Premium.loan_payback = series.loan_payback;
                 chartDataTmp.Premium.payback = series.payback;
+                chartDataTmp.Premium.savingsAmount = series.savingsAmount;
+                chartDataTmp.Premium.installFee = series.installFee;
+                chartDataTmp.Premium.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               default:
@@ -523,8 +748,8 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
           console.warn("Error: Caught a network/db connection error!");
           console.log(e);
         })
-        return series.payback;
 
+    return series.payback;
   };
 
   checkOptimalDisplayValues(series, chartDataTmp){
@@ -547,15 +772,33 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
     chartDataTmp.Optimal.system_type = series.system_type;
     chartDataTmp.Optimal.system_cost = series.system_cost;
     chartDataTmp.Optimal.payback = series.payback;
+    chartDataTmp.Optimal.loan_payback = series.loan_payback;
+    if(series.payback >=4){
+      console.log("Sets optimal system type to loan" + series.payback + " : " + series.loan_payback);
+      chartDataTmp.Optimal.cashorloan = "(loan)";
+    }
+    else{
+      chartDataTmp.Optimal.cashorloan = "(cash)";
+      console.log("Sets optimal system type to cash" + series.payback + " : " + series.loan_payback);
+    }
+
     chartDataTmp.Optimal.savingsAmount= series.savingsAmount;
     chartDataTmp.Optimal.installFee = series.installFee;
     chartDataTmp.Optimal.monthly_loan_pmt= series.monthly_loan_pmt;
     this.setChartData(chartDataTmp);
   };
 
+  setOptimalPaymentType = (cashorloan) =>{
+    var chartDataTmp = {...this.state.chartData};
+    chartDataTmp.Optimal.cashorloan = cashorloan;
+    this.setChartData(chartDataTmp);
+  }
+
   setChartData = (data) => {
     this.setState({ chartData: data });
   };
+
+  
 
   render() {
 
@@ -586,7 +829,9 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
             <SecondPart
               clientInfoUpdater={this.clientInfoUpdater}
               hideChanger={this.hideChanger}
-              chartData={this.state.chartData}/>
+              chartData={this.state.chartData}
+              setOptimalPaymentType ={this.setOptimalPaymentType}
+            />
           </div>
           <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
             <ThirdPart hideChanger={this.hideChanger} />
@@ -598,8 +843,10 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
           <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
             <FifthPart hideChanger={this.hideChanger} />
           </div>
-          <p className="footerText">&copy; Copyright 2018 Makello.<br></br>
-          <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a></p>
+          <p className="mcTextCopyright">&copy; Copyright 2018 Makello.
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a>
+          </p>
         </div>
       </div>
     );

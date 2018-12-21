@@ -18,7 +18,7 @@ class FifthPart extends React.Component {
               <div>Add us to your Contacts to receive a personalized <a href="https://www.makello.com/energy-analysis.html">Energy Analysis</a> from <a href="https://www.makello.com/">Makello</a>!</div>
           </div>
           
-          <div className='jumbotron text-center rounded-0 border-0'>
+          <div className='jumbotron text-center rounded-0 border-0 mb-0'>
             <div className='row'>
               <div className="col-md-4 offset-md-4">
                 <img className="full-width" border="1px" src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />

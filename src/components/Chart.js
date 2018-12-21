@@ -3,29 +3,79 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 class Chart extends React.Component {
+
+  state = {
+    loanDataNeeded: false,
+    cashPaymentClicked: false,
+    loanPaymentClicked: false
+  }
+
+  switchPaymentSeriesType = (event)=>{
+    if(event.target.value === "cash"){
+      this.props.updatePaymentType("cash");
+      this.setState({loanDataNeeded: false});
+      this.setState({cashPaymentClicked: true});
+      this.setState({loanPaymentClicked: false});
+    }
+    else if(event.target.value === "loan"){
+      this.props.updatePaymentType("loan");
+      this.setState({loanDataNeeded: true});
+      this.setState({cashPaymentClicked: false});
+      this.setState({loanPaymentClicked: true});
+    }
+  }
+
+  componentDidMount(){
+  }
+  
+  defaultCheckedRadioButtons=()=>{
+    if(this.props.chartData.Optimal.cashorloan === "(loan)"){
+      return <form>
+      Selected Payment Type:&nbsp;
+      Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
+      </form>;
+    }
+    else if(this.props.chartData.Optimal.cashorloan === "(cash)"){
+      return <form>
+    Selected Payment Type:&nbsp;
+    Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
+    </form>;
+    }
+    else{
+      return <p> Your Personalized Chart Loading...</p>
+    }
+  };
+
   render() {
-   // console.log(this.props.chartData);
     
-    const { Baseline, Economy, Compact, Intermediate, Standard, Premium } = this.props.chartData;
+    const { Baseline, Economy, Compact, Intermediate, Standard, Premium} = this.props.chartData;
     var system_type_payback = [];
-    var loanDataNeeded = false;
+    let loanDataNeeded = this.state.loanDataNeeded;
+    // let loanDataNeeded = this.props.Optimal.cashorloan;
     system_type_payback.push(Baseline.payback);
     system_type_payback.push(Economy.payback);
     system_type_payback.push(Compact.payback);
     system_type_payback.push(Intermediate.payback);
     system_type_payback.push(Standard.payback);
     system_type_payback.push(Premium.payback);
-    system_type_payback.sort();
-    console.log(system_type_payback);
+
+    // sort numbers in order rather than lexographically
+    system_type_payback.sort(function(a, b){return a-b});
+    //console.log(system_type_payback);
+
+    // pick lowest 4 systems to be defaultly visible on chart
     system_type_payback = system_type_payback.slice(0,4);
-    console.log("Determining best paybacks");
-    console.log(system_type_payback);
 
-
-    if(system_type_payback.every(isBelowThreshold)){
+    // determine to display cash or loan data
+    var system_type_payback_without_baseline = system_type_payback.slice(1);
+    if(system_type_payback_without_baseline.every(isBelowThreshold) && this.state.cashPaymentClicked === false){
       //update data to loan data
-      console.log("updating chart to loan data");
-      console.log(system_type_payback);
+      // console.log("updating chart to loan data");
+      // console.log(system_type_payback);
       loanDataNeeded = true;
     }
 
@@ -40,7 +90,7 @@ class Chart extends React.Component {
         type: 'line'
       },
       title: {
-        text: 'Savings Over Time',
+        text: loanDataNeeded ? 'Loan Savings Over Time' : 'Savings Over Time',
         style: {
           fontSize: '24px', 
           fontWeight:'bold',
@@ -84,9 +134,6 @@ class Chart extends React.Component {
         }
       },
       
-      //colors: ['#6CF', '#39F', '#06C', '#036'],
-      //colors: ['#379AE8', '#48C06D', '#F0D149', '#F04E53'],
-      //colors: ['#000000', '#F3BE24', '#E4005D', '#76DDF4', '#379AE8', '#48C06D'],
       colors: ['#ff0000','#8B008B','#000000','#ffff00','#379AE8', '#00b050'],
 
       series: [{
@@ -100,7 +147,7 @@ class Chart extends React.Component {
           radius: 5
         },
       },{
-        name: "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Economy (Loan Payback "+ Economy.loan_payback.toPrecision(2) +" Years)" : "Economy (Payback "+ Economy.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Economy.loanData : Economy.data,
         dashStyle: 'shortdot',
         visible: system_type_payback.includes(Economy.payback),
@@ -110,7 +157,7 @@ class Chart extends React.Component {
           radius: 4
         },
       }, {
-        name: "Compact (Payback "+ Compact.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Compact (Loan Payback "+ Compact.loan_payback.toPrecision(2) +" Years)" : "Compact (Payback "+ Compact.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Compact.loanData : Compact.data,
         dashStyle: 'shortdash',
         visible: system_type_payback.includes(Compact.payback),
@@ -121,7 +168,7 @@ class Chart extends React.Component {
         }
 
       }, {
-        name: "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Intermediate (Loan Payback "+ Intermediate.loan_payback.toPrecision(2) +" Years)" : "Intermediate (Payback "+ Intermediate.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Intermediate.loanData : Intermediate.data,
         dashStyle: 'solid',
         visible: system_type_payback.includes(Intermediate.payback),
@@ -132,7 +179,7 @@ class Chart extends React.Component {
           radius: 5
         },
       }, {
-        name: "Standard (Payback "+ Standard.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Standard (Loan Payback "+ Standard.loan_payback.toPrecision(2) +" Years)" : "Standard (Payback "+ Standard.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Standard.loanData : Standard.data,
         dashStyle: 'longdash',
         visible: system_type_payback.includes(Standard.payback),
@@ -142,7 +189,7 @@ class Chart extends React.Component {
           radius: 5
         }
       },{
-        name: "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Premium (Loan Payback "+ Premium.loan_payback.toPrecision(2) +" Years)" : "Premium (Payback "+ Premium.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Premium.loanData : Premium.data,
         dashStyle: 'shortdot',
         visible: system_type_payback.includes(Premium.payback),
@@ -170,7 +217,13 @@ class Chart extends React.Component {
         itemStyle: {
           fontSize: '16px',
         },
-        itemDistance: 100
+        itemDistance: 100,
+        title: {
+            text: 'Click any package below to show or hide',
+            style: {
+                fontStyle: 'italic'
+            }
+        },
       },
 
       responsive: {
@@ -191,10 +244,16 @@ class Chart extends React.Component {
     };
 
     return (
+      <div>
       <HighchartsReact
         highcharts={Highcharts}
         options={options}
       />
+      
+      {this.defaultCheckedRadioButtons()}
+      
+      {/* <input type="radio" onClick={this.switchPaymentSeriesType}>Switch payment types </input> */}
+      </div>
     );
   }
 }

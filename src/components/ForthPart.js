@@ -130,7 +130,7 @@ showModel = (bool) => {
 
           <div className='p-2'>
 
-            <h3 className="text-center">Interested to see how much an electric car can increase savings?</h3>
+            <h3 className="text-center">Interested to see how much a Plug-In Vehicle can increase savings?</h3>
             <input className='hidden' type='submit' value="" onClick={this.submitHandler} />
 
           </div>
@@ -138,7 +138,7 @@ showModel = (bool) => {
           <div className="row">
             <div className="col-md-6 offset-md-3">
 
-              <div className='card bg-light mb-5 mt-2 rounded-0'>
+              <div className='card bg-light mt-2 rounded-0'>
                 <div className="card-body p-5">
 
                   <div className="form-group">
@@ -146,11 +146,11 @@ showModel = (bool) => {
                     <input type="text" className="form-control" id="inputDailyTrip" onChange={this.setdailyTrip} />
                   </div>
                   <div className="form-group">
-                    <label>What is your miles per gallon average?</label>
+                    <label>What is your average miles per gallon?</label>
                     <input type="text" className="form-control" id="inputMPG" onChange={this.setMpg}/>
                   </div>
                   <div className="form-group">
-                    <label>Electric Vehicle Type</label>
+                    <label>Plug-In Vehicle Type</label>
                     <CarMenu 
                       setYear={this.setYear} setMake={this.setMake} setModel={this.setModel}
                       year={this.state.year} make={this.state.make} model={this.state.model}
