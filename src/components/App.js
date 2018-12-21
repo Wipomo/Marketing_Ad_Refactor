@@ -230,6 +230,8 @@ class App extends React.Component {
         break;
     }
     // set boolean of wether customer selects system to send custom email
+    console.log("Customer selects preferred system: ");
+    console.log(customer_selects_preffered_system);
     clientProfile.selectedSystem.selectsSystem = customer_selects_preffered_system;
     this.setState({ clientProfile });
     this.putClientInfo(fullName, phone, address, system_selected, paymentType);
@@ -250,7 +252,7 @@ class App extends React.Component {
 
     this.setState({ clientProfile });
     this.putCarInfo(dailyTrip, mpg, year, make, model);
-    this.createCustomerEmail(dailyTrip, mpg, year,make,model, this.state.clientProfile.selectedSystem.selectedSystem);
+    this.createCustomerEmail(dailyTrip, mpg, year,make,model, this.state.clientProfile.selectedSystem.selectsSystem);
   };
 
   checkStringLengths = (list)=>{
