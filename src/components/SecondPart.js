@@ -56,7 +56,6 @@ class SecondPart extends React.Component {
   }
 
   selectPaymentType(event) {
-    console.log(event);
     this.setState({
       paymentType: event,
     });

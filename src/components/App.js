@@ -277,7 +277,7 @@ class App extends React.Component {
 
   postBillEmailData = (bill, email, time) => {
     //console.log();
-    fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
+    fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -296,7 +296,7 @@ class App extends React.Component {
   };
 
   putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
-    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -314,7 +314,7 @@ class App extends React.Component {
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
-    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -346,7 +346,7 @@ class App extends React.Component {
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -444,7 +444,7 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
 
     }
 
-    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
+    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -530,7 +530,7 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
   `
 
     }
-  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
+  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -587,7 +587,7 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
       system_cost: 0
     };
 
-    var url = "https://makeitlow-makello-server-stage.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
+    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
 
     fetch(url)
         .then((response) => {
@@ -652,8 +652,8 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
             for( loanYear in series.loanData){
               //console.log(series.loanData[loanYear]+" and "+ loanYear);
               if(series.loanData[loanYear] > 0 && loanYear > 0){
-                console.log("Sets loan year to: "+loanYear);
-                console.log(typeof(loanYear));
+                // console.log("Sets loan year to: "+loanYear);
+                // console.log(typeof(loanYear));
                 var prevYearLoanValue = series.loanData[loanYear-1];
                 var breakEvenYearLoanValue = series.loanData[loanYear];
                 var decimal = (prevYearLoanValue/(prevYearLoanValue+breakEvenYearLoanValue));
@@ -663,9 +663,7 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
                 series.loan_payback = Number(loanYear) + decimal;
                 break;
               }
-              else{
-                console.log(data['bucket_rows'][0]['system_type']);
-              }
+              
             }
 
             series.loanData = series.loanData.slice(0,15);
