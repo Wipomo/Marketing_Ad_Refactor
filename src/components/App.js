@@ -287,7 +287,8 @@ class App extends React.Component {
       body: JSON.stringify({
         monthlyBill: bill,
         email: email,
-        time: time
+        time: time,
+        trafficSource: "HD1"
       })
     })
       .then(response => response.json())
@@ -368,7 +369,8 @@ You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleStrin
  
 We selected the optimal ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan} energy upgrade package for you!
 
-$${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*`
+$${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
+Source: HD1`
       })
     })
   };
@@ -411,8 +413,7 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-
-`
+Source: HD1`
     }
     else{
       emailBody= `Thank you for contacting Makello!
@@ -441,8 +442,7 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-
-  `
+Source: HD1`
 
     }
 
@@ -498,8 +498,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-
-  `
+Source: HD1`
     }
     else{
       emailBody= `Thank you for contacting Makello!
@@ -528,8 +527,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-
-  `
+Source: HD1`
 
     }
   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
