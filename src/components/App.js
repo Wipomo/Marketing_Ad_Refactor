@@ -278,13 +278,11 @@ class App extends React.Component {
   }
 
   postBillEmailData = (bill, email, time) => {
-    //console.log(document.referrer);
-    console.log("Confirm refferer");
-    console.log(document.referrer);
+    var myReferer="Direct Access, No Referrer";
 
     if (document.referrer) {
       console.log("Confirming refferer");
-      var myReferer = document.referrer;
+      myReferer = document.referrer;
       console.log(myReferer);
     }
 
@@ -297,7 +295,7 @@ class App extends React.Component {
         monthlyBill: bill,
         email: email,
         time: time,
-        trafficSource: document.referrer
+        trafficSource: myReferer
       })
     })
       .then(response => response.json())
