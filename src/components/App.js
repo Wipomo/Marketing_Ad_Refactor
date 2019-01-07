@@ -452,7 +452,6 @@ Plug-In Vehicle Type: N/A
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
   `
-
     }
 
     fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
@@ -539,7 +538,6 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
   `
-
     }
   fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
     method: "POST",
