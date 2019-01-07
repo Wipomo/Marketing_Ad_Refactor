@@ -279,7 +279,7 @@ class App extends React.Component {
 
   postBillEmailData = (bill, email, time) => {
     //console.log(document.referrer);
-    console.log("Confirming refferer");
+    console.log("Confirm refferer");
     console.log(document.referrer);
 
     if (document.referrer) {
@@ -379,7 +379,7 @@ You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleStrin
 We selected the optimal ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
-Source: LB`
+Source: ${document.referrer}`
       })
     })
   };
@@ -422,7 +422,7 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: LB
+Source: ${document.referrer}
 `
     }
     else{
@@ -452,7 +452,7 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: LB
+Source: ${document.referrer}
   `
 
     }
@@ -509,7 +509,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: LB
+Source: ${document.referrer}
   `
     }
     else{
@@ -539,7 +539,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: LB
+Source: ${document.referrer}
   `
 
     }
