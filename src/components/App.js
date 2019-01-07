@@ -278,7 +278,13 @@ class App extends React.Component {
   }
 
   postBillEmailData = (bill, email, time) => {
-    //console.log();
+    //console.log(document.referrer);
+    if (document.referrer) {
+      console.log("Confirming refferer");
+      var myReferer = document.referrer;
+      console.log(myReferer);
+    }
+
     fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
       headers: {
@@ -288,7 +294,7 @@ class App extends React.Component {
         monthlyBill: bill,
         email: email,
         time: time,
-        trafficSource: "LB"
+        trafficSource: document.referrer
       })
     })
       .then(response => response.json())
