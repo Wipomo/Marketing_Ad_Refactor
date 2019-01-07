@@ -278,8 +278,15 @@ class App extends React.Component {
   }
 
   postBillEmailData = (bill, email, time) => {
-    //console.log();
-    fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
+    var myReferer="Direct Access, No Referrer";
+
+    if (document.referrer) {
+      console.log("Confirming refferer");
+      myReferer = document.referrer;
+      console.log(myReferer);
+    }
+
+    fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -288,7 +295,7 @@ class App extends React.Component {
         monthlyBill: bill,
         email: email,
         time: time,
-        trafficSource: "HD1"
+        trafficSource: myReferer
       })
     })
       .then(response => response.json())
@@ -299,7 +306,7 @@ class App extends React.Component {
   };
 
   putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -317,7 +324,7 @@ class App extends React.Component {
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -349,7 +356,7 @@ class App extends React.Component {
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -370,7 +377,7 @@ You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleStrin
 We selected the optimal ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
-Source: HD1`
+Source: ${document.referrer}`
       })
     })
   };
@@ -413,7 +420,8 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: HD1`
+Source: ${document.referrer}
+`
     }
     else{
       emailBody= `Thank you for contacting Makello!
@@ -442,11 +450,11 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: HD1`
-
+Source: ${document.referrer}
+  `
     }
 
-    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -498,7 +506,8 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: HD1`
+Source: ${document.referrer}
+  `
     }
     else{
       emailBody= `Thank you for contacting Makello!
@@ -527,10 +536,10 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: HD1`
-
+Source: ${document.referrer}
+  `
     }
-  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -563,89 +572,89 @@ Source: HD1`
     // we do this by picking out certain columns to fill our chartData object,
     console.log("Monthly bill is: "+monthlyBill+" and Bucket is: "+bucket);
 
-    this.setChartSeriesData(bucket, "Baseline");
-    this.setChartSeriesData(bucket, "Economy");
-    this.setChartSeriesData(bucket, "Compact");
-    this.setChartSeriesData(bucket, "Intermediate");
-    this.setChartSeriesData(bucket, "Standard");
-    this.setChartSeriesData(bucket, "Premium");
+    this.setChartSeriesData(bucket);
 
   };
 
 
-  setChartSeriesData(bucket, system_type){
+  setChartSeriesData(bucket){
 
-    var series= {
-      system_type: system_type,
-      data: [],
-      loanData: [],
-      payback: 0,
-      loan_payback:0,
-      savingsAmount:0,
-      installFee: 0,
-      monthly_loan_pmt:0,
-      system_cost: 0
-    };
-
-    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket + "/" +system_type;
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/get-chart-data/" + bucket;
 
     fetch(url)
         .then((response) => {
+          
             return response.text()
         })
         .then((response_in_text) => {
             return JSON.parse(response_in_text)
         })
         .then((data) => {
+          var chartDataTmp = {...this.state.chartData};
+          var row;
+          for (row = 0; row<6; row++){
+            var series= {
+              system_type:"",
+              bucket: bucket,
+              data: [],
+              loanData: [],
+              payback: 0,
+              loan_payback:0,
+              savingsAmount:0,
+              installFee: 0,
+              monthly_loan_pmt:0,
+              system_cost: 0
+            };
 
-            // get chart Data
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr1']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr2']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr3']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr4']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr5']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr6']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr7']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr8']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr9']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr10']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr11']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr12']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr13']);
-            series.data.push(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr14']);
+            series.system_type = data['rows'][row]['system_type'];
+
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr0']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr1']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr2']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr3']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr4']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr5']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr6']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr7']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr8']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr9']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr10']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr11']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr12']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr13']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr14']);
 
             // // get chart loan data
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr0']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr1']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr2']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr3']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr4']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr5']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr6']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr7']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr8']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr9']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr10']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr11']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr12']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr13']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr14']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr15']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr16']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr17']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr18']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr19']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr20']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr21']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr22']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr23']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr24']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr25']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr26']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr27']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr28']);
-            series.loanData.push(data['bucket_rows'][0]['ccfloanyr29']);
+            series.loanData.push(data['rows'][row]['ccfloanyr0']);
+            series.loanData.push(data['rows'][row]['ccfloanyr1']);
+            series.loanData.push(data['rows'][row]['ccfloanyr2']);
+            series.loanData.push(data['rows'][row]['ccfloanyr3']);
+            series.loanData.push(data['rows'][row]['ccfloanyr4']);
+            series.loanData.push(data['rows'][row]['ccfloanyr5']);
+            series.loanData.push(data['rows'][row]['ccfloanyr6']);
+            series.loanData.push(data['rows'][row]['ccfloanyr7']);
+            series.loanData.push(data['rows'][row]['ccfloanyr8']);
+            series.loanData.push(data['rows'][row]['ccfloanyr9']);
+            series.loanData.push(data['rows'][row]['ccfloanyr10']);
+            series.loanData.push(data['rows'][row]['ccfloanyr11']);
+            series.loanData.push(data['rows'][row]['ccfloanyr12']);
+            series.loanData.push(data['rows'][row]['ccfloanyr13']);
+            series.loanData.push(data['rows'][row]['ccfloanyr14']);
+            series.loanData.push(data['rows'][row]['ccfloanyr15']);
+            series.loanData.push(data['rows'][row]['ccfloanyr16']);
+            series.loanData.push(data['rows'][row]['ccfloanyr17']);
+            series.loanData.push(data['rows'][row]['ccfloanyr18']);
+            series.loanData.push(data['rows'][row]['ccfloanyr19']);
+            series.loanData.push(data['rows'][row]['ccfloanyr20']);
+            series.loanData.push(data['rows'][row]['ccfloanyr21']);
+            series.loanData.push(data['rows'][row]['ccfloanyr22']);
+            series.loanData.push(data['rows'][row]['ccfloanyr23']);
+            series.loanData.push(data['rows'][row]['ccfloanyr24']);
+            series.loanData.push(data['rows'][row]['ccfloanyr25']);
+            series.loanData.push(data['rows'][row]['ccfloanyr26']);
+            series.loanData.push(data['rows'][row]['ccfloanyr27']);
+            series.loanData.push(data['rows'][row]['ccfloanyr28']);
+            series.loanData.push(data['rows'][row]['ccfloanyr29']);
 
             // get loanpayback for current system type
             var loanYear;
@@ -663,29 +672,28 @@ Source: HD1`
                 series.loan_payback = Number(loanYear) + decimal;
                 break;
               }
-              
             }
 
             series.loanData = series.loanData.slice(0,15);
           
             // get data for display on Second Part
-            series.system_cost = Number(data['bucket_rows'][0]['avg_cumulative_cash_flow_yr0']);
-            series.payback= Number(data['bucket_rows'][0]['avg_payback']);
+            series.system_cost = Number(data['rows'][row]['avg_cumulative_cash_flow_yr0']);
+            series.payback= Number(data['rows'][row]['avg_payback']);
 
-            series.savingsAmount = Number(data['bucket_rows'][0]['you_save_100re']);
-            series.installFee = -Number(data['bucket_rows'][0]['avg_system_cost_yr0']) - Number(data['bucket_rows'][0]['avg_incentive_yr1']);
-            series.monthly_loan_pmt = Number(data['bucket_rows'][0]['monthly_loan_payment']);
+            series.savingsAmount = Number(data['rows'][row]['you_save_100re']);
+            series.installFee = -Number(data['rows'][row]['avg_system_cost_yr0']) - Number(data['rows'][row]['avg_incentive_yr1']);
+            series.monthly_loan_pmt = Number(data['rows'][row]['monthly_loan_payment']);
 
-            var chartDataTmp = {...this.state.chartData};
-
-            switch(system_type){
+            switch(series.system_type){
               case "Baseline":
                 chartDataTmp.Baseline.data = series.data.map( element => Number(element));
+                //console.log(chartDataTmp.Baseline.data);
                 chartDataTmp.Baseline.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Baseline.payback = series.payback;
                 break;
               case "Economy":
                 chartDataTmp.Economy.data = series.data.map( element => Number(element));
+                //console.log(chartDataTmp.Economy.data);
                 chartDataTmp.Economy.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Economy.loan_payback = series.loan_payback;
                 //console.log("Economy Loan payback is :"+series.loan_payback);
@@ -693,11 +701,11 @@ Source: HD1`
                 chartDataTmp.Economy.savingsAmount = series.savingsAmount;
                 chartDataTmp.Economy.installFee = series.installFee;
                 chartDataTmp.Economy.monthly_loan_pmt = series.monthly_loan_pmt;
-
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Compact":
                 chartDataTmp.Compact.data = series.data.map( element => Number(element));
+                //console.log(chartDataTmp.Compact.data);
                 chartDataTmp.Compact.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Compact.loan_payback = series.loan_payback;
                 chartDataTmp.Compact.payback = series.payback;
@@ -708,6 +716,7 @@ Source: HD1`
                 break;
               case "Intermediate":
                 chartDataTmp.Intermediate.data = series.data.map( element => Number(element));
+                //console.log(chartDataTmp.Intermediate.data);
                 chartDataTmp.Intermediate.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Intermediate.loan_payback = series.loan_payback;
                 chartDataTmp.Intermediate.payback = series.payback;
@@ -718,6 +727,7 @@ Source: HD1`
                 break;
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
+                //console.log(chartDataTmp.Standard.data);
                 chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Standard.loan_payback = series.loan_payback;
                 chartDataTmp.Standard.payback = series.payback;
@@ -728,6 +738,7 @@ Source: HD1`
                 break;
               case "Premium":
                 chartDataTmp.Premium.data = series.data.map( element => Number(element));
+                //console.log(chartDataTmp.Premium.data);
                 chartDataTmp.Premium.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Premium.loan_payback = series.loan_payback;
                 chartDataTmp.Premium.payback = series.payback;
@@ -739,7 +750,9 @@ Source: HD1`
               default:
                 break;
             }
+          }
             // set optimum data to be displayed
+            console.log(chartDataTmp);
             this.setChartData(chartDataTmp);
           })
         .catch(function (e) {
@@ -747,7 +760,7 @@ Source: HD1`
           console.log(e);
         })
 
-    return series.payback;
+    //return series.payback;
   };
 
   checkOptimalDisplayValues(series, chartDataTmp){
@@ -786,15 +799,17 @@ Source: HD1`
     this.setChartData(chartDataTmp);
   };
 
+  setChartData = (data) => {
+    this.setState({ chartData: data });
+  };
+
   setOptimalPaymentType = (cashorloan) =>{
     var chartDataTmp = {...this.state.chartData};
     chartDataTmp.Optimal.cashorloan = cashorloan;
     this.setChartData(chartDataTmp);
   }
 
-  setChartData = (data) => {
-    this.setState({ chartData: data });
-  };
+ 
 
   
 
@@ -841,10 +856,18 @@ Source: HD1`
           <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
             <FifthPart hideChanger={this.hideChanger} />
           </div>
-          <p className="mcTextCopyright">&copy; Copyright 2018 Makello.
+          
+          <div className="footer">
+            <div className="footerText">
+              &copy; Copyright 2018 Makello.<br></br>
+              <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a>
+            </div>
+          </div>
+
+          {/* <p className="mcTextCopyright">&copy; Copyright 2018 Makello.
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a>
-          </p>
+          </p> */}
         </div>
       </div>
     );
