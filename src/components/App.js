@@ -279,6 +279,9 @@ class App extends React.Component {
 
   postBillEmailData = (bill, email, time) => {
     //console.log(document.referrer);
+    console.log("Confirming refferer");
+    console.log(document.referrer);
+
     if (document.referrer) {
       console.log("Confirming refferer");
       var myReferer = document.referrer;
