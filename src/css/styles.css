@@ -297,6 +297,11 @@ body {
   width: 100% !important;
 }
 
+.footer {
+  border-top:10px solid #D3D3D3;
+  padding:5px 0;
+}
+
 .footerText {
   text-align: center;
   color: lightgrey;
