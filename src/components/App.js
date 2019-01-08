@@ -864,10 +864,6 @@ Source: ${document.referrer}
             </div>
           </div>
 
-          {/* <p className="mcTextCopyright">&copy; Copyright 2018 Makello.
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a>
-          </p> */}
         </div>
       </div>
     );
