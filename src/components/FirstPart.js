@@ -13,9 +13,11 @@ class FirstPart extends React.Component {
 
     this.toggle1 = this.toggle1.bind(this);
     this.toggle2 = this.toggle2.bind(this);
+    this.toggle3 = this.toggle3.bind(this);
     this.state = {
       popoverOpen1: false,
-      popoverOpen2: false
+      popoverOpen2: false,
+      popoverOpen3: false
     };
   }
 
@@ -27,6 +29,11 @@ class FirstPart extends React.Component {
   toggle2() {
     this.setState({
       popoverOpen2: !this.state.popoverOpen2
+    });
+  }
+  toggle3() {
+    this.setState({
+      popoverOpen3: !this.state.popoverOpen3
     });
   }
 
@@ -133,13 +140,6 @@ class FirstPart extends React.Component {
             </section>
             
             <section className="payback">
-            <div className='paybackVideo' >
-            <video width="100%" height="100%" controls>
-              <source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
-            Your browser does not support the video tag, please view on IE, Chrome, Firefox, Opera or Safari
-            </video>
-            </div>
-
               <div className="row">
                 <div className="col-md-7">
 
@@ -157,13 +157,20 @@ class FirstPart extends React.Component {
                     </div>
 
                     <div className="mt-4">
-                      <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp;
+                      <button className="btn btn-warning" id="Popover3" onMouseOver={this.toggle3} onMouseOut={this.toggle3}>Cash/Loan</button> &nbsp;
                       <strong>Starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2}
                       onMouseOut={this.toggle2}>&nbsp;<sup> <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup>
                       </span></strong>
                     </div>
                   </div>
+                </div>
 
+                <div className="col-md-4" paybackVideo >
+                  <video width="100%" height="100%" controls>
+                    <source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
+                  Your browser does not support the video tag, please open using one of the following browsers:
+                  Internet Explorer, Chrome, Firefox, Opera or Safari.
+                  </video>
                 </div>
               </div>
 
@@ -181,6 +188,17 @@ class FirstPart extends React.Component {
                 <PopoverBody><div className="payback-disclaimer">
                 *Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
                   </div></PopoverBody>
+              </Popover>
+
+              <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
+                <PopoverBody>
+                  <div className="payback-disclaimer">
+                    <ul>
+                      <li>FREE Site Survey & Energy Analysis</li>
+                      <li>Simple Payback in 1-3 Years.</li>
+                      <li>Starting at $5,599 or $53/mo.</li>
+                    </ul>
+                 </div></PopoverBody>
               </Popover>
 
             </section>
