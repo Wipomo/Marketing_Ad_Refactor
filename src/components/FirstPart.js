@@ -193,12 +193,10 @@ class FirstPart extends React.Component {
               <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
                 <PopoverBody>
                   <div className="payback-disclaimer">
-                    <ul>
-                      <li>FREE Site Survey & Energy Analysis</li>
-                      <li>Simple Payback in 1-3 Years.</li>
-                      <li>Starting at $5,599 or $53/mo.</li>
-                    </ul>
-                 </div></PopoverBody>
+                      - FREE Site Survey & Energy Analysis<br></br>
+                      - Simple Payback in 1-3 Years.<br></br>
+                      - Starting at $5,599 or $53/mo.<br></br>
+                   </div></PopoverBody>
               </Popover>
 
             </section>
