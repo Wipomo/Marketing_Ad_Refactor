@@ -652,6 +652,18 @@ body {
   background-repeat: no-repeat;
   background-position: right;
 }
+
+.paybackVideo{
+  /*top:0;
+  align-items:right; 
+  margin-top: 15px;
+  padding:0px; 
+  background-size: 60% 100%; */
+  position: absolute;
+  width: 35%;
+  /* align-content: flex-end; */
+}
+
 @media (min-width: 768px) {
   .paybackWrapper {
     padding:15px 15px 30px 30px;

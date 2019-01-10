@@ -133,6 +133,12 @@ class FirstPart extends React.Component {
             </section>
             
             <section className="payback">
+            <div className='paybackVideo' >
+            <video width="100%" height="100%" controls>
+              <source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
+            Your browser does not support the video tag, please view on IE, Chrome, Firefox, Opera or Safari
+            </video>
+            </div>
 
               <div className="row">
                 <div className="col-md-7">
@@ -146,11 +152,15 @@ class FirstPart extends React.Component {
                         <li>Are the electric utility account owner, or</li>
                         <li>Have a Standard Domestic Utility Rate</li>
                       </ul>
-                      Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span>
+                      Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>
+                      &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span>
                     </div>
 
                     <div className="mt-4">
-                      <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp; <strong>Starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2} onMouseOut={this.toggle2}>&nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></strong>
+                      <a className="btn btn-warning" href="https://www.makello.com/cashloan.html">Cash/Loan</a> &nbsp;
+                      <strong>Starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2}
+                      onMouseOut={this.toggle2}>&nbsp;<sup> <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup>
+                      </span></strong>
                     </div>
                   </div>
 
