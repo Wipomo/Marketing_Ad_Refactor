@@ -218,13 +218,13 @@ class SecondPart extends React.Component {
                     <div className="row">
                       <div className="col-md-6 offset-md-3">
                         <div className="form-group">
-                          <input type="email" className="form-control userInput light full-width" placeholder='Full Name*' ref={this.nameRef} />
+                          <input type="email" className="form-control userInput light full-width" placeholder='Full Name' ref={this.nameRef} />
                         </div>
                         <div className="form-group">
                           <input type="text" className="form-control userInput light full-width" placeholder='Phone' ref={this.phoneRef} />
                         </div>
                         <div className="form-group">
-                          <input id='autocomplete' onFocus={this.initAutoComplete} type="text" className="form-control userInput light full-width" placeholder='Enter full address*' ref={this.addressRef} />
+                          <input id='autocomplete' onFocus={this.initAutoComplete} type="text" className="form-control userInput light full-width" placeholder='Enter full address' ref={this.addressRef} />
                         </div>
                         <div className="form-group">
                           <input className='btn btn-primary submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
@@ -237,9 +237,41 @@ class SecondPart extends React.Component {
               </div>
             </div>
           </div>
-            
-          <div className='m2sideR'></div>
         </div>
+        {/* <section className="paybackaa">
+            <div className="row">
+              <section className="col-md-4" >
+                <img src = "images/blog_thumbnails/Buyers_Rights_for_Energy_Upgrades.jpg"  alt="Buyer's Rights for Energy Upgrades">
+                </img><br></br>
+                Buyer's Rights for Energy Upgrades
+              </section>
+              <section className="col-md-4" >
+                <img src = "images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" alt="Buyer's Rights for Energy Upgrades">
+                </img><br></br>
+                Dirty Little Secrets of the Solar Industry
+              </section>
+              <section className="col-md-4" >
+                <img src = "images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG"  alt="How_the_Competition_Cuts_Corners">
+                </img><br></br>
+                How the Competition Cuts Corners 
+               </section>
+              <section className="col-md-2" >
+                <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg"  alt="Quality in Manufacturing">
+                </img><br></br>
+                Quality in Manufacturing
+              </section>
+              <section className="col-md-2" >
+                <img src = "images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" alt="Rivian, the Spirit of an Adventurer.jpg">
+                </img><br></br>
+                Rivian, the Spirit of an Adventurer
+              </section>
+              <section className="col-md-2" >
+                <img src = "images/blog_thumbnails/VW_s Microbus_EV_Redemption.JPG"  alt="VW_s Microbus_EV Redemption.JPG">
+                </img><br></br>
+                VW_s Microbus_EV Redemption.JPG
+              </section> 
+            </div>
+          </section> */}
       </div>
     );
   }

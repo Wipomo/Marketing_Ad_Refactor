@@ -652,6 +652,11 @@ body {
   background-repeat: no-repeat;
   background-position: right;
 }
+
+.paybackVideo{
+  position: absolute;
+}
+
 @media (min-width: 768px) {
   .paybackWrapper {
     padding:15px 15px 30px 30px;
