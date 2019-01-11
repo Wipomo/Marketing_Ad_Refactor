@@ -29,6 +29,7 @@ class ThirdPart extends React.Component {
               <h3 className="display-6">Thank you!</h3>
               <p className='lead'>Check for a confirmation email in your Inbox or SPAM folder</p>
               <div>Add us to your Contacts to receive a personalized <a href="https://www.makello.com/energy-analysis.html">Energy Analysis</a> from <a href="https://www.makello.com/">Makello</a>!</div>
+              <div>For any questions, please dial our toll free number: (855) 692-3289. </div>
             </div>
 
             <div className='jumbotron text-center rounded-0 border-0'>

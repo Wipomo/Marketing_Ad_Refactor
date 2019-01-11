@@ -53,7 +53,6 @@ class FirstPart extends React.Component {
       this.props.getChartData(this.getSliderValue());
       this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value, testingUser);
       this.props.hideChanger('showSecondPart');
-
     } else {
       event.preventDefault();
       window.alert("Please enter a valid email address.");
@@ -146,7 +145,7 @@ class FirstPart extends React.Component {
                   <div className="paybackWrapper">
                     <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
                     <div className="mt-3">
-                      Enter your email above,<br></br> for a Coupon code that includes: 
+                      Enter your email above, for a Coupon Code that includes: 
                       <ul>
                         <li>Free Site Survey & Energy Analysis</li>
                         <li>Simple payback in 1 - 3 years <span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>
@@ -161,7 +160,7 @@ class FirstPart extends React.Component {
                   </div>
                 </div>
 
-                <div className="col-md-4" paybackVideo >
+                <div className="col-md-4" >
                   <video width="100%" height="100%" controls poster="/images/video_poster_title.jpg">
                     <source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
                   Your browser does not support the video tag, please open using one of the following browsers:
