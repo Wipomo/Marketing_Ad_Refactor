@@ -641,6 +641,9 @@ body {
   letter-spacing: -1px;
 }
 
+.single_blog_thumbnail{
+  width: 100%;
+}
 
 .payback {
   margin-top: 15px;

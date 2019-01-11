@@ -238,40 +238,40 @@ class SecondPart extends React.Component {
             </div>
           </div>
         </div>
-        {/* <section className="paybackaa">
+        <br></br>
+        <section className="blog_thumbnail">
             <div className="row">
-              <section className="col-md-4" >
-                <img src = "images/blog_thumbnails/Buyers_Rights_for_Energy_Upgrades.jpg"  alt="Buyer's Rights for Energy Upgrades">
-                </img><br></br>
-                Buyer's Rights for Energy Upgrades
-              </section>
-              <section className="col-md-4" >
-                <img src = "images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" alt="Buyer's Rights for Energy Upgrades">
-                </img><br></br>
-                Dirty Little Secrets of the Solar Industry
-              </section>
-              <section className="col-md-4" >
-                <img src = "images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG"  alt="How_the_Competition_Cuts_Corners">
-                </img><br></br>
-                How the Competition Cuts Corners 
-               </section>
-              <section className="col-md-2" >
-                <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg"  alt="Quality in Manufacturing">
+            
+            
+              <section className="col-md-3 pl-4" >
+                <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg" className="single_blog_thumbnail" alt="Quality in Manufacturing">
                 </img><br></br>
                 Quality in Manufacturing
               </section>
-              <section className="col-md-2" >
-                <img src = "images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" alt="Rivian, the Spirit of an Adventurer.jpg">
+              <section className="col-md-3" >
+                <img src = "images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" className="single_blog_thumbnail" alt="Buyer's Rights for Energy Upgrades">
+                </img><br></br>
+                Dirty Little Secrets of the Solar Industry
+              </section>
+              <section className="col-md-3" >
+                <img src = "images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG" className="single_blog_thumbnail" alt="How_the_Competition_Cuts_Corners">
+                </img><br></br>
+                How the Competition Cuts Corners 
+               </section>
+             
+              <section className=" col-md-3 pr-4">
+                <img src = "images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" className="single_blog_thumbnail"alt="Rivian, the Spirit of an Adventurer.jpg">
                 </img><br></br>
                 Rivian, the Spirit of an Adventurer
               </section>
-              <section className="col-md-2" >
+              {/* 
+              <section className="single_blog_thumbnail col-md-4" >
                 <img src = "images/blog_thumbnails/VW_s Microbus_EV_Redemption.JPG"  alt="VW_s Microbus_EV Redemption.JPG">
                 </img><br></br>
-                VW_s Microbus_EV Redemption.JPG
-              </section> 
+                VW_s Microbus_EV Redemption
+              </section>  */}
             </div>
-          </section> */}
+          </section>
       </div>
     );
   }
