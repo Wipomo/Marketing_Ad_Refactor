@@ -146,27 +146,23 @@ class FirstPart extends React.Component {
                   <div className="paybackWrapper">
                     <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
                     <div className="mt-3">
-                      If you:
+                      Enter your email above,<br></br> for a Coupon code that includes: 
                       <ul>
-                        <li>Own or lease the property,</li>
-                        <li>Are the electric utility account owner, or</li>
-                        <li>Have a Standard Domestic Utility Rate</li>
+                        <li>Free Site Survey & Energy Analysis</li>
+                        <li>Simple payback in 1 - 3 years <span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>
+                      &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></li>
+                        <li>Systems starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2}
+                      onMouseOut={this.toggle2}>&nbsp;<sup> <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup>
+                      </span></li>
                       </ul>
-                      Then, get Simple Payback in 1 - 3 years<span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>
-                      &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span>
                     </div>
 
-                    <div className="mt-4">
-                      <button className="btn btn-warning" id="Popover3" onMouseOver={this.toggle3} onMouseOut={this.toggle3}>Cash/Loan</button> &nbsp;
-                      <strong>Starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2}
-                      onMouseOut={this.toggle2}>&nbsp;<sup> <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup>
-                      </span></strong>
-                    </div>
+                    <div className="mt-4"></div>
                   </div>
                 </div>
 
                 <div className="col-md-4" paybackVideo >
-                  <video width="100%" height="100%" controls>
+                  <video width="100%" height="100%" controls poster="/images/video_poster_title.jpg">
                     <source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
                   Your browser does not support the video tag, please open using one of the following browsers:
                   Internet Explorer, Chrome, Firefox, Opera or Safari.
@@ -190,15 +186,14 @@ class FirstPart extends React.Component {
                   </div></PopoverBody>
               </Popover>
 
-              <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
+              {/* <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
                 <PopoverBody>
                   <div className="payback-disclaimer">
                       - FREE Site Survey & Energy Analysis<br></br>
                       - Simple Payback in 1-3 Years.<br></br>
                       - Starting at $5,599 or $53/mo.<br></br>
                    </div></PopoverBody>
-              </Popover>
-
+              </Popover> */}
             </section>
             
           </div>
