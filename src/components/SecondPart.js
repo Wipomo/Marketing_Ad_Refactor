@@ -244,25 +244,32 @@ class SecondPart extends React.Component {
             
             
               <section className="col-md-3 pl-4" >
+              <a href = "https://www.makello.com/blog/quality-in-manufacturing" target="_blank" rel="noopener noreferrer">
                 <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg" className="single_blog_thumbnail" alt="Quality in Manufacturing">
                 </img><br></br>
                 Quality in Manufacturing
+              </a>
               </section>
               <section className="col-md-3" >
+              <a href="https://www.makello.com/blog/dirty_little_secrets_of_solar" target="_blank" rel="noopener noreferrer">
                 <img src = "images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" className="single_blog_thumbnail" alt="Buyer's Rights for Energy Upgrades">
                 </img><br></br>
                 Dirty Little Secrets of the Solar Industry
+              </a>
               </section>
               <section className="col-md-3" >
+              <a href="https://www.makello.com/blog/what-the-competition-does-to-cut-corners" target="_blank" rel="noopener noreferrer">
                 <img src = "images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG" className="single_blog_thumbnail" alt="How_the_Competition_Cuts_Corners">
                 </img><br></br>
-                How the Competition Cuts Corners 
+                How the Competition Cuts Corners </a>
                </section>
              
               <section className=" col-md-3 pr-4">
+              <a href="https://www.makello.com/blog/rivian-the-spirit-of-an-adventurer" target="_blank" rel="noopener noreferrer">
                 <img src = "images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" className="single_blog_thumbnail"alt="Rivian, the Spirit of an Adventurer.jpg">
                 </img><br></br>
                 Rivian, the Spirit of an Adventurer
+              </a>
               </section>
               {/* 
               <section className="single_blog_thumbnail col-md-4" >

@@ -691,7 +691,7 @@ body {
 }
 .payback-disclaimer {
   font-size: 11px;
-  color:#aaa; 
+  color:#000; 
 }
 @media (min-width: 40em) {
   .payback-heading {
