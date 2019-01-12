@@ -4,10 +4,14 @@ import SecondPart from './SecondPart';
 import ThirdPart from './ThirdPart';
 import ForthPart from './ForthPart';
 import FifthPart from './FifthPart';
+import FooterComponent from './FooterComponent';
+
 
 class App extends React.Component {
+constructor(props){
+  super(props);
 
-  state = {
+  this.state = {
     showFirstPart: {
       hidden: ''
     },
@@ -123,10 +127,10 @@ class App extends React.Component {
     userId: 0,
     resolution: window.innerWidth
   };
-
+}
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
-  }
+  };
 
   // handlers start
   handleWindowSizeChange = () => {
@@ -372,9 +376,9 @@ Database ID: ${this.state.userId}
 
 Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple payback for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan. 
 
-You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} annually with 100% Clean Energy.
+You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Annually with 100% Clean Energy.
  
-We selected the optimal ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan} energy upgrade package for you!
+We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
 Source: ${document.referrer}`
@@ -420,6 +424,7 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
+Payment type: ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
 `
     }
@@ -823,7 +828,6 @@ Source: ${document.referrer}
     // console.log("State of test client is:"+this.state.clientProfile.test);
     // console.log("State of email is:"+this.state.clientProfile.email);
 
-
     return (
       <div className="container">
         <div className="bg-white">
@@ -857,13 +861,7 @@ Source: ${document.referrer}
             <FifthPart hideChanger={this.hideChanger} />
           </div>
           
-          <div className="footer">
-            <div className="footerText">
-              &copy; Copyright 2018 Makello.<br></br>
-              <a href="https://www.makello.com/about-us.html" target="_blank" rel="noopener noreferrer">We will not share your data.</a>
-            </div>
-          </div>
-
+          <FooterComponent/>
         </div>
       </div>
     );

@@ -304,7 +304,7 @@ body {
 
 .footerText {
   text-align: center;
-  color: lightgrey;
+  color: black;
   z-index: 10;
   font-size: 12px;
   /* height: 38px;
@@ -641,6 +641,12 @@ body {
   letter-spacing: -1px;
 }
 
+.single_blog_thumbnail{
+  width: 100%;
+}
+.centerAlignedText{
+  text-align: center;
+}
 
 .payback {
   margin-top: 15px;
@@ -653,9 +659,6 @@ body {
   background-position: right;
 }
 
-.paybackVideo{
-  position: absolute;
-}
 
 @media (min-width: 768px) {
   .paybackWrapper {
@@ -688,7 +691,7 @@ body {
 }
 .payback-disclaimer {
   font-size: 11px;
-  color:#aaa; 
+  color:#000; 
 }
 @media (min-width: 40em) {
   .payback-heading {
