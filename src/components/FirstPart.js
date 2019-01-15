@@ -49,7 +49,6 @@ class FirstPart extends React.Component {
         console.log("TEST: Sets client test state")
         testingUser = true;
       }
-      this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value, testingUser);
       this.props.getChartData(this.getSliderValue());
       this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value, testingUser);
       this.props.hideChanger('showSecondPart');
