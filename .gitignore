@@ -75,4 +75,10 @@ typings/
 # ignore ~un extensions
 *~
 
+#Mac .DS_Store extension files
+*.DS_Store
+
+#ignore yarn dependency file. default is npm
+yarn.lock
+
 .idea
