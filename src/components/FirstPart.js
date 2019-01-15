@@ -49,8 +49,10 @@ class FirstPart extends React.Component {
         console.log("TEST: Sets client test state")
         testingUser = true;
       }
-      this.props.getChartData(this.getSliderValue());
-      this.props.billEmailUpdater(this.getSliderValue(), this.emailRef.current.value, testingUser);
+      
+      var monthlyBill = this.getSliderValue();
+      this.props.getChartData(monthlyBill);
+      this.props.billEmailUpdater(monthlyBill, this.emailRef.current.value, testingUser);
       this.props.hideChanger('showSecondPart');
     } else {
       event.preventDefault();
@@ -114,7 +116,7 @@ class FirstPart extends React.Component {
                         min={min_slider_value}
                         max={max_slider_value}
                         step={slider_increment_step}
-                        onChange={this.props.handleSlideChange}
+                        onMouseOut={this.props.handleSlideChange}
                         monthlyBill={this.props.monthlyBill} />
                     </div>
 

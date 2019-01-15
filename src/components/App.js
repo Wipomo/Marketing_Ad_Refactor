@@ -588,7 +588,6 @@ Source: ${document.referrer}
 
     fetch(url)
         .then((response) => {
-          
             return response.text()
         })
         .then((response_in_text) => {
