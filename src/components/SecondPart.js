@@ -184,7 +184,7 @@ class SecondPart extends React.Component {
             &nbsp;${Number(this.props.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>*/}
 
 
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <ButtonDropdown direction="right" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>
                 {this.state.value}
               </DropdownToggle>
@@ -208,10 +208,11 @@ class SecondPart extends React.Component {
           <div className="saveMoneyBox">
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <h4 className='text-white text-center'>Are you ready to save money?</h4>
-                <div className="card border-0 rounded-0">
+                
+                <div className="card border-0 rounded-0 pt-3">
                   <div className="card-body">
-                    <div className="text-center full-width pd20-top">
+                    <h4 className='text-center'>Are you ready to save money?</h4>
+                    <div className="text-center mb-4">
                       <p className='light deactive-color m2lBottom-title'>Get a custom energy savings report from Makello</p>
                     </div>
 
@@ -238,47 +239,44 @@ class SecondPart extends React.Component {
             </div>
           </div>
         </div>
-        <br></br>
-        <section className="blog_thumbnail">
-            <div className="row">
-            
-            
-              <section className="col-md-3 pl-4 centerAlignedText ">
-              <a href = "https://www.makello.com/blog/quality-in-manufacturing" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg" className="single_blog_thumbnail" alt="Quality in Manufacturing">
-                </img><br></br>
-                Quality in Manufacturing
-              </a>
-              </section>
-              <section className="col-md-3 centerAlignedText " >
-              <a href="https://www.makello.com/blog/dirty_little_secrets_of_solar" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                <img src = "images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" className="single_blog_thumbnail" alt="Buyer's Rights for Energy Upgrades">
-                </img><br></br>
-                 Dirty Little Secrets of the Solar Industry
-              </a>
-              </section>
-              <section className="col-md-3 centerAlignedText "  >
-              <a href="https://www.makello.com/blog/what-the-competition-does-to-cut-corners" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                <img src = "images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG" className="single_blog_thumbnail" alt="How_the_Competition_Cuts_Corners">
-                </img><br></br>
-                How the Competition Cuts Corners</a>
-               </section>
-             
-              <section className=" col-md-3 pr-4 centerAlignedText ">
-              <a href="https://www.makello.com/blog/rivian-the-spirit-of-an-adventurer" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                <img src = "images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" className="single_blog_thumbnail"alt="Rivian, the Spirit of an Adventurer.jpg">
-                </img><br></br>
-                Rivian, the Spirit of an Adventurer
-              </a>
-              </section>
-              {/* 
-              <section className="single_blog_thumbnail col-md-4" >
-                <img src = "images/blog_thumbnails/VW_s Microbus_EV_Redemption.JPG"  alt="VW_s Microbus_EV Redemption.JPG">
-                </img><br></br>
-                VW_s Microbus_EV Redemption
-              </section>  */}
+        
+        <section className="blogThumbnails text-center">
+          <div className="row no-gutters">
+            <div className="col-md-3">
+              <div className="thumbnail">
+                <a href="https://www.makello.com/blog/quality-in-manufacturing" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
+                  <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg" className="single_blog_thumbnail" alt="Quality in Manufacturing" />
+                  <div className="caption">Quality in Manufacturing</div>
+                </a>
+              </div>
             </div>
-          </section>
+            <div className="col-md-3">
+              <div className="thumbnail">
+                <a href="https://www.makello.com/blog/dirty_little_secrets_of_solar" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
+                  <img src="images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" className="single_blog_thumbnail" alt="Buyer's Rights for Energy Upgrades" />
+                  <div className="caption">Dirty Little Secrets of the Solar Industry</div>
+                </a>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="thumbnail">
+                <a href="https://www.makello.com/blog/what-the-competition-does-to-cut-corners" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
+                  <img src="images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG" className="single_blog_thumbnail" alt="How_the_Competition_Cuts_Corners" />
+                  <div className="caption">How the Competition Cuts Corners</div>
+                </a>
+              </div>
+            </div>
+            <div className=" col-md-3">
+              <div className="thumbnail">
+                <a href="https://www.makello.com/blog/rivian-the-spirit-of-an-adventurer" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
+                  <img src="images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" className="single_blog_thumbnail"alt="Rivian, the Spirit of an Adventurer.jpg" />
+                  <div className="caption">Rivian, the Spirit of an Adventurer</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     );
   }

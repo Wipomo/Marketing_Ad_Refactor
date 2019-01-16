@@ -30,24 +30,29 @@ class Chart extends React.Component {
   
   defaultCheckedRadioButtons=()=>{
     if(this.props.chartData.Optimal.cashorloan === "(loan)"){
-      return <form>
-      Selected Payment Type:&nbsp;
-      Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> 
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
-      </form>;
+      return (
+        <form className="pt-3 text-center">
+          <strong>Selected Payment Type:</strong> &nbsp;
+          <label htmlFor="inputRadio1">Cash</label> <input id="inputRadio1" type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType}></input> &nbsp;&nbsp;&nbsp;&nbsp; 
+          <label htmlFor="inputRadio2">Loan</label> <input id="inputRadio2" type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
+        </form>
+      );
     }
     else if(this.props.chartData.Optimal.cashorloan === "(cash)"){
-      return <form>
-    Selected Payment Type:&nbsp;
-    Cash <input type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType} defaultChecked></input> 
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    Loan <input type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
-    </form>;
+      return (
+        <form className="pt-3 text-center">
+          <strong>Selected Payment Type:</strong> &nbsp;
+          <label htmlFor="inputRadio11">Cash</label> <input id="inputRadio11" type="radio" name="paymentType" value="cash" onClick={this.switchPaymentSeriesType} defaultChecked></input> &nbsp;&nbsp;&nbsp;&nbsp; 
+          <label htmlFor="inputRadio22">Loan</label> <input id="inputRadio22" type="radio" name="paymentType" value="loan" onClick={this.switchPaymentSeriesType}></input> 
+        </form>
+      );
     }
     else{
-      return <p> Your Personalized Chart Loading...</p>
+      return (
+        <p className="pt-3 text-center"><span className="badge badge-warning">Your personalized chart is loading...</span></p>
+      );
     }
+
   };
 
   render() {

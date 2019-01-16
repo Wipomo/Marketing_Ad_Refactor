@@ -84,6 +84,9 @@ class FirstPart extends React.Component {
                       Makello
                     </span>
                   </div>
+                  <span className="navbar-text">
+                  	<a href="#">Site Surveys</a>
+                  </span>
                 </div>
               </nav>
             </header>
@@ -92,7 +95,7 @@ class FirstPart extends React.Component {
               <div className="container">
                 <div className="header-container">
                   <div className="outer">
-                    <div className="inner text-center mcText">
+                    <div className="inner text-center mcText mt-2">
                       <h1 className="mctUpper semiBold responsive-mctUpper">You don't need tons of solar panels to save money.</h1>
                       <h1 className="mctLower semiBold responsive-mctLower">See how much you can save.</h1>
                     </div>
@@ -141,7 +144,7 @@ class FirstPart extends React.Component {
             
             <section className="payback">
               <div className="row">
-                <div className="col-md-7">
+                <div className="col-lg-6">
 
                   <div className="paybackWrapper">
                     <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
@@ -161,12 +164,17 @@ class FirstPart extends React.Component {
                   </div>
                 </div>
 
-                <div className="col-md-4" >
-                  <video width="100%" height="100%" controls poster="/images/video_poster_title.jpg">
-                    <source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
-                  Your browser does not support the video tag, please open using one of the following browsers:
-                  Internet Explorer, Chrome, Firefox, Opera or Safari.
-                  </video>
+                <div className="col-lg-6">
+
+                	<div className="surveyVid">
+	                	<div className="embed-responsive embed-responsive-16by9">
+		                	<video width="100%" height="100%" controls poster="/images/video_poster_title.jpg">
+		                    	<source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
+		                    	Your browser does not support the video tag, please open using one of the following browsers:Internet Explorer, Chrome, Firefox, Opera or Safari.
+		                  	</video>
+	                	</div>
+                	</div>
+
                 </div>
               </div>
 
