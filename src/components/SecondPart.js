@@ -208,10 +208,9 @@ class SecondPart extends React.Component {
           <div className="saveMoneyBox">
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                
+              <h4 className='text-white text-center'>Are you ready to save money?</h4>
                 <div className="card border-0 rounded-0 pt-3">
                   <div className="card-body">
-                    <h4 className='text-center'>Are you ready to save money?</h4>
                     <div className="text-center mb-4">
                       <p className='light deactive-color m2lBottom-title'>Get a custom energy savings report from Makello</p>
                     </div>
