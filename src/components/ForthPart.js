@@ -144,16 +144,17 @@ showModel = (bool) => {
               <div className='card bg-light mt-2 rounded-0'>
                 <div className="card-body p-5">
 
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label>What is your daily average commute in miles?</label>
                     <input type="text" className="form-control" id="inputDailyTrip" onChange={this.setdailyTrip} />
                   </div>
                   <div className="form-group">
                     <label>What is your average miles per gallon?</label>
                     <input type="text" className="form-control" id="inputMPG" onChange={this.setMpg}/>
-                  </div>
+                  </div> */}
                   <div className="form-group">
-                    <label>Plug-In Vehicle Type</label>
+                    
+
                     <CarMenu 
                       setYear={this.setYear} setMake={this.setMake} setModel={this.setModel}
                       year={this.state.year} make={this.state.make} model={this.state.model}

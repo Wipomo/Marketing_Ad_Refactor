@@ -20,10 +20,13 @@ class CarMenu extends React.Component {
         cars: [],
         makeMenu: [],
         modelMenu: [],
+
     
         year: "year",
         make: "make",
         model: "model",
+        mpg:"0",
+        dailyTrip:"0",
 
         showFakeMake: {
             hidden: ''
@@ -46,20 +49,30 @@ class CarMenu extends React.Component {
         this.setState({year: year});
         //this.updateCar(year, 1);
         this.makeMenuMaker(year);
-      };
+    };
     
-      setMake = (e) => {
-          let make = e.target.value;
-          this.setState({make: make});
-          this.makeModelMenu(make);
-          //this.updateCar(make,2);
-      };
+    setMake = (e) => {
+        let make = e.target.value;
+        this.setState({make: make});
+        this.makeModelMenu(make);
+        //this.updateCar(make,2);
+    };
     
-      setModel = (e) => {
-          let model = e.target.value;
-          this.setState({model: model});
-          //this.updateCar(model,3);
-      };
+    setModel = (e) => {
+        let model = e.target.value;
+        this.setState({model: model});
+        //this.updateCar(model,3);
+    };
+
+    setdailyTrip = (e) => {
+        let dailyTrip = e.target.value;
+        this.setState({dailyTrip: dailyTrip});
+    };
+
+    setMpg = (e) => {
+        let mpg = e.target.value;
+        this.setState({mpg: mpg});
+    };
 
       makeMenuMaker = (year) => {
         if (year !== 'year') {
@@ -106,8 +119,8 @@ class CarMenu extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
     
-        let trip = this.props.dailyTrip;
-        let mpg = this.props.mpg;
+        let trip = this.state.dailyTrip;
+        let mpg = this.state.mpg;
     
         let year = this.state.year;
         let make = this.state.make;
@@ -123,6 +136,17 @@ class CarMenu extends React.Component {
 
         return(
             <div className='styled-select'>
+                <div className="form-group">
+                    <label>What is your daily average commute in miles?</label>
+                    <input type="text" className="form-control" id="inputDailyTrip" onChange={this.setdailyTrip} />
+                </div>
+                <div className="form-group">
+                    <label>What is your average miles per gallon?</label>
+                    <input type="text" className="form-control" id="inputMPG" onChange={this.setMpg}/>
+                </div>
+
+                <label>Plug-In Vehicle Type</label>
+
                 <div className="carMenu">
                     <YearMenu year={this.state.year} setYear={this.setYear}/>
                 </div>
