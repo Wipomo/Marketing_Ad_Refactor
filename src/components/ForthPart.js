@@ -2,6 +2,9 @@ import React from 'react';
 import CarMenu from './carMenu/CarMenu';
 
 class ForthPart extends React.Component {
+  yearRef = React.createRef();
+  makeRef = React.createRef();
+  modelRef = React.createRef();
 
   componentDidMount() {
     fetch("./cars.json")
@@ -157,12 +160,13 @@ showModel = (bool) => {
                       makeMenu={this.state.makeMenu} modelMenu={this.state.modelMenu}
                       showFakeMake={this.state.showFakeMake} showFakeModel={this.state.showFakeModel}
                       showMake={this.state.showMake} showModel={this.state.showModel}
+                      carInfoUpdater ={this.props.carInfoUpdater} hideChanger={this.props.hideChanger}
                     />
                   </div>
-                  <div className="form-group text-center mt-4">
+                  {/* <div className="form-group text-center mt-4">
                     <input className='btn btn-primary submitButton light' type='submit' value="Submit" onClick={this.submitHandler} />
                     <p text-align="center">Now serving San Diego</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
