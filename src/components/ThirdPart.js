@@ -3,10 +3,10 @@ import React from 'react';
 
 class ThirdPart extends React.Component {
 
-  componentDidUpdate() {
-    //scroll.scrollToTop();
-    window.scrollTo(0,0);
-  }
+  // componentDidUpdate() {
+  //   //scroll.scrollToTop();
+  //   window.scrollTo(0,0);
+  // }
 
   submitHandler = (event) => {
     event.preventDefault();
