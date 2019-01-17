@@ -473,7 +473,7 @@ Source: ${document.referrer}
     })
   };
 
-createCustomerEmail = (dailyTrip,mpg, make, model, year, customerSelectsSystem ) => {
+createCustomerEmail = (dailyTrip,mpg, year, make, model, customerSelectsSystem ) => {
   //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
   var emailSubject = ``;
     if((this.state.clientProfile.test)){
@@ -854,7 +854,7 @@ Source: ${document.referrer}
           </div>
           <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
             <ForthPart carInfoUpdater={this.carInfoUpdater} hideChanger={this.hideChanger} 
-            createCustomerEmail={this.createCustomerEmail}/>
+            />
           </div>
           <div className={`ThirdPart ${this.state.showFifthPart.hidden}`}>
             <FifthPart hideChanger={this.hideChanger} />

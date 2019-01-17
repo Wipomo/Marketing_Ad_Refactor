@@ -6,9 +6,9 @@ import FakeMakeMenu from './FakeMakeMenu';
 import FakeModelMenu from './FakeModelMenu';
 
 class CarMenu extends React.Component {
-    year= "year";
-    make= "make";
-    model= "model";
+    // year= "year";
+    // make= "make";
+    // model= "model";
 
     componentDidMount() {
         fetch("./cars.json")
@@ -20,7 +20,6 @@ class CarMenu extends React.Component {
         cars: [],
         makeMenu: [],
         modelMenu: [],
-
     
         year: "year",
         make: "make",
@@ -43,11 +42,8 @@ class CarMenu extends React.Component {
     }
 
     setYear = (e) => {
-        console.log("sets year");
         let year = e.target.value;
-        //this.year = year;
         this.setState({year: year});
-        //this.updateCar(year, 1);
         this.makeMenuMaker(year);
     };
     
@@ -55,13 +51,11 @@ class CarMenu extends React.Component {
         let make = e.target.value;
         this.setState({make: make});
         this.makeModelMenu(make);
-        //this.updateCar(make,2);
     };
     
     setModel = (e) => {
         let model = e.target.value;
         this.setState({model: model});
-        //this.updateCar(model,3);
     };
 
     setdailyTrip = (e) => {
@@ -76,11 +70,9 @@ class CarMenu extends React.Component {
 
       makeMenuMaker = (year) => {
         if (year !== 'year') {
-            console.log("year is nottt 'year' anymore");
             this.showMake(true);
             this.setState({makeMenu: (this.state.cars[year])});
         } else {
-            console.log("Comes in here, year is still year");
             this.showMake(false);
             this.setState({makeMenu: this.state.cars});
         }
@@ -116,6 +108,7 @@ class CarMenu extends React.Component {
             this.setState({showModel: {hidden: 'hidden'}});
         }
     };
+
     submitHandler = (event) => {
         event.preventDefault();
     
@@ -129,7 +122,6 @@ class CarMenu extends React.Component {
         this.props.carInfoUpdater(trip, mpg, year, make, model);
     
         this.props.hideChanger('showFifthPart');
-        //this.props.createCustomer(trip, mpg, make, model, year);
       };
 
     render() {
@@ -144,25 +136,25 @@ class CarMenu extends React.Component {
                     <label>What is your average miles per gallon?</label>
                     <input type="text" className="form-control" id="inputMPG" onChange={this.setMpg}/>
                 </div>
-
-                <label>Plug-In Vehicle Type</label>
-
-                <div className="carMenu">
-                    <YearMenu year={this.state.year} setYear={this.setYear}/>
-                </div>
-                <div className={`${this.state.showFakeMake.hidden} carMenu`}>
-                    <FakeMakeMenu />
-                </div>
-                <div className={`${this.state.showMake.hidden} carMenu`}>
-                    <MakeMenu make={this.state.make} setMake={this.setMake}
-                    makeMenu={this.state.makeMenu}/>
-                </div>
-                <div className={`${this.state.showFakeModel.hidden} carMenu`}>
-                    <FakeModelMenu className={this.state.showFakeModel}/>
-                </div>
-                <div className={`${this.state.showModel.hidden} carMenu`}>
-                    <ModelMenu model={this.state.model} setModel={this.setModel}
-                    modelMenu={this.state.modelMenu}/>
+                
+                <div className="form-group">
+                    <div className="carMenu">
+                        <YearMenu year={this.state.year} setYear={this.setYear}/>
+                    </div>
+                    <div className={`${this.state.showFakeMake.hidden} carMenu`}>
+                        <FakeMakeMenu />
+                    </div>
+                    <div className={`${this.state.showMake.hidden} carMenu`}>
+                        <MakeMenu make={this.state.make} setMake={this.setMake}
+                        makeMenu={this.state.makeMenu}/>
+                    </div>
+                    <div className={`${this.state.showFakeModel.hidden} carMenu`}>
+                        <FakeModelMenu className={this.state.showFakeModel}/>
+                    </div>
+                    <div className={`${this.state.showModel.hidden} carMenu`}>
+                        <ModelMenu model={this.state.model} setModel={this.setModel}
+                        modelMenu={this.state.modelMenu}/>
+                    </div>
                 </div>
 
                 <div className="form-group text-center mt-4">
