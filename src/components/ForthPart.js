@@ -2,42 +2,11 @@ import React from 'react';
 import CarMenu from './carMenu/CarMenu';
 
 class ForthPart extends React.Component {
-  // yearRef = React.createRef();
-  // makeRef = React.createRef();
-  // modelRef = React.createRef();
 
-  // componentDidMount() {
-  //   fetch("./cars.json")
-  //       .then(response => response.json())
-  //       .then(cars => this.setState({cars}))
-  // }
-
-  // state = {
-  //   cars: [],
-  //   makeMenu: [],
-  //   modelMenu: [],
-
-  //   year: "year",
-  //   make: "make",
-  //   model: "model",
-
-  //   mpg:"0",
-  //   dailyTrip:"0",
-
-  //   showFakeMake: {
-  //       hidden: ''
-  //   },
-  //   showFakeModel: {
-  //       hidden: ''
-  //   },
-  //   showMake: {
-  //       hidden: 'hidden'
-  //   },
-  //   showModel: {
-  //       hidden: 'hidden'
-  //   }
-  // };
-
+  componentDidMount() {
+    //scroll.scrollToTop();
+    window.scrollTo(0,0);
+  }
 
 
   render() {
@@ -55,15 +24,6 @@ class ForthPart extends React.Component {
                 <div className="card-body p-5">
                   <CarMenu carInfoUpdater={this.props.carInfoUpdater}
                     hideChanger={this.props.hideChanger}/>
-
-                    {/* <CarMenu 
-                      setYear={this.setYear} setMake={this.setMake} setModel={this.setModel}
-                      year={this.state.year} make={this.state.make} model={this.state.model}
-                      makeMenu={this.state.makeMenu} modelMenu={this.state.modelMenu}
-                      showFakeMake={this.state.showFakeMake} showFakeModel={this.state.showFakeModel}
-                      showMake={this.state.showMake} showModel={this.state.showModel}
-                      carInfoUpdater ={this.props.carInfoUpdater} hideChanger={this.props.hideChanger}
-                    />         */}
                 </div>
               </div>
 
