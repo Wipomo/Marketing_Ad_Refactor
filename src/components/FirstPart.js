@@ -81,7 +81,7 @@ class FirstPart extends React.Component {
                 <div className="container-fluid">
                   <div className="navbar-header">
                     <span className="navbar-brand">
-                      Makello
+                      <a href="https://www.makello.com"> Makello.com </a>
                     </span>
                   </div>
                   <span className="navbar-text">
@@ -151,7 +151,7 @@ class FirstPart extends React.Component {
                     <div className="mt-3">
                       Enter your email above, for a Coupon Code that includes: 
                       <ul>
-                        <li>Free Site Survey & Energy Analysis <span className="readme" id="Popover3" onMouseOver={this.toggle3} onMouseOut={this.toggle3}>
+                        <li>Free Energy Analysis <span className="readme" id="Popover3" onMouseOver={this.toggle3} onMouseOut={this.toggle3}>
                       &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></li>
                         <li>Simple payback in 1 - 3 years <span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>
                       &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></li>
@@ -170,7 +170,7 @@ class FirstPart extends React.Component {
                 	<div className="surveyVid">
 	                	<div className="embed-responsive embed-responsive-16by9">
 		                	<video width="100%" height="100%" controls poster="/images/video_poster_title.jpg">
-		                    	<source src = "/videos/makello_wipomo_website_video_337.mp4" type="video/mp4"></source>
+		                    	<source src = "/videos/15sec_ad_Makello.mov" type="video/mp4"></source>
 		                    	Your browser does not support the video tag, please open using one of the following browsers:Internet Explorer, Chrome, Firefox, Opera or Safari.
 		                  	</video>
 	                	</div>
@@ -212,17 +212,7 @@ class FirstPart extends React.Component {
                   Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
                   </div></PopoverBody>
               </Popover>
-
-              {/* <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
-                <PopoverBody>
-                  <div className="payback-disclaimer">
-                      - FREE Site Survey & Energy Analysis<br></br>
-                      - Simple Payback in 1-3 Years.<br></br>
-                      - Starting at $5,599 or $53/mo.<br></br>
-                   </div></PopoverBody>
-              </Popover> */}
             </section>
-            
           </div>
         </div>
       </div>
