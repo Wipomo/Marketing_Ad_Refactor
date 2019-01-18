@@ -3,7 +3,7 @@ import React from 'react';
 
 class ThirdPart extends React.Component {
 
-  componentDidMount() {
+  componentDidUpdate() {
     //scroll.scrollToTop();
     window.scrollTo(0,0);
   }
@@ -20,7 +20,6 @@ class ThirdPart extends React.Component {
   };
 
   render() {
-    
       return (
         <div className='App'>
           <div className='main3'>
