@@ -136,13 +136,19 @@ constructor(props){
   };
 
   componentDidMount(){
-    this.facebook_campaign = this.getUrlVars()["utm_campaign"];
+    var campaign_source = "";
+    if(window.location.href.indexOf("utm_campaign") > -1){
+      campaign_source = this.getUrlVars()["utm_campaign"];
+    }
+    if(campaign_source !== undefined && campaign_source !== ""){
+      this.facebook_campaign = campaign_source;
+    }
     console.log(this.facebook_campaign);
   }
 
   getUrlVars() {
     var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
         vars[key] = value;
     });
     return vars;
@@ -315,7 +321,8 @@ constructor(props){
         monthlyBill: bill,
         email: email,
         time: time,
-        trafficSource: myReferer
+        trafficSource: myReferer,
+        campaignSource: this.facebook_campaign
       })
     })
       .then(response => response.json())
@@ -398,7 +405,7 @@ We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgra
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
 Source: ${document.referrer}
-Campaign: ${this.facebook_campaign}`
+Campaign: GEEPC ${this.facebook_campaign}`
       })
     })
   };
@@ -443,7 +450,6 @@ Plug-In Vehicle Type: N/A
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Payment type: ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
-Campaign: ${this.facebook_campaign}
 `
     }
     else{
@@ -474,7 +480,6 @@ Plug-In Vehicle Type: N/A
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
-Campaign: ${this.facebook_campaign}
   `
     }
 
@@ -531,7 +536,6 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
-Campaign: ${this.facebook_campaign}
   `
     }
     else{
@@ -562,7 +566,6 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
-Campaign: ${this.facebook_campaign}
   `
     }
   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
