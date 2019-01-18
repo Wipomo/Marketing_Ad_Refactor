@@ -169,8 +169,9 @@ class FirstPart extends React.Component {
 
                 	<div className="surveyVid">
 	                	<div className="embed-responsive embed-responsive-16by9">
-		                	<video width="100%" height="100%" controls poster="/images/video_poster_title.jpg">
-		                    	<source src = "/videos/15sec_ad_Makello.mov" type="video/mp4"></source>
+		                	<video width="100%" height="100%" controls="true" poster="/images/video_poster_title.jpg">
+		                    	<source src = "https://youtu.be/kDz-cchV6QA" type="video/mp4" ></source>
+                          
 		                    	Your browser does not support the video tag, please open using one of the following browsers:Internet Explorer, Chrome, Firefox, Opera or Safari.
 		                  	</video>
 	                	</div>
