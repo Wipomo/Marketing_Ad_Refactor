@@ -24,10 +24,10 @@ class SecondPart extends React.Component {
 
   }
 
-  componentDidMount() {
-    //scroll.scrollToTop();
-    window.scrollTo(0,0);
-  }
+  // componentDidMount() {
+  //   //scroll.scrollToTop();
+  //   window.scrollTo(0,0);
+  // }
 
   initAutoComplete = () => {
     var input = document.getElementById('autocomplete');

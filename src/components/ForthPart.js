@@ -3,7 +3,7 @@ import CarMenu from './carMenu/CarMenu';
 
 class ForthPart extends React.Component {
 
-  componentDidMount() {
+  componentDidUpdate() {
     //scroll.scrollToTop();
     window.scrollTo(0,0);
   }
