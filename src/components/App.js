@@ -66,14 +66,14 @@ constructor(props){
         cashorloan: ''
       },
       Baseline: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         visible: true
       },
       Economy: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
         visible: false,
@@ -82,9 +82,9 @@ constructor(props){
         monthly_loan_pmt:0
       },
       Compact: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
         visible: false,
@@ -93,9 +93,9 @@ constructor(props){
         monthly_loan_pmt:0
       },
       Intermediate: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
         visible: false,
@@ -104,9 +104,9 @@ constructor(props){
         monthly_loan_pmt:0
       },
       Standard: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
         visible: false,
@@ -115,9 +115,9 @@ constructor(props){
         monthly_loan_pmt:0
       },
       Premium: {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         payback: 0,
-        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         loan_payback:0,
         system_cost:0,
         visible: false,
@@ -662,10 +662,10 @@ Source: ${document.referrer}
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr23']);
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr24']);
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr25']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr26']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr27']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr28']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr29']);
+            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr26']);
+            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr27']);
+            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr28']);
+            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr29']);
 
             // // get chart loan data
             series.loanData.push(data['rows'][row]['ccfloanyr0']);
