@@ -7,6 +7,7 @@ import FifthPart from './FifthPart';
 import FooterComponent from './FooterComponent';
 
 
+
 class App extends React.Component {
 facebook_campaign="N/A";
 constructor(props){
@@ -131,6 +132,7 @@ constructor(props){
 }
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
+    
   };
 
   componentDidMount(){

@@ -7,6 +7,11 @@ class FifthPart extends React.Component {
     window.location.href = "http://www.makello.com";
   };
 
+  componentDidUpdate() {
+    //scroll.scrollToTop();
+    window.scrollTo(0,0);
+  }
+
   render() {
     return (
       <div className='App'>

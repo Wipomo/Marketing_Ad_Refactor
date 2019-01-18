@@ -3,7 +3,7 @@ import React from 'react';
 
 class ThirdPart extends React.Component {
 
-  componentDidUpdate() {
+  componentDidMount() {
     //scroll.scrollToTop();
     window.scrollTo(0,0);
   }

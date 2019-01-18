@@ -22,7 +22,12 @@ class SecondPart extends React.Component {
       this.selectSystem = this.selectSystem.bind(this);
       this.selectPaymentType = this.selectPaymentType.bind(this);
 
-    }
+  }
+
+  // componentDidMount() {
+  //   //scroll.scrollToTop();
+  //   window.scrollTo(0,0);
+  // }
 
   initAutoComplete = () => {
     var input = document.getElementById('autocomplete');
