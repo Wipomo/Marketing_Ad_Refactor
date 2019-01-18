@@ -651,6 +651,21 @@ Source: ${document.referrer}
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr12']);
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr13']);
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr14']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr15']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr16']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr17']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr18']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr19']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr20']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr21']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr22']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr23']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr24']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr25']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr26']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr27']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr28']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr29']);
 
             // // get chart loan data
             series.loanData.push(data['rows'][row]['ccfloanyr0']);
@@ -702,7 +717,7 @@ Source: ${document.referrer}
               }
             }
 
-            series.loanData = series.loanData.slice(0,15);
+            //series.loanData = series.loanData.slice(0,15);
           
             // get data for display on Second Part
             series.system_cost = Number(data['rows'][row]['avg_cumulative_cash_flow_yr0']);
