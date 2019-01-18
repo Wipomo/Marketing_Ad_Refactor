@@ -134,7 +134,6 @@ constructor(props){
   };
 
   componentDidMount(){
-    console.log("Compnent mounted here safely! we can totally retrieve campaign source from here..");
     this.facebook_campaign = this.getUrlVars()["utm_campaign"];
     console.log(this.facebook_campaign);
   }
@@ -396,7 +395,8 @@ You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleStrin
 We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
-Source: ${document.referrer}`
+Source: ${document.referrer}
+Campaign: ${this.facebook_campaign}`
       })
     })
   };
@@ -441,6 +441,7 @@ Plug-In Vehicle Type: N/A
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Payment type: ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
+Campaign: ${this.facebook_campaign}
 `
     }
     else{
@@ -471,6 +472,7 @@ Plug-In Vehicle Type: N/A
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
+Campaign: ${this.facebook_campaign}
   `
     }
 
@@ -527,6 +529,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
+Campaign: ${this.facebook_campaign}
   `
     }
     else{
@@ -557,6 +560,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Source: ${document.referrer}
+Campaign: ${this.facebook_campaign}
   `
     }
   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
