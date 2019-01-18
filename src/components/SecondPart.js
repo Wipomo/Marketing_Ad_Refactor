@@ -31,7 +31,7 @@ class SecondPart extends React.Component {
       console.log("initializes autocomplete once only");
       new window.google.maps.places.Autocomplete(
         input,
-        { types: ['address'], placeIdOnly: true }
+        { types: ['address'], place_id: true }
       );
       initAuto = true;
     }

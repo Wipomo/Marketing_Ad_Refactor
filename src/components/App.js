@@ -312,7 +312,7 @@ constructor(props){
       console.log(myReferer);
     }
 
-    fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
+    fetch("https://makeitlow-makello-server-staging.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -333,7 +333,7 @@ constructor(props){
   };
 
   putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -351,7 +351,7 @@ constructor(props){
   };
 
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -383,7 +383,7 @@ constructor(props){
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server-staging.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -483,7 +483,7 @@ Source: ${document.referrer}
   `
     }
 
-    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+    fetch('https://makeitlow-makello-server-staging.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -568,7 +568,7 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
 Source: ${document.referrer}
   `
     }
-  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+  fetch('https://makeitlow-makello-server-staging.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -608,7 +608,7 @@ Source: ${document.referrer}
 
   setChartSeriesData(bucket){
 
-    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket;
+    var url = "https://makeitlow-makello-server-staging.herokuapp.com/get-chart-data/" + bucket;
 
     fetch(url)
         .then((response) => {
@@ -651,6 +651,21 @@ Source: ${document.referrer}
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr12']);
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr13']);
             series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr14']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr15']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr16']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr17']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr18']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr19']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr20']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr21']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr22']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr23']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr24']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr25']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr26']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr27']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr28']);
+            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr29']);
 
             // // get chart loan data
             series.loanData.push(data['rows'][row]['ccfloanyr0']);
@@ -702,7 +717,7 @@ Source: ${document.referrer}
               }
             }
 
-            series.loanData = series.loanData.slice(0,15);
+            //series.loanData = series.loanData.slice(0,15);
           
             // get data for display on Second Part
             series.system_cost = Number(data['rows'][row]['avg_cumulative_cash_flow_yr0']);

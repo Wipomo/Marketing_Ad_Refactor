@@ -122,7 +122,7 @@ class Chart extends React.Component {
         }
       },
       xAxis: {
-        max: 14,
+        max: 29,
         tickInterval: 1,
         labels: {
           style: {
