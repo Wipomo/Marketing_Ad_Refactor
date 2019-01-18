@@ -4,6 +4,7 @@ import CarMenu from './carMenu/CarMenu';
 class ForthPart extends React.Component {
 
   componentDidUpdate() {
+    console.log("Fourth part just updated !!");
     //scroll.scrollToTop();
     window.scrollTo(0,0);
   }

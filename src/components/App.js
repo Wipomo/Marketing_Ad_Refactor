@@ -7,7 +7,10 @@ import FifthPart from './FifthPart';
 import FooterComponent from './FooterComponent';
 
 
+
 class App extends React.Component {
+facebook_campaign="N/A";
+
 constructor(props){
   super(props);
 
@@ -130,7 +133,22 @@ constructor(props){
 }
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
+    
   };
+
+  componentDidMount(){
+    console.log("Compnent mounted here safely! we can totally retrieve campaign source from here..");
+    this.facebook_campaign = this.getUrlVars()["utm_campaign"];
+    console.log(this.facebook_campaign);
+  }
+
+  getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+  }  
 
   // handlers start
   handleWindowSizeChange = () => {
