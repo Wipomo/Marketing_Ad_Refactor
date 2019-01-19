@@ -81,7 +81,7 @@ class FirstPart extends React.Component {
                 <div className="container-fluid">
                   <div className="navbar-header">
                     <span className="navbar-brand">
-                      <a href="https://www.makello.com"> Makello.com </a>
+                      <a href="https://www.makello.com" target="_blank" rel="noopener noreferrer" > Makello.com </a>
                     </span>
                   </div>
                   <span className="navbar-text">
