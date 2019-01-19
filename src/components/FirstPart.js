@@ -169,10 +169,15 @@ class FirstPart extends React.Component {
 
                 	<div className="surveyVid">
 	                	<div className="embed-responsive embed-responsive-16by9">
-		                	<video width="100%" height="100%" controls poster="/images/video_poster_title.jpg">
-		                    	<source src = "/videos/15sec_ad_Makello.mov" type="video/mp4"></source>
+		                	{/* <video width="100%" height="100%" controls="true" poster="/images/video_poster_title.jpg">
+		                    	<source src = "https://www.youtube.com/watch?v=kDz-cchV6QA" type="video/mp4" ></source>
 		                    	Your browser does not support the video tag, please open using one of the following browsers:Internet Explorer, Chrome, Firefox, Opera or Safari.
-		                  	</video>
+                        </video> 
+                        <iframe width="560" height="315" title="makello_video"src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        */}
+      
+                        <iframe width="100%" height="100%" title="makello_video"src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        
 	                	</div>
                 	</div>
 
