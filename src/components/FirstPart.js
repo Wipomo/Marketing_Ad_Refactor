@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover, PopoverBody } from 'reactstrap';
+import { Popover, PopoverBody, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import MakelloSlider from './MakelloSlider';
 
 const min_slider_value = 50;
@@ -19,6 +19,19 @@ class FirstPart extends React.Component {
       popoverOpen2: false,
       popoverOpen3: false
     };
+
+    this.state = {
+      modal: false
+    };
+
+    this.toggleModal = this.toggleModal.bind(this);
+
+  }
+
+  toggleModal() {
+    this.setState({
+      modal: !this.state.modal
+    });
   }
 
   toggle1() {
@@ -85,7 +98,21 @@ class FirstPart extends React.Component {
                     </span>
                   </div>
                   <span className="navbar-text">
-                  	{/* <a href="#">Energy Analysis</a> */}
+                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Energy Analysis</Button>
+			        <Modal 
+			        	isOpen={this.state.modal} 
+			        	modalTransition={{ timeout: 700 }} 
+			        	backdropTransition={{ timeout: 1300 }} 
+			        	toggle={this.toggleModal} 
+			        	className={this.props.className} 
+			        	size="lg"
+			        >
+			          <ModalBody className="p-0">
+	                	<div className="embed-responsive embed-responsive-16by9">
+                        	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/kDz-cchV6QA?autoplay=1" allowFullScreen></iframe>
+	                	</div>
+			          </ModalBody>
+			        </Modal>
                   </span>
                 </div>
               </nav>
