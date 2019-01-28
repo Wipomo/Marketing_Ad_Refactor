@@ -119,13 +119,23 @@ body {
 }
 
 .header {
-  height: 60vh;
+  height: 50vh;
   background-image: url("/images/Image-1_1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 1;
   position: relative;
+}
+@media (max-width: 567px) {
+  .header {
+    height: 35vh;
+  }
+}
+@media (max-height: 567px) {
+  .header {
+    height: 70vh;
+  }
 }
 
 .header-container {
