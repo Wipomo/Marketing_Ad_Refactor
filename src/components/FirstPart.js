@@ -98,7 +98,8 @@ class FirstPart extends React.Component {
                     </span>
                   </div>
                   <span className="navbar-text">
-                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button>
+                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button><br></br>
+                    <Button className="p-0" color="link">+1 (760) 230-3788</Button>
       			        <Modal 
       			        	isOpen={this.state.modal} 
       			        	modalTransition={{ timeout: 700 }} 
