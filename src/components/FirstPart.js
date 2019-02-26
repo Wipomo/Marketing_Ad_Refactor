@@ -91,15 +91,15 @@ class FirstPart extends React.Component {
 
             <header className="mHeader">
               <nav className="navbar navbar-default">
-                <div className="container-fluid">
+                
                   <div className="navbar-header">
                     <span className="navbar-brand">
                       <a href="https://www.makello.com" target="_blank" rel="noopener noreferrer" > Makello.com </a>
                     </span>
                   </div>
                   <span className="navbar-text">
-                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button><br></br>
-                    <Button className="p-0" color="link">+1 (760) 230-3788</Button>
+                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button>
+                    <p className="p-0 m-0 text-center">+1 (760) 230-3788</p>
       			        <Modal 
       			        	isOpen={this.state.modal} 
       			        	modalTransition={{ timeout: 700 }} 
@@ -115,7 +115,7 @@ class FirstPart extends React.Component {
       			          </ModalBody>
       			        </Modal>
                   </span>
-                </div>
+                
               </nav>
             </header>
 

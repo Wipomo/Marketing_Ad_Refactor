@@ -205,11 +205,11 @@ body {
 }
 
 .rc-slider-mark span:nth-child(1) {
-  margin-left: -10% !important;
+  margin-left: -52% !important;
 }
 
 .rc-slider-mark span:nth-child(2) {
-  margin-left: 10% !important;
+  margin-left: -35% !important;
 }
 
 .rc-slider-handle {
@@ -449,7 +449,6 @@ body {
 }
 
 /* responsive part */
-/* responsive part */
 
 @media only screen and (max-width: 540px) {
   /* first page */
@@ -465,8 +464,6 @@ body {
 
   .mcSlider {
     margin-top: 10vh;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   /* second page */
