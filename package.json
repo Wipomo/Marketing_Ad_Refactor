@@ -22,6 +22,7 @@
     "highcharts-react-official": "^1.5.2",
     "jquery": "^3.3.1",
     "knex": "^0.15.2",
+    "lightbox-react": "^0.3.7",
     "nodemailer": "^4.7.0",
     "nodemon": "^1.18.10",
     "pg": "^7.8.1",
@@ -40,5 +41,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {}
 }

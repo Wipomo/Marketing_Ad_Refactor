@@ -1,9 +1,13 @@
 import React from 'react';
 import Chart from './Chart';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import Lightbox from 'lightbox-react';
+import 'lightbox-react/style.css'; // This only needs to be imported once in your app
 
 
 var initAuto = false;
+
+const images = ["images/makello_chart_image.png"];
 
 class SecondPart extends React.Component {
 
@@ -15,7 +19,8 @@ class SecondPart extends React.Component {
         dropdownOpen: false,
         value:"View upgrade packages!",
         system_to_display: "Optimal",
-        paymentType: "cash"
+        paymentType: "cash",
+        photoIndex: 0
       };
 
       //this.changeSystemTypeDisplayValues = this.changeSystemTypeDisplayValues.bind(this);
@@ -149,6 +154,8 @@ class SecondPart extends React.Component {
   }
 
   render() {
+    const { photoIndex } = this.state;
+    console.log(this.props.lightboxIsOpen);
 
     return (
       <div className='App'>
@@ -175,9 +182,37 @@ class SecondPart extends React.Component {
               </div>
             </div>
           </div>
+          
 
           <div className='m2uTextl text-center'>
-            <br />
+          <div>
+            {/* <Button className="p-0" color="link" onClick={() => this.setState({ isOpen: true })}>
+              What Is This Chart?
+            </Button><br></br>
+            <img src="images/blog_thumbnails/Quality_in_Manufacturing.jpg" alt="" className="p-0" color="link" onClick={() => this.setState({ isOpen: true })}>
+            </img> */}
+          
+
+    
+            {this.props.lightboxIsOpen && (
+              <Lightbox
+                mainSrc={images[photoIndex]}
+                nextSrc={images[(photoIndex + 1) % images.length]}
+                prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+                onCloseRequest={() => this.props.toggleLightBox() }
+                onMovePrevRequest={() =>
+                  this.setState({
+                    photoIndex: (photoIndex + images.length - 1) % images.length,
+                  })
+                }
+                onMoveNextRequest={() =>
+                  this.setState({
+                    photoIndex: (photoIndex + 1) % images.length,
+                  })
+                }
+              />
+            )}
+           </div>
       
             {this.DescribeInstallAndMonthlyFee()}
             {/* <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
@@ -229,6 +264,7 @@ class SecondPart extends React.Component {
                         </div>
                         <div className="form-group">
                           <input className='btn btn-primary submitButton light' value="Submit" type='submit' onClick={this.submitHandler} />
+
                           <p text-align="center">Now serving San Diego</p>
                         </div>
                       </div>

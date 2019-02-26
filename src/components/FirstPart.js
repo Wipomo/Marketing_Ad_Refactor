@@ -71,6 +71,9 @@ class FirstPart extends React.Component {
       event.preventDefault();
       window.alert("Please enter a valid email address.");
     }
+
+    this.props.toggleLightBox();
+    console.log("lightbox being called")
   };
 
   getSliderValue = () => {
@@ -98,8 +101,9 @@ class FirstPart extends React.Component {
                     </span>
                   </div>
                   <span className="navbar-text">
-                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button><br></br>
-                    <Button className="p-0" color="link">+1 (760) 230-3788</Button>
+                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button>
+                    <br></br>
+                    <a href="tel:17602303788" className="p-0" color="link">+1 (760) 230-3788</a>
       			        <Modal 
       			        	isOpen={this.state.modal} 
       			        	modalTransition={{ timeout: 700 }} 

@@ -127,7 +127,8 @@ constructor(props){
       }
     },
     userId: 0,
-    resolution: window.innerWidth
+    resolution: window.innerWidth,
+    lightboxIsOpen: false
   };
 }
   componentWillMount() {
@@ -852,6 +853,11 @@ Source: ${document.referrer}
     this.setChartData(chartDataTmp);
   }
 
+  toggleLightBox=()=>{
+    console.log("setting lightbox state");
+    this.setState({lightboxIsOpen: !this.state.lightboxIsOpen});
+  }
+
  
 
   
@@ -878,6 +884,7 @@ Source: ${document.referrer}
               emailValidator={this.emailValidator}
               handleSlideChange={this.handleSlideChange}
               getChartData={this.getChartData}
+              toggleLightBox = {this.toggleLightBox}
             />
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
@@ -886,6 +893,8 @@ Source: ${document.referrer}
               hideChanger={this.hideChanger}
               chartData={this.state.chartData}
               setOptimalPaymentType ={this.setOptimalPaymentType}
+              lightboxIsOpen = {this.state.lightboxIsOpen}
+              toggleLightBox = {this.toggleLightBox}
             />
           </div>
           <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>
