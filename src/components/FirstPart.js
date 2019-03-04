@@ -1,13 +1,15 @@
 import React from 'react';
-import { Popover, PopoverBody, Button, Modal, ModalBody } from 'reactstrap';
+import { Popover, PopoverBody, Button, Modal, ModalBody,  ModalHeader, ModalFooter } from 'reactstrap';
 import MakelloSlider from './MakelloSlider';
 
 const min_slider_value = 50;
 const max_slider_value = 2000;
 const slider_increment_step = 25;
 
-class FirstPart extends React.Component {
 
+class FirstPart extends React.Component {
+  firstInputisEmailorNumber=0;
+  testingUser = false;
   constructor(props) {
     super(props);
 
@@ -21,10 +23,14 @@ class FirstPart extends React.Component {
     };
 
     this.state = {
-      modal: false
+      modal: false,
+      verifyUserModal: false
     };
 
     this.toggleModal = this.toggleModal.bind(this);
+    this.toggleVerifyUserModal = this.toggleVerifyUserModal.bind(this);
+    // this.sendVerificationCheck = this.sendVerificationCheck.bind(this);
+    // this.confirmVerificationCheck = this.confirmVerificationCheck.bind(this);
 
   }
 
@@ -33,6 +39,13 @@ class FirstPart extends React.Component {
       modal: !this.state.modal
     });
   }
+
+  toggleVerifyUserModal() {
+    this.setState({
+      verifyUserModal: !this.state.verifyUserModal
+    });
+  }
+
 
   toggle1() {
     this.setState({
@@ -51,30 +64,80 @@ class FirstPart extends React.Component {
   }
 
   emailRef = React.createRef();
+  pinRef = React.createRef();
 
   submitHandler = (event) => {
-    var testingUser = false;
-    if (this.props.emailValidator(this.emailRef.current.value)) {
+    //var testingUser = false;
+    var phoneNumber = this.emailRef.current.value;
+    // check for testing input
+    if(/^(\+)?([0-9]{1})?[-. ]?(\()?([0-9]{3})(\))?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phoneNumber)){
+      console.log(" Matches phone number");
+      this.firstInputisEmailorNumber = 1;
+      // update phone number to accepted input for verification purposes
+      var regex = /[+() .-]/g;
+      phoneNumber = phoneNumber.replace(regex,'');
+      if(phoneNumber.length === 10){
+        phoneNumber= '1'+phoneNumber;
+      }
+      if(phoneNumber === 18587546183 || phoneNumber === 17608093391 || phoneNumber === 16193736244){
+        this.testingUser = true;
+      }
+
+      console.log("Cleaned up number is now: "+phoneNumber);
+      this.props.sendVerificationCheck(phoneNumber);
+      this.toggleVerifyUserModal();
+    }
+    else if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.emailRef.current.value)) {
       event.preventDefault();
-      // check for testing input
-      // also check if work email for testing purposes
+      //check if work email for testing purposes
       if(/^\w+([.-]?\w+)*@wipomo.com$/.test(this.emailRef.current.value)) {
         console.log("TEST: Sets client test state")
-        testingUser = true;
+        this.testingUser = true;
       }
       
       var monthlyBill = this.getSliderValue();
       this.props.getChartData(monthlyBill);
-      this.props.billEmailUpdater(monthlyBill, this.emailRef.current.value, testingUser);
+      this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value, '',this.testingUser);
       this.props.hideChanger('showSecondPart');
-    } else {
+      this.props.toggleLightBox();
+      console.log("lightbox being called");
+    }
+    else {
       event.preventDefault();
-      window.alert("Please enter a valid email address.");
+      window.alert("Please enter a valid email or phone number.");
     }
 
-    this.props.toggleLightBox();
-    console.log("lightbox being called")
+    
   };
+
+verifyandUpdateView=()=>{
+  var confirmed = this.props.confirmVerificationCode(this.pinRef.current.value);
+  if(confirmed){
+    console.log("Succes");
+    var monthlyBill = this.getSliderValue();
+    this.props.getChartData(monthlyBill);
+    this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
+    this.props.hideChanger('showSecondPart');
+    this.toggleVerifyUserModal();
+    this.props.toggleLightBox();
+  }
+  else{
+    this.cancelVerificationAndCloseModal();
+  }
+  
+
+}
+
+  cancelVerificationAndCloseModal = () =>{
+    //clear email/phone inout box value
+    this.emailRef.current.value = '';
+
+    // cancel verification request
+    this.props.cancelVerificationRequest();
+
+    //close modal
+    this.toggleVerifyUserModal();
+  }
 
   getSliderValue = () => {
     var sliderHolder = document.getElementById("sliderHandle").innerText;
@@ -102,12 +165,8 @@ class FirstPart extends React.Component {
                   </div>
                   <span className="navbar-text">
                   	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button>
-<<<<<<< HEAD
                     <br></br>
                     <a href="tel:17602303788" className="p-0" color="link">+1 (760) 230-3788</a>
-=======
-                    <p className="p-0 m-0 text-center">+1 (760) 230-3788</p>
->>>>>>> 145d12ec57f458c650a3c5fbceb8a1683ac00643
       			        <Modal 
       			        	isOpen={this.state.modal} 
       			        	modalTransition={{ timeout: 700 }} 
@@ -163,8 +222,21 @@ class FirstPart extends React.Component {
                       <div className="row">
                         <div className="col-md-6 offset-md-3">
                           <div className="form-group">
-                            <input type="email" className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Email*" />
+                            <input className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email or phone number" />
+                            <div>
+                             <Modal isOpen={this.state.verifyUserModal} toggle={this.toggleVerifyUserModal}> {/*className={this.props.className}> */}
+                              <ModalHeader toggle={this.toggle}>Check your phone for a text message verification code.</ModalHeader>
+                              <ModalBody>
+                                <input type="number" className="form-control userInput light" id="pin" ref={this.pinRef} aria-describedby="pin" placeholder="Enter the code here.. " />
+                              </ModalBody>
+                              <ModalFooter>
+                                <Button color="primary" onClick={()=>{this.verifyandUpdateView()}}>Verify</Button>{' '}
+                                {/* On cancel, clear input box and display placeholder*/}
+                                <Button color="secondary" onClick={()=>{this.cancelVerificationAndCloseModal()}}>Cancel</Button>
+                              </ModalFooter>
+                            </Modal>
                           </div>
+                          </div> 
                           <div className="form-group">
                             <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={this.submitHandler} />
                             <p text-align="center">Now serving San Diego</p> 

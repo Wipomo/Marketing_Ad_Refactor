@@ -10,6 +10,10 @@ import FooterComponent from './FooterComponent';
 
 class App extends React.Component {
 facebook_campaign="TOF HD2";
+test=false;
+nexom_req_id=0;
+leadPhoneVerified = false;
+
 constructor(props){
   super(props);
 
@@ -130,6 +134,9 @@ constructor(props){
     resolution: window.innerWidth,
     lightboxIsOpen: false
   };
+  this.confirmVerificationCode = this.confirmVerificationCode.bind(this);
+  this.sendVerificationCheck = this.sendVerificationCheck.bind(this);
+  this.cancelVerificationRequest = this.cancelVerificationRequest.bind(this);
 }
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
@@ -182,28 +189,120 @@ constructor(props){
     }
   };
 
-  emailValidator = (email) => {
-    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      console.log("Email valid");
-      
-      return true;
-    } else {
-      console.log("Invalid Email");
-      return false;
-    }
+  // emailValidator = (email) => {
+  //   if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+  //     console.log("Email valid");
+  //     return true;
+  //   }else {
+  //     console.log("Invalid Email or phone");
+  //     return false;
+  //   }
+  // };
+
+  sendVerificationCheck(number){
+  var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/request/"+number;
+  console.log(url);
+    fetch(url, {
+      method: "POST",
+      // body: JSON.stringify({
+      //   number: number
+      // })
+    })
+    .then(response => response.json())
+    .then(resData => {
+        console.log("Returning nexom response to retrieve verify request id");
+        console.log(resData);
+        console.log(resData.request_id);
+        this.setNexomId(resData.request_id);
+    })
+    .catch(function (e) {
+      console.warn("Error: Caught an error sending nexom verification pin");
+      console.log(e);
+    })
+  }
+
+  setNexomId = (id) => {
+    console.log("Comes in here to set request id");
+    this.nexom_req_id = id;
   };
 
-  billEmailUpdater = (bill, email, test) => {
+  confirmVerificationCode(code){
+    //confirmVerificationCheck(this.nexom_req_id, code);
+    console.log("user req id: "+ this.nexom_req_id);
+    console.log("Entered PIN: "+ code + " of type: "+ typeof(code) );
+    var nexom_req_id = this.nexom_req_id
+    //var verified = false;
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/check/"+nexom_req_id+"/"+code;
+    fetch(url, {
+      method: "POST",
+      // body: JSON.stringify({
+      //   number: number
+      // })
+    })
+    .then(response => response.json())
+    .then(resData => {
+        console.log("Returning status of successful phone verification");
+        console.log(resData);
+        if(resData.status === "0"){
+          this.setConfirmationStatus();
+        }
+        else{
+          console.log(resData.error_text);
+          window.alert(resData.error_text);
+        }
+        
+        //this.verified = true;     
+    })
+    .catch(function (e) {
+      console.warn("Error: Caught a nexom verification confirmation error!");
+      console.log(e);
+    })
+
+    console.log("Lead phone verified: " + this.leadPhoneVerified);
+    return this.leadPhoneVerified;
+  } 
+
+  setConfirmationStatus = () => {
+    console.log("Sets phone verified variable to true");
+    this.leadPhoneVerified = true;
+  };
+
+  cancelVerificationRequest(){
+    console.log("nexom request id: "+ this.nexom_req_id);
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/cancel/"+this.nexom_req_id;
+    fetch(url, {
+      method: "POST",
+      // body: JSON.stringify({
+      //   number: number
+      // })
+    })
+    .then(response => response.json())
+    .then(resData => {
+        console.log("Returning succesful response to cancel verification request");
+        console.log(resData);        
+    })
+    .catch(function (e) {
+      console.warn("Error: Caught a nexom verification cancellation error!");
+      console.log(e);
+    })
+  }
+
+
+
+  billandEmailorPhoneUpdater = (bill, email, phone, test) => {
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.monthlyBill = bill;
     clientProfile.email = email;
-    console.log("Test user is :"+test);
+    clientProfile.phone = phone;
+    console.log("Test user is :"+this.test);
     clientProfile.test = test;
     this.setState({ clientProfile });
-    this.postBillEmailData(bill, email , Date(Date.now()).toString());
+    this.postBillEmailData(bill, email ,phone,  Date(Date.now()).toString());
   };
 
   clientInfoUpdater = (fullName, phone, address, system_selected, paymentType ) => {
+    console.log("Test user is :"+this.state.clientProfile.test);
+
     let updatedInput = this.checkStringLengths([fullName, phone, address]);
     //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
     //console.log(updatedInput);
@@ -304,7 +403,7 @@ constructor(props){
     return newList;
   }
 
-  postBillEmailData = (bill, email, time) => {
+  postBillEmailData = (bill, email, phone, time) => {
     var myReferer="Direct Access, No Referrer";
 
     if (document.referrer) {
@@ -313,7 +412,7 @@ constructor(props){
       console.log(myReferer);
     }
 
-    fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
+    fetch("https://makeitlow-makello-server-stage.herokuapp.com/customers/", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -321,6 +420,7 @@ constructor(props){
       body: JSON.stringify({
         monthlyBill: bill,
         email: email,
+        phone, phone,
         time: time,
         trafficSource: myReferer,
         campaignSource: this.facebook_campaign
@@ -334,7 +434,7 @@ constructor(props){
   };
 
   putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
-    fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -350,7 +450,7 @@ constructor(props){
       .then(response => response.json())
       .then(resData => console.log(resData))
   };
-
+1
   putCarInfo = (dailyTrip, mpg, year, make, model) => {
     fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
@@ -384,7 +484,7 @@ constructor(props){
       emailSubject = `New Lead Generated - ${this.state.clientProfile.email}`;
      }
      //console.log("Email subject is: "+ emailSubject);
-    fetch(`https://makeitlow-makello-server.herokuapp.com/generate-email`, {
+    fetch(`https://makeitlow-makello-server-stage.herokuapp.com/generate-email`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -396,6 +496,7 @@ constructor(props){
         body: `A new lead has been added to the database.
 Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
+Phone: ${this.state.clientProfile.phone}
 Database ID: ${this.state.userId}
 
 Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple payback for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan. 
@@ -484,7 +585,7 @@ Source: ${document.referrer}
   `
     }
 
-    fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+    fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -569,7 +670,7 @@ Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Opti
 Source: ${document.referrer}
   `
     }
-  fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
+  fetch('https://makeitlow-makello-server-stage.herokuapp.com/generate-client-email', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -609,7 +710,7 @@ Source: ${document.referrer}
 
   setChartSeriesData(bucket){
 
-    var url = "https://makeitlow-makello-server.herokuapp.com/get-chart-data/" + bucket;
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/get-chart-data/" + bucket;
 
     fetch(url)
         .then((response) => {
@@ -858,6 +959,7 @@ Source: ${document.referrer}
     this.setState({lightboxIsOpen: !this.state.lightboxIsOpen});
   }
 
+
  
 
   
@@ -877,11 +979,13 @@ Source: ${document.referrer}
         <div className="bg-white">
           <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
             <FirstPart
-              billEmailUpdater={this.billEmailUpdater}
+              billandEmailorPhoneUpdater={this.billandEmailorPhoneUpdater}
               hideChanger={this.hideChanger}
               showTooltip={this.state.showTooltip}
               monthlyBill={this.state.clientProfile.monthlyBill}
-              emailValidator={this.emailValidator}
+              sendVerificationCheck={this.sendVerificationCheck}
+              confirmVerificationCode={this.confirmVerificationCode}
+              cancelVerificationRequest ={this.cancelVerificationRequest}
               handleSlideChange={this.handleSlideChange}
               getChartData={this.getChartData}
               toggleLightBox = {this.toggleLightBox}

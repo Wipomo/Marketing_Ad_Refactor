@@ -155,7 +155,6 @@ class SecondPart extends React.Component {
 
   render() {
     const { photoIndex } = this.state;
-    console.log(this.props.lightboxIsOpen);
 
     return (
       <div className='App'>
@@ -186,14 +185,7 @@ class SecondPart extends React.Component {
 
           <div className='m2uTextl text-center'>
           <div>
-            {/* <Button className="p-0" color="link" onClick={() => this.setState({ isOpen: true })}>
-              What Is This Chart?
-            </Button><br></br>
-            <img src="images/blog_thumbnails/Quality_in_Manufacturing.jpg" alt="" className="p-0" color="link" onClick={() => this.setState({ isOpen: true })}>
-            </img> */}
           
-
-    
             {this.props.lightboxIsOpen && (
               <Lightbox
                 mainSrc={images[photoIndex]}

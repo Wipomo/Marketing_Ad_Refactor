@@ -205,11 +205,11 @@ body {
 }
 
 .rc-slider-mark span:nth-child(1) {
-  margin-left: -52% !important;
+  margin-left: -10% !important;
 }
 
 .rc-slider-mark span:nth-child(2) {
-  margin-left: -35% !important;
+  margin-left: 10% !important;
 }
 
 .rc-slider-handle {
