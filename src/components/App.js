@@ -420,7 +420,7 @@ constructor(props){
       body: JSON.stringify({
         monthlyBill: bill,
         email: email,
-        phone, phone,
+        phone: phone,
         time: time,
         trafficSource: myReferer,
         campaignSource: this.facebook_campaign
