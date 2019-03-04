@@ -99,7 +99,7 @@ class FirstPart extends React.Component {
       this.props.getChartData(monthlyBill);
       this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value, '',this.testingUser);
       this.props.hideChanger('showSecondPart');
-      this.props.toggleLightBox();
+      // this.props.toggleLightBox();
       console.log("lightbox being called");
     }
     else {
@@ -119,7 +119,7 @@ verifyandUpdateView=()=>{
     this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
     this.props.hideChanger('showSecondPart');
     this.toggleVerifyUserModal();
-    this.props.toggleLightBox();
+    // this.props.toggleLightBox();
   }
   else{
     this.cancelVerificationAndCloseModal();
