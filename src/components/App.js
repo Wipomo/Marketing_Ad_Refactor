@@ -127,7 +127,8 @@ constructor(props){
       }
     },
     userId: 0,
-    resolution: window.innerWidth
+    resolution: window.innerWidth,
+    lightboxIsOpen: false
   };
 }
   componentWillMount() {
@@ -178,17 +179,6 @@ constructor(props){
       this.setState({ [input]: { hidden: '' } });
     } else {
       this.setState({ [input]: { hidden: 'hidden' } });
-    }
-  };
-
-  emailValidator = (email) => {
-    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      console.log("Email valid");
-      
-      return true;
-    } else {
-      console.log("Invalid Email");
-      return false;
     }
   };
 
@@ -852,6 +842,10 @@ Source: ${document.referrer}
     this.setChartData(chartDataTmp);
   }
 
+  toggleLightBox=()=>{
+    console.log("setting lightbox state");
+    this.setState({lightboxIsOpen: !this.state.lightboxIsOpen});
+  }
  
 
   
@@ -875,9 +869,10 @@ Source: ${document.referrer}
               hideChanger={this.hideChanger}
               showTooltip={this.state.showTooltip}
               monthlyBill={this.state.clientProfile.monthlyBill}
-              emailValidator={this.emailValidator}
+              // emailValidator={this.emailValidator}
               handleSlideChange={this.handleSlideChange}
               getChartData={this.getChartData}
+              toggleLightBox = {this.toggleLightBox}
             />
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
@@ -886,6 +881,8 @@ Source: ${document.referrer}
               hideChanger={this.hideChanger}
               chartData={this.state.chartData}
               setOptimalPaymentType ={this.setOptimalPaymentType}
+              lightboxIsOpen = {this.state.lightboxIsOpen}
+              toggleLightBox = {this.toggleLightBox}
             />
           </div>
           <div className={`ThirdPart ${this.state.showThirdPart.hidden}`}>

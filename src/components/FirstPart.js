@@ -54,9 +54,8 @@ class FirstPart extends React.Component {
 
   submitHandler = (event) => {
     var testingUser = false;
-    if (this.props.emailValidator(this.emailRef.current.value)) {
+    if ((/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.emailRef.current.value))) {
       event.preventDefault();
-      // check for testing input
       // also check if work email for testing purposes
       if(/^\w+([.-]?\w+)*@wipomo.com$/.test(this.emailRef.current.value)) {
         console.log("TEST: Sets client test state")
@@ -67,6 +66,7 @@ class FirstPart extends React.Component {
       this.props.getChartData(monthlyBill);
       this.props.billEmailUpdater(monthlyBill, this.emailRef.current.value, testingUser);
       this.props.hideChanger('showSecondPart');
+      this.props.toggleLightBox();
     } else {
       event.preventDefault();
       window.alert("Please enter a valid email address.");
