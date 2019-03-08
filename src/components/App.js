@@ -10,6 +10,8 @@ import FooterComponent from './FooterComponent';
 
 class App extends React.Component {
 facebook_campaign="TOF HD2";
+nexom_req_id=0;
+leadPhoneVerified = false;
 constructor(props){
   super(props);
 
@@ -128,8 +130,11 @@ constructor(props){
     },
     userId: 0,
     resolution: window.innerWidth,
-    lightboxIsOpen: false
+    lightboxIsOpen: false,
   };
+
+  //this.setNexomId = this.setNexomId.bind(this);
+
 }
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
@@ -181,8 +186,9 @@ constructor(props){
       this.setState({ [input]: { hidden: 'hidden' } });
     }
   };
+  
 
-  billEmailUpdater = (bill, email, test) => {
+  billandEmailorPhoneUpdater = (bill, email, test) => {
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.monthlyBill = bill;
     clientProfile.email = email;
@@ -865,14 +871,18 @@ Source: ${document.referrer}
         <div className="bg-white">
           <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
             <FirstPart
-              billEmailUpdater={this.billEmailUpdater}
+              billandEmailorPhoneUpdater={this.billandEmailorPhoneUpdater}
               hideChanger={this.hideChanger}
               showTooltip={this.state.showTooltip}
               monthlyBill={this.state.clientProfile.monthlyBill}
               // emailValidator={this.emailValidator}
+              //setNexomId = {this.setNexomId}
               handleSlideChange={this.handleSlideChange}
               getChartData={this.getChartData}
               toggleLightBox = {this.toggleLightBox}
+              //sendVerificationCheck = {this.sendVerificationCheck}
+              //confirmVerificationCode={this.confirmVerificationCode}
+              cancelVerificationRequest={this.cancelVerificationRequest}
             />
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
