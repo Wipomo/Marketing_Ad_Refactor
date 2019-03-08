@@ -1,9 +1,13 @@
 import React from 'react';
 import Chart from './Chart';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import Lightbox from 'lightbox-react';
+import 'lightbox-react/style.css'; // This only needs to be imported once in your app
 
 
 var initAuto = false;
+
+const images = ["images/makello_lightbox1.jpg"];
 
 class SecondPart extends React.Component {
 
@@ -15,7 +19,8 @@ class SecondPart extends React.Component {
         dropdownOpen: false,
         value:"View upgrade packages!",
         system_to_display: "Optimal",
-        paymentType: "cash"
+        paymentType: "cash",
+        photoIndex: 0
       };
 
       //this.changeSystemTypeDisplayValues = this.changeSystemTypeDisplayValues.bind(this);
@@ -150,6 +155,8 @@ class SecondPart extends React.Component {
 
   render() {
 
+    const { photoIndex } = this.state;
+    console.log("Lightbox open is: "+ this.props.lightboxIsOpen );
     return (
       <div className='App'>
         <div className='main2'>
@@ -176,8 +183,31 @@ class SecondPart extends React.Component {
             </div>
           </div>
 
+          <div>
+              {this.props.lightboxIsOpen && (
+                <Lightbox
+                  mainSrc={images[photoIndex]}
+                  nextSrc={images[(photoIndex + 1) % images.length]}
+                  prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+                  onCloseRequest={() => this.props.toggleLightBox() }
+                  onMovePrevRequest={() =>
+                    this.setState({
+                      photoIndex: (photoIndex + images.length - 1) % images.length,
+                    })
+                  }
+                  onMoveNextRequest={() =>
+                    this.setState({
+                      photoIndex: (photoIndex + 1) % images.length,
+                    })
+                  }
+                />
+              )}
+           </div>
+
           <div className='m2uTextl text-center'>
+
             <br />
+            
       
             {this.DescribeInstallAndMonthlyFee()}
             {/* <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
