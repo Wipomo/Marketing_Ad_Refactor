@@ -188,10 +188,11 @@ constructor(props){
   };
   
 
-  billandEmailorPhoneUpdater = (bill, email, test) => {
+  billandEmailorPhoneUpdater = (bill, email, phone, test) => {
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.monthlyBill = bill;
     clientProfile.email = email;
+    clientProfile.phone = phone;
     console.log("Test user is :"+test);
     clientProfile.test = test;
     this.setState({ clientProfile });
