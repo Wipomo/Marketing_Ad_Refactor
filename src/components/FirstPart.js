@@ -237,7 +237,7 @@ class FirstPart extends React.Component {
                   </div>
                   <span className="navbar-text">
                   	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button><br></br>
-                    <a href="tel:+496170961709" >+1 (760) 230-3788</a>
+                    <a href="tel:+17602303788" >+1 (760) 230-3788</a>
       			        <Modal 
       			        	isOpen={this.state.modal} 
       			        	modalTransition={{ timeout: 700 }} 
