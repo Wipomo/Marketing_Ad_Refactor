@@ -188,14 +188,15 @@ constructor(props){
   };
   
 
-  billandEmailorPhoneUpdater = (bill, email, test) => {
+  billandEmailorPhoneUpdater = (bill, email, phone, test) => {
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.monthlyBill = bill;
     clientProfile.email = email;
-    console.log("Test user is :"+test);
+    clientProfile.phone = phone;
+    console.log("Test user is :"+ test);
     clientProfile.test = test;
     this.setState({ clientProfile });
-    this.postBillEmailData(bill, email , Date(Date.now()).toString());
+    this.postBillandEmailorPhoneData(bill, email , phone, Date(Date.now()).toString());
   };
 
   clientInfoUpdater = (fullName, phone, address, system_selected, paymentType ) => {
@@ -299,7 +300,7 @@ constructor(props){
     return newList;
   }
 
-  postBillEmailData = (bill, email, time) => {
+  postBillandEmailorPhoneData = (bill, email, phone, time) => {
     var myReferer="Direct Access, No Referrer";
 
     if (document.referrer) {
@@ -316,6 +317,7 @@ constructor(props){
       body: JSON.stringify({
         monthlyBill: bill,
         email: email,
+        phone: phone,
         time: time,
         trafficSource: myReferer,
         campaignSource: this.facebook_campaign
