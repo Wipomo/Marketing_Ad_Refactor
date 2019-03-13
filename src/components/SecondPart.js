@@ -187,8 +187,8 @@ class SecondPart extends React.Component {
               {this.props.lightboxIsOpen && (
                 <Lightbox
                   mainSrc={images[photoIndex]}
-                  nextSrc={images[(photoIndex + 1) % images.length]}
-                  prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+                  // nextSrc={images[(photoIndex + 1) % images.length]}
+                  // prevSrc={images[(photoIndex + images.length - 1) % images.length]}
                   onCloseRequest={() => this.props.toggleLightBox() }
                   onMovePrevRequest={() =>
                     this.setState({

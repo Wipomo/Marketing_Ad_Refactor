@@ -127,18 +127,18 @@ class FirstPart extends React.Component {
     //this.props.setNexomId(this.nexom_req_id);
     var confirmed = this.confirmVerificationCode(this.pinRef.current.value,this.nexom_req_id );
     console.log("returned confirmation of verification is: "+ confirmed);
-      if(this.leadPhoneVerified){
-        console.log("Succes");
-        var monthlyBill = this.getSliderValue();
-        this.props.getChartData(monthlyBill);
-        this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
-        this.props.hideChanger('showSecondPart');
-        this.toggleVerifyUserModal();
-        this.props.toggleLightBox();
-      }
-      else{
-        this.cancelVerificationAndCloseModal();
-      } 
+      // if(this.leadPhoneVerified){
+      //   console.log("Succes");
+      //   var monthlyBill = this.getSliderValue();
+      //   this.props.getChartData(monthlyBill);
+      //   this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
+      //   this.props.hideChanger('showSecondPart');
+      //   this.toggleVerifyUserModal();
+      //   this.props.toggleLightBox();
+      // }
+      // else{
+      //   this.cancelVerificationAndCloseModal();
+      // } 
   }
 
   async confirmVerificationCode(code, req_id){
@@ -161,6 +161,7 @@ class FirstPart extends React.Component {
     else{
       console.log(resData.error_text);
       window.alert(resData.error_text);
+      this.cancelVerificationAndCloseModal();
     }
 
     console.log("Lead phone verified: " + this.leadPhoneVerified);
@@ -170,6 +171,13 @@ class FirstPart extends React.Component {
   setConfirmationStatus = () => {
     console.log("Sets phone verified variable to true");
     this.leadPhoneVerified = true;
+    var monthlyBill = this.getSliderValue();
+    this.props.getChartData(monthlyBill);
+    this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
+    this.props.hideChanger('showSecondPart');
+    this.toggleVerifyUserModal();
+    this.props.toggleLightBox();
+    console.log("Succes");
   };
   
   cancelVerificationAndCloseModal = () =>{
@@ -229,7 +237,7 @@ class FirstPart extends React.Component {
                   </div>
                   <span className="navbar-text">
                   	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button><br></br>
-                    <Button className="p-0" color="link">+1 (760) 230-3788</Button>
+                    <a href="tel:+496170961709" >+1 (760) 230-3788</a>
       			        <Modal 
       			        	isOpen={this.state.modal} 
       			        	modalTransition={{ timeout: 700 }} 
