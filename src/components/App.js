@@ -12,6 +12,7 @@ class App extends React.Component {
 facebook_campaign="TOF HD2";
 nexom_req_id=0;
 leadPhoneVerified = false;
+myReferer="Direct Access, No Referrer";
 constructor(props){
   super(props);
 
@@ -199,7 +200,7 @@ constructor(props){
     this.postBillandEmailorPhoneData(bill, email , phone, Date(Date.now()).toString());
   };
 
-  clientInfoUpdater = (fullName, phone, address, system_selected, paymentType ) => {
+  clientInfoUpdater = (fullName, phone, email, address, system_selected, paymentType ) => {
     let updatedInput = this.checkStringLengths([fullName, phone, address]);
     //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
     //console.log(updatedInput);
@@ -210,6 +211,7 @@ constructor(props){
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.fullName = fullName;
     clientProfile.phone = phone;
+    clientProfile.email = email;
     clientProfile.address = address;
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     clientProfile.selectedSystem.system_type = system_selected;
@@ -301,12 +303,12 @@ constructor(props){
   }
 
   postBillandEmailorPhoneData = (bill, email, phone, time) => {
-    var myReferer="Direct Access, No Referrer";
+    //var myReferer="Direct Access, No Referrer";
 
     if (document.referrer) {
       console.log("Confirming refferer");
-      myReferer = document.referrer;
-      console.log(myReferer);
+      this.myReferer = document.referrer;
+      console.log(this.myReferer);
     }
 
     fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
@@ -319,7 +321,7 @@ constructor(props){
         email: email,
         phone: phone,
         time: time,
-        trafficSource: myReferer,
+        trafficSource: this.myReferer,
         campaignSource: this.facebook_campaign
       })
     })
@@ -373,6 +375,7 @@ constructor(props){
 
   sendNewLeadEmail = () => {
     var emailSubject = ``;
+
     //console.log("Approved of work email is: "+ this.state.clientProfile.test);
     if(this.state.clientProfile.test){
       emailSubject = `Test of Lead Email Generated - ${this.state.clientProfile.email}`;
@@ -402,7 +405,7 @@ You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleStrin
 We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
-Source: ${document.referrer}
+Source: ${this.myReferer}
 Campaign: GEEPC ${this.facebook_campaign}`
       })
     })
@@ -411,6 +414,7 @@ Campaign: GEEPC ${this.facebook_campaign}`
   createFirstCustomerEmail = (fullName, phone, address, customerSelectsSystem) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
+
     if(this.state.clientProfile.test){
       emailSubject = `Test of First Customer Email- Hello from Makello`;
     }
@@ -447,7 +451,7 @@ Plug-In Vehicle Type: N/A
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Payment type: ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
 `
     }
     else{
@@ -477,7 +481,7 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
   `
     }
 
@@ -533,7 +537,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
   `
     }
     else{
@@ -563,7 +567,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
   `
     }
   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
@@ -889,6 +893,7 @@ Source: ${document.referrer}
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
             <SecondPart
+              email={this.state.clientProfile.email}
               clientInfoUpdater={this.clientInfoUpdater}
               hideChanger={this.hideChanger}
               chartData={this.state.chartData}

@@ -44,6 +44,7 @@ class SecondPart extends React.Component {
 
   nameRef = React.createRef();
   phoneRef = React.createRef();
+  emailRef = React.createRef();
   addressRef = React.createRef();
 
   submitHandler = (event) => {
@@ -51,7 +52,8 @@ class SecondPart extends React.Component {
     let fullName = this.nameRef.current.value;
     let phone = this.phoneRef.current.value;
     let address = this.addressRef.current.value;
-    this.props.clientInfoUpdater(fullName, phone, address, this.state.system_to_display, this.state.paymentType);
+    let email = this.emailRef.currrent.value;
+    this.props.clientInfoUpdater(fullName, phone, email, address, this.state.system_to_display, this.state.paymentType);
     this.props.hideChanger('showThirdPart');
   };
 
@@ -157,6 +159,12 @@ class SecondPart extends React.Component {
 
     const { photoIndex } = this.state;
     console.log("Lightbox open is: "+ this.props.lightboxIsOpen );
+    let Email_placeholder = "Email"
+    if(this.props.email !== ''){
+      Email_placeholder = this.props.email;
+      this.emailRef = Email_placeholder;
+    }
+
     return (
       <div className='App'>
         <div className='main2'>
@@ -250,6 +258,9 @@ class SecondPart extends React.Component {
                       <div className="col-md-6 offset-md-3">
                         <div className="form-group">
                           <input type="email" className="form-control userInput light full-width" placeholder='Full Name' ref={this.nameRef} />
+                        </div>
+                        <div className="form-group">
+                          <input type="email" className="form-control userInput light full-width" placeholder={Email_placeholder} ref={this.emailRef} />
                         </div>
                         <div className="form-group">
                           <input type="text" className="form-control userInput light full-width" placeholder='Phone' ref={this.phoneRef} />
