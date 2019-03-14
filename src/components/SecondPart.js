@@ -159,7 +159,7 @@ class SecondPart extends React.Component {
 
     const { photoIndex } = this.state;
     console.log("Lightbox open is: "+ this.props.lightboxIsOpen );
-    let Email_placeholder = "Email"
+    //let Emaissl_placeholder = "Email"
     if(this.props.email !== 'N/A'){
       this.emailRef.current.value = this.props.email;
     }
@@ -259,7 +259,7 @@ class SecondPart extends React.Component {
                           <input type="email" className="form-control userInput light full-width" placeholder='Full Name' ref={this.nameRef} />
                         </div>
                         <div className="form-group">
-                          <input type="email" className="form-control userInput light full-width" placeholder={Email_placeholder} ref={this.emailRef} />
+                          <input type="email" className="form-control userInput light full-width" placeholder='Email' ref={this.emailRef} />
                         </div>
                         <div className="form-group">
                           <input type="text" className="form-control userInput light full-width" placeholder='Phone' ref={this.phoneRef} />

@@ -201,12 +201,13 @@ constructor(props){
   };
 
   clientInfoUpdater = (fullName, phone, email, address, system_selected, paymentType ) => {
-    let updatedInput = this.checkStringLengths([fullName, phone, address]);
+    let updatedInput = this.checkStringLengths([fullName, phone, email, address]);
     //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
     //console.log(updatedInput);
     fullName=updatedInput[0];
     phone=updatedInput[1];
-    address=updatedInput[2];
+    email=updatedInput[2];
+    address=updatedInput[3];
     
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.fullName = fullName;
@@ -259,8 +260,8 @@ constructor(props){
     console.log(customer_selects_preffered_system);
     clientProfile.selectedSystem.selectsSystem = customer_selects_preffered_system;
     this.setState({ clientProfile });
-    this.putClientInfo(fullName, phone, address, system_selected, paymentType);
-    this.createFirstCustomerEmail(fullName, phone, address, customer_selects_preffered_system);
+    this.putClientInfo(fullName, phone, email, address, system_selected, paymentType);
+    this.createFirstCustomerEmail(fullName, phone, email, address, customer_selects_preffered_system);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
@@ -332,7 +333,7 @@ constructor(props){
       })
   };
 
-  putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
+  putClientInfo = (fullName, phone, email, address, selectedSystem, paymentType) => {
     fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
@@ -341,6 +342,7 @@ constructor(props){
       body: JSON.stringify({
         fullName: fullName,
         phone: phone,
+        email: email,
         address: address,
         selectedSystem: selectedSystem,
         paymentType: paymentType,
@@ -412,7 +414,7 @@ Campaign: GEEPC ${this.facebook_campaign}`
     })
   };
 
-  createFirstCustomerEmail = (fullName, phone, address, customerSelectsSystem) => {
+  createFirstCustomerEmail = (fullName, phone, email, address, customerSelectsSystem) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
     if(this.state.clientProfile.test || this.myReferer === "http://localhost:3000/"|| this.myReferer === "http://localhost:5000/" ){
@@ -438,9 +440,9 @@ For more information, visit https://makello.com
 - - - - - - - - - - - - - - - 
 [https://makeitlow-makello.herokuapp.com/]
 Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-Email: ${this.state.clientProfile.email}
 Full Name: ${fullName}
 Phone: ${phone}
+Email: ${email}
 Address: ${address}
 Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
 Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
@@ -469,9 +471,9 @@ For more information, visit https://makello.com
 - - - - - - - - - - - - - - - 
 [https://makeitlow-makello.herokuapp.com/]
 Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-Email: ${this.state.clientProfile.email}
 Full Name: ${fullName}
 Phone: ${phone}
+Email: ${email}
 Address: ${address}
 Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
 Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
