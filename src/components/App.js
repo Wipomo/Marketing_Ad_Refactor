@@ -5,6 +5,7 @@ import ThirdPart from './ThirdPart';
 import ForthPart from './ForthPart';
 import FifthPart from './FifthPart';
 import FooterComponent from './FooterComponent';
+ 
 
 
 
@@ -17,13 +18,13 @@ constructor(props){
 
   this.state = {
     showFirstPart: {
-      hidden: ''
+      hidden: 'hidden'
     },
     showTooltip: {
-      hidden: ''
+      hidden: 'hidden'
     },
     showSecondPart: {
-      hidden: 'hidden'
+      hidden: ''
     },
     showThirdPart: {
       hidden: 'hidden'

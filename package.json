@@ -31,6 +31,7 @@
     "rc-tooltip": "^3.7.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-notifications": "^1.4.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "react-scroll": "^1.7.11",

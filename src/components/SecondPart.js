@@ -3,7 +3,8 @@ import Chart from './Chart';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Lightbox from 'lightbox-react';
 import 'lightbox-react/style.css'; // This only needs to be imported once in your app
-
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 var initAuto = false;
 
@@ -153,6 +154,29 @@ class SecondPart extends React.Component {
     }
   }
 
+  createNotification = (type) => {
+    return () => {
+      switch (type) {
+        case 'info':
+          NotificationManager.info('Info message');
+          break;
+        case 'success':
+          NotificationManager.success('Success message', 'Your monthly electric bill matches 100s of our customer case studies');
+          NotificationManager.success('Success message', 'Each package includes ALL of your electricity from renewable sources only!');
+          NotificationManager.success('Success message', 'View the 5 system sizes selected for you.');
+          break;
+        case 'warning':
+          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+          break;
+        case 'error':
+          NotificationManager.error('Error message', 'Click me!', 5000, () => {
+            alert('callback');
+          });
+          break;
+      }
+    };
+  };
+
   render() {
 
     const { photoIndex } = this.state;
@@ -207,6 +231,23 @@ class SecondPart extends React.Component {
           <div className='m2uTextl text-center'>
 
             <br />
+            <button className='btn btn-info'
+          onClick={this.createNotification('info')}>Info
+        </button>
+        <hr/>
+        <button className='btn btn-success'
+          onClick={this.createNotification('success')}>Learn More on Chart
+        </button>
+        <hr/>
+        <button className='btn btn-warning'
+          onClick={this.createNotification('warning')}>Warning
+        </button>
+        <hr/>
+        <button className='btn btn-danger'
+          onClick={this.createNotification('error')}>Error
+        </button>
+ 
+        <NotificationContainer/>
             
       
             {this.DescribeInstallAndMonthlyFee()}
