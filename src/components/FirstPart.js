@@ -77,7 +77,7 @@ class FirstPart extends React.Component {
       if(phoneNumber.length === 10){
         phoneNumber= '1'+phoneNumber;
       }
-      if(phoneNumber === 18587546183 || phoneNumber === 17608093391 || phoneNumber === 16193736244){
+      if(phoneNumber === '18587546183' || phoneNumber === '17608093391' || phoneNumber === '16193736244' || phoneNumber === '8587546183'){
         this.testingUser = true;
       }
 
@@ -98,7 +98,7 @@ class FirstPart extends React.Component {
       var monthlyBill = this.getSliderValue();
       this.props.getChartData(monthlyBill);
       console.log("Passing in test user status of:"+this.testingUser);
-      this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value,'', this.testingUser);
+      this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value,'N/A', this.testingUser);
       this.props.hideChanger('showSecondPart');
       this.props.toggleLightBox();
     } else {
@@ -174,7 +174,7 @@ class FirstPart extends React.Component {
     this.leadPhoneVerified = true;
     var monthlyBill = this.getSliderValue();
     this.props.getChartData(monthlyBill);
-    this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
+    this.props.billandEmailorPhoneUpdater(monthlyBill, 'N/A', this.emailRef.current.value, this.testingUser);
     this.props.hideChanger('showSecondPart');
     this.toggleVerifyUserModal();
     this.props.toggleLightBox();

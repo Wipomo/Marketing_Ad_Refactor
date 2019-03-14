@@ -38,9 +38,9 @@ constructor(props){
     clientProfile: {
       test: false,
       monthlyBill: 525,
-      email: '',
+      email: 'N/A',
       fullName: '',
-      phone: '',
+      phone: 'N/A',
       address: '',
       dailyTrip: '',
       mpg: '',
@@ -377,7 +377,7 @@ constructor(props){
     var emailSubject = ``;
 
     //console.log("Approved of work email is: "+ this.state.clientProfile.test);
-    if(this.state.clientProfile.test){
+    if(this.state.clientProfile.test || this.myReferer === "http://localhost:3000/"|| this.myReferer === "http://localhost:5000/" ){
       emailSubject = `Test of Lead Email Generated - ${this.state.clientProfile.email}`;
      }
      else{
@@ -396,6 +396,7 @@ constructor(props){
         body: `A new lead has been added to the database.
 Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
+Phone: ${this.state.clientProfile.phone}
 Database ID: ${this.state.userId}
 
 Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple payback for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan. 
@@ -414,8 +415,7 @@ Campaign: GEEPC ${this.facebook_campaign}`
   createFirstCustomerEmail = (fullName, phone, address, customerSelectsSystem) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
-
-    if(this.state.clientProfile.test){
+    if(this.state.clientProfile.test || this.myReferer === "http://localhost:3000/"|| this.myReferer === "http://localhost:5000/" ){
       emailSubject = `Test of First Customer Email- Hello from Makello`;
     }
     else{
@@ -502,7 +502,7 @@ Source: ${this.myReferer}
 createCustomerEmail = (dailyTrip,mpg, year, make, model, customerSelectsSystem ) => {
   //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
   var emailSubject = ``;
-    if((this.state.clientProfile.test)){
+  if(this.state.clientProfile.test || this.myReferer === "http://localhost:3000/"|| this.myReferer === "http://localhost:5000/" ){
       emailSubject = `Test of Final Customer Email- Hello from Makello`;
     }
     else{

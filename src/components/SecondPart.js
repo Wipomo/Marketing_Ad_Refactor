@@ -52,7 +52,7 @@ class SecondPart extends React.Component {
     let fullName = this.nameRef.current.value;
     let phone = this.phoneRef.current.value;
     let address = this.addressRef.current.value;
-    let email = this.emailRef.currrent.value;
+    let email = this.emailRef.current.value;
     this.props.clientInfoUpdater(fullName, phone, email, address, this.state.system_to_display, this.state.paymentType);
     this.props.hideChanger('showThirdPart');
   };
@@ -160,9 +160,8 @@ class SecondPart extends React.Component {
     const { photoIndex } = this.state;
     console.log("Lightbox open is: "+ this.props.lightboxIsOpen );
     let Email_placeholder = "Email"
-    if(this.props.email !== ''){
-      Email_placeholder = this.props.email;
-      this.emailRef = Email_placeholder;
+    if(this.props.email !== 'N/A'){
+      this.emailRef.current.value = this.props.email;
     }
 
     return (
