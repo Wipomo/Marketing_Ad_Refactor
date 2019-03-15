@@ -221,6 +221,13 @@ class FirstPart extends React.Component {
     //return this.props.monthlyBill;
   };
 
+  handleSliderChange = () => {
+    console.log("updating slider now");
+    this.props.handleSlideChange();
+    var monthlyBill = this.getSliderValue();
+    this.props.getChartData(monthlyBill);
+  }
+
   render() {
     return (
       <div className="App">
@@ -285,27 +292,29 @@ class FirstPart extends React.Component {
                         min={min_slider_value}
                         max={max_slider_value}
                         step={slider_increment_step}
-                        onMouseOut={this.props.handleSlideChange}
+                        onChange={this.handleSliderChange}
                         monthlyBill={this.props.monthlyBill} />
                     </div>
 
                     <div className="bottomInputs">
-                    <iframe width='610px' height='210px' src='https://crm.zoho.com/crm/WebFormServeServlet?rid=d48d10effac479aaf61cf01f42b16d3910179615c20f4d17398e50171eb268f5gide5558ef3a13f1b11f88fd540a051bc1d436a1691dc3cddae3f2fb7c7c51a426c'></iframe>
-                      <div className="row">
+                    {/* <iframe width='610px' height='210px'
+                      src='https://crm.zoho.com/crm/WebFormServeServlet?rid=d48d10effac479aaf61cf01f42b16d3910179615c20f4d17398e50171eb268f5gide5558ef3a13f1b11f88fd540a051bc1d436a1691dc3cddae3f2fb7c7c51a426c'>
+                    </iframe> */}
+                      {/* <div className="row">
                         <div className="col-md-6 offset-md-3">
                           <div className="form-group">
                             <input className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email or phone number*" />
                           </div>
 
                           <div>
-                             <Modal isOpen={this.state.verifyUserModal} toggle={this.toggleVerifyUserModal}> {/*className={this.props.className}> */}
+                             <Modal isOpen={this.state.verifyUserModal} toggle={this.toggleVerifyUserModal}> //className={this.props.className}>
                               <ModalHeader toggle={this.toggle}>Check your phone for a text message verification code.</ModalHeader>
                               <ModalBody>
                                 <input type="number" className="form-control userInput light" id="pin" ref={this.pinRef} aria-describedby="pin" placeholder="Enter the code here.. " />
                               </ModalBody>
                               <ModalFooter>
                                 <Button color="primary" onClick={()=>{this.verifyandUpdateView()}}>Verify</Button>{' '}
-                                {/* On cancel, clear input box and display placeholder*/}
+                                // On cancel, clear input box and display placeholder
                                 <Button color="secondary" onClick={()=>{this.cancelVerificationAndCloseModal()}}>Cancel</Button>
                               </ModalFooter>
                             </Modal>
@@ -316,7 +325,9 @@ class FirstPart extends React.Component {
                             <p text-align="center">Now serving San Diego</p> 
                           </div>
                         </div>
-                      </div>
+                      </div> */}
+                      <p text-align="center">Now serving San Diego</p> 
+
                     </div>
                   </div>
                   

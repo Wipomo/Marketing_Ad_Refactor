@@ -18,19 +18,19 @@ constructor(props){
 
   this.state = {
     showFirstPart: {
-      hidden: 'hidden'
+      hidden: ''
     },
     showTooltip: {
-      hidden: 'hidden'
+      hidden: ''
     },
     showSecondPart: {
       hidden: ''
     },
     showThirdPart: {
-      hidden: 'hidden'
+      hidden: ''
     },
     showForthPart: {
-      hidden: 'hidden'
+      hidden: ''
     },
     showFifthPart: {
       hidden: 'hidden'

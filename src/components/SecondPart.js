@@ -154,28 +154,28 @@ class SecondPart extends React.Component {
     }
   }
 
-  createNotification = (type) => {
-    return () => {
-      switch (type) {
-        case 'info':
-          NotificationManager.info('Info message');
-          break;
-        case 'success':
-          NotificationManager.success('Success message', 'Your monthly electric bill matches 100s of our customer case studies');
-          NotificationManager.success('Success message', 'Each package includes ALL of your electricity from renewable sources only!');
-          NotificationManager.success('Success message', 'View the 5 system sizes selected for you.');
-          break;
-        case 'warning':
-          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
-          break;
-        case 'error':
-          NotificationManager.error('Error message', 'Click me!', 5000, () => {
-            alert('callback');
-          });
-          break;
-      }
-    };
-  };
+  // createNotification = (type) => {
+  //   return () => {
+  //     switch (type) {
+  //       case 'info':
+  //         NotificationManager.info('Info message');
+  //         break;
+  //       case 'success':
+  //         NotificationManager.success('Success message', 'Your monthly electric bill matches 100s of our customer case studies');
+  //         NotificationManager.success('Success message', 'Each package includes ALL of your electricity from renewable sources only!');
+  //         NotificationManager.success('Success message', 'View the 5 system sizes selected for you.');
+  //         break;
+  //       case 'warning':
+  //         NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+  //         break;
+  //       case 'error':
+  //         NotificationManager.error('Error message', 'Click me!', 5000, () => {
+  //           alert('callback');
+  //         });
+  //         break;
+  //     }
+  //   };
+  // };
 
   render() {
 
@@ -231,7 +231,7 @@ class SecondPart extends React.Component {
           <div className='m2uTextl text-center'>
 
             <br />
-            <button className='btn btn-info'
+            {/* <button className='btn btn-info'
           onClick={this.createNotification('info')}>Info
         </button>
         <hr/>
@@ -247,7 +247,7 @@ class SecondPart extends React.Component {
           onClick={this.createNotification('error')}>Error
         </button>
  
-        <NotificationContainer/>
+        <NotificationContainer/> */}
             
       
             {this.DescribeInstallAndMonthlyFee()}
@@ -287,7 +287,13 @@ class SecondPart extends React.Component {
                       <p className='light deactive-color m2lBottom-title'>Get a custom energy savings report from Makello</p>
                     </div>
 
-                    <div className="row">
+
+                    <iframe frameBorder="0" style={{height:"500px",width:"99%",border:"none"}}
+                      src='https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/formperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM'>
+                    </iframe>
+                    
+
+                    {/* <div className="row">
                       <div className="col-md-6 offset-md-3">
                         <div className="form-group">
                           <input type="email" className="form-control userInput light full-width" placeholder='Full Name' ref={this.nameRef} />
@@ -303,7 +309,7 @@ class SecondPart extends React.Component {
                           <p text-align="center">Now serving San Diego</p>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
