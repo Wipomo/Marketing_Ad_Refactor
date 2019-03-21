@@ -343,9 +343,10 @@ class FirstPart extends React.Component {
                 </div>
               </div>
             </section>
+            <hr></hr>
             
-            <section className="payback">
-              <div className="row">
+            {/*<section className="payback">
+               <div className="row">
                 <div className="col-lg-6">
 
                   <div className="paybackWrapper">
@@ -371,12 +372,6 @@ class FirstPart extends React.Component {
 
                 	<div className="surveyVid">
 	                	<div className="embed-responsive embed-responsive-16by9">
-		                	{/* <video width="100%" height="100%" controls="true" poster="/images/video_poster_title.jpg">
-		                    	<source src = "https://www.youtube.com/watch?v=kDz-cchV6QA" type="video/mp4" ></source>
-		                    	Your browser does not support the video tag, please open using one of the following browsers:Internet Explorer, Chrome, Firefox, Opera or Safari.
-                        </video> 
-                        <iframe width="560" height="315" title="makello_video"src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                        */}
       
                         <iframe className="embed-responsive-item" title="makello_video" src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         
@@ -384,9 +379,9 @@ class FirstPart extends React.Component {
                 	</div>
 
                 </div>
-              </div>
+              </div> */}
 
-
+{/* 
               <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
                 <PopoverBody><div className="payback-disclaimer">
                 Makello's Energy Analysis includes:<br></br>
@@ -402,7 +397,7 @@ class FirstPart extends React.Component {
                   Enter your email in the form above to receive a Coupon Code for a FREE Energy Analysis by our Ethical Energy Efficiency Experts, and a comprehensive report.
                   You may also request access to site survey measurements, shading analysis, and pictures.
                   </div></PopoverBody>
-              </Popover>
+              </Popover> 
 
               <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
                 <PopoverBody><div className="payback-disclaimer">
@@ -419,7 +414,7 @@ class FirstPart extends React.Component {
                   Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
                   </div></PopoverBody>
               </Popover>
-            </section>
+            </section>*/}
           </div>
         </div>
       </div>
