@@ -240,8 +240,8 @@ class FirstPart extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className='main'>
-          <div className="wrapper">
+         {/* <div className='main'> */}
+         <div className="wrapper">
 
             <header className="mHeader">
               <nav className="navbar navbar-default">
@@ -309,7 +309,7 @@ class FirstPart extends React.Component {
 
                       <div className="row">
                         <div className="col-md-6 offset-md-3">
-                          <div className="form-group">
+                          {/*<div className="form-group">
                             <input className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email or phone number*"/>
                           </div>
 
@@ -326,15 +326,15 @@ class FirstPart extends React.Component {
                               </ModalFooter>
                             </Modal>
                           </div>
-
-                          <div className="form-group">
+                          
+                           <div className="form-group">
                             <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={this.submitHandler} />
                             <br></br>
-                            <span>
-                              OAuth Authentication request
-                            </span>
                             <p text-align="center">Now serving San Diego</p> 
-                          </div>
+                          </div> */}
+                          <span>
+                            <p text-align="center">Now serving San Diego</p>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -343,7 +343,6 @@ class FirstPart extends React.Component {
                 </div>
               </div>
             </section>
-            <hr></hr>
             
             {/*<section className="payback">
                <div className="row">
@@ -417,7 +416,7 @@ class FirstPart extends React.Component {
             </section>*/}
           </div>
         </div>
-      </div>
+      // </div>
     );
   }
 }

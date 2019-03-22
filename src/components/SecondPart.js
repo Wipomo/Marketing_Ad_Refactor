@@ -3,7 +3,7 @@ import Chart from './Chart';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Lightbox from 'lightbox-react';
 import 'lightbox-react/style.css'; // This only needs to be imported once in your app
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { Popover, PopoverBody, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 import 'react-notifications/lib/notifications.css';
 
 var initAuto = false;
@@ -317,43 +317,76 @@ class SecondPart extends React.Component {
             </div>
           </div>
         </div>
-        
-        <section className="blogThumbnails text-center">
-          <div className="row no-gutters">
-            <div className="col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/quality-in-manufacturing" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg" className="single_blog_thumbnail" alt="Quality in Manufacturing" />
-                  <div className="caption">Quality in Manufacturing</div>
-                </a>
+
+         <section className="payback">
+               <div className="row">
+                <div className="col-lg-6">
+
+                  <div className="paybackWrapper">
+                    <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
+                    <div className="mt-3">
+                      Enter your email above, for a Coupon Code that includes: 
+                      <ul>
+                        <li>Free Energy Analysis <span className="readme" id="Popover3" onMouseOver={this.toggle3} onMouseOut={this.toggle3}>
+                      &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></li>
+                        <li>Simple payback in 1 - 3 years <span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>
+                      &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></li>
+                        <li>Systems starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2}
+                      onMouseOut={this.toggle2}>&nbsp;<sup> <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup>
+                      </span></li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-4"></div>
+                  </div>
+                </div>
+
+                <div className="col-lg-6">
+
+                	<div className="surveyVid">
+	                	<div className="embed-responsive embed-responsive-16by9">
+      
+                        <iframe className="embed-responsive-item" title="makello_video" src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        
+	                	</div>
+                	</div>
+
+                </div>
               </div>
-            </div>
-            <div className="col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/dirty_little_secrets_of_solar" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src="images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" className="single_blog_thumbnail" alt="Buyer's Rights for Energy Upgrades" />
-                  <div className="caption">Dirty Little Secrets of the Solar Industry</div>
-                </a>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/what-the-competition-does-to-cut-corners" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src="images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG" className="single_blog_thumbnail" alt="How_the_Competition_Cuts_Corners" />
-                  <div className="caption">How the Competition Cuts Corners</div>
-                </a>
-              </div>
-            </div>
-            <div className=" col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/rivian-the-spirit-of-an-adventurer" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src="images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" className="single_blog_thumbnail"alt="Rivian, the Spirit of an Adventurer.jpg" />
-                  <div className="caption">Rivian, the Spirit of an Adventurer</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+
+              <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
+                <PopoverBody><div className="payback-disclaimer">
+                Makello's Energy Analysis includes:<br></br>
+
+                  &nbsp;&nbsp; -Site survey<br></br>
+                  &nbsp;&nbsp; -Shading analysis<br></br>
+                  &nbsp;&nbsp; -Cash flow analysis<br></br>
+                  &nbsp;&nbsp; -Trade-off study<br></br>
+                  &nbsp;&nbsp; -Custom proposal<br></br>
+                  <br></br>
+
+                  SDG&E and Home Energy Auditors typically charge between $400-$800.
+                  Enter your email in the form above to receive a Coupon Code for a FREE Energy Analysis by our Ethical Energy Efficiency Experts, and a comprehensive report.
+                  You may also request access to site survey measurements, shading analysis, and pictures.
+                  </div></PopoverBody>
+              </Popover> 
+
+              <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
+                <PopoverBody><div className="payback-disclaimer">
+                    Simple Payback in 1-3 years is possible for SDGE
+                    annual electric utility bills on the Standard Domestic Rate, and ineligible
+                    for Medical & Low Income discounts.
+                    Actual time to Simple Payback depends on Time-Of-Use interval data for electric
+                    consumption, and solar PV production variables.
+                  </div></PopoverBody>
+              </Popover>
+
+              <Popover placement="auto" isOpen={this.state.popoverOpen2} target="Popover2" toggle={this.toggle2}>
+                <PopoverBody><div className="payback-disclaimer">
+                  Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
+                  </div></PopoverBody>
+              </Popover>
+            </section>
 
       </div>
     );
