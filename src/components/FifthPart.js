@@ -4,7 +4,8 @@ class FifthPart extends React.Component {
 
   imgHandler = (event) => {
     event.preventDefault();
-    window.location.href = "http://www.makello.com";
+    //window.location.href = "http://www.makello.com";
+    window.open("http://www.makello.com", '_blank');
   };
 
   render() {
@@ -22,13 +23,17 @@ class FifthPart extends React.Component {
           <div className='jumbotron text-center rounded-0 border-0 mb-0'>
             <div className='row'>
               <div className="col-md-4 offset-md-4">
-                <img className="full-width" border="1px" src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
+                <a href="https://www.makello.com" target="_blank" rel="noopener noreferrer" >
+                  <img className="full-width" border="1px" src="/images/makelloLogoNG.png" alt="makelloLogoNG" onClick={this.imgHandler} />
+                </a>
               </div>
             </div>
-            <p><a href="http://www.makello.com">www.makello.com</a></p>
+            <p><a href="https://www.makello.com" target="_blank" rel="noopener noreferrer" >
+              www.makello.com 
+              </a></p>
           </div>
 
-          <section className="blogThumbnails text-center">
+          {/* <section className="blogThumbnails text-center">
           <div className="row no-gutters">
             <div className="col-md-3">
               <div className="thumbnail">
@@ -63,7 +68,7 @@ class FifthPart extends React.Component {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
           <section className="blogThumbnails text-center">
             <div className="row no-gutters">

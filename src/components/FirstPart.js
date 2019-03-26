@@ -223,8 +223,9 @@ class FirstPart extends React.Component {
 
   handleSliderChange = () => {
     console.log("updating slider now");
-    this.props.handleSlideChange();
+    //this.props.handleSlideChange(); 
     var monthlyBill = this.getSliderValue();
+    console.log("Getting monthlybill as: "+monthlyBill+ "type: "+ typeof(monthlyBill));
     let sliderHolder = document.getElementById("amount-Slider");
     let zoho_tooltip = document.getElementById("slid-Slider");
 
@@ -301,7 +302,7 @@ class FirstPart extends React.Component {
                         min={min_slider_value}
                         max={max_slider_value}
                         step={slider_increment_step}
-                        onChange={this.handleSliderChange}
+                        onMouseUp={this.handleSliderChange}
                         monthlyBill={this.props.monthlyBill} />
                     </div>
 

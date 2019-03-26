@@ -169,6 +169,7 @@ constructor(props){
   handleSlideChange = (event) => {
     //console.log("Event is:\n"+ event);
     let clientData = { ...this.state.clientProfile };
+    console.log("Setting monthlybill state to: "+ event);
     clientData.monthlyBill = event;
     //console.log("Client monthlyBill is:\n"+ typeof(clientData.monthlyBill)+" " +clientData.monthlyBill);
     this.setState({ clientProfile: clientData });
@@ -582,6 +583,8 @@ Source: ${document.referrer}
 
   // chart functionality with state
   getChartData = (monthlyBill) =>{
+    // Clear Optimal Data first
+    this.resetOptimalSystem();
     //console.log("Comes in gehandleSlideChangetChartData function in refactored app");
     var bill_input = Number(monthlyBill);
     //console.log("Monthly Bill type is : "+typeof(monthlyBill) +" Bill is: "+ typeof(bill_input));
@@ -633,69 +636,21 @@ Source: ${document.referrer}
             };
 
             series.system_type = data['rows'][row]['system_type'];
+             var j;
+            for( j = 0 ; j <= 29; j++){
+              var indexed_loan_yr = 'ccfloanyr' + j;
+              //console.log(indexed_loan_yr);
+              //console.log(data['rows'][row][indexed_loan_yr]);
+              var arraylength = series.loanData.push(data['rows'][row][indexed_loan_yr]);
+              //console.log(arraylength);
+              if(arraylength<=26){
+                var indexed_cash_flow_yr = 'avg_cumulative_cash_flow_yr' + j;
+                //console.log(indexed_cash_flow_yr);
+                //console.log(data['rows'][row][indexed_cash_flow_yr]);
+                series.data.push(data['rows'][row][indexed_cash_flow_yr])
+              }
+            }
 
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr0']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr1']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr2']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr3']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr4']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr5']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr6']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr7']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr8']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr9']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr10']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr11']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr12']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr13']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr14']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr15']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr16']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr17']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr18']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr19']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr20']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr21']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr22']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr23']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr24']);
-            series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr25']);
-            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr26']);
-            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr27']);
-            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr28']);
-            // series.data.push(data['rows'][row]['avg_cumulative_cash_flow_yr29']);
-
-            // // get chart loan data
-            series.loanData.push(data['rows'][row]['ccfloanyr0']);
-            series.loanData.push(data['rows'][row]['ccfloanyr1']);
-            series.loanData.push(data['rows'][row]['ccfloanyr2']);
-            series.loanData.push(data['rows'][row]['ccfloanyr3']);
-            series.loanData.push(data['rows'][row]['ccfloanyr4']);
-            series.loanData.push(data['rows'][row]['ccfloanyr5']);
-            series.loanData.push(data['rows'][row]['ccfloanyr6']);
-            series.loanData.push(data['rows'][row]['ccfloanyr7']);
-            series.loanData.push(data['rows'][row]['ccfloanyr8']);
-            series.loanData.push(data['rows'][row]['ccfloanyr9']);
-            series.loanData.push(data['rows'][row]['ccfloanyr10']);
-            series.loanData.push(data['rows'][row]['ccfloanyr11']);
-            series.loanData.push(data['rows'][row]['ccfloanyr12']);
-            series.loanData.push(data['rows'][row]['ccfloanyr13']);
-            series.loanData.push(data['rows'][row]['ccfloanyr14']);
-            series.loanData.push(data['rows'][row]['ccfloanyr15']);
-            series.loanData.push(data['rows'][row]['ccfloanyr16']);
-            series.loanData.push(data['rows'][row]['ccfloanyr17']);
-            series.loanData.push(data['rows'][row]['ccfloanyr18']);
-            series.loanData.push(data['rows'][row]['ccfloanyr19']);
-            series.loanData.push(data['rows'][row]['ccfloanyr20']);
-            series.loanData.push(data['rows'][row]['ccfloanyr21']);
-            series.loanData.push(data['rows'][row]['ccfloanyr22']);
-            series.loanData.push(data['rows'][row]['ccfloanyr23']);
-            series.loanData.push(data['rows'][row]['ccfloanyr24']);
-            series.loanData.push(data['rows'][row]['ccfloanyr25']);
-            series.loanData.push(data['rows'][row]['ccfloanyr26']);
-            series.loanData.push(data['rows'][row]['ccfloanyr27']);
-            series.loanData.push(data['rows'][row]['ccfloanyr28']);
-            series.loanData.push(data['rows'][row]['ccfloanyr29']);
 
             // get loanpayback for current system type
             var loanYear;
@@ -839,6 +794,22 @@ Source: ${document.referrer}
     chartDataTmp.Optimal.monthly_loan_pmt= series.monthly_loan_pmt;
     this.setChartData(chartDataTmp);
   };
+
+ 
+
+  resetOptimalSystem = () =>{
+    var chartDataTmp = {...this.state.chartData};
+    chartDataTmp.Optimal.system_type = 'Default';
+    chartDataTmp.Optimal.system_cost = 999999;
+    chartDataTmp.Optimal.payback = 999;
+    chartDataTmp.Optimal.loan_payback = 99;
+    chartDataTmp.Optimal.savingsAmount= 0;
+    chartDataTmp.Optimal.installFee = 0;
+    chartDataTmp.Optimal.monthly_loan_pmt= 0;
+    chartDataTmp.Optimal.cashorloan= '';
+    this.setChartData(chartDataTmp);
+
+  }
 
   setChartData = (data) => {
     this.setState({ chartData: data });
