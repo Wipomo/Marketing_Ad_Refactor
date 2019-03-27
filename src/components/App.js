@@ -139,7 +139,6 @@ constructor(props){
 }
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
-    
   };
 
   componentDidMount(){
@@ -151,6 +150,7 @@ constructor(props){
       this.facebook_campaign = campaign_source;
     }
     console.log(this.facebook_campaign);
+    this.getChartData(525);
   }
 
   getUrlVars() {

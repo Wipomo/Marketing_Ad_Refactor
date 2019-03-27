@@ -286,11 +286,15 @@ class SecondPart extends React.Component {
                     <div className="text-center mb-4">
                       <p className='light deactive-color m2lBottom-title'>Get a custom energy savings report from Makello</p>
                     </div>
-
-
-                    <iframe frameBorder="0" style={{height:"500px",width:"99%",border:"none"}}
+                    <script type="text/javascript" src="https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/jsperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM" id="ZFScript">
+                    </script>
+                    <iframe  title="zoho_form" frameBorder="0" style={{height:"500px",width:"99%",border:"none"}}
                       src='https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/formperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM'>
+                   
                     </iframe>
+                    We will not share your data.<span className="readme" id="footer_privacy_icon">&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
+                  </span>
+
                     {/* <script type="text/javascript" src="https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/jsperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM" id="ZFScript"></script> */}
                     
 

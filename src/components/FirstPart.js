@@ -313,7 +313,6 @@ class FirstPart extends React.Component {
                           {/*<div className="form-group">
                             <input className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email or phone number*"/>
                           </div>
-
                           <div>
                              <Modal isOpen={this.state.verifyUserModal} toggle={this.toggleVerifyUserModal}> //className={this.props.className}>
                               <ModalHeader toggle={this.toggle}>Check your phone for a text message verification code.</ModalHeader>
@@ -329,13 +328,11 @@ class FirstPart extends React.Component {
                           </div>
                           
                            <div className="form-group">
-                            <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={this.submitHandler} />
+                            <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={SubmitHandler} />
                             <br></br>
-                            <p text-align="center">Now serving San Diego</p> 
                           </div> */}
-                          <span>
-                            <p text-align="center">Now serving San Diego</p>
-                          </span>
+                          {/* <p text-align="center">Now serving San Diego</p>  */}
+
                         </div>
                       </div>
                     </div>
