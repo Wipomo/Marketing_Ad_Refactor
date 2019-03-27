@@ -3,7 +3,7 @@ import Chart from './Chart';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Lightbox from 'lightbox-react';
 import 'lightbox-react/style.css'; // This only needs to be imported once in your app
-import { Popover, PopoverBody, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+import { Popover, PopoverBody} from 'reactstrap';
 import 'react-notifications/lib/notifications.css';
 
 var initAuto = false;
@@ -21,12 +21,21 @@ class SecondPart extends React.Component {
         value:"View upgrade packages!",
         system_to_display: "Optimal",
         paymentType: "cash",
-        photoIndex: 0
+        photoIndex: 0,
+        popoverOpen1: false,
+        popoverOpen2: false,
+        popoverOpen3: false,
+        privacy_popup_open: false
       };
 
       //this.changeSystemTypeDisplayValues = this.changeSystemTypeDisplayValues.bind(this);
       this.selectSystem = this.selectSystem.bind(this);
       this.selectPaymentType = this.selectPaymentType.bind(this);
+      this.toggle1 = this.toggle1.bind(this);
+      this.toggle2 = this.toggle2.bind(this);
+      this.toggle3 = this.toggle3.bind(this);
+      this.privacy_toggle = this.privacy_toggle.bind(this);
+
 
   }
 
@@ -60,6 +69,26 @@ class SecondPart extends React.Component {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
+  }
+
+  toggle1() {
+    this.setState({
+      popoverOpen1: !this.state.popoverOpen1
+    });
+  }
+  toggle2() {
+    this.setState({
+      popoverOpen2: !this.state.popoverOpen2
+    });
+  }
+  toggle3() {
+    this.setState({
+      popoverOpen3: !this.state.popoverOpen3
+    });
+  }
+
+  privacy_toggle(){
+    this.setState({ privacy_popup_open: !this.state.privacy_popup_open });
   }
 
   selectPaymentType(event) {
@@ -292,7 +321,8 @@ class SecondPart extends React.Component {
                       src='https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/formperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM'>
                    
                     </iframe>
-                    We will not share your data.<span className="readme" id="footer_privacy_icon">&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
+                    We will not share your data.<span className="readme" id="privacy_icon" onMouseOver={this.privacy_toggle}
+                  onMouseOut={this.privacy_toggle}>&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
                   </span>
 
                     {/* <script type="text/javascript" src="https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/jsperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM" id="ZFScript"></script> */}
@@ -357,7 +387,21 @@ class SecondPart extends React.Component {
 
                 </div>
               </div>
+              <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
+                <PopoverBody><div className="payback-disclaimer">
+                    Simple Payback in 1-3 years is possible for SDGE
+                    annual electric utility bills on the Standard Domestic Rate, and ineligible
+                    for Medical & Low Income discounts.
+                    Actual time to Simple Payback depends on Time-Of-Use interval data for electric
+                    consumption, and solar PV production variables.
+                  </div></PopoverBody>
+              </Popover>
 
+              <Popover placement="auto" isOpen={this.state.popoverOpen2} target="Popover2" toggle={this.toggle2}>
+                <PopoverBody><div className="payback-disclaimer">
+                  Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
+                  </div></PopoverBody>
+              </Popover>
               <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
                 <PopoverBody><div className="payback-disclaimer">
                 Makello's Energy Analysis includes:<br></br>
@@ -375,21 +419,19 @@ class SecondPart extends React.Component {
                   </div></PopoverBody>
               </Popover> 
 
-              <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
-                <PopoverBody><div className="payback-disclaimer">
-                    Simple Payback in 1-3 years is possible for SDGE
-                    annual electric utility bills on the Standard Domestic Rate, and ineligible
-                    for Medical & Low Income discounts.
-                    Actual time to Simple Payback depends on Time-Of-Use interval data for electric
-                    consumption, and solar PV production variables.
-                  </div></PopoverBody>
-              </Popover>
-
-              <Popover placement="auto" isOpen={this.state.popoverOpen2} target="Popover2" toggle={this.toggle2}>
-                <PopoverBody><div className="payback-disclaimer">
-                  Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
-                  </div></PopoverBody>
-              </Popover>
+              <Popover placement="auto" isOpen={this.state.privacy_popup_open} target="privacy_icon" toggle={this.privacy_toggle} >
+                <PopoverBody>
+                <div className="payback-disclaimer">
+                    Privacy Policy: We won't share your info with Third Parties,
+                    except when necessary to complete your order.
+                    Makello collects personally identifiable information when you submit it.
+                    The information you provide is used to help us better understand your energy efficiency needs.
+                    We may retain and use your personal information to let you know about new products or services.
+                    Personal information is any information that identifies you or would enable someone to contact you, such as your name, email address, phone number and other
+                    non-public information that is associated with the foregoing. This privacy statement applies to the Makello website and any other sites owned and operated by Makello.
+                </div>
+            </PopoverBody>
+        </Popover>
             </section>
 
       </div>

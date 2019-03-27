@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover, PopoverBody, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+import {  Button, Modal, ModalBody} from 'reactstrap';
 import MakelloSlider from './MakelloSlider';
 
 const min_slider_value = 50;

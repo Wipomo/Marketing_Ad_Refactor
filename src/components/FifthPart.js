@@ -20,7 +20,7 @@ class FifthPart extends React.Component {
               <div>For any questions, please dial our toll free number: (855) 692-3289. </div>
           </div> */}
 
-          <div className='jumbotron text-center rounded-0 border-0 mb-0'>
+         {/*  <div className='jumbotron text-center rounded-0 border-0 mb-0'>
             <div className='row'>
               <div className="col-md-4 offset-md-4">
                 <a href="https://www.makello.com" target="_blank" rel="noopener noreferrer" >
@@ -33,7 +33,7 @@ class FifthPart extends React.Component {
               </a></p>
           </div>
 
-          {/* <section className="blogThumbnails text-center">
+          <section className="blogThumbnails text-center">
           <div className="row no-gutters">
             <div className="col-md-3">
               <div className="thumbnail">

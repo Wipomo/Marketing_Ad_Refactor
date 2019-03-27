@@ -92,7 +92,9 @@ class Chart extends React.Component {
 
     const options = {
       chart: {
-        type: 'line'
+        type: 'line',
+        height: 500
+        // height: (16 / 16 * 100) + '%' // 16:9 ratio
       },
       title: {
         text: loanDataNeeded ? 'Loan Savings Over Time' : 'Savings Over Time',
