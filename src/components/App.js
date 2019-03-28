@@ -13,6 +13,7 @@ class App extends React.Component {
 facebook_campaign="TOF HD2";
 nexom_req_id=0;
 leadPhoneVerified = false;
+myReferer="Direct Access, No Referrer";
 constructor(props){
   super(props);
 
@@ -38,9 +39,9 @@ constructor(props){
     clientProfile: {
       test: false,
       monthlyBill: 525,
-      email: '',
+      email: 'N/A',
       fullName: '',
-      phone: '',
+      phone: 'N/A',
       address: '',
       dailyTrip: '',
       mpg: '',
@@ -208,20 +209,22 @@ constructor(props){
     console.log("Test user is :"+test);
     clientProfile.test = test;
     this.setState({ clientProfile });
-    this.postBillEmailData(bill, email , Date(Date.now()).toString());
+    this.postBillandEmailorPhoneData(bill, email , phone, Date(Date.now()).toString());
   };
 
-  clientInfoUpdater = (fullName, phone, address, system_selected, paymentType ) => {
-    let updatedInput = this.checkStringLengths([fullName, phone, address]);
+  clientInfoUpdater = (fullName, phone, email, address, system_selected, paymentType ) => {
+    let updatedInput = this.checkStringLengths([fullName, phone, email, address]);
     //console.log("Returned client info is: "+updatedInput[0]+ ", "+ updatedInput[1]+ " and "+ updatedInput[2]);
     //console.log(updatedInput);
     fullName=updatedInput[0];
     phone=updatedInput[1];
-    address=updatedInput[2];
+    email=updatedInput[2];
+    address=updatedInput[3];
     
     let clientProfile = { ...this.state.clientProfile };
     clientProfile.fullName = fullName;
     clientProfile.phone = phone;
+    clientProfile.email = email;
     clientProfile.address = address;
     clientProfile.saveAmount = this.state.chartData.Optimal.savingsAmount;
     clientProfile.selectedSystem.system_type = system_selected;
@@ -269,8 +272,8 @@ constructor(props){
     console.log(customer_selects_preffered_system);
     clientProfile.selectedSystem.selectsSystem = customer_selects_preffered_system;
     this.setState({ clientProfile });
-    this.putClientInfo(fullName, phone, address, system_selected, paymentType);
-    this.createFirstCustomerEmail(fullName, phone, address, customer_selects_preffered_system);
+    this.putClientInfo(fullName, phone, email, address, system_selected, paymentType);
+    this.createFirstCustomerEmail(fullName, phone, email, address, customer_selects_preffered_system);
   };
 
   carInfoUpdater = (dailyTrip, mpg, year, make, model) => {
@@ -312,13 +315,13 @@ constructor(props){
     return newList;
   }
 
-  postBillEmailData = (bill, email, time) => {
-    var myReferer="Direct Access, No Referrer";
+  postBillandEmailorPhoneData = (bill, email, phone, time) => {
+    //var myReferer="Direct Access, No Referrer";
 
     if (document.referrer) {
       console.log("Confirming refferer");
-      myReferer = document.referrer;
-      console.log(myReferer);
+      this.myReferer = document.referrer;
+      console.log(this.myReferer);
     }
 
     fetch("https://makeitlow-makello-server.herokuapp.com/customers/", {
@@ -329,8 +332,9 @@ constructor(props){
       body: JSON.stringify({
         monthlyBill: bill,
         email: email,
+        phone: phone,
         time: time,
-        trafficSource: myReferer,
+        trafficSource: this.myReferer,
         campaignSource: this.facebook_campaign
       })
     })
@@ -341,7 +345,7 @@ constructor(props){
       })
   };
 
-  putClientInfo = (fullName, phone, address, selectedSystem, paymentType) => {
+  putClientInfo = (fullName, phone, email, address, selectedSystem, paymentType) => {
     fetch(`https://makeitlow-makello-server.herokuapp.com/customers/${this.state.userId}`, {
       method: "PUT",
       headers: {
@@ -350,6 +354,7 @@ constructor(props){
       body: JSON.stringify({
         fullName: fullName,
         phone: phone,
+        email: email,
         address: address,
         selectedSystem: selectedSystem,
         paymentType: paymentType,
@@ -384,8 +389,9 @@ constructor(props){
 
   sendNewLeadEmail = () => {
     var emailSubject = ``;
+
     //console.log("Approved of work email is: "+ this.state.clientProfile.test);
-    if(this.state.clientProfile.test){
+    if(this.state.clientProfile.test || this.myReferer === "http://localhost:3000/"|| this.myReferer === "http://localhost:5000/" ){
       emailSubject = `Test of Lead Email Generated - ${this.state.clientProfile.email}`;
      }
      else{
@@ -404,6 +410,7 @@ constructor(props){
         body: `A new lead has been added to the database.
 Monthly Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
 Email: ${this.state.clientProfile.email}
+Phone: ${this.state.clientProfile.phone}
 Database ID: ${this.state.userId}
 
 Your monthly electric bill, matched with 100’s of our customer case studies, averages ${Number(this.state.chartData.Optimal.payback).toLocaleString(navigator.language, { maximumSignificantDigits: 2 })} year simple payback for cash purchase, or ${Number(this.state.chartData.Optimal.loan_payback).toLocaleString(navigator.language, { maximumSignificantDigits: 3 })} year simple payback for loan. 
@@ -413,16 +420,16 @@ You Can Save $${Number(this.state.chartData.Optimal.savingsAmount).toLocaleStrin
 We selected the optimal ${this.state.chartData.Optimal.system_type} energy upgrade package for you!
 
 $${Number(this.state.chartData.Optimal.installFee).toLocaleString(navigator.language, { maximumFractionDigits: 0 })} or $${Number(this.state.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { maximumFractionDigits: 0 })}/month*
-Source: ${document.referrer}
+Source: ${this.myReferer}
 Campaign: GEEPC ${this.facebook_campaign}`
       })
     })
   };
 
-  createFirstCustomerEmail = (fullName, phone, address, customerSelectsSystem) => {
+  createFirstCustomerEmail = (fullName, phone, email, address, customerSelectsSystem) => {
     //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
     var emailSubject = ``;
-    if(this.state.clientProfile.test){
+    if(this.state.clientProfile.test || this.myReferer === "http://localhost:3000/"|| this.myReferer === "http://localhost:5000/" ){
       emailSubject = `Test of First Customer Email- Hello from Makello`;
     }
     else{
@@ -445,9 +452,9 @@ For more information, visit https://makello.com
 - - - - - - - - - - - - - - - 
 [https://makeitlow-makello.herokuapp.com/]
 Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-Email: ${this.state.clientProfile.email}
 Full Name: ${fullName}
 Phone: ${phone}
+Email: ${email}
 Address: ${address}
 Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
 Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
@@ -458,7 +465,7 @@ Plug-In Vehicle Type: N/A
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
 Payment type: ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
 `
     }
     else{
@@ -476,9 +483,9 @@ For more information, visit https://makello.com
 - - - - - - - - - - - - - - - 
 [https://makeitlow-makello.herokuapp.com/]
 Monthly Electric Bill: ${Number(this.state.clientProfile.monthlyBill).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-Email: ${this.state.clientProfile.email}
 Full Name: ${fullName}
 Phone: ${phone}
+Email: ${email}
 Address: ${address}
 Package Selection: ${this.state.clientProfile.selectedSystem.system_type}
 Payment Type: ${this.state.clientProfile.selectedSystem.cashorloan}
@@ -488,7 +495,7 @@ Plug-In Vehicle Type: N/A
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
   `
     }
 
@@ -509,7 +516,7 @@ Source: ${document.referrer}
 createCustomerEmail = (dailyTrip,mpg, year, make, model, customerSelectsSystem ) => {
   //console.log("customer email func: <\n>"+this.state.clientProfile.email+"<\n>");
   var emailSubject = ``;
-    if((this.state.clientProfile.test)){
+  if(this.state.clientProfile.test || this.myReferer === "http://localhost:3000/"|| this.myReferer === "http://localhost:5000/" ){
       emailSubject = `Test of Final Customer Email- Hello from Makello`;
     }
     else{
@@ -544,7 +551,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
   `
     }
     else{
@@ -574,7 +581,7 @@ Plug-In Vehicle Type: ${year} ${make}, ${model}
 
 -----------------------------
 Optimal: ${this.state.chartData.Optimal.system_type} ${this.state.chartData.Optimal.cashorloan}
-Source: ${document.referrer}
+Source: ${this.myReferer}
   `
     }
   fetch('https://makeitlow-makello-server.herokuapp.com/generate-client-email', {
@@ -871,6 +878,7 @@ Source: ${document.referrer}
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>
             <SecondPart
+              email={this.state.clientProfile.email}
               clientInfoUpdater={this.clientInfoUpdater}
               hideChanger={this.hideChanger}
               chartData={this.state.chartData}

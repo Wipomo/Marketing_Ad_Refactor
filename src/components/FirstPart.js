@@ -10,6 +10,7 @@ const slider_increment_step = 25;
 class FirstPart extends React.Component {
   nexom_req_id=0;
   leadPhoneVerified=false;
+  testingUser = false;
   constructor(props) {
     super(props);
 
@@ -67,7 +68,6 @@ class FirstPart extends React.Component {
   pinRef = React.createRef();
 
   submitHandler = (event) => {
-    var testingUser = false;
     if(/^(\+)?([0-9]{1})?[-. ]?(\()?([0-9]{3})(\))?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(this.emailRef.current.value)){
       var phoneNumber = this.emailRef.current.value;
       console.log(" Matches phone number");
@@ -78,7 +78,7 @@ class FirstPart extends React.Component {
       if(phoneNumber.length === 10){
         phoneNumber= '1'+phoneNumber;
       }
-      if(phoneNumber === 18587546183 || phoneNumber === 17608093391 || phoneNumber === 16193736244){
+      if(phoneNumber === '18587546183' || phoneNumber === '17608093391' || phoneNumber === '16193736244' || phoneNumber === '8587546183'){
         this.testingUser = true;
       }
 
@@ -93,12 +93,13 @@ class FirstPart extends React.Component {
       // also check if work email for testing purposes
       if(/^\w+([.-]?\w+)*@wipomo.com$/.test(this.emailRef.current.value)) {
         console.log("TEST: Sets client test state")
-        testingUser = true;
+        this.testingUser = true;
       }
       
       var monthlyBill = this.getSliderValue();
       this.props.getChartData(monthlyBill);
-      this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value, testingUser);
+      console.log("Passing in test user status of:"+this.testingUser);
+      this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value,'N/A', this.testingUser);
       this.props.hideChanger('showSecondPart');
       this.props.toggleLightBox();
     } else {
@@ -174,7 +175,7 @@ class FirstPart extends React.Component {
     this.leadPhoneVerified = true;
     var monthlyBill = this.getSliderValue();
     this.props.getChartData(monthlyBill);
-    this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
+    this.props.billandEmailorPhoneUpdater(monthlyBill, 'N/A', this.emailRef.current.value, this.testingUser);
     this.props.hideChanger('showSecondPart');
     //this.props.showAllParts();
     this.toggleVerifyUserModal();
