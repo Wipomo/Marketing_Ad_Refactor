@@ -3,7 +3,8 @@ import Chart from './Chart';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Lightbox from 'lightbox-react';
 import 'lightbox-react/style.css'; // This only needs to be imported once in your app
-
+import { Popover, PopoverBody} from 'reactstrap';
+import 'react-notifications/lib/notifications.css';
 
 var initAuto = false;
 
@@ -20,12 +21,21 @@ class SecondPart extends React.Component {
         value:"View upgrade packages!",
         system_to_display: "Optimal",
         paymentType: "cash",
-        photoIndex: 0
+        photoIndex: 0,
+        popoverOpen1: false,
+        popoverOpen2: false,
+        popoverOpen3: false,
+        privacy_popup_open: false
       };
 
       //this.changeSystemTypeDisplayValues = this.changeSystemTypeDisplayValues.bind(this);
       this.selectSystem = this.selectSystem.bind(this);
       this.selectPaymentType = this.selectPaymentType.bind(this);
+      this.toggle1 = this.toggle1.bind(this);
+      this.toggle2 = this.toggle2.bind(this);
+      this.toggle3 = this.toggle3.bind(this);
+      this.privacy_toggle = this.privacy_toggle.bind(this);
+
 
   }
 
@@ -61,6 +71,26 @@ class SecondPart extends React.Component {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
+  }
+
+  toggle1() {
+    this.setState({
+      popoverOpen1: !this.state.popoverOpen1
+    });
+  }
+  toggle2() {
+    this.setState({
+      popoverOpen2: !this.state.popoverOpen2
+    });
+  }
+  toggle3() {
+    this.setState({
+      popoverOpen3: !this.state.popoverOpen3
+    });
+  }
+
+  privacy_toggle(){
+    this.setState({ privacy_popup_open: !this.state.privacy_popup_open });
   }
 
   selectPaymentType(event) {
@@ -155,6 +185,29 @@ class SecondPart extends React.Component {
     }
   }
 
+  // createNotification = (type) => {
+  //   return () => {
+  //     switch (type) {
+  //       case 'info':
+  //         NotificationManager.info('Info message');
+  //         break;
+  //       case 'success':
+  //         NotificationManager.success('Success message', 'Your monthly electric bill matches 100s of our customer case studies');
+  //         NotificationManager.success('Success message', 'Each package includes ALL of your electricity from renewable sources only!');
+  //         NotificationManager.success('Success message', 'View the 5 system sizes selected for you.');
+  //         break;
+  //       case 'warning':
+  //         NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+  //         break;
+  //       case 'error':
+  //         NotificationManager.error('Error message', 'Click me!', 5000, () => {
+  //           alert('callback');
+  //         });
+  //         break;
+  //     }
+  //   };
+  // };
+
   render() {
 
     const { photoIndex } = this.state;
@@ -214,6 +267,23 @@ class SecondPart extends React.Component {
           <div className='m2uTextl text-center'>
 
             <br />
+            {/* <button className='btn btn-info'
+          onClick={this.createNotification('info')}>Info
+        </button>
+        <hr/>
+        <button className='btn btn-success'
+          onClick={this.createNotification('success')}>Learn More on Chart
+        </button>
+        <hr/>
+        <button className='btn btn-warning'
+          onClick={this.createNotification('warning')}>Warning
+        </button>
+        <hr/>
+        <button className='btn btn-danger'
+          onClick={this.createNotification('error')}>Error
+        </button>
+ 
+        <NotificationContainer/> */}
             
       
             {this.DescribeInstallAndMonthlyFee()}
@@ -250,10 +320,22 @@ class SecondPart extends React.Component {
                 <div className="card border-0 rounded-0 pt-3">
                   <div className="card-body">
                     <div className="text-center mb-4">
-                      <p className='light deactive-color m2lBottom-title'>Get a custom energy savings report from Makello</p>
+                      <p className='light deactive-color m2lBottom-title'>Now Serving San Diego</p>
                     </div>
+                    <script type="text/javascript" src="https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/jsperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM" id="ZFScript">
+                    </script>
+                    <iframe  title="zoho_form" frameBorder="0" style={{height:"500px",width:"99%",border:"none"}}
+                      src='https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/formperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM'>
+                   
+                    </iframe>
+                    We will not share your data.<span className="readme" id="privacy_icon" onMouseOver={this.privacy_toggle}
+                  onMouseOut={this.privacy_toggle}>&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
+                  </span>
 
-                    <div className="row">
+                    {/* <script type="text/javascript" src="https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/jsperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM" id="ZFScript"></script> */}
+                    
+
+                    {/* <div className="row">
                       <div className="col-md-6 offset-md-3">
                         <div className="form-group">
                           <input type="email" className="form-control userInput light full-width" placeholder='Full Name' ref={this.nameRef} />
@@ -272,50 +354,95 @@ class SecondPart extends React.Component {
                           <p text-align="center">Now serving San Diego</p>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
-        <section className="blogThumbnails text-center">
-          <div className="row no-gutters">
-            <div className="col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/quality-in-manufacturing" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src = "images/blog_thumbnails/Quality_in_Manufacturing.jpg" className="single_blog_thumbnail" alt="Quality in Manufacturing" />
-                  <div className="caption">Quality in Manufacturing</div>
-                </a>
+
+         <section className="payback">
+               <div className="row">
+                <div className="col-lg-6">
+
+                  <div className="paybackWrapper">
+                    <h2 className="payback-heading">High Energy Bill? <span className="text-muted">No Problem!</span></h2>
+                    <div className="mt-3">
+                      Enter your email above, for a Coupon Code that includes: 
+                      <ul>
+                        <li>Free Energy Analysis <span className="readme" id="Popover3" onMouseOver={this.toggle3} onMouseOut={this.toggle3}>
+                      &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></li>
+                        <li>Simple payback in 1 - 3 years <span className="readme" id="Popover1" onMouseOver={this.toggle1} onMouseOut={this.toggle1}>
+                      &nbsp;<sup><img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup></span></li>
+                        <li>Systems starting at $5,599 or $53/mo.<span className="readme" id="Popover2" onMouseOver={this.toggle2}
+                      onMouseOut={this.toggle2}>&nbsp;<sup> <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/></sup>
+                      </span></li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-4"></div>
+                  </div>
+                </div>
+
+                <div className="col-lg-6">
+
+                	<div className="surveyVid">
+	                	<div className="embed-responsive embed-responsive-16by9">
+      
+                        <iframe className="embed-responsive-item" title="makello_video" src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        
+	                	</div>
+                	</div>
+
+                </div>
               </div>
-            </div>
-            <div className="col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/dirty_little_secrets_of_solar" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src="images/blog_thumbnails/Dirty_Little_Secrets_of_the_Solar_Industry.jpg" className="single_blog_thumbnail" alt="Buyer's Rights for Energy Upgrades" />
-                  <div className="caption">Dirty Little Secrets of the Solar Industry</div>
-                </a>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/what-the-competition-does-to-cut-corners" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src="images/blog_thumbnails/How_the_Competition_Cuts_Corners.JPG" className="single_blog_thumbnail" alt="How_the_Competition_Cuts_Corners" />
-                  <div className="caption">How the Competition Cuts Corners</div>
-                </a>
-              </div>
-            </div>
-            <div className=" col-md-3">
-              <div className="thumbnail">
-                <a href="https://www.makello.com/blog/rivian-the-spirit-of-an-adventurer" target="_blank" rel="noopener noreferrer" className="viewBlogContent">
-                  <img src="images/blog_thumbnails/Rivian_the_Spirit_of_an_Adventurer.jpg" className="single_blog_thumbnail"alt="Rivian, the Spirit of an Adventurer.jpg" />
-                  <div className="caption">Rivian, the Spirit of an Adventurer</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+              <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
+                <PopoverBody><div className="payback-disclaimer">
+                    Simple Payback in 1-3 years is possible for SDGE
+                    annual electric utility bills on the Standard Domestic Rate, and ineligible
+                    for Medical & Low Income discounts.
+                    Actual time to Simple Payback depends on Time-Of-Use interval data for electric
+                    consumption, and solar PV production variables.
+                  </div></PopoverBody>
+              </Popover>
+
+              <Popover placement="auto" isOpen={this.state.popoverOpen2} target="Popover2" toggle={this.toggle2}>
+                <PopoverBody><div className="payback-disclaimer">
+                  Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
+                  </div></PopoverBody>
+              </Popover>
+              <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
+                <PopoverBody><div className="payback-disclaimer">
+                Makello's Energy Analysis includes:<br></br>
+
+                  &nbsp;&nbsp; -Site survey<br></br>
+                  &nbsp;&nbsp; -Shading analysis<br></br>
+                  &nbsp;&nbsp; -Cash flow analysis<br></br>
+                  &nbsp;&nbsp; -Trade-off study<br></br>
+                  &nbsp;&nbsp; -Custom proposal<br></br>
+                  <br></br>
+
+                  SDG&E and Home Energy Auditors typically charge between $400-$800.
+                  Enter your email in the form above to receive a Coupon Code for a FREE Energy Analysis by our Ethical Energy Efficiency Experts, and a comprehensive report.
+                  You may also request access to site survey measurements, shading analysis, and pictures.
+                  </div></PopoverBody>
+              </Popover> 
+
+              <Popover placement="auto" isOpen={this.state.privacy_popup_open} target="privacy_icon" toggle={this.privacy_toggle} >
+                <PopoverBody>
+                <div className="payback-disclaimer">
+                    Privacy Policy: We won't share your info with Third Parties,
+                    except when necessary to complete your order.
+                    Makello collects personally identifiable information when you submit it.
+                    The information you provide is used to help us better understand your energy efficiency needs.
+                    We may retain and use your personal information to let you know about new products or services.
+                    Personal information is any information that identifies you or would enable someone to contact you, such as your name, email address, phone number and other
+                    non-public information that is associated with the foregoing. This privacy statement applies to the Makello website and any other sites owned and operated by Makello.
+                </div>
+            </PopoverBody>
+        </Popover>
+            </section>
 
       </div>
     );

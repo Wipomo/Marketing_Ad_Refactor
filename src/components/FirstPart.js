@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover, PopoverBody, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+import {  Button, Modal, ModalBody} from 'reactstrap';
 import MakelloSlider from './MakelloSlider';
 
 const min_slider_value = 50;
@@ -25,7 +25,8 @@ class FirstPart extends React.Component {
 
     this.state = {
       modal: false,
-      verifyUserModal: false
+      verifyUserModal: false,
+      lightboxDisplayed: false
     };
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -176,6 +177,7 @@ class FirstPart extends React.Component {
     this.props.getChartData(monthlyBill);
     this.props.billandEmailorPhoneUpdater(monthlyBill, 'N/A', this.emailRef.current.value, this.testingUser);
     this.props.hideChanger('showSecondPart');
+    //this.props.showAllParts();
     this.toggleVerifyUserModal();
     this.props.toggleLightBox();
     console.log("Succes");
@@ -222,11 +224,40 @@ class FirstPart extends React.Component {
     //return this.props.monthlyBill;
   };
 
+  handleSliderChange = () => {
+    console.log("updating slider now");
+    //this.props.handleSlideChange(); 
+    var monthlyBill = this.getSliderValue();
+    console.log("Getting monthlybill as: "+monthlyBill+ "type: "+ typeof(monthlyBill));
+    let sliderHolder = document.getElementById("amount-Slider");
+    let zoho_tooltip = document.getElementById("slid-Slider");
+
+    console.log("CURRENT SLIDER VALUE: "+ sliderHolder);
+    console.log("Zoho SLIDER tooltip VALUE: "+ zoho_tooltip);
+    //(#slid-Slider).text(monthlyBill);
+    //(#slid-Slider).value = monthlyBill;*
+    //(#ampunt-Slider).attr("value",monthlyBill);
+
+    this.props.getChartData(monthlyBill);
+
+    this.determineLightBoxPopup();
+    this.props.showAllParts();
+  }
+
+  determineLightBoxPopup = () =>{
+    console.log("Actually comes in here ");
+    if(!this.state.lightboxDisplayed){
+      this.props.toggleLightBox();
+    }
+    this.setState({lightboxDisplayed: true})
+
+  }
+
   render() {
     return (
       <div className="App">
-        <div className='main'>
-          <div className="wrapper">
+         {/* <div className='main'> */}
+         <div className="wrapper">
 
             <header className="mHeader">
               <nav className="navbar navbar-default">
@@ -286,35 +317,37 @@ class FirstPart extends React.Component {
                         min={min_slider_value}
                         max={max_slider_value}
                         step={slider_increment_step}
-                        onMouseOut={this.props.handleSlideChange}
+                        onMouseUp={this.handleSliderChange}
                         monthlyBill={this.props.monthlyBill} />
                     </div>
 
                     <div className="bottomInputs">
+
                       <div className="row">
                         <div className="col-md-6 offset-md-3">
-                          <div className="form-group">
-                            <input className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email or phone number*" />
+                          {/*<div className="form-group">
+                            <input className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email or phone number*"/>
                           </div>
-
                           <div>
-                             <Modal isOpen={this.state.verifyUserModal} toggle={this.toggleVerifyUserModal}> {/*className={this.props.className}> */}
+                             <Modal isOpen={this.state.verifyUserModal} toggle={this.toggleVerifyUserModal}> //className={this.props.className}>
                               <ModalHeader toggle={this.toggle}>Check your phone for a text message verification code.</ModalHeader>
                               <ModalBody>
                                 <input type="number" className="form-control userInput light" id="pin" ref={this.pinRef} aria-describedby="pin" placeholder="Enter the code here.. " />
                               </ModalBody>
                               <ModalFooter>
                                 <Button color="primary" onClick={()=>{this.verifyandUpdateView()}}>Verify</Button>{' '}
-                                {/* On cancel, clear input box and display placeholder*/}
+                                // On cancel, clear input box and display placeholder
                                 <Button color="secondary" onClick={()=>{this.cancelVerificationAndCloseModal()}}>Cancel</Button>
                               </ModalFooter>
                             </Modal>
                           </div>
+                          
+                           <div className="form-group">
+                            <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={SubmitHandler} />
+                            <br></br>
+                          </div> */}
+                          {/* <p text-align="center">Now serving San Diego</p>  */}
 
-                          <div className="form-group">
-                            <input className="btn btn-primary submitButton light" type="submit" value="Submit" onClick={this.submitHandler} />
-                            <p text-align="center">Now serving San Diego</p> 
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -324,8 +357,8 @@ class FirstPart extends React.Component {
               </div>
             </section>
             
-            <section className="payback">
-              <div className="row">
+            {/*<section className="payback">
+               <div className="row">
                 <div className="col-lg-6">
 
                   <div className="paybackWrapper">
@@ -351,12 +384,6 @@ class FirstPart extends React.Component {
 
                 	<div className="surveyVid">
 	                	<div className="embed-responsive embed-responsive-16by9">
-		                	{/* <video width="100%" height="100%" controls="true" poster="/images/video_poster_title.jpg">
-		                    	<source src = "https://www.youtube.com/watch?v=kDz-cchV6QA" type="video/mp4" ></source>
-		                    	Your browser does not support the video tag, please open using one of the following browsers:Internet Explorer, Chrome, Firefox, Opera or Safari.
-                        </video> 
-                        <iframe width="560" height="315" title="makello_video"src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                        */}
       
                         <iframe className="embed-responsive-item" title="makello_video" src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         
@@ -364,9 +391,9 @@ class FirstPart extends React.Component {
                 	</div>
 
                 </div>
-              </div>
+              </div> */}
 
-
+{/* 
               <Popover placement="auto" isOpen={this.state.popoverOpen3} target="Popover3" toggle={this.toggle3}>
                 <PopoverBody><div className="payback-disclaimer">
                 Makello's Energy Analysis includes:<br></br>
@@ -382,7 +409,7 @@ class FirstPart extends React.Component {
                   Enter your email in the form above to receive a Coupon Code for a FREE Energy Analysis by our Ethical Energy Efficiency Experts, and a comprehensive report.
                   You may also request access to site survey measurements, shading analysis, and pictures.
                   </div></PopoverBody>
-              </Popover>
+              </Popover> 
 
               <Popover placement="auto" isOpen={this.state.popoverOpen1} target="Popover1" toggle={this.toggle1}>
                 <PopoverBody><div className="payback-disclaimer">
@@ -399,10 +426,10 @@ class FirstPart extends React.Component {
                   Includes highest quality: LG 335 watt - 400 watt solar panels, SolarEdge, SMA or Enphase IQ7 inverter(s), balance of system and installation. After 30% Federal Income Tax Credit, and if loan, applied as downpayment for 12 Yr Loan @ 5.49% APR. Actual APR based on credit application.
                   </div></PopoverBody>
               </Popover>
-            </section>
+            </section>*/}
           </div>
         </div>
-      </div>
+      // </div>
     );
   }
 }

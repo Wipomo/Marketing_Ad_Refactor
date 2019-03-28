@@ -17,6 +17,23 @@
 
     <link href='/favicon.ico' rel='shortcut icon'>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <!-- Event snippet for Conversion LP Gate conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-864031728/Y_bWCK2psJcBEPCngJwD',
+          'event_callback': callback
+      });
+      return false;
+    }
+</script>
+    
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
