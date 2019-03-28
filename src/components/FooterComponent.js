@@ -20,12 +20,13 @@ class FooterComponent extends React.Component {
         <div>
         <div className="footer">
         <div className="footerText">
-          &copy; Copyright 2019 Makello&nbsp;&nbsp;|&nbsp;&nbsp;We will not share your data.<span className="readme" id="footer_privacy_icon" onMouseOver={this.privacy_toggle}
+          &copy; Copyright 2019 Makello
+          {/* &nbsp;&nbsp;|&nbsp;&nbsp;We will not share your data.<span className="readme" id="footer_privacy_icon" onMouseOver={this.privacy_toggle}
                   onMouseOut={this.privacy_toggle}>&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
-                  </span>
+                  </span> */}
         </div>
       </div>
-      <Popover placement="auto" isOpen={this.state.privacy_popup_open} target="footer_privacy_icon" toggle={this.privacy_toggle} >
+      {/* <Popover placement="auto" isOpen={this.state.privacy_popup_open} target="footer_privacy_icon" toggle={this.privacy_toggle} >
             <PopoverBody>
                 <div className="payback-disclaimer">
                     Privacy Policy: We won't share your info with Third Parties,
@@ -37,7 +38,7 @@ class FooterComponent extends React.Component {
                     non-public information that is associated with the foregoing. This privacy statement applies to the Makello website and any other sites owned and operated by Makello.
                 </div>
             </PopoverBody>
-        </Popover>
+        </Popover> */}
         </div>
 
     );

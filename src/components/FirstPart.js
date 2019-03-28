@@ -24,7 +24,8 @@ class FirstPart extends React.Component {
 
     this.state = {
       modal: false,
-      verifyUserModal: false
+      verifyUserModal: false,
+      lightboxDisplayed: false
     };
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -175,6 +176,7 @@ class FirstPart extends React.Component {
     this.props.getChartData(monthlyBill);
     this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
     this.props.hideChanger('showSecondPart');
+    //this.props.showAllParts();
     this.toggleVerifyUserModal();
     this.props.toggleLightBox();
     console.log("Succes");
@@ -236,6 +238,18 @@ class FirstPart extends React.Component {
     //(#ampunt-Slider).attr("value",monthlyBill);
 
     this.props.getChartData(monthlyBill);
+
+    this.determineLightBoxPopup();
+    this.props.showAllParts();
+  }
+
+  determineLightBoxPopup = () =>{
+    console.log("Actually comes in here ");
+    if(!this.state.lightboxDisplayed){
+      this.props.toggleLightBox();
+    }
+    this.setState({lightboxDisplayed: true})
+
   }
 
   render() {

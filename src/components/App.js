@@ -24,7 +24,7 @@ constructor(props){
       hidden: ''
     },
     showSecondPart: {
-      hidden: ''
+      hidden: 'hidden'
     },
     showThirdPart: {
       hidden: 'hidden'
@@ -180,14 +180,24 @@ constructor(props){
       this.setState({ showFirstPart: { hidden: 'hidden' } });
       this.setState({ showTooltip: { hidden: ' hidden' } });
       this.setState({ showSecondPart: { hidden: 'hidden' } });
-      this.setState({ showThirdPart: { hidden: 'hidden' } });
+      this.setState({ showThirdPart: { hidden: '' } });
       this.setState({ showForthPart: { hidden: 'hidden' } });
-      this.setState({ showFifthPart: { hidden: 'hidden' } });
+      this.setState({ showFifthPart: { hidden: '' } });
       this.setState({ [input]: { hidden: '' } });
     } else {
       this.setState({ [input]: { hidden: 'hidden' } });
     }
   };
+
+  showAllParts = () => {
+    console.log("Coming in here to update page display views");
+    this.setState({ showFirstPart: { hidden: '' } });
+    this.setState({ showTooltip: { hidden: '' } });
+    this.setState({ showSecondPart: { hidden: '' } });
+    this.setState({ showThirdPart: { hidden: 'hidden' } });
+    this.setState({ showForthPart: { hidden: 'hidden' } });
+    this.setState({ showFifthPart: { hidden: '' } });
+  }
   
 
   billandEmailorPhoneUpdater = (bill, email, phone, test) => {
@@ -845,7 +855,8 @@ Source: ${document.referrer}
           <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
             <FirstPart
               billandEmailorPhoneUpdater={this.billandEmailorPhoneUpdater}
-              hideChanger={this.hideChanger}
+              //hideChanger={this.hideChanger}
+              showAllParts={this.showAllParts}
               showTooltip={this.state.showTooltip}
               monthlyBill={this.state.clientProfile.monthlyBill}
               // emailValidator={this.emailValidator}

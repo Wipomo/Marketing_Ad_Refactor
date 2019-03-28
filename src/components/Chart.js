@@ -73,7 +73,7 @@ class Chart extends React.Component {
     //console.log(system_type_payback);
 
     // pick lowest 4 systems to be defaultly visible on chart
-    system_type_payback = system_type_payback.slice(0,4);
+    //system_type_payback = system_type_payback.slice(0,4);
 
     // determine to display cash or loan data
     var system_type_payback_without_baseline = system_type_payback.slice(1);
@@ -112,7 +112,7 @@ class Chart extends React.Component {
             return '$' + this.value / 1000 + 'k'
           },
           style: {
-            fontSize: '14px',
+            fontSize: '20px',
             fontWeight:'bold',
           }
         },
@@ -128,7 +128,7 @@ class Chart extends React.Component {
         tickInterval: 1,
         labels: {
           style: {
-           fontSize: '14px',
+           fontSize: '18px',
            fontWeight:'bold',
           }
         },
