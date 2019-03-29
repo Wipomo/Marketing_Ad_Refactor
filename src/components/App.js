@@ -649,7 +649,9 @@ Source: ${this.myReferer}
         .then((data) => {
           var chartDataTmp = {...this.state.chartData};
           var row;
-          for (row = 0; row<6; row++){
+
+          // iterate through all system type rows returned from specific bucket
+          for (row = 0; row<7; row++){
             var series= {
               system_type:"",
               bucket: bucket,
@@ -707,7 +709,6 @@ Source: ${this.myReferer}
             series.savingsAmount = Number(data['rows'][row]['you_save_100re']);
             series.installFee = -Number(data['rows'][row]['avg_system_cost_yr0']) - Number(data['rows'][row]['avg_incentive_yr1']);
             series.monthly_loan_pmt = Number(data['rows'][row]['monthly_loan_payment']);
-
             switch(series.system_type){
               case "Baseline":
                 chartDataTmp.Baseline.data = series.data.map( element => Number(element));
