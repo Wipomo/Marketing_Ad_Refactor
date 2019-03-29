@@ -624,7 +624,7 @@ Source: ${this.myReferer}
         .then((data) => {
           var chartDataTmp = {...this.state.chartData};
           var row;
-          for (row = 0; row<6; row++){
+          for (row = 0; row<7; row++){
             var series= {
               system_type:"",
               bucket: bucket,
