@@ -128,7 +128,18 @@ constructor(props){
         savingsAmount: 0,
         installFee: 0,
         monthly_loan_pmt:0
-      }
+      },
+      Selected_EVPV: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
+        system_cost:0,
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
+      },
     },
     userId: 0,
     resolution: window.innerWidth,
@@ -740,7 +751,7 @@ Source: ${this.myReferer}
                 break;
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
-                //console.log(chartDataTmp.Standard.data);
+                console.log(chartDataTmp.Standard.data);
                 chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Standard.loan_payback = series.loan_payback;
                 chartDataTmp.Standard.payback = series.payback;
@@ -759,6 +770,16 @@ Source: ${this.myReferer}
                 chartDataTmp.Premium.installFee = series.installFee;
                 chartDataTmp.Premium.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
+                break;
+              case "Selected EVPV":
+                chartDataTmp.Selected_EVPV.data = series.data.map( element => Number(element));
+                chartDataTmp.Selected_EVPV.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Selected_EVPV.loan_payback = series.loan_payback;
+                chartDataTmp.Selected_EVPV.payback = series.payback;
+                chartDataTmp.Selected_EVPV.savingsAmount = series.savingsAmount;
+                chartDataTmp.Selected_EVPV.installFee = series.installFee;
+                chartDataTmp.Selected_EVPV.monthly_loan_pmt = series.monthly_loan_pmt;
+                //this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               default:
                 break;
