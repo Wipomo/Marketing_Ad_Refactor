@@ -4,7 +4,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import Lightbox from 'lightbox-react';
 import 'lightbox-react/style.css'; // This only needs to be imported once in your app
 import { Popover, PopoverBody} from 'reactstrap';
-import 'react-notifications/lib/notifications.css';
+//import 'react-notifications/lib/notifications.css';
 
 var initAuto = false;
 
@@ -322,9 +322,7 @@ class SecondPart extends React.Component {
                     <div className="text-center mb-4">
                       <p className='light deactive-color m2lBottom-title'>Now Serving San Diego</p>
                     </div>
-                    <script type="text/javascript" src="https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/jsperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM" id="ZFScript">
-                    </script>
-                    <iframe frameBorder="0" style={{height:"500px",width:"99%",border:"none"}} src='https://forms.zohopublic.com/virtualoffice14340/form/RequestaQuote/formperma/gTYYGF1Jc3smikqDkGwgtgX5O_wNXDpwkzV6SJcEtMg'></iframe>
+                    <iframe frameBorder="0" title="zoho_form"style={{height:"500px",width:"99%",border:"none"}} src='https://forms.zohopublic.com/virtualoffice14340/form/RequestaQuote/formperma/gTYYGF1Jc3smikqDkGwgtgX5O_wNXDpwkzV6SJcEtMg'></iframe>
                     {/* <iframe frameBorder="0" style={{height:"500px",width:"99%",border:"none"}}
                       src='https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/formperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM'>
           
@@ -390,9 +388,8 @@ class SecondPart extends React.Component {
 
                 	<div className="surveyVid">
 	                	<div className="embed-responsive embed-responsive-16by9">
-      
-                        <iframe className="embed-responsive-item" title="makello_video" src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                        
+                    <iframe width="560" height="315" title="makello_video" src="https://www.youtube.com/embed/gxnCCkjoVPM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    {/* <iframe className="embed-responsive-item" title="makello_video" src="https://www.youtube.com/embed/kDz-cchV6QA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
 	                	</div>
                 	</div>
 

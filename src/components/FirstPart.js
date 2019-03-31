@@ -280,7 +280,8 @@ class FirstPart extends React.Component {
       			        >
       			          <ModalBody className="p-0">
       	                	<div className="embed-responsive embed-responsive-16by9">
-                              	<iframe className="embed-responsive-item" title="makello_ea_video" src="https://www.youtube.com/embed/kDz-cchV6QA?autoplay=1" allowFullScreen></iframe>
+                          <iframe width="560" height="315" title="makello_ea_video" src="https://www.youtube.com/embed/gxnCCkjoVPM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                          {/* <iframe className="embed-responsive-item" title="makello_ea_video" src="https://www.youtube.com/embed/kDz-cchV6QA?autoplay=1" allowFullScreen></iframe> */}
       	                	</div>
       			          </ModalBody>
       			        </Modal>

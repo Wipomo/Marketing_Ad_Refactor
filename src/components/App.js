@@ -752,7 +752,7 @@ Source: ${this.myReferer}
                 break;
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
-                console.log(chartDataTmp.Standard.data);
+                //console.log(chartDataTmp.Standard.data);
                 chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Standard.loan_payback = series.loan_payback;
                 chartDataTmp.Standard.payback = series.payback;
