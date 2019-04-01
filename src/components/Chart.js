@@ -143,7 +143,7 @@ class Chart extends React.Component {
         }
       },
       
-      colors: ['#ff0000','#8B008B','#000000','#ffff00','#379AE8', '#00b050'],
+      colors: ['#ff0000','#8B008B','#000000','#ffff00','#379AE8', '#00b050', '#ffa500'],
 
       series: [{
         name: "Baseline Energy Cost",
@@ -212,7 +212,7 @@ class Chart extends React.Component {
         dashStyle: 'shortdot',
         visible: system_type_payback.includes(Selected_EVPV.payback),
         marker: {
-          symbol: "triangle",
+          symbol: "diamond",
           radius: 5
         },
       }],
