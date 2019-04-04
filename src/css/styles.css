@@ -120,7 +120,7 @@ body {
 
 .header {
   height: 50vh;
-  background-image: url("/images/makello_bg_image.jpg");
+  background-image: url("/images/3 EV models 967x550 pin to bottom 1 inch.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -735,4 +735,12 @@ body {
   margin-top: 5px;
   font-size: 14px;
   color: #000;
+}
+
+/* Lightbox styling */
+
+
+.ril__outer {
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 50%;
 }
