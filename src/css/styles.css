@@ -735,3 +735,9 @@ body {
   font-size: 14px;
   color: #000;
 }
+
+/* Lightbox styling */
+.ril__outer {
+  background-color: transparent;
+  width: 80%;
+}
