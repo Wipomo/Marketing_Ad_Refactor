@@ -741,6 +741,6 @@ body {
 
 
 .ril__outer {
-  background-color: rgba(0, 0, 0, 0.85);
-  width: 50%;
+  background-color: transparent;
+  width: 80%;
 }
