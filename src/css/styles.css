@@ -736,3 +736,8 @@ body {
   font-size: 14px;
   color: #000;
 }
+
+.ril__outer {
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 50%;
+}

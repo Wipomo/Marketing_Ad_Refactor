@@ -4,7 +4,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import Lightbox from 'lightbox-react';
 import 'lightbox-react/style.css'; // This only needs to be imported once in your app
 import { Popover, PopoverBody} from 'reactstrap';
-import 'react-notifications/lib/notifications.css';
+//import 'react-notifications/lib/notifications.css';
 
 var initAuto = false;
 
