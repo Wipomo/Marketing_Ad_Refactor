@@ -322,11 +322,9 @@ class SecondPart extends React.Component {
                     <div className="text-center mb-4">
                       <p className='light deactive-color m2lBottom-title'>Now Serving San Diego</p>
                     </div>
-                    <iframe frameBorder="0" title="zoho_form"style={{height:"500px",width:"99%",border:"none"}} src='https://forms.zohopublic.com/virtualoffice14340/form/RequestaQuote/formperma/gTYYGF1Jc3smikqDkGwgtgX5O_wNXDpwkzV6SJcEtMg'></iframe>
-                    {/* <iframe frameBorder="0" style={{height:"500px",width:"99%",border:"none"}}
-                      src='https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/formperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM'>
-          
-                    </iframe> */}
+                    <iframe frameBorder="0" title="zoho_form" style={{height:"500px",width:"99%",border:"none"}} src='https://forms.zohopublic.com/virtualoffice14340/form/SimpleLeadFormLP/formperma/v40aRivAQb2KJooJ-Y46RMJvvdY4TZDKOBB60Tl1ASM'></iframe>
+                    {/* <iframe frameBorder="0" title="zoho_form"style={{height:"500px",width:"99%",border:"none"}} src='https://forms.zohopublic.com/virtualoffice14340/form/RequestaQuote/formperma/gTYYGF1Jc3smikqDkGwgtgX5O_wNXDpwkzV6SJcEtMg'></iframe> */}
+    
                     We will not share your data.<span className="readme" id="privacy_icon" onMouseOver={this.privacy_toggle}
                   onMouseOut={this.privacy_toggle}>&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
                   </span>
