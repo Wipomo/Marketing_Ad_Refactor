@@ -726,7 +726,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Economy.savingsAmount = series.savingsAmount;
                 chartDataTmp.Economy.installFee = series.installFee;
                 chartDataTmp.Economy.monthly_loan_pmt = series.monthly_loan_pmt;
-                this.checkOptimalDisplayValues(series, chartDataTmp);
+                //this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Compact":
                 chartDataTmp.Compact.data = series.data.map( element => Number(element));
@@ -737,7 +737,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Compact.savingsAmount = series.savingsAmount;
                 chartDataTmp.Compact.installFee = series.installFee;
                 chartDataTmp.Compact.monthly_loan_pmt = series.monthly_loan_pmt;
-                this.checkOptimalDisplayValues(series, chartDataTmp);
+                //this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Intermediate":
                 chartDataTmp.Intermediate.data = series.data.map( element => Number(element));
@@ -748,7 +748,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Intermediate.savingsAmount = series.savingsAmount;
                 chartDataTmp.Intermediate.installFee = series.installFee;
                 chartDataTmp.Intermediate.monthly_loan_pmt = series.monthly_loan_pmt;
-                this.checkOptimalDisplayValues(series, chartDataTmp);
+                //this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
@@ -759,7 +759,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Standard.savingsAmount = series.savingsAmount;
                 chartDataTmp.Standard.installFee = series.installFee;
                 chartDataTmp.Standard.monthly_loan_pmt = series.monthly_loan_pmt;
-                this.checkOptimalDisplayValues(series, chartDataTmp);
+                //this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Premium":
                 chartDataTmp.Premium.data = series.data.map( element => Number(element));
@@ -770,7 +770,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Premium.savingsAmount = series.savingsAmount;
                 chartDataTmp.Premium.installFee = series.installFee;
                 chartDataTmp.Premium.monthly_loan_pmt = series.monthly_loan_pmt;
-                this.checkOptimalDisplayValues(series, chartDataTmp);
+                //this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               case "Selected EVPV":
                 chartDataTmp.Selected_EVPV.data = series.data.map( element => Number(element));
@@ -780,7 +780,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Selected_EVPV.savingsAmount = series.savingsAmount;
                 chartDataTmp.Selected_EVPV.installFee = series.installFee;
                 chartDataTmp.Selected_EVPV.monthly_loan_pmt = series.monthly_loan_pmt;
-                //this.checkOptimalDisplayValues(series, chartDataTmp);
+                this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               default:
                 break;
@@ -816,6 +816,9 @@ Source: ${this.myReferer}
 
   setOptimalDisplayValues(series, chartDataTmp){
     chartDataTmp.Optimal.system_type = series.system_type;
+    if(series.system_type === "Selected EVPV"){
+      chartDataTmp.Optimal.system_type = "Solar+EV";
+    }
     chartDataTmp.Optimal.system_cost = series.system_cost;
     chartDataTmp.Optimal.payback = series.payback;
     chartDataTmp.Optimal.loan_payback = series.loan_payback;

@@ -230,10 +230,8 @@ class FirstPart extends React.Component {
     var monthlyBill = this.getSliderValue();
     console.log("Getting monthlybill as: "+monthlyBill+ "type: "+ typeof(monthlyBill));
     let sliderHolder = document.getElementById("amount-Slider");
-    let zoho_tooltip = document.getElementById("slid-Slider");
 
     console.log("CURRENT SLIDER VALUE: "+ sliderHolder);
-    console.log("Zoho SLIDER tooltip VALUE: "+ zoho_tooltip);
     //(#slid-Slider).text(monthlyBill);
     //(#slid-Slider).value = monthlyBill;*
     //(#ampunt-Slider).attr("value",monthlyBill);
