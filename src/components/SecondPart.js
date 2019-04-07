@@ -19,7 +19,7 @@ class SecondPart extends React.Component {
       this.state = {
         dropdownOpen: false,
         value:"View upgrade packages!",
-        system_to_display: "Solar+EV",
+        system_to_display: "Optimal",
         paymentType: "cash",
         photoIndex: 0,
         popoverOpen1: false,
@@ -116,12 +116,12 @@ class SecondPart extends React.Component {
     let system_type = this.state.system_to_display;
 
     switch(system_type){
-      // case "Optimal":
-      //   return <h1 className="bigBlue superBold">
-      //     ${Number(this.props.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>;
-      case "Solar+EV":
+      case "Optimal":
         return <h1 className="bigBlue superBold">
           ${Number(this.props.chartData.Optimal.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>;
+      case "Solar+EV":
+        return <h1 className="bigBlue superBold">
+          ${Number(this.props.chartData.Selected_EVPV.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>;
       case "Economy":
         return <h1 className="bigBlue superBold">
           ${Number(this.props.chartData.Economy.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>;
@@ -147,18 +147,18 @@ class SecondPart extends React.Component {
     let system_type = this.state.system_to_display;
 
     switch(system_type){
-      // case "Optimal":
-      //   return <div>
-      //     <p className="regular regular-fontSize" >We selected the optimal {(this.props.chartData.Optimal.system_type)} upgrade package for you!</p>
-      //     <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-      //     <small> or</small>&nbsp;${Number(this.props.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
-      //     </div>;
-      case "Solar+EV":
+      case "Optimal":
         return <div>
           <p className="regular regular-fontSize" >We selected the optimal {(this.props.chartData.Optimal.system_type)} upgrade package for you!</p>
           <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Optimal.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
           <small> or</small>&nbsp;${Number(this.props.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
           </div>;
+      case "Solar+EV":
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Solar+EV upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Selected_EVPV.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.Selected_EVPV.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+        </div>;
       case "Economy":
       return <div>
         <p className="regular regular-fontSize" >You selected the Economy upgrade package!</p>
@@ -306,13 +306,13 @@ class SecondPart extends React.Component {
                 {this.state.value}
               </DropdownToggle>
               <DropdownMenu>
-                {/* <DropdownItem onClick={this.selectSystem}>Optimal</DropdownItem>  */}
-                <DropdownItem onClick={this.selectSystem}>Solar+EV</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Optimal</DropdownItem> 
                 <DropdownItem onClick={this.selectSystem}>Economy</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Compact</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Intermediate</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Standard</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Premium</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Solar+EV</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
           </div>
