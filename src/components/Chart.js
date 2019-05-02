@@ -207,7 +207,7 @@ class Chart extends React.Component {
           radius: 5
         },
       },{
-        name: loanDataNeeded ? "EV (Loan Payback "+ Selected_EVPV.loan_payback.toPrecision(2) +" Years)" : "Solar + EV (Payback "+ Selected_EVPV.payback.toPrecision(2) +" Years)",
+        name: loanDataNeeded ? "Solar + EV (Loan Payback "+ Selected_EVPV.loan_payback.toPrecision(2) +" Years)" : "Solar + EV (Payback "+ Selected_EVPV.payback.toPrecision(2) +" Years)",
         data: loanDataNeeded ? Selected_EVPV.loanData : Selected_EVPV.data,
         dashStyle: 'shortdot',
         visible: system_type_payback.includes(Selected_EVPV.payback),
