@@ -262,10 +262,10 @@ class FirstPart extends React.Component {
                 <div className="container-fluid">
                   <div className="navbar-header">
                     <span className="navbar-brand">
-                      <a href="https://www.makello.com" target="_blank" rel="noopener noreferrer" > Makello.com </a>
+                      <a href="https://www.makello.com" target="_blank" rel="noopener noreferrer">Makello.com</a>
                     </span>
                   </div>
-                  <span className="navbar-text">
+                  <span className="navbar-text text-right">
                   	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button><br></br>
                     <a href="tel:+17602303788" >+1 (760) 230-3788</a>
       			        <Modal 
@@ -290,13 +290,9 @@ class FirstPart extends React.Component {
 
             <div className="header">
               <div className="container">
-                <div className="header-container">
-                  <div className="outer">
-                    <div className="inner text-center mcText mt-2">
-                      <h1 className="mctUpper semiBold responsive-mctUpper">Drive on solar power for 1/3 cost of gas.</h1>
-                      <h1 className="mctLower semiBold responsive-mctLower">See how much you can save.</h1>
-                    </div>
-                  </div>
+                <div className="header-container text-center mt-3">
+                    <h1 className="mctUpper">Drive on solar power for 1/3 cost of gas.</h1>
+                    <h2 className="mctLower">See how much you can save.</h2>
                 </div>
               </div>
             </div>
@@ -307,7 +303,7 @@ class FirstPart extends React.Component {
 
                   <div className="mcSlider">
 
-                    <p className='text-center regular sliderText responsive-sliderText'>What's your monthly electric bill?</p>
+                    <p className='text-center sliderText'>What's your monthly electric bill?</p>
 
                     <div className='slider'>
                       <MakelloSlider
