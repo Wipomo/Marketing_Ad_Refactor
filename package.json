@@ -20,6 +20,7 @@
     "express": "^4.16.4",
     "highcharts": "^6.2.0",
     "highcharts-react-official": "^1.5.2",
+    "inherits": "^2.0.3",
     "jquery": "^3.3.1",
     "knex": "^0.15.2",
     "lightbox-react": "^0.3.7",
