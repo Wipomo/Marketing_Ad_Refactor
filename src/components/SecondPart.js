@@ -102,7 +102,6 @@ class SecondPart extends React.Component {
   }
 
   selectSystem(event) {
-
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
       value: event.target.innerText,
@@ -134,6 +133,12 @@ class SecondPart extends React.Component {
       case "Premium":
         return <h1 className="bigBlue superBold">
           ${Number(this.props.chartData.Premium.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>;
+      case "Solar+EV":
+        return <h1 className="bigBlue superBold">
+          ${Number(this.props.chartData.Selected_EVPV.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>;
+      case "Plug In EV":
+       return <h1 className="bigBlue superBold">
+         ${Number(this.props.chartData.EV_Rate_Charging.savingsAmount).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</h1>;
       default:
         break;
     }
@@ -151,17 +156,17 @@ class SecondPart extends React.Component {
           <small> or</small>&nbsp;${Number(this.props.chartData.Optimal.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
           </div>;
       case "Economy":
-      return <div>
-        <p className="regular regular-fontSize" >You selected the Economy upgrade package!</p>
-        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Economy.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-        <small> or</small>&nbsp;${Number(this.props.chartData.Economy.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
-        </div>;
+        return <div>
+          <p className="regular regular-fontSize" >You selected the Economy upgrade package!</p>
+          <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Economy.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+          <small> or</small>&nbsp;${Number(this.props.chartData.Economy.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+          </div>;
       case "Compact":
-      return <div>
-        <p className="regular regular-fontSize" >You selected the Compact upgrade package!</p>
-        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Compact.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-        <small> or</small>&nbsp;${Number(this.props.chartData.Compact.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
-    </div>;
+        return <div>
+          <p className="regular regular-fontSize" >You selected the Compact upgrade package!</p>
+          <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Compact.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+          <small> or</small>&nbsp;${Number(this.props.chartData.Compact.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+          </div>;
       case "Intermediate":
       return <div>
         <p className="regular regular-fontSize" >You selected the Intermediate upgrade package!</p>
@@ -179,6 +184,18 @@ class SecondPart extends React.Component {
         <p className="regular regular-fontSize" >You selected the Premium upgrade package!</p>
         <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Premium.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
         <small> or</small>&nbsp;${Number(this.props.chartData.Premium.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+        </div>;
+      case "Solar+EV":
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Solar+EV upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.Selected_EVPV.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.Selected_EVPV.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
+        </div>;
+      case "Plug In EV":
+      return <div>
+        <p className="regular regular-fontSize" >You selected the Plug In EV upgrade package!</p>
+        <h1 className="bigBlue superBold"> ${Number(this.props.chartData.EV_Rate_Charging.installFee).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+        <small> or</small>&nbsp;${Number(this.props.chartData.EV_Rate_Charging.monthly_loan_pmt).toLocaleString(navigator.language, { minimumFractionDigits: 0 })}/mo.*</h1>
         </div>;
       default:
         break;
@@ -298,11 +315,14 @@ class SecondPart extends React.Component {
               </DropdownToggle>
               <DropdownMenu>
               <DropdownItem onClick={this.selectSystem}>Optimal</DropdownItem>
-                <DropdownItem onClick={this.selectSystem}>Economy</DropdownItem>
-                <DropdownItem onClick={this.selectSystem}>Compact</DropdownItem>
-                <DropdownItem onClick={this.selectSystem}>Intermediate</DropdownItem>
-                <DropdownItem onClick={this.selectSystem}>Standard</DropdownItem>
-                <DropdownItem onClick={this.selectSystem}>Premium</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Solar+EV</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Economy</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Compact</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Intermediate</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Standard</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Premium</DropdownItem>
+              <DropdownItem onClick={this.selectSystem}>Plug In EV</DropdownItem>
+
               </DropdownMenu>
             </ButtonDropdown>
           </div>

@@ -57,7 +57,7 @@ class Chart extends React.Component {
 
   render() {
     
-    const { Baseline, Economy, Compact, Intermediate, Standard, Premium} = this.props.chartData;
+    const { Baseline, Economy, Compact, Intermediate, Standard, Premium, Selected_EVPV, EV_Rate_Charging} = this.props.chartData;
     var system_type_payback = [];
     let loanDataNeeded = this.state.loanDataNeeded;
     // let loanDataNeeded = this.props.Optimal.cashorloan;
@@ -67,6 +67,8 @@ class Chart extends React.Component {
     system_type_payback.push(Intermediate.payback);
     system_type_payback.push(Standard.payback);
     system_type_payback.push(Premium.payback);
+    system_type_payback.push(Selected_EVPV.payback);
+    system_type_payback.push(EV_Rate_Charging.payback);
 
     // sort numbers in order rather than lexographically
     system_type_payback.sort(function(a, b){return a-b});
@@ -200,6 +202,24 @@ class Chart extends React.Component {
         data: loanDataNeeded ? Premium.loanData : Premium.data,
         dashStyle: 'shortdot',
         visible: system_type_payback.includes(Premium.payback),
+        marker: {
+          symbol: "triangle",
+          radius: 5
+        },
+      },{
+        name: loanDataNeeded ? "Solar + EV (Loan Payback "+ Selected_EVPV.loan_payback.toPrecision(2) +" Years)" : "Solar + EV (Payback "+ Selected_EVPV.payback.toPrecision(2) +" Years)",
+        data: loanDataNeeded ? Selected_EVPV.loanData : Selected_EVPV.data,
+        dashStyle: 'shortdot',
+        visible: system_type_payback.includes(Selected_EVPV.payback),
+        marker: {
+          symbol: "diamond",
+          radius: 5
+        },
+      },{
+        name: loanDataNeeded ? "Plug In EV (Loan Payback "+ EV_Rate_Charging.loan_payback.toPrecision(2) +" Years)" : "Plug In EV (Payback "+ EV_Rate_Charging.payback.toPrecision(2) +" Years)",
+        data: loanDataNeeded ? EV_Rate_Charging.loanData : EV_Rate_Charging.data,
+        dashStyle: 'shortdot',
+        visible: system_type_payback.includes(EV_Rate_Charging.payback),
         marker: {
           symbol: "triangle",
           radius: 5

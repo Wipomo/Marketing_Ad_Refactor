@@ -128,6 +128,29 @@ constructor(props){
         savingsAmount: 0,
         installFee: 0,
         monthly_loan_pmt:0
+      },
+      Selected_EVPV: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
+        system_cost:0,
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
+      },
+      EV_Rate_Charging: {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        payback: 0,
+        loanData : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        vehiclefuel_yr : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        loan_payback:0,
+        system_cost:0,
+        visible: false,
+        savingsAmount: 0,
+        installFee: 0,
+        monthly_loan_pmt:0
       }
     },
     userId: 0,
@@ -263,6 +286,16 @@ constructor(props){
         clientProfile.selectedSystem.savingsAmount = this.state.chartData.Premium.savingsAmount;
         clientProfile.selectedSystem.installFee = this.state.chartData.Premium.installFee;
         clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Premium.monthly_loan_pmt;
+        break;
+      case("Selected_EVPV"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.Selected_EVPV.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.Selected_EVPV.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.Selected_EVPV.monthly_loan_pmt;
+        break;
+      case("EV_Rate_Charging"):
+        clientProfile.selectedSystem.savingsAmount = this.state.chartData.EV_Rate_Charging.savingsAmount;
+        clientProfile.selectedSystem.installFee = this.state.chartData.EV_Rate_Charging.installFee;
+        clientProfile.selectedSystem.monthly_loan_payment = this.state.chartData.EV_Rate_Charging.monthly_loan_pmt;
         break;
       default:
         break;
@@ -644,6 +677,7 @@ Source: ${this.myReferer}
               bucket: bucket,
               data: [],
               loanData: [],
+              vehicleData: [],
               payback: 0,
               loan_payback:0,
               savingsAmount:0,
@@ -653,9 +687,13 @@ Source: ${this.myReferer}
             };
 
             series.system_type = data['rows'][row]['system_type'];
-             var j;
+            
+            // add all cash,loan and vehicle data to series
+            var j;
             for( j = 0 ; j <= 29; j++){
               var indexed_loan_yr = 'ccfloanyr' + j;
+              var indexed_vehicle_fuel_yr = 'avg_vehiclefuel_yr'+j;
+
               //console.log(indexed_loan_yr);
               //console.log(data['rows'][row][indexed_loan_yr]);
               var arraylength = series.loanData.push(data['rows'][row][indexed_loan_yr]);
@@ -666,6 +704,9 @@ Source: ${this.myReferer}
                 //console.log(data['rows'][row][indexed_cash_flow_yr]);
                 series.data.push(data['rows'][row][indexed_cash_flow_yr])
               }
+
+              console.log(data['rows'][row][indexed_vehicle_fuel_yr]);
+              // series.vehicleData.push(data['rows'][row][indexed_vehicle_fuel_yr])
             }
 
 
@@ -758,6 +799,26 @@ Source: ${this.myReferer}
                 chartDataTmp.Premium.savingsAmount = series.savingsAmount;
                 chartDataTmp.Premium.installFee = series.installFee;
                 chartDataTmp.Premium.monthly_loan_pmt = series.monthly_loan_pmt;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
+                break;
+              case "Selected_EVPV":
+                chartDataTmp.Selected_EVPV.data = series.data.map( element => Number(element));
+                chartDataTmp.Selected_EVPV.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.Selected_EVPV.loan_payback = series.loan_payback;
+                chartDataTmp.Selected_EVPV.payback = series.payback;
+                chartDataTmp.Selected_EVPV.savingsAmount = series.savingsAmount;
+                chartDataTmp.Selected_EVPV.installFee = series.installFee;
+                chartDataTmp.Selected_EVPV.monthly_loan_pmt = series.monthly_loan_pmt;
+                this.checkOptimalDisplayValues(series, chartDataTmp);
+                break;
+              case "EV_Rate_Charging":
+                chartDataTmp.EV_Rate_Charging.data = series.data.map( element => Number(element));
+                chartDataTmp.EV_Rate_Charging.loanData = series.loanData.map( element => Number(element));
+                chartDataTmp.EV_Rate_Charging.loan_payback = series.loan_payback;
+                chartDataTmp.EV_Rate_Charging.payback = series.payback;
+                chartDataTmp.EV_Rate_Charging.savingsAmount = series.savingsAmount;
+                chartDataTmp.EV_Rate_Charging.installFee = series.installFee;
+                chartDataTmp.EV_Rate_Charging.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
               default:
