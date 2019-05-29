@@ -673,7 +673,7 @@ Source: ${this.myReferer}
           var row;
 
           // iterate through all system type rows returned from specific bucket
-          for (row = 0; row<7; row++){
+          for (row = 0; row<8; row++){
             var series= {
               system_type:"",
               bucket: bucket,
