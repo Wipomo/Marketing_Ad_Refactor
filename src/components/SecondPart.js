@@ -315,13 +315,16 @@ class SecondPart extends React.Component {
                 {this.state.value}
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={this.selectSystem}>Optimal</DropdownItem> 
+                <DropdownItem onClick={this.selectSystem}>Optimal</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Solar+EV</DropdownItem> 
                 <DropdownItem onClick={this.selectSystem}>Economy</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Compact</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Intermediate</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Standard</DropdownItem>
                 <DropdownItem onClick={this.selectSystem}>Premium</DropdownItem>
-                <DropdownItem onClick={this.selectSystem}>Solar+EV</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}>Plug In EV</DropdownItem>
+                <DropdownItem onClick={this.selectSystem}></DropdownItem>
+
               </DropdownMenu>
             </ButtonDropdown>
           </div>
