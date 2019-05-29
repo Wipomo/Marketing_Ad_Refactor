@@ -671,7 +671,7 @@ Source: ${this.myReferer}
         .then((data) => {
           var chartDataTmp = {...this.state.chartData};
           var row;
-          for (row = 0; row<7; row++){
+          for (row = 0; row<8; row++){
             var series= {
               system_type:"",
               bucket: bucket,
@@ -687,14 +687,16 @@ Source: ${this.myReferer}
             };
 
             series.system_type = data['rows'][row]['system_type'];
+            console.log("System type: " + series.system_type);
             
             // add all cash,loan and vehicle data to series
             var j;
+            console.log(data);
             for( j = 0 ; j <= 29; j++){
               var indexed_loan_yr = 'ccfloanyr' + j;
               var indexed_vehicle_fuel_yr = 'avg_vehiclefuel_yr'+j;
 
-              //console.log(indexed_loan_yr);
+              
               //console.log(data['rows'][row][indexed_loan_yr]);
               var arraylength = series.loanData.push(data['rows'][row][indexed_loan_yr]);
               //console.log(arraylength);
@@ -782,6 +784,8 @@ Source: ${this.myReferer}
               case "Standard":
                 chartDataTmp.Standard.data = series.data.map( element => Number(element));
                 //console.log(chartDataTmp.Standard.data);
+                // console.log("prints standard rate:");
+                // console.log(chartDataTmp.Standard.data);
                 chartDataTmp.Standard.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Standard.loan_payback = series.loan_payback;
                 chartDataTmp.Standard.payback = series.payback;
@@ -801,7 +805,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Premium.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
-              case "Selected_EVPV":
+              case "Selected EVPV":
                 chartDataTmp.Selected_EVPV.data = series.data.map( element => Number(element));
                 chartDataTmp.Selected_EVPV.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.Selected_EVPV.loan_payback = series.loan_payback;
@@ -811,7 +815,7 @@ Source: ${this.myReferer}
                 chartDataTmp.Selected_EVPV.monthly_loan_pmt = series.monthly_loan_pmt;
                 this.checkOptimalDisplayValues(series, chartDataTmp);
                 break;
-              case "EV_Rate_Charging":
+              case "EV Rate Charging":
                 chartDataTmp.EV_Rate_Charging.data = series.data.map( element => Number(element));
                 chartDataTmp.EV_Rate_Charging.loanData = series.loanData.map( element => Number(element));
                 chartDataTmp.EV_Rate_Charging.loan_payback = series.loan_payback;
