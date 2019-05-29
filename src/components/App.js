@@ -705,7 +705,7 @@ Source: ${this.myReferer}
                 series.data.push(data['rows'][row][indexed_cash_flow_yr])
               }
 
-              console.log(data['rows'][row][indexed_vehicle_fuel_yr]);
+              // console.log(data['rows'][row][indexed_vehicle_fuel_yr]);
               // series.vehicleData.push(data['rows'][row][indexed_vehicle_fuel_yr])
             }
 
