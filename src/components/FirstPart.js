@@ -281,7 +281,7 @@ var divStyle = {}
                     </span>
                   </div>
                   <span className="navbar-text text-right">
-                  	<Button className="p-0" color="link" onClick={this.toggleModal}>Free Energy Analysis</Button><br></br>
+                  	<Button className="p-0 btn-fea__video" color="link" onClick={this.toggleModal}>Free Energy Analysis <img src="/images/play-button-24.png" /></Button><br></br>
                     <a href="tel:+17602303788" >+1 (760) 230-3788</a>
       			        <Modal 
       			        	isOpen={this.state.modal} 
@@ -314,7 +314,7 @@ var divStyle = {}
 
             <section className="slider-section">
               <div className="row">
-                <div className='col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-xs-10 offset-xs-1'>
+                <div className='col-xs-10 offset-xs-1 col-sm-10 offset-sm-1 col-lg-8 offset-lg-2'>
 
                   <div className="mcSlider">
 
