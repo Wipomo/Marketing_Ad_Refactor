@@ -452,187 +452,6 @@ body {
   vertical-align: middle;
 }
 
-/* responsive part */
-/* responsive part */
-
-@media only screen and (max-width: 540px) {
-  /* first page */
-
-  .responsive-mctUpper {
-    font-size: 3vh;
-  }
-
-  .responsive-mctLower {
-    font-size: 2.5vh;
-    padding-top: 5vh;
-  }
-
-  .mcSlider {
-    margin-top: 10vh;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  /* second page */
-  .bigBlue {
-    color: #1D4585;
-    font-size: 4vh;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  /* first page */
-
-  .responsive-mctUpper {
-    font-size: 5vw;
-    padding-top:1.5vw;
-  }
-
-  .responsive-mctLower {
-    font-size: 3vw;
-    padding-top: 4vw;
-  }
-
-  .mcSlider {
-    /*margin-top: 0vh;*/
-  }
-
-  .responsive-sliderText {
-    font-size: 20px;
-  }
-  /* second page */
-  .bigBlue {
-    color: #1D4585;
-    font-size: 6vh;
-  }
-}
-
-
-@media only screen and (max-width: 768px) {
-  /* first page */
-
-  .responsive-mctUpper {
-    font-size: 4vh;
-  }
-
-  .responsive-mctLower {
-    font-size: 3vh;
-    padding-top: 5vh;
-  }
-
-  .mcSlider {
-    margin-top: -14vh;
-  }
-
-  .slider {
-    padding-top: 60px;
-    margin-bottom: 20px;
-    background: #D8D8D8;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: space-evenly;
-    justify-content: space-evenly;
-    -ms-flex-align: center;
-    align-items: center;
-    text-align: center;
-    color: blue;
-  }
-
-  /* second page */
-  .m2Upper {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .m2Lower {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  /* first page */
-  .responsive-mctLower {
-    font-size: 3vh;
-    padding-top: 5vh;
-  }
-
-  .rc-slider-mark-text {
-    font-size: 20px !important;
-  }
-
-  .rc-slider {
-    padding: 3px 0;
-  }
-
-  .sliderLineContainer {
-    width: 65% !important;
-  }
-
-  .rc-slider-tooltip-inner {
-    font-size: 20px;
-  }
-
-  .footerText {
-    text-align: center;
-    color: #5a5a5a;
-    z-index: 10;
-    font-size: 12px;
-  }
-
-  .submitButton {
-    font-size: 18px;
-  }
-  /* second page */
-  .bigBlue {
-    color: #1D4585;
-    font-size: 8vh;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  /* first page */
-
-  .responsive-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    max-width: 100vw !important;
-  }
-
-  .responsive-mctUpper {
-    font-size: 5vw;
-    padding-top:1.5vw;
-  }
-
-  .responsive-mctLower {
-    font-size: 3vw;
-    padding-top: 4vw;
-  }
-
-  .slider-section {
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #D8D8D8;  
-  }
-
-  .mcSlider {
-    /*margin-top: 0vh;*/
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  /* first page */
-  .responsive-mctLower {
-    font-size: 3vw;
-    padding-top: 4vw;
-  }
-  /* second page */
-  .bigBlue {
-    color: #1D4585;
-    font-size: 10vh;
-  }
-  
-}
 
 .navbar-brand {
   color:#000;
@@ -674,17 +493,8 @@ body {
 }
 
 
-@media (min-width: 768px) {
-  .paybackWrapper {
-    padding:15px 15px 30px 30px;
-  }
-}
-@media (max-width: 767px) { 
-  .paybackWrapper {
-    background-color: rgba(255,255,255,0.8);
-    padding:15px 15px 25px 15px;
-  }
-}
+
+
 .payback-heading {
   font-weight: 300;
   line-height: 1;
@@ -751,3 +561,202 @@ body {
   margin-top:-2px;
   margin-right:-2px;
 }
+
+/* responsive part */
+
+@media only screen and (max-width: 1200px) {
+  /* first page */
+  .mctLower {
+    font-size: 3vw;
+    padding-top: 4vw;
+  }
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 10vh;
+  }
+  
+}
+
+@media only screen and (max-width: 1024px) {
+  /* first page */
+
+  .responsive-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100vw !important;
+  }
+
+  .mctUpper {
+    font-size: 5vw;
+    padding-top:1.5vw;
+  }
+
+  .mctLower {
+    font-size: 3vw;
+    padding-top: 4vw;
+  }
+
+  .slider-section {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #D8D8D8;  
+  }
+
+  .mcSlider {
+    /*margin-top: 0vh;*/
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  /* first page */
+  .mctLower {
+    font-size: 3vh;
+    padding-top: 5vh;
+  }
+
+  .rc-slider-mark-text {
+    font-size: 20px !important;
+  }
+
+  .rc-slider {
+    padding: 3px 0;
+  }
+
+  .sliderLineContainer {
+    width: 65% !important;
+  }
+
+  .rc-slider-tooltip-inner {
+    font-size: 20px;
+  }
+
+  .footerText {
+    text-align: center;
+    color: #5a5a5a;
+    z-index: 10;
+    font-size: 12px;
+  }
+
+  .submitButton {
+    font-size: 18px;
+  }
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 8vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .paybackWrapper {
+    padding:15px 15px 30px 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* first page */
+
+  .mctUpper {
+    font-size: 4vh;
+  }
+
+  .mctLower {
+    font-size: 3vh;
+    padding-top: 5vh;
+  }
+
+  .mcSlider {
+    margin-top: -14vh;
+  }
+
+  .slider {
+    padding-top: 60px;
+    margin-bottom: 20px;
+    background: #D8D8D8;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    color: blue;
+  }
+
+  /* second page */
+  .m2Upper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .m2Lower {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .paybackWrapper {
+    background-color: rgba(255,255,255,0.8);
+    padding:15px 15px 25px 15px;
+  }
+
+}
+
+@media only screen and (max-width: 700px) {
+  /* first page */
+
+  .mctUpper {
+    font-size: 5vw;
+    padding-top:1.5vw;
+  }
+
+  .mctLower {
+    font-size: 3vw;
+    padding-top: 4vw;
+  }
+
+  .mcSlider {
+    /*margin-top: 0vh;*/
+  }
+
+  .responsive-sliderText {
+    font-size: 20px;
+  }
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 6vh;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  /* first page */
+
+  .mctUpper {
+    font-size: 3.2vh;
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .mctLower {
+    font-size: 2.4vh;
+    padding-top: 4vh;
+  }
+
+  .mcSlider {
+    margin-top: -14vh;
+    padding: 0;
+  }
+
+  /* second page */
+  .bigBlue {
+    color: #1D4585;
+    font-size: 4vh;
+  }
+}
+
+
+
+
+
+

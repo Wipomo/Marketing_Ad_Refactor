@@ -294,8 +294,8 @@ class FirstPart extends React.Component {
                 <div className="header-container">
                   <div className="outer">
                     <div className="inner text-center mcText mt-2">
-                      <h1 className="mctUpper semiBold responsive-mctUpper">You don't need tons of solar panels to save money.</h1>
-                      <h1 className="mctLower semiBold responsive-mctLower">See how much you can save.</h1>
+                      <h1 className="mctUpper semiBold">You don't need tons of solar panels to save money.</h1>
+                      <h2 className="mctLower semiBold">See how much you can save.</h2>
                     </div>
                   </div>
                 </div>
