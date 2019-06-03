@@ -313,8 +313,7 @@ body {
 }
 
 .footer {
-  border-top:10px solid #D3D3D3;
-  padding:5px 0;
+  padding:15px 0;
 }
 
 .footerText {
@@ -475,9 +474,6 @@ body {
   letter-spacing: -1px;
 }
 
-.single_blog_thumbnail{
-  width: 100%;
-}
 .centerAlignedText{
   text-align: center;
 }
@@ -534,21 +530,30 @@ body {
 .surveyVid {
   padding:20px;
 }
+
 .blogThumbnails {
-  background-color: #D3D3D3;
-  padding:5px;
-  padding-bottom: 0;
+  background-color: #fff;
+  padding:0;
+  padding-top:10px;
 }
 .blogThumbnails .thumbnail {
-  padding:8px;
+  padding:0px;
   margin:5px;
-  background-color: #fff;
+  background-color: #eee;
+  border: 1px solid #eee;
+  border-radius: 6px;
 }
-
+.blogThumbnails .thumbnail .single_blog_thumbnail{
+  width: 100%;
+  min-height: 118px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
 .blogThumbnails .thumbnail .caption {
-  margin-top: 5px;
   font-size: 14px;
+  font-weight: bold;
   color: #000;
+  padding:10px;
 }
 
 .ril__outer {
@@ -727,6 +732,15 @@ body {
     color: #1D4585;
     font-size: 6vh;
   }
+}
+
+@media only screen and (max-width: 575px) {
+
+  .blogThumbnails .thumbnail {
+    margin:0;
+    margin-bottom: 15px;
+  }
+
 }
 
 @media only screen and (max-width: 540px) {
