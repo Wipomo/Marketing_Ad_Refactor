@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover, PopoverBody } from 'reactstrap';
+// import { Popover, PopoverBody } from 'reactstrap';
 
 class FooterComponent extends React.Component {
     constructor(props) {

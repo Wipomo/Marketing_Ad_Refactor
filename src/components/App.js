@@ -691,10 +691,10 @@ Source: ${this.myReferer}
             
             // add all cash,loan and vehicle data to series
             var j;
-            console.log(data);
+            // console.log(data);
             for( j = 0 ; j <= 29; j++){
               var indexed_loan_yr = 'ccfloanyr' + j;
-              var indexed_vehicle_fuel_yr = 'avg_vehiclefuel_yr'+j;
+              // var indexed_vehicle_fuel_yr = 'avg_vehiclefuel_yr'+j;
 
               
               //console.log(data['rows'][row][indexed_loan_yr]);
@@ -921,6 +921,11 @@ Source: ${this.myReferer}
     // console.log("State of test client is:"+this.state.clientProfile.test);
     // console.log("State of email is:"+this.state.clientProfile.email);
 
+    this.showHeader = true;
+    if(this.props.location.search === '?v=nh'){
+      this.showHeader = false;
+    }
+
     return (
       <div className="container">
         <div className="bg-white">
@@ -939,6 +944,7 @@ Source: ${this.myReferer}
               //sendVerificationCheck = {this.sendVerificationCheck}
               //confirmVerificationCode={this.confirmVerificationCode}
               cancelVerificationRequest={this.cancelVerificationRequest}
+              showHeader = {this.showHeader}
             />
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>

@@ -254,12 +254,26 @@ class FirstPart extends React.Component {
   }
 
   render() {
+    console.log("Show header is: "+ this.props.showHeader)
+    var divStyle = {}
+      if(!this.props.showHeader){
+        divStyle = {
+          display: "none",
+        };
+
+      }else{
+        divStyle = {
+          backgroundcolor: "#fff",
+          marginleft: "0px !important",
+          marginright: "0px !important"
+        };
+      }
     return (
       <div className="App">
          {/* <div className='main'> */}
          <div className="wrapper">
 
-            <header className="mHeader">
+            <header className="mHeader" style={divStyle}>
               <nav className="navbar navbar-default">
                 <div className="container-fluid">
                   <div className="navbar-header">
@@ -268,7 +282,7 @@ class FirstPart extends React.Component {
                     </span>
                   </div>
                   <span className="navbar-text text-right">
-                  	<Button className="p-0 btn-fea__video" color="link" onClick={this.toggleModal}>Free Energy Analysis <img src="/images/play-button-24.png" /></Button><br></br>
+                  	<Button className="p-0 btn-fea__video" color="link" onClick={this.toggleModal}>Free Energy Analysis <img src="/images/play-button-24.png" alt="play button"/></Button><br></br>
                     <a href="tel:+17602303788" >+1 (760) 230-3788</a>
       			        <Modal 
       			        	isOpen={this.state.modal} 
