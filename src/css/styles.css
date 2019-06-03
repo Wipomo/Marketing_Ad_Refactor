@@ -84,7 +84,7 @@
 }
 
 body {
-  background: #f1f1f1;
+  background: #fff;
 }
 
 /*first box*/
@@ -115,6 +115,7 @@ body {
 }
 .mHeader .navbar {
   padding:0;
+  background-color: #f1f1f1;
 }
 
 .mhText {
