@@ -83,7 +83,7 @@
 }
 
 body {
-  background-color: #404447;
+  background-color: #fff;
 }
 
 /*first box*/
@@ -114,6 +114,7 @@ body {
 }
 .mHeader .navbar {
   padding:0;
+  background-color: #f1f1f1;
 }
 
 .mhText {
@@ -729,3 +730,7 @@ body {
 }
 
 
+.btn-fea__video > img {
+  margin-top:-2px;
+  margin-right:-2px;
+} 
