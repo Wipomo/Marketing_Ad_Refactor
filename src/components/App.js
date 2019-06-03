@@ -909,9 +909,15 @@ Source: ${this.myReferer}
       var root = document.querySelector(':root');
       root.style.setProperty('--page-layout', '0% 100% 0%');
     }
+    this.showHeader = true;
 
-    // console.log("State of test client is:"+this.state.clientProfile.test);
+    //console.log("State of test client is:"+this.state.clientProfile.test);
     // console.log("State of email is:"+this.state.clientProfile.email);
+
+    // console.log(this.props.location);
+    if(this.props.location.search === '?v=nh'){
+      this.showHeader = false;
+    }
 
     return (
       <div className="container">
@@ -931,6 +937,7 @@ Source: ${this.myReferer}
               //sendVerificationCheck = {this.sendVerificationCheck}
               //confirmVerificationCode={this.confirmVerificationCode}
               cancelVerificationRequest={this.cancelVerificationRequest}
+              showHeader = {this.showHeader}
             />
           </div>
           <div className={`SecondPart ${this.state.showSecondPart.hidden}`}>

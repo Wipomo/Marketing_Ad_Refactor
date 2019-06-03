@@ -252,12 +252,27 @@ class FirstPart extends React.Component {
   }
 
   render() {
+  console.log("Show header is: "+ this.props.showHeader)
+var divStyle = {}
+  if(!this.props.showHeader){
+    divStyle = {
+      display: "none",
+    };
+
+  }else{
+    divStyle = {
+      backgroundcolor: "#fff",
+      marginleft: "0px !important",
+      marginright: "0px !important"
+    };
+  }
+
     return (
       <div className="App">
          {/* <div className='main'> */}
          <div className="wrapper">
 
-            <header className="mHeader">
+            <header className="mHeader" style={divStyle}>
               <nav className="navbar navbar-default">
                 <div className="container-fluid">
                   <div className="navbar-header">
