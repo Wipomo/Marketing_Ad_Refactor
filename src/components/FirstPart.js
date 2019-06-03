@@ -281,7 +281,7 @@ var divStyle = {}
                     </span>
                   </div>
                   <span className="navbar-text text-right">
-                  	<Button className="p-0 btn-fea__video" color="link" onClick={this.toggleModal}>Free Energy Analysis <img src="/images/play-button-24.png" /></Button><br></br>
+                  	<Button className="p-0 btn-fea__video" color="link" onClick={this.toggleModal}>Free Energy Analysis <img src="/images/play-button-24.png"  alt= "play_button"/></Button><br></br>
                     <a href="tel:+17602303788" >+1 (760) 230-3788</a>
       			        <Modal 
       			        	isOpen={this.state.modal} 
