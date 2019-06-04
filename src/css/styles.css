@@ -757,3 +757,15 @@ body {
   }
 
 }
+
+@media only screen and (max-width: 340px) {
+
+  /* first page */
+  
+  .navbar-text, 
+  .btn-fea__video {
+    font-size: 12px;
+  } 
+
+}
+
