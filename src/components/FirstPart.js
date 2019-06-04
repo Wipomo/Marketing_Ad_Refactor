@@ -255,7 +255,7 @@ class FirstPart extends React.Component {
 
   render() {
 
-    console.log("Show header is: "+ this.props.showHeader)
+    console.log("Show header is: "+ this.props.showHeader);
 
     var StyleDisplay = {}, StyleJustify={}, StyleText={textAlign: "right"};
     

@@ -16,17 +16,28 @@ class FooterComponent extends React.Component {
     }
 
   render() {
+
+    console.log("Show header is: "+ this.props.showHeader);
+
+    var StyleDisplay = {};
+
+    if(!this.props.showHeader){
+      StyleDisplay = {
+        display: "none"
+      };
+    }
+
     return (
-        <div>
+      <div>
         <div className="footer">
-        <div className="footerText">
-          &copy; Copyright 2019 Makello
-          {/* &nbsp;&nbsp;|&nbsp;&nbsp;We will not share your data.<span className="readme" id="footer_privacy_icon" onMouseOver={this.privacy_toggle}
-                  onMouseOut={this.privacy_toggle}>&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
-                  </span> */}
+          <div className="footerText" style={StyleDisplay}>
+            &copy; Copyright 2019 Makello
+            {/* &nbsp;&nbsp;|&nbsp;&nbsp;We will not share your data.<span className="readme" id="footer_privacy_icon" onMouseOver={this.privacy_toggle}
+                    onMouseOut={this.privacy_toggle}>&nbsp; <img src="/images/info_icon.png" alt="info" style={{width:'13px', height:'13px'}}/>
+                    </span> */}
+          </div>
         </div>
-      </div>
-      {/* <Popover placement="auto" isOpen={this.state.privacy_popup_open} target="footer_privacy_icon" toggle={this.privacy_toggle} >
+        {/* <Popover placement="auto" isOpen={this.state.privacy_popup_open} target="footer_privacy_icon" toggle={this.privacy_toggle} >
             <PopoverBody>
                 <div className="payback-disclaimer">
                     Privacy Policy: We won't share your info with Third Parties,
@@ -39,7 +50,7 @@ class FooterComponent extends React.Component {
                 </div>
             </PopoverBody>
         </Popover> */}
-        </div>
+      </div>
 
     );
   }

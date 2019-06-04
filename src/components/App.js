@@ -969,7 +969,7 @@ Source: ${this.myReferer}
             <FifthPart hideChanger={this.hideChanger} />
           </div>
           
-          <FooterComponent/>
+          <FooterComponent showHeader = {this.showHeader} />
         </div>
       </div>
     );
