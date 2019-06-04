@@ -909,12 +909,14 @@ Source: ${this.myReferer}
       var root = document.querySelector(':root');
       root.style.setProperty('--page-layout', '0% 100% 0%');
     }
-    this.showHeader = true;
+    
 
     //console.log("State of test client is:"+this.state.clientProfile.test);
     // console.log("State of email is:"+this.state.clientProfile.email);
 
     // console.log(this.props.location);
+    
+    this.showHeader = true;
     if(this.props.location.search === '?v=nh'){
       this.showHeader = false;
     }
