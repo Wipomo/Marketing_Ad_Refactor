@@ -252,35 +252,37 @@ class FirstPart extends React.Component {
   }
 
   render() {
-  console.log("Show header is: "+ this.props.showHeader)
-var divStyle = {}
-  if(!this.props.showHeader){
-    divStyle = {
-      display: "none",
-    };
 
-  }else{
-    divStyle = {
-      backgroundcolor: "#fff",
-      marginleft: "0px !important",
-      marginright: "0px !important"
-    };
-  }
+    console.log("Show header is: "+ this.props.showHeader)
+
+    var StyleDisplay = {}, StyleJustify={}, StyleText={textAlign: "right"};
+
+    if(!this.props.showHeader){
+      StyleDisplay = {
+        display: "none"
+      };
+      StyleJustify = {
+        justifyContent: "center"
+      };
+      StyleText = {
+        textAlign: "center"
+      };
+    }
 
     return (
       <div className="App">
          {/* <div className='main'> */}
          <div className="wrapper">
 
-            <header className="mHeader" style={divStyle}>
+            <header className="mHeader">
               <nav className="navbar navbar-default">
-                <div className="container-fluid">
-                  <div className="navbar-header">
+                <div className="container-fluid" style={StyleJustify}>
+                  <div className="navbar-header" style={StyleDisplay}>
                     <span className="navbar-brand">
                       <a href="https://www.makello.com" target="_blank" rel="noopener noreferrer">Makello.com</a>
                     </span>
                   </div>
-                  <span className="navbar-text text-right">
+                  <span className="navbar-text" style={StyleText}>
                   	<Button className="p-0 btn-fea__video" color="link" onClick={this.toggleModal}>Free Energy Analysis <img src="/images/play-button-24.png"  alt= "play_button"/></Button><br></br>
                     <a href="tel:+17602303788" >+1 (760) 230-3788</a>
       			        <Modal 
