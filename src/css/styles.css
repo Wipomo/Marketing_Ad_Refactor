@@ -537,6 +537,10 @@ body {
   border: 1px solid #eee;
   border-radius: 6px;
 }
+.blogThumbnails .thumbnail:hover {
+  border-color: #777E85;
+  background-color: #777E85;
+}
 .blogThumbnails .thumbnail .single_blog_thumbnail{
   width: 100%;
   min-height: 118px;
@@ -549,7 +553,12 @@ body {
   color: #000;
   padding:10px;
 }
-
+.blogThumbnails .thumbnail a.viewBlogContent {
+  text-decoration: none;
+}
+.blogThumbnails .thumbnail a.viewBlogContent:hover .caption {
+  color: #fff;
+}
 /* Lightbox styling */
 
 
