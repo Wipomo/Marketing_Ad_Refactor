@@ -921,8 +921,16 @@ Source: ${this.myReferer}
       this.showHeader = false;
     }
 
+    // to make it fullwidth on weebly iframe...ks
+    var StyleWidth = {};
+    if(!this.showHeader){
+      StyleWidth = {
+        maxWidth: "100%"
+      };
+    }
+
     return (
-      <div className="container">
+      <div className="container" style={StyleWidth}>
         <div className="bg-white">
           <div className={`FirstPart ${this.state.showFirstPart.hidden}`}>
             <FirstPart
