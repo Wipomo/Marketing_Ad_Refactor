@@ -39,13 +39,11 @@ class FirstPart extends React.Component {
       modal: !this.state.modal
     });
   }
-
   toggleVerifyUserModal() {
     this.setState({
       verifyUserModal: !this.state.verifyUserModal
     });
   }
-
   toggle1() {
     this.setState({
       popoverOpen1: !this.state.popoverOpen1
@@ -61,8 +59,6 @@ class FirstPart extends React.Component {
       popoverOpen3: !this.state.popoverOpen3
     });
   }
-
- 
 
   emailRef = React.createRef();
   pinRef = React.createRef();
