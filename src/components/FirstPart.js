@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover, PopoverBody, Button, Modal, ModalBody} from 'reactstrap';
+import { Popover, PopoverBody, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 import MakelloSlider from './MakelloSlider';
 
 const min_slider_value = 50;
@@ -8,9 +8,12 @@ const slider_increment_step = 25;
 
 
 class FirstPart extends React.Component {
-
+  nexom_req_id=0;
+  leadPhoneVerified=false;
+  testingUser = false;
   constructor(props) {
     super(props);
+
     this.toggle1 = this.toggle1.bind(this);
     this.toggle2 = this.toggle2.bind(this);
     this.toggle3 = this.toggle3.bind(this);
@@ -19,8 +22,28 @@ class FirstPart extends React.Component {
       popoverOpen2: false,
       popoverOpen3: false
     };
+
+    this.state = {
+      modal: false,
+      verifyUserModal: false
+    };
+
+    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleVerifyUserModal = this.toggleVerifyUserModal.bind(this);
+    this.cancelVerificationAndCloseModal = this.cancelVerificationAndCloseModal.bind(this);
   }
 
+  toggleModal() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
+  toggleVerifyUserModal() {
+    this.setState({
+      verifyUserModal: !this.state.verifyUserModal
+    });
+  }
 
   toggle1() {
     this.setState({
@@ -37,9 +60,157 @@ class FirstPart extends React.Component {
       popoverOpen3: !this.state.popoverOpen3
     });
   }
-  
+
+ 
+
   emailRef = React.createRef();
   pinRef = React.createRef();
+
+  submitHandler = (event) => {
+    if(/^(\+)?([0-9]{1})?[-. ]?(\()?([0-9]{3})(\))?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(this.emailRef.current.value)){
+      var phoneNumber = this.emailRef.current.value;
+      console.log(" Matches phone number");
+
+      // update phone number to accepted input for verification purposes
+      var regex = /[+() .-]/g;
+      phoneNumber = phoneNumber.replace(regex,'');
+      if(phoneNumber.length === 10){
+        phoneNumber= '1'+phoneNumber;
+      }
+      if(phoneNumber === '18587546183' || phoneNumber === '17608093391' || phoneNumber === '16193736244' || phoneNumber === '8587546183'){
+        this.testingUser = true;
+      }
+
+      console.log("Cleaned up number is now: "+phoneNumber);
+      var req_id = this.sendVerificationCheck(phoneNumber);
+      
+      console.log("Prinitng request id IN FIRST PART:" + req_id);
+      this.toggleVerifyUserModal();
+    }
+    else if ((/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.emailRef.current.value))) {
+      event.preventDefault();
+      // also check if work email for testing purposes
+      if(/^\w+([.-]?\w+)*@wipomo.com$/.test(this.emailRef.current.value)) {
+        console.log("TEST: Sets client test state")
+        this.testingUser = true;
+      }
+      
+      var monthlyBill = this.getSliderValue();
+      this.props.getChartData(monthlyBill);
+      console.log("Passing in test user status of:"+this.testingUser);
+      this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value,'N/A', this.testingUser);
+      this.props.hideChanger('showSecondPart');
+      this.props.toggleLightBox();
+    } else {
+      event.preventDefault();
+      window.alert("Please enter a valid email address.");
+    }
+  };
+
+  async sendVerificationCheck(number){
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/request/"+number;
+    //var id= 0;
+    console.log(url);
+    let response =  await fetch(url, {
+        method: "POST"
+        // body: JSON.stringify({
+        //   number: number
+        // })
+      })
+    let resData = await response.json();
+    console.log(resData);
+    this.nexom_req_id = resData.request_id;
+
+    };
+  
+  verifyandUpdateView=()=>{
+    console.log("Verify id is: "+ this.nexom_req_id);
+    //this.props.setNexomId(this.nexom_req_id);
+    var confirmed = this.confirmVerificationCode(this.pinRef.current.value,this.nexom_req_id );
+    console.log("returned confirmation of verification is: "+ confirmed);
+      // if(this.leadPhoneVerified){
+      //   console.log("Succes");
+      //   var monthlyBill = this.getSliderValue();
+      //   this.props.getChartData(monthlyBill);
+      //   this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
+      //   this.props.hideChanger('showSecondPart');
+      //   this.toggleVerifyUserModal();
+      //   this.props.toggleLightBox();
+      // }
+      // else{
+      //   this.cancelVerificationAndCloseModal();
+      // } 
+  }
+
+  async confirmVerificationCode(code, req_id){
+    //confirmVerificationCheck(this.nexom_req_id, code);
+    console.log("user req id: "+ req_id);
+    console.log("set top state req id is: "+ this.nexom_req_id);
+    console.log("Entered PIN: "+ code + " of type: "+ typeof(code) );
+    //var verified = false;
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/check/"+req_id+"/"+code;
+    let response = await fetch(url, {
+      method: "POST",
+      // body: JSON.stringify({
+      //   number: number
+      // })
+    })
+    let resData = await response.json();
+    if(resData.status === "0"){
+      this.setConfirmationStatus();
+    }
+    else{
+      console.log(resData.error_text);
+      window.alert(resData.error_text);
+      this.cancelVerificationAndCloseModal();
+    }
+
+    console.log("Lead phone verified: " + this.leadPhoneVerified);
+    return this.leadPhoneVerified;
+  } 
+
+  setConfirmationStatus = () => {
+    console.log("Sets phone verified variable to true");
+    this.leadPhoneVerified = true;
+    var monthlyBill = this.getSliderValue();
+    this.props.getChartData(monthlyBill);
+    this.props.billandEmailorPhoneUpdater(monthlyBill, 'N/A', this.emailRef.current.value, this.testingUser);
+    this.props.hideChanger('showSecondPart');
+    this.toggleVerifyUserModal();
+    this.props.toggleLightBox();
+    console.log("Succes");
+  };
+  
+  cancelVerificationAndCloseModal = () =>{
+    //clear email/phone inout box value
+    this.emailRef.current.value = '';
+
+    // cancel verification request
+    this.cancelVerificationRequest();
+
+    //close modal
+    this.toggleVerifyUserModal();
+  }
+
+  cancelVerificationRequest(){
+    console.log("nexom request id: "+ this.nexom_req_id);
+    var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/cancel/"+this.nexom_req_id;
+    fetch(url, {
+      method: "POST",
+      // body: JSON.stringify({
+      //   number: number
+      // })
+    })
+    .then(response => response.json())
+    .then(resData => {
+        console.log("Returning succesful response to cancel verification request");
+        console.log(resData);        
+    })
+    .catch(function (e) {
+      console.warn("Error: Caught a nexom verification cancellation error!");
+      console.log(e);
+    })
+  }
 
   getSliderValue = () => {
     var sliderHolder = document.getElementById("sliderHandle").innerText;
@@ -124,6 +295,20 @@ class FirstPart extends React.Component {
                         <div className="col-md-6 offset-md-3">
                           <div className="form-group">
                             <input className="form-control userInput light" id="email" ref={this.emailRef} aria-describedby="emailHelp" placeholder="Enter email or phone number*" />
+                          </div>
+
+                          <div>
+                             <Modal isOpen={this.state.verifyUserModal} toggle={this.toggleVerifyUserModal}> {/*className={this.props.className}> */}
+                              <ModalHeader toggle={this.toggle}>Check your phone for a text message verification code.</ModalHeader>
+                              <ModalBody>
+                                <input type="number" className="form-control userInput light" id="pin" ref={this.pinRef} aria-describedby="pin" placeholder="Enter the code here.. " />
+                              </ModalBody>
+                              <ModalFooter>
+                                <Button color="primary" onClick={()=>{this.verifyandUpdateView()}}>Verify</Button>{' '}
+                                {/* On cancel, clear input box and display placeholder*/}
+                                <Button color="secondary" onClick={()=>{this.cancelVerificationAndCloseModal()}}>Cancel</Button>
+                              </ModalFooter>
+                            </Modal>
                           </div>
 
                           <div className="form-group">
@@ -220,151 +405,6 @@ class FirstPart extends React.Component {
       </div>
     );
   }
-    // submitHandler = (event) => {
-  //   if(/^(\+)?([0-9]{1})?[-. ]?(\()?([0-9]{3})(\))?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(this.emailRef.current.value)){
-  //     var phoneNumber = this.emailRef.current.value;
-  //     console.log(" Matches phone number");
-
-  //     // update phone number to accepted input for verification purposes
-  //     var regex = /[+() .-]/g;
-  //     phoneNumber = phoneNumber.replace(regex,'');
-  //     if(phoneNumber.length === 10){
-  //       phoneNumber= '1'+phoneNumber;
-  //     }
-  //     if(phoneNumber === '18587546183' || phoneNumber === '17608093391' || phoneNumber === '16193736244' || phoneNumber === '8587546183'){
-  //       this.testingUser = true;
-  //     }
-
-  //     console.log("Cleaned up number is now: "+phoneNumber);
-  //     var req_id = this.sendVerificationCheck(phoneNumber);
-      
-  //     console.log("Prinitng request id IN FIRST PART:" + req_id);
-  //     this.toggleVerifyUserModal();
-  //   }
-  //   else if ((/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.emailRef.current.value))) {
-  //     event.preventDefault();
-  //     // also check if work email for testing purposes
-  //     if(/^\w+([.-]?\w+)*@wipomo.com$/.test(this.emailRef.current.value)) {
-  //       console.log("TEST: Sets client test state")
-  //       this.testingUser = true;
-  //     }
-      
-  //     var monthlyBill = this.getSliderValue();
-  //     this.props.getChartData(monthlyBill);
-  //     console.log("Passing in test user status of:"+this.testingUser);
-  //     this.props.billandEmailorPhoneUpdater(monthlyBill, this.emailRef.current.value,'N/A', this.testingUser);
-  //     this.props.hideChanger('showSecondPart');
-  //     this.props.toggleLightBox();
-  //   } else {
-  //     event.preventDefault();
-  //     window.alert("Please enter a valid email address.");
-  //   }
-  // };
-
-  // async sendVerificationCheck(number){
-  //   var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/request/"+number;
-  //   //var id= 0;
-  //   console.log(url);
-  //   let response =  await fetch(url, {
-  //       method: "POST"
-  //       // body: JSON.stringify({
-  //       //   number: number
-  //       // })
-  //     })
-  //   let resData = await response.json();
-  //   console.log(resData);
-  //   this.nexom_req_id = resData.request_id;
-
-  //   };
-  
-  // verifyandUpdateView=()=>{
-  //   console.log("Verify id is: "+ this.nexom_req_id);
-  //   //this.props.setNexomId(this.nexom_req_id);
-  //   var confirmed = this.confirmVerificationCode(this.pinRef.current.value,this.nexom_req_id );
-  //   console.log("returned confirmation of verification is: "+ confirmed);
-  //     // if(this.leadPhoneVerified){
-  //     //   console.log("Succes");
-  //     //   var monthlyBill = this.getSliderValue();
-  //     //   this.props.getChartData(monthlyBill);
-  //     //   this.props.billandEmailorPhoneUpdater(monthlyBill, '', this.emailRef.current.value, this.testingUser);
-  //     //   this.props.hideChanger('showSecondPart');
-  //     //   this.toggleVerifyUserModal();
-  //     //   this.props.toggleLightBox();
-  //     // }
-  //     // else{
-  //     //   this.cancelVerificationAndCloseModal();
-  //     // } 
-  // }
-
-  // async confirmVerificationCode(code, req_id){
-  //   //confirmVerificationCheck(this.nexom_req_id, code);
-  //   console.log("user req id: "+ req_id);
-  //   console.log("set top state req id is: "+ this.nexom_req_id);
-  //   console.log("Entered PIN: "+ code + " of type: "+ typeof(code) );
-  //   //var verified = false;
-  //   var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/check/"+req_id+"/"+code;
-  //   let response = await fetch(url, {
-  //     method: "POST",
-  //     // body: JSON.stringify({
-  //     //   number: number
-  //     // })
-  //   })
-  //   let resData = await response.json();
-  //   if(resData.status === "0"){
-  //     this.setConfirmationStatus();
-  //   }
-  //   else{
-  //     console.log(resData.error_text);
-  //     window.alert(resData.error_text);
-  //     this.cancelVerificationAndCloseModal();
-  //   }
-
-  //   console.log("Lead phone verified: " + this.leadPhoneVerified);
-  //   return this.leadPhoneVerified;
-  // } 
-
-  // setConfirmationStatus = () => {
-  //   console.log("Sets phone verified variable to true");
-  //   this.leadPhoneVerified = true;
-  //   var monthlyBill = this.getSliderValue();
-  //   this.props.getChartData(monthlyBill);
-  //   this.props.billandEmailorPhoneUpdater(monthlyBill, 'N/A', this.emailRef.current.value, this.testingUser);
-  //   this.props.hideChanger('showSecondPart');
-  //   this.toggleVerifyUserModal();
-  //   this.props.toggleLightBox();
-  //   console.log("Succes");
-  // };
-  
-  // cancelVerificationAndCloseModal = () =>{
-  //   //clear email/phone inout box value
-  //   this.emailRef.current.value = '';
-
-  //   // cancel verification request
-  //   this.cancelVerificationRequest();
-
-  //   //close modal
-  //   this.toggleVerifyUserModal();
-  // }
-
-  // cancelVerificationRequest(){
-  //   console.log("nexom request id: "+ this.nexom_req_id);
-  //   var url = "https://makeitlow-makello-server-stage.herokuapp.com/nexmo/cancel/"+this.nexom_req_id;
-  //   fetch(url, {
-  //     method: "POST",
-  //     // body: JSON.stringify({
-  //     //   number: number
-  //     // })
-  //   })
-  //   .then(response => response.json())
-  //   .then(resData => {
-  //       console.log("Returning succesful response to cancel verification request");
-  //       console.log(resData);        
-  //   })
-  //   .catch(function (e) {
-  //     console.warn("Error: Caught a nexom verification cancellation error!");
-  //     console.log(e);
-  //   })
-  // }
 }
 
 export default FirstPart;
