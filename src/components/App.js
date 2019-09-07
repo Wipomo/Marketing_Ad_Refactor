@@ -437,7 +437,7 @@ constructor(props){
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        to: "sales@makello.com",
+        to: "info@makello.com",
         bcc: "no-reply@makello.com",
         subject: emailSubject,
         body: `A new lead has been added to the database.
@@ -539,7 +539,7 @@ Source: ${this.myReferer}
       },
       body: JSON.stringify({
         to: `${this.state.clientProfile.email}`,
-        bcc: "sales@makello.com",
+        bcc: "info@makello.com",
         subject: emailSubject,
         body: emailBody
       })
@@ -624,7 +624,7 @@ Source: ${this.myReferer}
     },
     body: JSON.stringify({
       to: `${this.state.clientProfile.email}`,
-      bcc: "sales@makello.com",
+      bcc: "info@makello.com",
       subject: emailSubject,
       body:emailBody
     })
