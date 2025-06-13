@@ -120,7 +120,7 @@ body {
 
 .header {
   height: 50vh;
-  background-image: url("/images/Image-1_1.jpg");
+  background-image: url("/public/images/Image-1_1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -335,7 +335,7 @@ body {
 }
 
 .saveMoneyBox {
-  background-image: url("/images/savings-bg.jpg");
+  background-image: url("/public/images/savings-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -662,7 +662,7 @@ body {
   margin-top: 15px;
   padding:0px;
   background-color: #fff;
-  background-image: url("/images/website-pic-2.jpeg");
+  background-image: url("/public/images/website-pic-2.jpeg");
   background-size: 60% 100%;
   background-repeat: no-repeat;
   background-position: right;
